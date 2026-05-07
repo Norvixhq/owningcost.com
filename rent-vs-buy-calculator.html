@@ -9,13 +9,14 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
 <meta name="color-scheme" content="light" />
 
 <title>Rent vs Buy Calculator — With Horizon Analysis | OwningCost</title>
-<meta name="description" content="Compare the total cost of renting versus buying over your real time horizon. Includes home appreciation, rent inflation, opportunity cost of the down payment, closing costs, and selling costs. Free, transparent, no signup." />
+<meta name="description" content="Compare total cost of renting vs. buying over your real time horizon — includes appreciation, rent inflation, opportunity cost, closing and selling costs." />
 <link rel="canonical" href="https://owningcost.com/rent-vs-buy-calculator.html" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
 
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Rent vs Buy Calculator | OwningCost" />
 <meta property="og:description" content="Total cost over your real time horizon — with appreciation, opportunity cost, and a crossover chart." />
 <meta property="og:url" content="https://owningcost.com/rent-vs-buy-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Rent vs Buy Calculator | OwningCost" />
 <meta name="twitter:description" content="See whether renting or buying wins over your specific time horizon." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -165,13 +169,17 @@
   <!-- ========== CALCULATOR ========== -->
   <section class="section section--tight" id="calc">
     <div class="container">
+            <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
       <form class="calc reveal" id="rvbForm" onsubmit="return false" aria-label="Rent vs Buy calculator">
         <div class="calc__form">
           <h3>Your scenario</h3>
 
           <div class="field">
             <div class="field__label"><span>Time horizon</span><span class="field__value" id="lblYears">7 years</span></div>
-            <input type="range" id="rngYears" class="field__range" min="1" max="30" step="1" value="7">
+            <input type="range" id="rngYears" class="field__range" min="1" max="30" step="1" value="7" aria-label="Time horizon">
           </div>
 
           <h3 style="margin-top:1.4rem">Renting</h3>
@@ -304,6 +312,7 @@
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Rent total</strong> = sum across years of <code>12 × rent × (1 + rentInc)^(year−1)</code>.</p>
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Buy total cash out</strong> = (down + closing) + sum of monthly housing costs over the horizon.&nbsp;<strong style="color:var(--ink)">Net buy cost</strong> = total cash out − (home value at exit × (1 − selling cost) − loan balance at exit). Loan balance at month <code>m</code> uses <code>L × ((1+r)ⁿ − (1+r)ᵐ) / ((1+r)ⁿ − 1)</code>.</p>
               <p><strong style="color:var(--ink)">Opportunity cost</strong> on initial cash (down + closing) compounds at the investment return; we add this to the buy side and subtract it from the rent side to make the comparison apples-to-apples. The <strong style="color:var(--ink)">break-even year</strong> is the first year where adjusted cumulative buy cost ≤ cumulative rent cost.</p>
+              <p class="calc__math__cta"><a href="methodology.html#opportunity-cost">Read the full methodology →</a></p>
             </div>
           </details>
         </div>

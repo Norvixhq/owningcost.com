@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="House Poor Risk Calculator — Diagnostic score" />
 <meta property="og:description" content="A 0–100 diagnostic score for whether a specific home would leave you house poor. Combines reserves, rate sensitivity, hidden cost exposure, and stress DTI." />
 <meta property="og:url" content="https://owningcost.com/house-poor-risk-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="House Poor Risk Calculator — Diagnostic score | OwningCost" />
 <meta name="twitter:description" content="A 0–100 diagnostic score for whether a specific home would leave you house poor. Combines reserves, rate sensitivity, hidden cost exposure, and stress DTI." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -113,45 +117,49 @@
 
 <section class="section section--tight" id="calc">
   <div class="container">
+          <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
     <form class="calc reveal" onsubmit="return false" aria-label="House Poor Risk Score.">
       <div class="calc__form">
         <h3>Income and obligations</h3>
 
 <div class="field">
   <div class="field__label"><span>Annual gross income</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpInc" value="135000" min="20000" step="1000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpInc" value="135000" min="20000" step="1000" aria-label="Annual gross income"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Monthly debts</span><span class="field__hint">cars, student, credit cards</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpDebt" value="650" min="0" step="25"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpDebt" value="650" min="0" step="25" aria-label="Monthly debts"></div>
 </div>
 
 <h3 style="margin-top:1.4rem">The home</h3>
 
 <div class="field">
   <div class="field__label"><span>Total monthly housing cost</span><span class="field__hint">PITI + HOA + maintenance</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpHousing" value="3533" min="500" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpHousing" value="3533" min="500" step="50" aria-label="Total monthly housing cost"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Of that, principal &amp; interest</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpPi" value="2207" min="0" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpPi" value="2207" min="0" step="50" aria-label="Of that, principal &amp; interest"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Cash reserves</span><span class="field__hint">liquid, after closing</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpRes" value="20000" min="0" step="1000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpRes" value="20000" min="0" step="1000" aria-label="Cash reserves"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Loan balance</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpLoan" value="340000" min="0" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="hpLoan" value="340000" min="0" step="5000" aria-label="Loan balance"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Current rate</span></div>
-  <div class="field__input"><input type="number" id="hpRate" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="hpRate" value="6.75" min="0" max="20" step="0.01" aria-label="Current rate"><span class="suffix">%</span></div>
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -200,7 +208,8 @@
       <li><strong>Stress DTI (25%)</strong>: back-end DTI at stressed rate; under 36% → low; over 50% → high.</li>
     </ul>
     <p>Each factor maps to a 0–100 sub-score; the composite is the weighted average.</p>
-  </div>
+              <p class="calc__math__cta"><a href="methodology.html#house-poor-risk-score">Read the full methodology →</a></p>
+            </div>
 </details>
       </div>
     </form>

@@ -9,14 +9,15 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
 <meta name="color-scheme" content="light" />
 
 <title>OwningCost — The true cost of renting, buying, and owning a home</title>
-<meta name="description" content="OwningCost is a housing-cost intelligence platform. Transparent calculators, ZIP-level local intelligence, financing comparisons across FHA/VA/USDA/conventional, and AI-assisted decision support — built for real housing decisions." />
-<link rel="canonical" href="https://owningcost.com/index.html" />
+<meta name="description" content="Calculator-first housing platform — true monthly cost, rent vs. buy, FHA vs. conventional, and decision support. Math in your browser. Not a lender funnel." />
+<link rel="canonical" href="https://owningcost.com/" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
 
 <!-- Open Graph -->
@@ -24,15 +25,18 @@
 <meta property="og:site_name" content="OwningCost" />
 <meta property="og:title" content="OwningCost — The true cost of renting, buying, and owning a home" />
 <meta property="og:description" content="Go beyond the mortgage payment. Calculators, ZIP-level local intelligence, and financing comparisons for real housing decisions." />
-<meta property="og:url" content="https://owningcost.com/index.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:url" content="https://owningcost.com/" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="OwningCost — The true cost of home" />
 <meta name="twitter:description" content="Calculators, ZIP-level intelligence, and financing comparisons for real housing decisions." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="image.png" />
@@ -48,71 +52,7 @@
 
 <!-- Structured data -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://owningcost.com/#organization",
-      "name": "OwningCost",
-      "url": "https://owningcost.com/",
-      "logo": "https://owningcost.com/image.png",
-      "description": "Independent housing-cost intelligence platform with transparent calculators, ZIP-level local data, and financing comparisons."
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://owningcost.com/#website",
-      "url": "https://owningcost.com/",
-      "name": "OwningCost",
-      "publisher": { "@id": "https://owningcost.com/#organization" }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What does OwningCost actually do?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "OwningCost is a housing-cost intelligence platform. It shows the full monthly cost of housing — mortgage, taxes, insurance, HOA, maintenance, and the costs generic calculators skip. It compares renting versus buying, models financing across FHA, VA, USDA, and conventional, and produces ZIP-level local cost intelligence."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is OwningCost a lender?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. OwningCost is independent. We do not originate loans, sell your information, or pass you to a specific lender. Every calculation runs in your browser."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What loan types does OwningCost cover?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "OwningCost covers conventional, FHA, VA, USDA, jumbo, fixed-rate, and adjustable-rate mortgages — with side-by-side comparison calculators that model true cost over your hold period including PMI, mortgage insurance, and rate buydowns."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is this different from a mortgage calculator?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A mortgage calculator shows principal and interest. OwningCost shows what you will actually pay each month once property taxes, insurance, HOA, PMI, maintenance, and closing costs are included — plus how that compares to renting and how it varies by ZIP."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do the calculators work without signing up?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Every calculator on OwningCost is free to use with no account required. The math is transparent and the inputs stay in your browser."
-          }
-        }
-      ]
-    }
-  ]
-}
+{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://owningcost.com/#organization", "name": "OwningCost", "url": "https://owningcost.com/", "logo": "https://owningcost.com/image.png", "description": "Independent housing-cost intelligence platform with transparent calculators, ZIP-level local data, and financing comparisons."}, {"@type": "WebSite", "@id": "https://owningcost.com/#website", "url": "https://owningcost.com/", "name": "OwningCost", "publisher": {"@id": "https://owningcost.com/#organization"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does OwningCost actually do?", "acceptedAnswer": {"@type": "Answer", "text": "OwningCost is a housing-cost intelligence platform. It shows the full monthly cost of housing — mortgage, taxes, insurance, HOA, maintenance, and the costs generic calculators skip. It compares renting versus buying, models financing across FHA, VA, USDA, and conventional, and produces ZIP-level local cost intelligence."}}, {"@type": "Question", "name": "Is OwningCost a lender?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is independent. We do not originate loans, sell your information, or pass you to a specific lender. Every calculation runs in your browser."}}, {"@type": "Question", "name": "What loan types does OwningCost cover?", "acceptedAnswer": {"@type": "Answer", "text": "OwningCost covers conventional, FHA, VA, USDA, jumbo, fixed-rate, and adjustable-rate mortgages — with side-by-side comparison calculators that model true cost over your hold period including PMI, mortgage insurance, and rate buydowns."}}, {"@type": "Question", "name": "How is this different from a mortgage calculator?", "acceptedAnswer": {"@type": "Answer", "text": "A mortgage calculator shows principal and interest. OwningCost shows what you will actually pay each month once property taxes, insurance, HOA, PMI, maintenance, and closing costs are included — plus how that compares to renting and how it varies by ZIP."}}, {"@type": "Question", "name": "Do the calculators work without signing up?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every calculator on OwningCost is free to use with no account required. The math is transparent and the inputs stay in your browser."}}]}, {"@type": "WebPage", "name": "OwningCost — independent housing-cost intelligence", "description": "Calculator-first housing platform — true monthly cost, rent vs. buy, FHA vs. conventional, and decision-support tools. Math runs in your browser. Not a lender funnel.", "url": "https://owningcost.com/", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US", "primaryImageOfPage": {"@type": "ImageObject", "url": "https://owningcost.com/og-card.png"}}]}
 </script>
 </head>
 <body>
@@ -424,7 +364,7 @@
           <div class="field">
             <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice">$425,000</span></div>
             <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" max="5000000" step="5000" aria-label="Home price"></div>
-            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" value="425000">
+            <input type="range" id="rngPrice" aria-label="Home price" role="slider" class="field__range" min="50000" max="1500000" step="5000" value="425000">
           </div>
 
           <div class="field__grid">
@@ -724,6 +664,28 @@
             <p>Every calculator and every insight on the site is free to use. There is no paywall that unlocks "the real numbers" later on.</p>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= SIGNATURE TOOL SPOTLIGHT ======================= -->
+  <section class="section" id="signature-tool" aria-labelledby="signature-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker" style="color:var(--green-700)">Signature tool</span>
+        <h2 id="signature-title">The Listing Reality Check.</h2>
+        <p class="section__sub">An OwningCost original. Most listings hide 30–40% of the true monthly cost — post-purchase tax reset, current-market insurance, the maintenance reserve, the HOA pass-through. Paste any listing or enter a price; get the honest number.</p>
+      </div>
+
+      <div class="fincallout reveal" style="margin-top:1.4rem">
+        <div>
+          <strong>What it does, in one sentence.</strong>
+          <p>Takes a listing's headline price (or a paste of the full listing) and reconstructs the complete monthly cost using calibrated defaults you can adjust — every line item visible, every formula documented.</p>
+          <p style="margin-top:.6rem;color:var(--muted)">Math runs in your browser. We don't capture the listing, we don't email you a "report," we don't pass anything to a lender.</p>
+        </div>
+        <div>
+          <a href="listing-reality-check.html" class="btn btn--primary">Run a check</a>
+        </div>
       </div>
     </div>
   </section>

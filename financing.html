@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Financing & mortgages — calculators and guides" />
 <meta property="og:description" content="Compare loan types, model down-payment strategy, and see PMI economics — FHA, VA, USDA, conventional, ARM, jumbo. The honest financing comparison layer." />
 <meta property="og:url" content="https://owningcost.com/financing.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Financing & mortgages — calculators and guides | OwningCost" />
 <meta name="twitter:description" content="Compare loan types, model down-payment strategy, and see PMI economics — FHA, VA, USDA, conventional, ARM, jumbo. The honest financing comparison layer." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -40,7 +44,7 @@
 
 <link rel="stylesheet" href="styles.css" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Financing", "item": "https://owningcost.com/financing.html"}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Financing", "item": "https://owningcost.com/financing.html"}]}, {"@type": "CollectionPage", "name": "Financing hub", "description": "Mortgage and financing tools — FHA vs. conventional, VA loans, ARM vs. fixed, PMI, down payment strategy, and refinance math.", "url": "https://owningcost.com/financing.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What credit score do I need to get the best mortgage rate?", "acceptedAnswer": {"@type": "Answer", "text": "740 and above unlocks the best conventional pricing tiers. Each step (740, 760, 780) typically saves 12–25 basis points on rate or 0.25–0.5% on PMI. The two biggest cliffs are 619 → 620 (qualifying for conventional at all) and 739 → 740 (best pricing). Below 660, FHA usually beats conventional on monthly payment despite the permanent MIP."}}, {"@type": "Question", "name": "Is FHA always cheaper than conventional?", "acceptedAnswer": {"@type": "Answer", "text": "No — only on the front end. FHA has a lower down payment floor and more forgiving credit standards, but charges 1.75% upfront MIP and lifetime monthly MIP on most modern loans. Conventional with 5–10% down is usually cheaper over a 7+ year hold for borrowers who qualify for both. Run the FHA vs. Conventional calculator on your specific numbers — the verdict is rarely as obvious as it looks at first glance."}}, {"@type": "Question", "name": "When does PMI go away?", "acceptedAnswer": {"@type": "Answer", "text": "On conventional loans, PMI terminates automatically at 78% loan-to-value per federal law. Borrowers can request removal at 80% LTV. Both points are based on the original amortization schedule and original purchase price, but the borrower-request path can credit appreciation if you order a new appraisal. On FHA loans with less than 10% down originated after June 2013, MIP doesn't terminate at all — refinancing into conventional is the only path off."}}, {"@type": "Question", "name": "Should I take an ARM in this rate environment?", "acceptedAnswer": {"@type": "Answer", "text": "Maybe, if your realistic horizon is shorter than the fixed period (5/1, 7/1, 10/1) and your budget can absorb the lifetime-cap payment. Run both options through the ARM vs. Fixed calculator with the cap modeled. If the cap payment fits the budget, the ARM bet is rational. If it doesn't, take the fixed."}}, {"@type": "Question", "name": "How much should I plan for closing costs?", "acceptedAnswer": {"@type": "Answer", "text": "Roughly 2–3% of the purchase price for most conventional purchases — title, lender fees, appraisal, recording, prepaid taxes and insurance. FHA and VA add their upfront fees (1.75% MIP and 2.15% funding fee respectively, typically financed into the loan). The closing cost calculator breaks down the line items."}}, {"@type": "Question", "name": "When does refinancing make sense?", "acceptedAnswer": {"@type": "Answer", "text": "When the new rate is meaningfully below the current rate (typically 75+ basis points), the closing costs recover within your honest hold horizon (typically under 24 months), and you have the equity, credit, and DTI to qualify for the better rate. The refinance guide covers the break-even framework. The 75bp / 24-month rules of thumb are reasonable defaults; your specific math depends on closing costs and remaining hold."}}]}]}
 </script>
 
 </head>
@@ -106,6 +110,32 @@
       <span class="chip">6 loan types</span>
       <span class="chip">No lender bias</span>
       <span class="chip">Hold-period totals</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Before the calculators</span>
+      <h2>How to think about loan choice.</h2>
+      <p class="section__lede">Mortgages aren't priced or structured at random. The differences between programs are mostly about who's underwriting the risk and how that cost gets billed back to the borrower. Once that's clear, the choice between FHA, conventional, VA, and ARM-vs-fixed becomes mechanical instead of mysterious.</p>
+    </div>
+
+    <div class="article">
+      <div class="article__inner">
+        <h3>The three things that actually drive the cost of a loan</h3>
+        <p><strong>The rate.</strong> Set by the credit profile, the loan-to-value ratio, the loan term, and the broader rate environment. The headline rate is what most calculators use — and it's only one of three drivers.</p>
+        <p><strong>The mortgage insurance structure.</strong> The line item most borrowers don't price properly. Conventional PMI ends at 78% LTV by federal law. FHA mortgage insurance, on most modern loans, doesn't end at all — it persists for the life of the loan unless you refinance into conventional. VA loans have no mortgage insurance, ever. On a 30-year hold the structural mortgage-insurance difference can run $80,000+ across two otherwise-similar loans.</p>
+        <p><strong>The upfront cost.</strong> Closing costs (2–3% of price), down payment, FHA's 1.75% upfront MIP, VA's 2.15% funding fee. These are real costs even when financed into the loan. Comparing the headline rate on two loans without comparing upfront costs is comparing two different things.</p>
+
+        <h3>The decision framework, simplified</h3>
+        <p>If you have <strong>20%+ down and clean credit (700+)</strong>, conventional is almost always the answer. Lower lifetime cost, no permanent mortgage insurance, no upfront FHA premium. Run the <a href="true-monthly-cost-calculator.html">True Monthly Cost calculator</a> with your specific numbers to confirm.</p>
+        <p>If you have <strong>5–20% down and credit 680+</strong>, conventional with PMI is usually still the right answer over a long hold, because the PMI ends. The <a href="pmi-calculator.html">PMI calculator</a> shows when, and the <a href="down-payment-strategy-calculator.html">down payment strategy calculator</a> compares 5/10/15/20% side-by-side.</p>
+        <p>If you have <strong>3.5–5% down or credit in the 580–679 range</strong>, FHA may be the only path, and the lifetime cost difference vs. conventional is the price of getting in. The <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional calculator</a> shows the gap. The <a href="fha-vs-conventional-guide.html">long-form guide</a> covers the structural difference.</p>
+        <p>If you have <strong>military service eligibility</strong>, VA is structurally the best option for the borrowers who qualify. No down payment required, no monthly mortgage insurance, competitive rates. The <a href="va-vs-conventional-calculator.html">VA vs. Conventional calculator</a> shows the funding-fee math. The <a href="va-loan-guide.html">VA loan guide</a> covers eligibility.</p>
+        <p>If you have a <strong>short, defined horizon (3–7 years)</strong> and stable income, an ARM may be worth considering for the lower starting rate. The <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed calculator</a> models the worst-case reset; the <a href="arm-vs-fixed-guide.html">long guide</a> covers when ARMs are rational and when they aren't.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -206,6 +236,41 @@
         <a href="loan-types.html#jumbo">Jumbo</a>
         <a href="loan-types.html#arm">ARM</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common financing questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What credit score do I need to get the best mortgage rate?</summary>
+        <div class="faq__a">740 and above unlocks the best conventional pricing tiers. Each step (740, 760, 780) typically saves 12–25 basis points on rate or 0.25–0.5% on PMI. The two biggest cliffs are 619 → 620 (qualifying for conventional at all) and 739 → 740 (best pricing). Below 660, FHA usually beats conventional on monthly payment despite the permanent MIP.</div>
+      </details>
+      <details>
+        <summary>Is FHA always cheaper than conventional?</summary>
+        <div class="faq__a">No — only on the front end. FHA has a lower down payment floor and more forgiving credit standards, but charges 1.75% upfront MIP and lifetime monthly MIP on most modern loans. Conventional with 5–10% down is usually cheaper over a 7+ year hold for borrowers who qualify for both. Run the <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional calculator</a> on your specific numbers — the verdict is rarely as obvious as it looks at first glance.</div>
+      </details>
+      <details>
+        <summary>When does PMI go away?</summary>
+        <div class="faq__a">On conventional loans, PMI terminates automatically at 78% loan-to-value per federal law. Borrowers can request removal at 80% LTV. Both points are based on the original amortization schedule and original purchase price, but the borrower-request path can credit appreciation if you order a new appraisal. On FHA loans with less than 10% down originated after June 2013, MIP doesn't terminate at all — refinancing into conventional is the only path off.</div>
+      </details>
+      <details>
+        <summary>Should I take an ARM in this rate environment?</summary>
+        <div class="faq__a">Maybe, if your realistic horizon is shorter than the fixed period (5/1, 7/1, 10/1) and your budget can absorb the lifetime-cap payment. Run both options through the <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed calculator</a> with the cap modeled. If the cap payment fits the budget, the ARM bet is rational. If it doesn't, take the fixed.</div>
+      </details>
+      <details>
+        <summary>How much should I plan for closing costs?</summary>
+        <div class="faq__a">Roughly 2–3% of the purchase price for most conventional purchases — title, lender fees, appraisal, recording, prepaid taxes and insurance. FHA and VA add their upfront fees (1.75% MIP and 2.15% funding fee respectively, typically financed into the loan). The <a href="closing-cost-calculator.html">closing cost calculator</a> breaks down the line items.</div>
+      </details>
+      <details>
+        <summary>When does refinancing make sense?</summary>
+        <div class="faq__a">When the new rate is meaningfully below the current rate (typically 75+ basis points), the closing costs recover within your honest hold horizon (typically under 24 months), and you have the equity, credit, and DTI to qualify for the better rate. The <a href="refinance-vs-keep-current-mortgage.html">refinance guide</a> covers the break-even framework. The 75bp / 24-month rules of thumb are reasonable defaults; your specific math depends on closing costs and remaining hold.</div>
+      </details>
     </div>
   </div>
 </section>

@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Payment Shock Calculator — Stress-test your monthly payment" />
 <meta property="og:description" content="See how your housing budget changes under realistic stress: ARM reset, insurance spike, property tax reassessment, or refinance to a higher rate." />
 <meta property="og:url" content="https://owningcost.com/payment-shock-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Payment Shock Calculator — Stress-test your monthly payment | OwningCost" />
 <meta name="twitter:description" content="See how your housing budget changes under realistic stress: ARM reset, insurance spike, property tax reassessment, or refinance to a higher rate." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -113,50 +117,54 @@
 
 <section class="section section--tight" id="calc">
   <div class="container">
+          <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
     <form class="calc reveal" onsubmit="return false" aria-label="Payment Shock Calculator.">
       <div class="calc__form">
         <h3>Current housing</h3>
 
 <div class="field">
   <div class="field__label"><span>Current monthly payment</span><span class="field__hint">PITI + HOA</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="psNow" value="3200" min="0" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="psNow" value="3200" min="0" step="50" aria-label="Current monthly payment"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Current rate</span></div>
-  <div class="field__input"><input type="number" id="psRate" value="4.50" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="psRate" value="4.50" min="0" max="20" step="0.01" aria-label="Current rate"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Loan balance</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="psLoan" value="320000" min="0" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="psLoan" value="320000" min="0" step="5000" aria-label="Loan balance"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Years left on loan</span></div>
-  <div class="field__input"><input type="number" id="psYrs" value="22" min="1" max="40" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="psYrs" value="22" min="1" max="40" step="1" aria-label="Years left on loan"><span class="suffix">yr</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">Stress scenarios</h3>
 
 <div class="field">
   <div class="field__label"><span>Rate change</span><span class="field__hint">e.g. ARM reset, refi</span></div>
-  <div class="field__input"><input type="number" id="psRateChg" value="2.5" min="-3" max="5" step="0.25"><span class="suffix">pp</span></div>
+  <div class="field__input"><input type="number" id="psRateChg" value="2.5" min="-3" max="5" step="0.25" aria-label="Rate change"><span class="suffix">pp</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Insurance change</span><span class="field__hint">% increase</span></div>
-  <div class="field__input"><input type="number" id="psInsChg" value="25" min="-30" max="100" step="5"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="psInsChg" value="25" min="-30" max="100" step="5" aria-label="Insurance change"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Property tax change</span><span class="field__hint">% increase</span></div>
-  <div class="field__input"><input type="number" id="psTaxChg" value="15" min="-30" max="100" step="5"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="psTaxChg" value="15" min="-30" max="100" step="5" aria-label="Property tax change"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Of current payment, P&amp;I share</span><span class="field__hint">% of monthly</span></div>
-  <div class="field__input"><input type="number" id="psPiPct" value="55" min="20" max="95" step="1"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="psPiPct" value="55" min="20" max="95" step="1" aria-label="Of current payment, P&amp;I share"><span class="suffix">%</span></div>
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -184,7 +192,8 @@
     <p><strong>Insurance Δ</strong> = (current insurance share, ~25% of non-PI) × % increase.</p>
     <p><strong>Property tax Δ</strong> = (current tax share, ~50% of non-PI) × % increase.</p>
     <p>HOA and maintenance are held constant in this scenario — adjust your starting payment if those change too.</p>
-  </div>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a></p>
+            </div>
 </details>
       </div>
     </form>

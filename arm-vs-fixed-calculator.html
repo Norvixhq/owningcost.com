@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="ARM vs Fixed Calculator — 5/1, 7/1, 10/1 vs 30-yr fixed" />
 <meta property="og:description" content="Compare a 5/1, 7/1, or 10/1 ARM against a 30-year fixed. Models the fixed period and the worst-case post-reset rate over your real hold." />
 <meta property="og:url" content="https://owningcost.com/arm-vs-fixed-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="ARM vs Fixed Calculator — 5/1, 7/1, 10/1 vs 30-yr fixed | OwningCost" />
 <meta name="twitter:description" content="Compare a 5/1, 7/1, or 10/1 ARM against a 30-year fixed. Models the fixed period and the worst-case post-reset rate over your real hold." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -113,25 +117,29 @@
 
 <section class="section section--tight" id="calc">
   <div class="container">
+          <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
     <form class="calc reveal" onsubmit="return false" aria-label="ARM vs Fixed.">
       <div class="calc__form">
         <h3>Loan basics</h3>
 
 <div class="field">
   <div class="field__label"><span>Loan amount</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="armLoan" value="400000" min="50000" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="armLoan" value="400000" min="50000" step="5000" aria-label="Loan amount"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Term</span></div>
-  <div class="field__input"><input type="number" id="armTerm" value="30" min="15" max="40" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="armTerm" value="30" min="15" max="40" step="1" aria-label="Term"><span class="suffix">yr</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">Fixed loan</h3>
 
 <div class="field">
   <div class="field__label"><span>30-year fixed rate</span></div>
-  <div class="field__input"><input type="number" id="armFixedRate" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="armFixedRate" value="6.75" min="0" max="20" step="0.01" aria-label="30-year fixed rate"><span class="suffix">%</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">ARM loan</h3>
@@ -149,17 +157,17 @@
 
 <div class="field">
   <div class="field__label"><span>Initial ARM rate</span></div>
-  <div class="field__input"><input type="number" id="armRate" value="5.875" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="armRate" value="5.875" min="0" max="20" step="0.01" aria-label="Initial ARM rate"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Worst-case rate after reset</span></div>
-  <div class="field__input"><input type="number" id="armReset" value="9.0" min="0" max="20" step="0.25"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="armReset" value="9.0" min="0" max="20" step="0.25" aria-label="Worst-case rate after reset"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Hold period</span></div>
-  <div class="field__input"><input type="number" id="armHold" value="7" min="1" max="30" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="armHold" value="7" min="1" max="30" step="1" aria-label="Hold period"><span class="suffix">yr</span></div>
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -198,7 +206,8 @@
     <p><strong>ARM total within fixed period</strong> = initial-rate P&amp;I × min(hold, fixed-period) months.</p>
     <p><strong>ARM total beyond fixed period</strong> = recomputes P&amp;I at the worst-case reset rate, applied to the remaining balance over the remaining term, multiplied by the months past the reset.</p>
     <p>Most modern ARMs cap the first reset at +2 percentage points and lifetime adjustments at +5–6 points. The "worst-case rate" should reflect those caps for a realistic stress scenario.</p>
-  </div>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a></p>
+            </div>
 </details>
       </div>
     </form>

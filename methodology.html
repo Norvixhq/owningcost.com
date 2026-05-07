@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Methodology — how OwningCost calculators work" />
 <meta property="og:description" content="Documentation of every formula, default, and assumption used by OwningCost calculators — from amortization math to PMI thresholds and maintenance reserve rates." />
 <meta property="og:url" content="https://owningcost.com/methodology.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Methodology — how OwningCost calculators work | OwningCost" />
 <meta name="twitter:description" content="Documentation of every formula, default, and assumption used by OwningCost calculators — from amortization math to PMI thresholds and maintenance reserve rates." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -105,7 +109,7 @@
     <div class="ahero__meta">
       <span><span class="dot"></span>6 min read</span>
       <span><span class="dot"></span>Last updated May 2026</span>
-      <span><span class="dot"></span>By the OwningCost editorial team</span>
+      <span><span class="dot"></span>By the <a href="about.html#editorial-process">OwningCost editorial team</a></span>
     </div>
   </div>
 </section>
@@ -115,7 +119,7 @@
     
 <p>This page documents how every calculator on OwningCost is built. The defaults, the formulas, the rounding rules, and the assumptions we make when the input is ambiguous. If you find an error or have a suggestion for a better default, the <a href="contact.html">contact page</a> is the fastest way to reach us.</p>
 
-<h2>General principles</h2>
+<h2 id="general-principles">General principles</h2>
 <ul>
   <li><strong>Math runs in your browser.</strong> Every calculator computes locally. No inputs are sent to a server.</li>
   <li><strong>Defaults reflect typical conditions, not best-case marketing.</strong> When the answer depends on a value we can't know (your insurance quote, your tax rate, your HOA dues), we default to a reasonable estimate based on national or regional averages and let you override.</li>
@@ -123,40 +127,40 @@
   <li><strong>Rounding is conservative.</strong> Monthly totals round to the nearest dollar. Total-cost calculations preserve cents internally, then round for display.</li>
 </ul>
 
-<h2>Mortgage payment formula</h2>
+<h2 id="mortgage-payment-formula">Mortgage payment formula</h2>
 <p>All P&amp;I calculations use the standard amortization formula:</p>
 <p><code>P = L · r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</code></p>
 <p>Where <code>L</code> is the loan amount, <code>r</code> is the monthly interest rate (annual / 12), and <code>n</code> is the term in months. For 30-year loans, <code>n = 360</code>. We do not adjust for compounding conventions — the formula uses simple monthly compounding consistent with U.S. mortgage industry practice.</p>
 
-<h2>Property tax</h2>
+<h2 id="property-tax">Property tax</h2>
 <p>Default effective tax rates are set by ZIP-tier when a ZIP is provided. North Texas suburbs default to around 2.0%; the rest of Texas typically 2.2%; California (Prop 13 territory) around 1.15%; New Jersey and Florida around 1.8%; the national default is 1.5%. These are starting points; every calculator allows the rate to be overridden directly.</p>
 <p>Property tax is computed against the home's purchase price. This implicitly assumes the home is reassessed to the sale price after purchase, which is standard practice in most U.S. counties and the realistic expectation for a buyer.</p>
 
-<h2>Homeowners insurance</h2>
+<h2 id="homeowners-insurance">Homeowners insurance</h2>
 <p>Default monthly insurance estimates by property type: single-family $142, townhome $115, condo $85 (HO-6 only). These are national-average starting points; coastal Florida, Texas hail country, and California wildfire zones often run substantially higher. Override the input with your actual quote whenever possible.</p>
 
-<h2>PMI (private mortgage insurance)</h2>
+<h2 id="pmi">PMI (private mortgage insurance)</h2>
 <p>Default annual PMI rate is 0.75% of the loan amount, applied monthly while the loan-to-value ratio exceeds 78%. This reflects a typical mid-credit borrower; strong credit (740+ FICO) sees PMI closer to 0.5%, while weaker credit can run to 1.0%+. Calculators that model PMI removal use the original amortization schedule to find the month at which the scheduled balance reaches 78% of the original purchase price (the federal automatic-cancellation threshold).</p>
 
-<h2>FHA mortgage insurance</h2>
+<h2 id="fha-mortgage-insurance">FHA mortgage insurance</h2>
 <p>Upfront MIP: 1.75% of base loan amount, financed into the loan (added to principal). Monthly MIP: 0.55% annual rate on the adjusted loan balance, divided by 12. Duration: lifetime if down payment is under 10%, 11 years if down payment is 10% or greater.</p>
 
-<h2>Maintenance reserve</h2>
+<h2 id="maintenance-reserve">Maintenance reserve</h2>
 <p>Default annual reserve rates by property type: single-family 1.0%, townhome 0.7%, condo 0.4%. These reflect the standard rules of thumb adjusted for which exterior systems the homeowner is responsible for. Older homes, harsh climates, and homes with significant deferred maintenance warrant a higher reserve. The maintenance reserve is included in every "True Monthly Cost" calculation because the cash will leave the household whether or not it's budgeted.</p>
 
-<h2>Closing costs</h2>
+<h2 id="closing-costs">Closing costs</h2>
 <p>Default closing-cost estimate is 2.5% of purchase price for buyers, including title insurance, lender fees, appraisal, escrow, and prepaid items (taxes and insurance held in escrow at closing). Actual closing costs vary from 2% to 5% depending on lender, state, and the specific loan structure. Closing costs are excluded from the monthly figure but appear in any calculator that models cash-to-close or hold-period total cost.</p>
 
-<h2>Selling costs</h2>
+<h2 id="selling-costs">Selling costs</h2>
 <p>Default selling cost is 7% of sale price: 5% commission (split agent), 1% title and escrow, 1% concessions and minor repairs. Sellers often pay more (extensive concessions, large pre-sale repairs); rarely less. The Rent vs Buy and Stay vs Sell calculators apply this to the projected sale price at the end of the hold period.</p>
 
-<h2>Home appreciation</h2>
+<h2 id="appreciation">Home appreciation</h2>
 <p>Default appreciation assumption is 3% annual, reflecting roughly the long-run U.S. average. This is conservative compared to recent years and aggressive compared to flat or declining markets. Override the input to model your local market.</p>
 
-<h2>Opportunity cost</h2>
+<h2 id="opportunity-cost">Opportunity cost</h2>
 <p>The Rent vs Buy calculator includes opportunity cost on the down payment: what the cash would have earned if invested instead. Default rate is 7% annual, reflecting a long-run U.S. equity-market return. Lower rates produce a result more favorable to buying; higher rates favor renting.</p>
 
-<h2>House Poor Risk Score</h2>
+<h2 id="house-poor-risk-score">House Poor Risk Score</h2>
 <p>The risk score is a 0–100 composite of four factors:</p>
 <ul>
   <li><strong>Cash reserves (30% weight).</strong> Months of full housing cost covered by liquid reserves. 6+ months scores low risk; under 3 scores high.</li>
@@ -166,7 +170,7 @@
 </ul>
 <p>Each factor is mapped to a 0–100 sub-score using piecewise-linear thresholds calibrated to lender underwriting standards and observed homeowner outcomes. Lower scores indicate lower risk.</p>
 
-<h2>Updates and corrections</h2>
+<h2 id="updates-and-corrections">Updates and corrections</h2>
 <p>This methodology page is updated when defaults change. Substantive changes are dated and noted. If you spot an error or believe a default is miscalibrated, the <a href="contact.html">contact page</a> is the best route.</p>
 
   </div>

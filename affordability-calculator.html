@@ -9,13 +9,14 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
 <meta name="color-scheme" content="light" />
 
 <title>Affordability Calculator with House Poor Risk Score | OwningCost</title>
-<meta name="description" content="See three honest home-price tiers from your income, debts, and reserves — Conservative, Comfortable, Stretch — plus a House Poor Risk Score that surfaces what would break first." />
+<meta name="description" content="Three honest home-price tiers from your income and debts — Conservative, Comfortable, Stretch — plus a House Poor Risk Score that surfaces what breaks first." />
 <link rel="canonical" href="https://owningcost.com/affordability-calculator.html" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
 
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Affordability Calculator with House Poor Risk | OwningCost" />
 <meta property="og:description" content="Three honest price tiers + a diagnostic risk score, not just a max-DTI ceiling." />
 <meta property="og:url" content="https://owningcost.com/affordability-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Affordability Calculator | OwningCost" />
 <meta name="twitter:description" content="Comfort band + House Poor Risk Score." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -165,6 +169,10 @@
   <!-- ========== CALCULATOR ========== -->
   <section class="section section--tight" id="calc">
     <div class="container">
+            <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
       <form class="calc reveal" id="affForm" onsubmit="return false" aria-label="Affordability calculator">
         <div class="calc__form">
           <h3>Your finances</h3>
@@ -293,6 +301,7 @@
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Each tier's max housing cost</strong> = the lesser of (income × front-end DTI ÷ 12) and (income × back-end DTI ÷ 12 − monthly debts). From that we subtract tax, insurance, HOA, and maintenance, then solve for the loan amount that fits the remaining principal-and-interest budget.</p>
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Max price</strong> = max loan + your down payment. PMI is added to the monthly cost when down payment is under 20%, lowering the affordable price.</p>
               <p><strong style="color:var(--ink)">House Poor Risk Score</strong> weights four factors: reserves (30%), rate sensitivity at +1pp (25%), hidden cost share — non-P&amp;I share of total housing (20%), and back-end DTI under stress (25%). 0 = very safe, 100 = severe risk.</p>
+              <p class="calc__math__cta"><a href="methodology.html#house-poor-risk-score">Read the full methodology →</a></p>
             </div>
           </details>
         </div>

@@ -422,6 +422,34 @@ p{margin:0}
 /* ============================================================
    CALCULATOR (shared form/output layout)
    ============================================================ */
+.trust-line{
+  display:flex;gap:.7rem;align-items:flex-start;
+  margin:0 0 1rem;padding:.7rem .95rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--blue-700);
+  border-radius:8px;
+  font-size:.83rem;line-height:1.55;color:var(--ink-2);
+}
+.trust-line__dot{
+  flex-shrink:0;width:.55rem;height:.55rem;border-radius:50%;
+  background:var(--green-500);
+  margin-top:.4rem;
+  box-shadow:0 0 0 3px rgba(78,182,60,.2);
+}
+.trust-line strong{color:var(--ink);font-weight:600}
+.trust-line a{color:var(--blue-700);text-decoration:underline;text-decoration-color:rgba(28,109,217,.3);text-underline-offset:2px}
+.trust-line a:hover{text-decoration-color:var(--blue-700)}
+
+.calc__math__cta{
+  margin-top:.75rem !important;
+  padding-top:.7rem;
+  border-top:1px solid var(--border);
+  font-size:.85rem;
+}
+.calc__math__cta a{color:var(--blue-700);font-weight:500;text-decoration:none}
+.calc__math__cta a:hover{text-decoration:underline}
+
 .calc{
   display:grid;gap:0;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;
   background:var(--surface);box-shadow:var(--shadow-md);
@@ -1000,6 +1028,17 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
 .article__inner a{color:var(--blue-700);text-decoration:underline;text-decoration-color:rgba(28,109,217,.3);text-underline-offset:3px}
 .article__inner a:hover{text-decoration-color:var(--blue-700)}
 .article__inner strong{color:var(--ink);font-weight:600}
+.article__inner > .related-inline{
+  margin:2rem 0 .25rem;
+  padding:.85rem 1.05rem;
+  background:var(--surface-2);
+  border-left:3px solid var(--blue-700);
+  border-radius:6px;
+  font-size:.94rem;
+  line-height:1.6;
+  color:var(--ink-2);
+}
+.article__inner > .related-inline strong{color:var(--ink);margin-right:.4rem}
 .pullquote{
   margin:1.6rem 0;padding:1.2rem 1.4rem;
   border-left:3px solid var(--green-500);background:var(--surface-2);

@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Down Payment Strategy Calculator — 5/10/15/20% compared" />
 <meta property="og:description" content="See what 5%, 10%, 15%, or 20% down does to monthly cost, PMI duration, and total cost over your hold period. The honest down-payment trade-off." />
 <meta property="og:url" content="https://owningcost.com/down-payment-strategy-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Down Payment Strategy Calculator — 5/10/15/20% compared | OwningCost" />
 <meta name="twitter:description" content="See what 5%, 10%, 15%, or 20% down does to monthly cost, PMI duration, and total cost over your hold period. The honest down-payment trade-off." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -113,42 +117,46 @@
 
 <section class="section section--tight" id="calc">
   <div class="container">
+          <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
     <form class="calc reveal" onsubmit="return false" aria-label="Down Payment Strategy.">
       <div class="calc__form">
         <h3>The home</h3>
 
 <div class="field">
   <div class="field__label"><span>Home price</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpPrice" value="425000" min="50000" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Mortgage rate</span></div>
-  <div class="field__input"><input type="number" id="dpRate" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="dpRate" value="6.75" min="0" max="20" step="0.01" aria-label="Mortgage rate"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Term</span></div>
-  <div class="field__input"><input type="number" id="dpTerm" value="30" min="10" max="40" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="dpTerm" value="30" min="10" max="40" step="1" aria-label="Term"><span class="suffix">yr</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">Other monthly costs</h3>
 
 <div class="field">
   <div class="field__label"><span>Property tax (annual)</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpTax" value="6375" min="0" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpTax" value="6375" min="0" step="50" aria-label="Property tax (annual)"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Insurance + HOA + maint (monthly)</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpOther" value="800" min="0" step="25"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpOther" value="800" min="0" step="25" aria-label="Insurance + HOA + maint (monthly)"></div>
 </div>
 
 <h3 style="margin-top:1.4rem">Hold period</h3>
 
 <div class="field">
   <div class="field__label"><span>Years you'll keep the loan</span></div>
-  <div class="field__input"><input type="number" id="dpHold" value="10" min="1" max="30" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="dpHold" value="10" min="1" max="30" step="1" aria-label="Years you'll keep the loan"><span class="suffix">yr</span></div>
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -194,7 +202,8 @@
     <p>For each tier: loan amount = price × (1 − down %), monthly P&amp;I from standard amortization at your rate and term, monthly PMI = loan × 0.75% / 12 (when down &lt; 20%), removed when scheduled balance reaches 78% of price.</p>
     <p><strong>Total housing cost</strong> includes down payment + (monthly cost × hold months). Tax and other costs are constant across tiers.</p>
     <p>This calculator does not account for opportunity cost of the larger down payment — money put down isn't earning a market return. The 20% scenario looks cheapest in cash terms but ties up more capital.</p>
-  </div>
+              <p class="calc__math__cta"><a href="methodology.html#pmi">Read the full methodology →</a></p>
+            </div>
 </details>
       </div>
     </form>

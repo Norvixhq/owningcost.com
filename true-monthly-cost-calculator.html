@@ -9,13 +9,14 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
 <meta name="color-scheme" content="light" />
 
 <title>True Monthly Cost Calculator — PITI + HOA + Maintenance | OwningCost</title>
-<meta name="description" content="Calculate the full monthly cost of homeownership — principal, interest, property tax, insurance, PMI, HOA, and a realistic maintenance reserve. Free, transparent, no signup, no lender funnel." />
+<meta name="description" content="Calculate the full monthly cost of homeownership — P&I, taxes, insurance, PMI, HOA, and maintenance reserve. Transparent math, no signup, no lender funnel." />
 <link rel="canonical" href="https://owningcost.com/true-monthly-cost-calculator.html" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
 
@@ -24,12 +25,15 @@
 <meta property="og:title" content="True Monthly Cost Calculator | OwningCost" />
 <meta property="og:description" content="The full monthly cost of homeownership — beyond principal and interest. PITI, HOA, PMI, and a realistic maintenance reserve, all in one number." />
 <meta property="og:url" content="https://owningcost.com/true-monthly-cost-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="True Monthly Cost Calculator | OwningCost" />
 <meta name="twitter:description" content="See what owning a home actually costs each month — not just the mortgage." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -165,6 +169,10 @@
   <!-- ========== CALCULATOR ========== -->
   <section class="section section--tight" id="calc">
     <div class="container">
+            <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
       <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="True Monthly Cost calculator">
         <div class="calc__form">
           <h3>Your scenario</h3>
@@ -172,7 +180,7 @@
           <div class="field">
             <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice">$425,000</span></div>
             <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" max="5000000" step="5000" aria-label="Home price"></div>
-            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" value="425000">
+            <input type="range" id="rngPrice" aria-label="Home price" role="slider" class="field__range" min="50000" max="1500000" step="5000" value="425000">
           </div>
 
           <div class="field__grid">
@@ -245,6 +253,7 @@
             <div class="calc__math__body">
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Loan amount</strong> = home price × (1 − down %). <strong style="color:var(--ink)">Monthly P&amp;I</strong> uses the standard amortization formula: <code>L · r(1+r)ⁿ / ((1+r)ⁿ − 1)</code>, where <code>r</code> is the monthly rate and <code>n</code> is the loan term in months.</p>
               <p><strong style="color:var(--ink)">Property tax</strong> = price × tax rate ÷ 12.&nbsp;<strong style="color:var(--ink)">PMI</strong> is included at ~0.75%/yr of the loan when down payment is under 20%.&nbsp;<strong style="color:var(--ink)">Maintenance</strong> defaults to 1%/yr of home value, divided monthly. All figures are estimates — verify with your lender, insurer, and local assessor before relying on them.</p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a></p>
             </div>
           </details>
         </div>

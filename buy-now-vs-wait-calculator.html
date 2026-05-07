@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Buy Now vs Wait Calculator — With rent during the wait" />
 <meta property="og:description" content="Run the same home now vs 12 months from now under your assumptions for prices and rates — including the rent you'll pay during the wait." />
 <meta property="og:url" content="https://owningcost.com/buy-now-vs-wait-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Buy Now vs Wait Calculator — With rent during the wait | OwningCost" />
 <meta name="twitter:description" content="Run the same home now vs 12 months from now under your assumptions for prices and rates — including the rent you'll pay during the wait." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -113,47 +117,51 @@
 
 <section class="section section--tight" id="calc">
   <div class="container">
+          <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
     <form class="calc reveal" onsubmit="return false" aria-label="Buy Now vs Wait.">
       <div class="calc__form">
         <h3>The home today</h3>
 
 <div class="field">
   <div class="field__label"><span>Home price now</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="bnPrice" value="475000" min="50000" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="bnPrice" value="475000" min="50000" step="5000" aria-label="Home price now"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Down payment</span></div>
-  <div class="field__input"><input type="number" id="bnDown" value="20" min="3" max="50" step="0.5"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="bnDown" value="20" min="3" max="50" step="0.5" aria-label="Down payment"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Rate now</span></div>
-  <div class="field__input"><input type="number" id="bnRateNow" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="bnRateNow" value="6.75" min="0" max="20" step="0.01" aria-label="Rate now"><span class="suffix">%</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">12 months from now</h3>
 
 <div class="field">
   <div class="field__label"><span>Price change</span><span class="field__hint">vs today</span></div>
-  <div class="field__input"><input type="number" id="bnPriceChg" value="0" min="-15" max="15" step="0.5"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="bnPriceChg" value="0" min="-15" max="15" step="0.5" aria-label="Price change"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Rate then</span></div>
-  <div class="field__input"><input type="number" id="bnRateThen" value="6.00" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="bnRateThen" value="6.00" min="0" max="20" step="0.01" aria-label="Rate then"><span class="suffix">%</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">During the wait</h3>
 
 <div class="field">
   <div class="field__label"><span>Current rent</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="bnRent" value="2400" min="0" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="bnRent" value="2400" min="0" step="50" aria-label="Current rent"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Hold period after buying</span></div>
-  <div class="field__input"><input type="number" id="bnHold" value="7" min="1" max="30" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="bnHold" value="7" min="1" max="30" step="1" aria-label="Hold period after buying"><span class="suffix">yr</span></div>
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -193,7 +201,8 @@
     <p><strong>Buy now total</strong> = monthly P&amp;I × hold months. Calculated at today's price and today's rate.</p>
     <p><strong>Wait total</strong> = (rent × 12) + (monthly P&amp;I × hold months). Wait scenario uses the future price and future rate; rent during the wait counts as cost.</p>
     <p>This calculator focuses on the financing portion of the comparison. Property tax and insurance are similar in both scenarios, so they cancel from the math. For a fully-loaded comparison including taxes, HOA, and maintenance, run the True Monthly Cost calculator at each scenario.</p>
-  </div>
+              <p class="calc__math__cta"><a href="methodology.html#opportunity-cost">Read the full methodology →</a></p>
+            </div>
 </details>
       </div>
     </form>

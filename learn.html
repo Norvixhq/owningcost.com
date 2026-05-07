@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Learn — housing-cost guides and explainers" />
 <meta property="og:description" content="Eighteen plain-English guides on housing cost — first-time buying, hidden costs, property tax, PMI, ARM vs fixed, FHA vs conventional, and more." />
 <meta property="og:url" content="https://owningcost.com/learn.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Learn — housing-cost guides and explainers | OwningCost" />
 <meta name="twitter:description" content="Eighteen plain-English guides on housing cost — first-time buying, hidden costs, property tax, PMI, ARM vs fixed, FHA vs conventional, and more." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -40,7 +44,7 @@
 
 <link rel="stylesheet" href="styles.css" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://owningcost.com/learn.html"}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://owningcost.com/learn.html"}]}, {"@type": "CollectionPage", "name": "Learn", "description": "Articles, guides, and education on housing costs, mortgages, renting, owning, and decision-support frameworks.", "url": "https://owningcost.com/learn.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US"}]}
 </script>
 
 </head>
@@ -137,8 +141,35 @@
 <section class="section section--surface">
   <div class="container">
     <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">How the library is organized</span>
+      <h2>Four clusters, one set of decisions.</h2>
+      <p class="section__lede">Every guide on the site sits inside one of four clusters that match how housing-cost decisions actually unfold. You're either buying, renting, owning, or financing — usually two of those at once, sometimes all three. Each cluster is written to stand on its own and to connect to the calculator that does the math.</p>
+    </div>
+
+    <div class="article">
+      <div class="article__inner">
+        <h3>Owning — the cluster most people read second, and should read first</h3>
+        <p>Six guides on what owning actually costs once the loan is closed. The cluster's foundational piece is <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a> — the four lines standard mortgage calculators leave out and why first-year owners are routinely surprised by the gap. From there, <a href="true-cost-of-owning-a-home.html">The true cost of owning a home</a> projects 5-, 7-, and 10-year holds with the complete cost picture, including the selling cost on the way out. <a href="property-tax-explained.html">Property tax explained</a> covers the post-purchase reset that catches buyers in Texas, Florida, and California. <a href="homeowners-insurance-explained.html">Homeowners insurance explained</a> covers premium creep and renewal-year shock. <a href="selling-costs-explained.html">Selling costs explained</a> covers the 7–9% on the way out that turns short holds into break-even at best.</p>
+
+        <h3>Buying — for the decision itself, not the lender funnel</h3>
+        <p>Four guides on the buying decision framed without the urgency that real estate marketing leans on. <a href="first-time-homebuyer-guide.html">The first-time homebuyer guide</a> walks pre-approval through closing day and emphasizes what actually matters in each phase. <a href="how-much-house-can-you-really-afford.html">How much house can you really afford?</a> separates lender-approval ceiling from comfortable target — two genuinely different numbers. <a href="condo-vs-townhouse-vs-house.html">Condo vs. townhouse vs. single-family</a> covers the property-type math (HOA, insurance, maintenance) that's usually treated as an afterthought. <a href="buying-now-vs-waiting-guide.html">Buying now vs. waiting</a> handles the rate-environment question without the headline trap.</p>
+
+        <h3>Renting — without the false urgency</h3>
+        <p>Three guides written for renters who don't need to be talked into anything. <a href="renting-a-house-vs-apartment.html">Renting a house vs. apartment</a> covers utilities, parking, lawn, and the line items that make a "$200/month cheaper" listing not actually cheaper. <a href="lease-renewal-vs-moving.html">Lease renewal vs. moving</a> runs the honest math on a renewal increase against the cost of moving. <a href="should-you-rent-another-year.html">Should you rent another year?</a> makes the affirmative case for renting when buying isn't ready — which is more often than the housing-content economy admits.</p>
+
+        <h3>Financing — every loan type compared honestly</h3>
+        <p>Five guides on the financing structures behind a purchase. <a href="fha-vs-conventional-guide.html">FHA vs. conventional</a> is the long-form comparison most people search for, with the structural mortgage-insurance difference (FHA MIP being permanent on most modern loans) front-and-center. <a href="va-loan-guide.html">The VA loan guide</a> covers eligibility, funding fee, and the no-PMI math for the borrowers who qualify. <a href="arm-vs-fixed-guide.html">ARM vs. fixed</a> covers when an adjustable-rate mortgage is the right answer (it's a narrower set of borrowers than the headline 2008 panic suggests). <a href="what-is-pmi-and-when-does-it-go-away.html">What is PMI and when does it go away?</a> covers the federal removal rules most borrowers don't know exist. <a href="refinance-vs-keep-current-mortgage.html">Refinance vs. keep current mortgage</a> covers the break-even math.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section__head section__head--left">
       <span class="eyebrow section__kicker">All guides</span>
       <h2>The full Learn library.</h2>
+      <p class="section__lede">Eighteen guides, organized alphabetically. Each one is a 7–11 minute read and each one connects to at least one calculator — because reading is the first half and running your own numbers is the half that changes a decision.</p>
     </div>
     <div class="idx">
       <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a>
@@ -159,6 +190,32 @@
       <a href="buying-now-vs-waiting-guide.html">Buying now vs waiting</a>
       <a href="selling-costs-explained.html">Selling costs explained</a>
       <a href="refinance-vs-keep-current-mortgage.html">Refinance vs keep current mortgage</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">If you're not sure where to start</span>
+      <h2>Pick the situation that matches yours.</h2>
+    </div>
+    <div class="article">
+      <div class="article__inner">
+        <p><strong>You're considering buying for the first time.</strong> Start with <a href="how-much-house-can-you-really-afford.html">How much house can you really afford?</a> for the comfortable-vs-ceiling distinction, then run the <a href="affordability-calculator.html">Affordability calculator</a> against your gross income. The honest target sits below the lender's approval ceiling.</p>
+
+        <p><strong>You're 30–60 days from making an offer.</strong> Read <a href="first-time-homebuyer-guide.html">the first-time homebuyer guide</a> end to end and run the <a href="true-monthly-cost-calculator.html">True Monthly Cost calculator</a> on the specific homes you're considering. Pay attention to the post-purchase tax reset for that property — the seller's current tax bill is not your tax bill.</p>
+
+        <p><strong>You're choosing between FHA and conventional financing.</strong> The <a href="fha-vs-conventional-guide.html">long guide</a> covers the structural mortgage-insurance difference. The <a href="fha-vs-conventional-calculator.html">side-by-side calculator</a> shows the lifetime cost gap on your specific loan amount and credit profile.</p>
+
+        <p><strong>You just bought and the bills are higher than expected.</strong> Read <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a> to understand which surprises were structural and which were preventable, then run the <a href="house-poor-risk-calculator.html">House Poor Risk calculator</a> to see whether the gap is recoverable or whether the budget needs serious recalibration.</p>
+
+        <p><strong>You're a renter weighing renewal vs. moving vs. buying.</strong> Three reads in order: <a href="lease-renewal-vs-moving.html">Lease renewal vs. moving</a>, <a href="should-you-rent-another-year.html">Should you rent another year?</a>, and the <a href="rent-vs-buy-calculator.html">Rent vs. Buy calculator</a> with your honest hold horizon.</p>
+
+        <p><strong>You're trying to decide whether to refinance.</strong> Read <a href="refinance-vs-keep-current-mortgage.html">Refinance vs. keep current mortgage</a> for the break-even framework, then run the math on your specific loan. The 75-basis-point and 24-month rules of thumb are reasonable defaults; your actual answer depends on hold horizon and closing costs.</p>
+
+        <p><strong>You own and are thinking about selling within 5 years.</strong> Read <a href="selling-costs-explained.html">Selling costs explained</a> first — the 7–9% on the way out is the single biggest reason short holds break even at best — and run <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a> with realistic numbers for your local market.</p>
+      </div>
     </div>
   </div>
 </section>

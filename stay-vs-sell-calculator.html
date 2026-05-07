@@ -9,6 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-8K9DQVWZFG');
 </script>
+<script src="analytics.js" defer></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#0d1321" />
@@ -24,12 +25,15 @@
 <meta property="og:title" content="Stay vs Sell Break-Even Calculator" />
 <meta property="og:description" content="Break-even analysis for selling now vs staying. Selling within three years almost always loses; this calculator shows when staying actually pays off." />
 <meta property="og:url" content="https://owningcost.com/stay-vs-sell-calculator.html" />
-<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Stay vs Sell Break-Even Calculator | OwningCost" />
 <meta name="twitter:description" content="Break-even analysis for selling now vs staying. Selling within three years almost always loses; this calculator shows when staying actually pays off." />
-<meta name="twitter:image" content="https://owningcost.com/image.png" />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
 
 <link rel="icon" type="image/png" href="image.png" />
 <link rel="apple-touch-icon" href="image.png" />
@@ -113,52 +117,56 @@
 
 <section class="section section--tight" id="calc">
   <div class="container">
+          <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
     <form class="calc reveal" onsubmit="return false" aria-label="Stay vs Sell Break-Even.">
       <div class="calc__form">
         <h3>Your home now</h3>
 
 <div class="field">
   <div class="field__label"><span>Estimated current value</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssVal" value="525000" min="50000" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssVal" value="525000" min="50000" step="5000" aria-label="Estimated current value"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Loan balance</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssLoan" value="320000" min="0" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssLoan" value="320000" min="0" step="5000" aria-label="Loan balance"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Original purchase price</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssOrig" value="425000" min="50000" step="5000"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssOrig" value="425000" min="50000" step="5000" aria-label="Original purchase price"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Years owned so far</span></div>
-  <div class="field__input"><input type="number" id="ssYrs" value="3" min="0" max="30" step="1"><span class="suffix">yr</span></div>
+  <div class="field__input"><input type="number" id="ssYrs" value="3" min="0" max="30" step="1" aria-label="Years owned so far"><span class="suffix">yr</span></div>
 </div>
 
 <h3 style="margin-top:1.4rem">If you stay</h3>
 
 <div class="field">
   <div class="field__label"><span>Annual appreciation</span></div>
-  <div class="field__input"><input type="number" id="ssAppr" value="3.0" min="-5" max="15" step="0.25"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="ssAppr" value="3.0" min="-5" max="15" step="0.25" aria-label="Annual appreciation"><span class="suffix">%</span></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Total monthly housing</span><span class="field__hint">PITI + HOA + maint</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssMonthly" value="3200" min="0" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssMonthly" value="3200" min="0" step="50" aria-label="Total monthly housing"></div>
 </div>
 
 <div class="field">
   <div class="field__label"><span>Of which, P&amp;I</span></div>
-  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssPi" value="2050" min="0" step="50"></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssPi" value="2050" min="0" step="50" aria-label="Of which, P&amp;I"></div>
 </div>
 
 <h3 style="margin-top:1.4rem">If you sell</h3>
 
 <div class="field">
   <div class="field__label"><span>Selling cost</span><span class="field__hint">% of sale price</span></div>
-  <div class="field__input"><input type="number" id="ssSellPct" value="7" min="0" max="15" step="0.5"><span class="suffix">%</span></div>
+  <div class="field__input"><input type="number" id="ssSellPct" value="7" min="0" max="15" step="0.5" aria-label="Selling cost"><span class="suffix">%</span></div>
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -200,7 +208,8 @@
     <p><strong>Stay scenario</strong> projects forward 5 years using your appreciation rate. The future loan balance comes from amortization at your inputs. Non-PI portion of housing cost (taxes, insurance, HOA, maintenance) is treated as a holding cost; P&amp;I builds equity, so it's not a sunk cost.</p>
     <p><strong>Break-even year</strong> is the year at which staying nets more than selling now, after subtracting non-PI holding costs.</p>
     <p>This calculator does not model rental income (if you'd rent it out vs sell), investment returns on the freed-up equity, or the cost of buying a new home.</p>
-  </div>
+              <p class="calc__math__cta"><a href="methodology.html#selling-costs">Read the full methodology →</a></p>
+            </div>
 </details>
       </div>
     </form>
