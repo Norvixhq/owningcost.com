@@ -1,0 +1,17 @@
+# robots.txt for owningcost.com
+# Allow all major crawlers; point them at the sitemap.
+
+User-agent: *
+Allow: /
+Disallow: /_*
+Disallow: /*.py$
+Disallow: /__pycache__/
+
+# Block bad actors / aggressive scrapers (light list — extend as needed)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+Sitemap: https://owningcost.com/sitemap.xml
