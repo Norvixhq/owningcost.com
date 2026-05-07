@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Rent vs Buy Calculator — With Horizon Analysis | OwningCost</title>
+<meta name="description" content="Compare the total cost of renting versus buying over your real time horizon. Includes home appreciation, rent inflation, opportunity cost of the down payment, closing costs, and selling costs. Free, transparent, no signup." />
+<link rel="canonical" href="https://owningcost.com/rent-vs-buy-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Rent vs Buy Calculator | OwningCost" />
+<meta property="og:description" content="Total cost over your real time horizon — with appreciation, opportunity cost, and a crossover chart." />
+<meta property="og:url" content="https://owningcost.com/rent-vs-buy-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rent vs Buy Calculator | OwningCost" />
+<meta name="twitter:description" content="See whether renting or buying wins over your specific time horizon." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://owningcost.com/"},
+        {"@type":"ListItem","position":2,"name":"Calculators","item":"https://owningcost.com/calculators.html"},
+        {"@type":"ListItem","position":3,"name":"Rent vs Buy","item":"https://owningcost.com/rent-vs-buy-calculator.html"}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Rent vs Buy Calculator",
+      "url": "https://owningcost.com/rent-vs-buy-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "description": "Compares the total cost of renting and buying over a chosen time horizon, including home appreciation, rent inflation, opportunity cost of the down payment, closing costs, and selling costs.",
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why does the rent vs buy answer depend on time horizon?",
+          "acceptedAnswer": {"@type":"Answer","text":"Buying has high upfront costs (down payment, closing) and high exit costs (selling commissions). Spread over enough years, equity buildup and appreciation cover those costs. Spread over too few years, they don't. The break-even point depends on your specific market and scenario, but is commonly 4–7 years."}
+        },
+        {
+          "@type": "Question",
+          "name": "What appreciation rate should I assume?",
+          "acceptedAnswer": {"@type":"Answer","text":"Long-run U.S. home appreciation has averaged 3–4% nominally, varying significantly by region. We default to 3%. For high-growth metros, you might use 4–5%; for slow markets, 1–2%. Assuming above-trend appreciation skews the answer toward buying."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is opportunity cost of the down payment?",
+          "acceptedAnswer": {"@type":"Answer","text":"If you didn't put $85,000 into a home, you could invest it. At a 6% return, that's roughly $5,100 in foregone investment growth in year one alone. The calculator includes this as a real cost of buying — and the value of investing it as a benefit of renting."}
+        },
+        {
+          "@type": "Question",
+          "name": "Are closing and selling costs really 3% and 6%?",
+          "acceptedAnswer": {"@type":"Answer","text":"Buy-side closing costs typically run 2–5% of the loan; we use 3% as a reasonable default. Sell-side costs (agent commissions, staging, concessions, title) traditionally run 5–7% of the sale price; we default to 6%. Both vary, and recent commission changes are pushing seller costs lower in some markets."}
+        },
+        {
+          "@type": "Question",
+          "name": "What does the break-even year mean?",
+          "acceptedAnswer": {"@type":"Answer","text":"It's the year at which the cumulative net cost of buying drops below the cumulative cost of renting. Selling before that year typically means renting would have been cheaper; selling after typically means buying came out ahead."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="#calc" class="btn btn--primary">Try the calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Rent vs Buy</span>
+    </nav>
+  </div>
+
+  <section class="phero container" aria-labelledby="phero-title">
+    <div class="phero__grid">
+      <span class="eyebrow">Calculator</span>
+      <h1 id="phero-title">Rent vs Buy Calculator</h1>
+      <p class="phero__sub">Compare the full cost of renting against the full cost of buying — over <em>your</em> time horizon, with appreciation, rent inflation, opportunity cost of the down payment, closing costs, and selling costs all included.</p>
+      <div class="phero__meta">
+        <span class="chip is-live">Live tool</span>
+        <span class="chip">Horizon analysis</span>
+        <span class="chip">Crossover chart</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATOR ========== -->
+  <section class="section section--tight" id="calc">
+    <div class="container">
+      <form class="calc reveal" id="rvbForm" onsubmit="return false" aria-label="Rent vs Buy calculator">
+        <div class="calc__form">
+          <h3>Your scenario</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Time horizon</span><span class="field__value" id="lblYears">7 years</span></div>
+            <input type="range" id="rngYears" class="field__range" min="1" max="30" step="1" value="7">
+          </div>
+
+          <h3 style="margin-top:1.4rem">Renting</h3>
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Monthly rent</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpRent" value="2650" min="100" step="50" aria-label="Monthly rent"></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Rent inflation</span><span class="field__value" id="lblRentInc">3.5%/yr</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRentInc" value="3.5" min="0" max="15" step="0.1" aria-label="Annual rent increase"><span class="suffix">%</span></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.4rem">Buying</h3>
+          <div class="field">
+            <div class="field__label"><span>Home price</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down</span><span class="field__value" id="lblDown">20%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="20" min="0" max="100" step="1" aria-label="Down payment"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Rate</span><span class="field__value" id="lblRate">6.75%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="0.5" max="15" step="0.05" aria-label="Interest rate"><span class="suffix">%</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Property tax</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" step="0.05" aria-label="Property tax"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Maint reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpMaint" value="1" min="0" step="0.1" aria-label="Maintenance"><span class="suffix">%</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Insurance</span><span class="field__hint">/mo</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpIns" value="142" min="0" step="5" aria-label="Insurance"></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>HOA</span><span class="field__hint">/mo</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpHoa" value="300" min="0" step="10" aria-label="HOA"></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.4rem">Assumptions</h3>
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Appreciation</span><span class="field__value" id="lblApp">3%/yr</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpApp" value="3" min="-5" max="15" step="0.1" aria-label="Appreciation"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Investment return</span><span class="field__value" id="lblInv">6%/yr</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpInv" value="6" min="0" max="20" step="0.1" aria-label="Investment return"><span class="suffix">%</span></div>
+            </div>
+          </div>
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Closing costs</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpClose" value="3" min="0" step="0.1" aria-label="Closing costs"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Selling costs</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpSell" value="6" min="0" step="0.1" aria-label="Selling costs"><span class="suffix">%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc__out">
+          <h3>Verdict over your horizon</h3>
+          <div class="verdict reveal" id="verdict">
+            <div class="verdict__label">Buying wins</div>
+            <div class="verdict__head" id="verdictHead">Buying saves $11,700 over 7 years.</div>
+            <div class="verdict__sub" id="verdictSub">Break-even reached around year 5. Past that point, buying continues to pull ahead.</div>
+          </div>
+
+          <div class="calc__rows" style="margin-top:1.15rem">
+            <div class="calc__row"><span class="sw" style="background:var(--blue-600)"></span><span class="nm">Total rent paid</span><span class="am" id="outRentTotal">$240,000</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--green-500)"></span><span class="nm">Net cost of buying</span><span class="am" id="outBuyNet">$228,300</span></div>
+            <div class="calc__row"><span class="sw" style="background:#B6CDF0"></span><span class="nm">Opportunity cost adj.</span><span class="am" id="outOpp">included</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--ink)"></span><span class="nm">Break-even year</span><span class="am" id="outBE">Year 5</span></div>
+          </div>
+
+          <!-- ========== CHART ========== -->
+          <div class="chart" aria-label="Cumulative cost over time chart">
+            <div class="chart__head">
+              <div class="chart__title">Cumulative net cost over time</div>
+              <div class="chart__legend">
+                <span><i style="background:var(--blue-600)"></i>Renting</span>
+                <span><i style="background:var(--green-500)"></i>Buying</span>
+              </div>
+            </div>
+            <svg viewBox="0 0 600 220" preserveAspectRatio="none" id="rvbChart" aria-hidden="true">
+              <!-- gridlines -->
+              <g stroke="#ECE9DF" stroke-width="1">
+                <line x1="40" y1="20" x2="40" y2="190" />
+                <line x1="40" y1="190" x2="580" y2="190" />
+                <line x1="40" y1="147" x2="580" y2="147" stroke-dasharray="2 4" />
+                <line x1="40" y1="105" x2="580" y2="105" stroke-dasharray="2 4" />
+                <line x1="40" y1="62" x2="580" y2="62" stroke-dasharray="2 4" />
+              </g>
+              <!-- series -->
+              <polyline id="lineRent" fill="none" stroke="var(--blue-600)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="" />
+              <polyline id="lineBuy" fill="none" stroke="var(--green-500)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="" />
+              <!-- break-even marker -->
+              <line id="beMark" x1="0" y1="20" x2="0" y2="190" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 3" opacity="0.4" />
+              <circle id="beDot" cx="0" cy="0" r="4" fill="var(--ink)" opacity="0" />
+              <!-- axis labels -->
+              <g font-family="Manrope" font-size="10" fill="#8A90A0" font-weight="600">
+                <text x="40" y="208" text-anchor="start">Year 0</text>
+                <text id="axisMid" x="310" y="208" text-anchor="middle">—</text>
+                <text id="axisEnd" x="580" y="208" text-anchor="end">—</text>
+                <text id="axisYTop" x="34" y="24" text-anchor="end">—</text>
+                <text x="34" y="194" text-anchor="end">$0</text>
+              </g>
+            </svg>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Rent total</strong> = sum across years of <code>12 × rent × (1 + rentInc)^(year−1)</code>.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Buy total cash out</strong> = (down + closing) + sum of monthly housing costs over the horizon.&nbsp;<strong style="color:var(--ink)">Net buy cost</strong> = total cash out − (home value at exit × (1 − selling cost) − loan balance at exit). Loan balance at month <code>m</code> uses <code>L × ((1+r)ⁿ − (1+r)ᵐ) / ((1+r)ⁿ − 1)</code>.</p>
+              <p><strong style="color:var(--ink)">Opportunity cost</strong> on initial cash (down + closing) compounds at the investment return; we add this to the buy side and subtract it from the rent side to make the comparison apples-to-apples. The <strong style="color:var(--ink)">break-even year</strong> is the first year where adjusted cumulative buy cost ≤ cumulative rent cost.</p>
+            </div>
+          </details>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== EXPLAINER ========== -->
+  <section class="section section--surface" aria-labelledby="explainer-title">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">The honest comparison</span>
+        <h2 id="explainer-title" style="margin-top:.85rem">Why "rent is throwing money away" is wrong — and so is "always buy."</h2>
+        <p class="lede">There is no single answer to rent versus buy. There's only the answer for <em>your</em> scenario — your market, your time horizon, your alternative use of cash. The same $425K home is a great buy at a 10-year hold and a poor one at a 2-year hold, regardless of how the listing photos look.</p>
+
+        <p>This calculator runs the math both ways and adjusts for the things people consistently forget: rent inflation, opportunity cost of the down payment, the realistic cost of selling, and the difference between gross appreciation and what's actually in your pocket after closing on the other side.</p>
+
+        <h3>Time horizon — the variable that matters most</h3>
+        <p>Buying has front-loaded costs (down payment, closing) and back-loaded costs (selling commissions, concessions). Spread over enough years, equity buildup and appreciation cover those costs. Spread over too few years, they don't. The break-even point varies by market — it's commonly 4 to 7 years, but high-tax/high-fee markets can push it longer, and rapidly appreciating ones can shorten it dramatically.</p>
+        <div class="callout"><strong>The single most important question</strong> in rent versus buy is: <em>How long will I actually stay here?</em> Most buyers underestimate how often jobs change, how often relationships change, and how often a "starter home" becomes a "we need to move" home. Be honest about your horizon before letting the calculator vote.</div>
+
+        <h3>Rent inflation</h3>
+        <p>Rent rarely stays flat. National rent inflation has averaged 3–4% over the long run, with much higher spikes in supply-constrained markets and softer numbers in markets with new construction. A $2,650 rent at 3.5% annual inflation reaches $3,490 by year 7, $4,121 by year 10, and $4,841 by year 12. Lock that in mentally — the "renting is cheaper" comparison runs on today's rent, not the rent you'll be paying in five years.</p>
+
+        <h3>Home appreciation</h3>
+        <p>Long-run U.S. home appreciation has averaged roughly 3–4% nominally, with enormous regional variation. We default to 3% — a reasonable middle ground. Two cautions: (1) high-growth periods are often followed by flat ones, so don't extrapolate the last five years forward; (2) appreciation is calculated on the home value, not just on your equity — a 3% gain on a $425K home is $12,750, not 3% of your $85K down payment.</p>
+
+        <h3>Opportunity cost of the down payment</h3>
+        <p>If you put $85,000 into a home, that's $85,000 you didn't put into anything else. At a 6% expected return, that down payment would have grown to $113,800 invested over five years, $151,300 over ten. This calculator includes that opportunity cost as a real expense of buying — and as a real benefit of renting. If you would otherwise spend the down payment on something non-investing, lower the assumed return; if you'd put it in equities, 6–7% is typical.</p>
+
+        <h3>Closing and selling costs</h3>
+        <p>Buy-side closing costs run 2–5% of the loan: origination, title, escrow, appraisal, recording, prepaid items. We default to 3%. Sell-side closing has historically run 5–7% of the sale price (agent commissions, staging, concessions, title), though recent commission-structure changes are pushing some of these lower. We default to 6%. These two together — call it 9% of the home value lost on the round trip — are the single biggest reason short-horizon buyers lose money.</p>
+
+        <h3>What the calculator can't model</h3>
+        <p>Some things in this comparison aren't dollar-quantifiable. Owning gives you control of the property and a stable monthly cost (on a fixed-rate loan). Renting gives you flexibility and zero exposure to maintenance shocks or roof replacements. The right answer often depends on which of those matters more to you — and that's a judgment, not a calculation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow section__kicker">FAQ</span>
+        <h2 id="faq-title">Common questions about rent vs buy.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Why does the answer depend on time horizon?</summary>
+          <div class="faq__a">Buying has high upfront costs (down payment, closing) and high exit costs (selling commissions). Spread over enough years, equity buildup and appreciation cover those costs. Spread over too few years, they don't. The break-even point depends on your specific market and scenario, but is commonly 4–7 years.</div>
+        </details>
+        <details>
+          <summary>What appreciation rate should I assume?</summary>
+          <div class="faq__a">Long-run U.S. home appreciation has averaged 3–4% nominally, varying significantly by region. We default to 3%. For high-growth metros, you might use 4–5%; for slow markets, 1–2%. Assuming above-trend appreciation skews the answer toward buying — so be conservative if you're trying to make an honest decision.</div>
+        </details>
+        <details>
+          <summary>What is "opportunity cost of the down payment"?</summary>
+          <div class="faq__a">If you didn't put $85,000 into a home, you could invest it. At a 6% return, that's roughly $5,100 in foregone investment growth in year one alone. The calculator includes this as a real cost of buying — and the value of investing it as a benefit of renting.</div>
+        </details>
+        <details>
+          <summary>Are closing and selling costs really 3% and 6%?</summary>
+          <div class="faq__a">Buy-side closing costs typically run 2–5% of the loan; we use 3% as a reasonable default. Sell-side costs (agent commissions, staging, concessions, title) traditionally run 5–7% of the sale price; we default to 6%. Both vary, and recent commission changes are pushing seller costs lower in some markets.</div>
+        </details>
+        <details>
+          <summary>What does the break-even year mean?</summary>
+          <div class="faq__a">It's the year at which the cumulative net cost of buying drops below the cumulative cost of renting. Selling before that year typically means renting would have been cheaper; selling after typically means buying came out ahead. If your horizon is shorter than the break-even, the calculator is telling you the math says rent.</div>
+        </details>
+        <details>
+          <summary>Does this account for the tax benefits of homeownership?</summary>
+          <div class="faq__a">Not directly. Mortgage interest deductibility and the SALT cap mean tax benefits are smaller and less broadly applicable than they used to be. The standard deduction now exceeds the value of itemizing for most homeowners. If your situation makes the deduction meaningful, the calculator's buy side is slightly conservative.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RELATED ========== -->
+  <section class="section section--surface" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <span class="eyebrow section__kicker">Keep going</span>
+        <h2 id="related-title">Related calculators.</h2>
+      </div>
+      <div class="related">
+        <a class="rcard" href="true-monthly-cost-calculator.html">
+          <span class="rcard__tag">Buying</span>
+          <h4>True Monthly Cost</h4>
+          <p>Get the full monthly figure for any home — PITI plus HOA, PMI, and a realistic maintenance reserve.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="affordability-calculator.html">
+          <span class="rcard__tag">Affordability</span>
+          <h4>Can I actually afford this?</h4>
+          <p>Pressure-test a price against your income, debts, and reserves — including a House Poor Risk Score.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="listing-reality-check.html">
+          <span class="rcard__tag">Signature tool</span>
+          <h4>Listing Reality Check</h4>
+          <p>Strip the optimism off a listing and see the true cost — what most listings quietly leave out.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="ctaband reveal">
+        <span class="eyebrow" style="color:#9BE08E">Next step</span>
+        <h2 style="margin-top:.85rem">If buying wins, make sure the price actually fits.</h2>
+        <p>The math says buy is fine — but is the price comfortable for your income? Run the affordability calculator next to see whether the monthly figure clears the bar.</p>
+        <div class="ctaband__row">
+          <a href="affordability-calculator.html" class="btn">Run affordability check</a>
+          <a href="calculators.html" class="btn btn--ghost">Browse all calculators</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* === Standard scripts === */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* === Rent vs Buy calculator === */
+  var fmt = function(n){
+    if (!isFinite(n)) n = 0;
+    var sign = n < 0 ? '−' : '';
+    var v = Math.abs(Math.round(n));
+    return sign + '$' + v.toLocaleString('en-US');
+  };
+  var fmtK = function(n){
+    if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+    if (Math.abs(n) >= 1e3) return '$' + Math.round(n/1e3) + 'K';
+    return '$' + Math.round(n);
+  };
+
+  var ids = ['rngYears','inpRent','inpRentInc','inpPrice','inpDown','inpRate','inpTax','inpMaint','inpIns','inpHoa','inpApp','inpInv','inpClose','inpSell'];
+  var el = {};
+  ids.forEach(function(id){ el[id] = document.getElementById(id); });
+
+  var lbl = {
+    years: document.getElementById('lblYears'),
+    rentInc: document.getElementById('lblRentInc'),
+    down: document.getElementById('lblDown'),
+    rate: document.getElementById('lblRate'),
+    app: document.getElementById('lblApp'),
+    inv: document.getElementById('lblInv')
+  };
+
+  var verdictEl = document.getElementById('verdict');
+  var verdictHead = document.getElementById('verdictHead');
+  var verdictSub = document.getElementById('verdictSub');
+  var outRentTotal = document.getElementById('outRentTotal');
+  var outBuyNet = document.getElementById('outBuyNet');
+  var outBE = document.getElementById('outBE');
+  var lineRent = document.getElementById('lineRent');
+  var lineBuy = document.getElementById('lineBuy');
+  var beMark = document.getElementById('beMark');
+  var beDot = document.getElementById('beDot');
+  var axisMid = document.getElementById('axisMid');
+  var axisEnd = document.getElementById('axisEnd');
+  var axisYTop = document.getElementById('axisYTop');
+
+  function compute(){
+    var years    = +el.rngYears.value;
+    var rent0    = +el.inpRent.value || 0;
+    var rentInc  = (+el.inpRentInc.value || 0) / 100;
+    var price    = +el.inpPrice.value || 0;
+    var downP    = (+el.inpDown.value || 0) / 100;
+    var rate     = (+el.inpRate.value || 0) / 100;
+    var taxP     = (+el.inpTax.value || 0) / 100;
+    var maintP   = (+el.inpMaint.value || 0) / 100;
+    var ins      = +el.inpIns.value || 0;
+    var hoa      = +el.inpHoa.value || 0;
+    var app      = (+el.inpApp.value || 0) / 100;
+    var inv      = (+el.inpInv.value || 0) / 100;
+    var closeP   = (+el.inpClose.value || 0) / 100;
+    var sellP    = (+el.inpSell.value || 0) / 100;
+
+    /* labels */
+    lbl.years.textContent = years + (years === 1 ? ' year' : ' years');
+    lbl.rentInc.textContent = (+el.inpRentInc.value).toFixed(1) + '%/yr';
+    lbl.down.textContent = (+el.inpDown.value) + '%';
+    lbl.rate.textContent = (+el.inpRate.value).toFixed(2) + '%';
+    lbl.app.textContent = (+el.inpApp.value).toFixed(1) + '%/yr';
+    lbl.inv.textContent = (+el.inpInv.value).toFixed(1) + '%/yr';
+
+    /* mortgage math */
+    var loan = price * (1 - downP);
+    var rM = rate / 12;
+    var n = 360; /* assume 30-yr term */
+    var pi = rM === 0 ? loan / n : loan * (rM * Math.pow(1+rM, n)) / (Math.pow(1+rM, n) - 1);
+    var propTax = (price * taxP) / 12;
+    var pmi = downP < 0.20 ? (loan * 0.0075) / 12 : 0;
+    var maint = (price * maintP) / 12;
+    var monthlyBuy = pi + propTax + ins + pmi + hoa + maint;
+
+    var initialCash = price * downP + price * closeP;
+
+    /* loan balance after m payments */
+    function balanceAt(m){
+      if (rM === 0) return Math.max(0, loan - (loan / n) * m);
+      return Math.max(0, loan * (Math.pow(1+rM, n) - Math.pow(1+rM, m)) / (Math.pow(1+rM, n) - 1));
+    }
+
+    /* per-year cumulative figures */
+    var cumRent = 0;
+    var cumBuyCash = initialCash;
+    var rentSeries = [{x:0, y:0}];
+    var buySeries  = [{x:0, y:initialCash}];
+    var beYear = null;
+
+    for (var y = 1; y <= years; y++){
+      var rentYear = 12 * rent0 * Math.pow(1 + rentInc, y - 1);
+      cumRent += rentYear;
+
+      cumBuyCash += monthlyBuy * 12;
+
+      var months = y * 12;
+      var bal = balanceAt(Math.min(months, n));
+      var homeVal = price * Math.pow(1 + app, y);
+      var sellProceeds = homeVal * (1 - sellP);
+      var equityAtExit = sellProceeds - bal;
+      var buyNetIfSold = cumBuyCash - equityAtExit;
+
+      /* opportunity cost adjustment: invest initialCash at inv */
+      var oppGain = initialCash * (Math.pow(1 + inv, y) - 1);
+
+      /* For comparison: buy adjusted = buyNetIfSold + oppGain (foregone) */
+      var buyAdj = buyNetIfSold + oppGain;
+      /* rent adjusted = cumRent (renter could invest the difference too, but we keep it simple and treat rent as-is — opportunity cost on initial cash already balances the comparison). */
+      var rentAdj = cumRent;
+
+      rentSeries.push({x:y, y:rentAdj});
+      buySeries.push({x:y, y:buyAdj});
+
+      if (beYear === null && buyAdj <= rentAdj) beYear = y;
+    }
+
+    var lastRent = rentSeries[rentSeries.length-1].y;
+    var lastBuy  = buySeries[buySeries.length-1].y;
+    var diff = lastRent - lastBuy;
+
+    /* outputs */
+    outRentTotal.textContent = fmt(lastRent);
+    outBuyNet.textContent    = fmt(lastBuy);
+    outBE.textContent        = beYear !== null ? ('Year ' + beYear) : ('After ' + years + ' yrs');
+
+    verdictEl.classList.remove('is-buy','is-rent','is-neutral');
+    if (Math.abs(diff) < lastRent * 0.04){
+      verdictEl.classList.add('is-neutral');
+      verdictEl.querySelector('.verdict__label').textContent = 'Roughly tied';
+      verdictHead.textContent = 'It\u2019s close — within ~4% over ' + years + ' years.';
+      verdictSub.textContent = 'When the difference is this small, lifestyle and flexibility matter more than the math. ' + (beYear !== null ? 'Break-even reached around year ' + beYear + '.' : 'No clear break-even within your horizon.');
+    } else if (diff > 0){
+      verdictEl.classList.add('is-buy');
+      verdictEl.querySelector('.verdict__label').textContent = 'Buying wins';
+      verdictHead.textContent = 'Buying saves ' + fmt(Math.abs(diff)) + ' over ' + years + ' years.';
+      verdictSub.textContent = (beYear !== null ? 'Break-even reached around year ' + beYear + '. ' : '') + 'Past that point, buying continues to pull ahead.';
+    } else {
+      verdictEl.classList.add('is-rent');
+      verdictEl.querySelector('.verdict__label').textContent = 'Renting wins';
+      verdictHead.textContent = 'Renting saves ' + fmt(Math.abs(diff)) + ' over ' + years + ' years.';
+      verdictSub.textContent = (beYear === null ? 'Buying never breaks even within your horizon. ' : 'Buying eventually breaks even around year ' + beYear + ', but not within your horizon. ') + 'Either lengthen the horizon or revisit the price assumption.';
+    }
+
+    /* === draw chart === */
+    var W = 600, H = 220, padL = 40, padR = 20, padT = 20, padB = 30;
+    var maxY = Math.max(lastRent, lastBuy, 1);
+    /* scale bumps to nice round number */
+    var step = Math.pow(10, Math.floor(Math.log10(maxY)));
+    var nice = Math.ceil(maxY / step) * step;
+    var xMax = years;
+    function px(x){ return padL + (x / xMax) * (W - padL - padR); }
+    function py(yy){ return (H - padB) - (yy / nice) * (H - padT - padB); }
+
+    function pts(series){
+      return series.map(function(p){ return px(p.x).toFixed(1) + ',' + py(p.y).toFixed(1); }).join(' ');
+    }
+    lineRent.setAttribute('points', pts(rentSeries));
+    lineBuy.setAttribute('points', pts(buySeries));
+
+    if (beYear !== null){
+      var bx = px(beYear);
+      beMark.setAttribute('x1', bx);
+      beMark.setAttribute('x2', bx);
+      beDot.setAttribute('cx', bx);
+      beDot.setAttribute('cy', py(buySeries[beYear].y));
+      beDot.setAttribute('opacity', '1');
+    } else {
+      beMark.setAttribute('x1', -10); beMark.setAttribute('x2', -10);
+      beDot.setAttribute('opacity', '0');
+    }
+
+    axisMid.textContent = 'Year ' + Math.round(years / 2);
+    axisEnd.textContent = 'Year ' + years;
+    axisYTop.textContent = fmtK(nice);
+  }
+
+  ids.forEach(function(id){
+    if (el[id]) el[id].addEventListener('input', compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

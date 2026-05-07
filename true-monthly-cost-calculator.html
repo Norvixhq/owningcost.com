@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>True Monthly Cost Calculator — PITI + HOA + Maintenance | OwningCost</title>
+<meta name="description" content="Calculate the full monthly cost of homeownership — principal, interest, property tax, insurance, PMI, HOA, and a realistic maintenance reserve. Free, transparent, no signup, no lender funnel." />
+<link rel="canonical" href="https://owningcost.com/true-monthly-cost-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="True Monthly Cost Calculator | OwningCost" />
+<meta property="og:description" content="The full monthly cost of homeownership — beyond principal and interest. PITI, HOA, PMI, and a realistic maintenance reserve, all in one number." />
+<meta property="og:url" content="https://owningcost.com/true-monthly-cost-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="True Monthly Cost Calculator | OwningCost" />
+<meta name="twitter:description" content="See what owning a home actually costs each month — not just the mortgage." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://owningcost.com/"},
+        {"@type":"ListItem","position":2,"name":"Calculators","item":"https://owningcost.com/calculators.html"},
+        {"@type":"ListItem","position":3,"name":"True Monthly Cost","item":"https://owningcost.com/true-monthly-cost-calculator.html"}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "True Monthly Cost Calculator",
+      "url": "https://owningcost.com/true-monthly-cost-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "description": "Calculates the full monthly cost of homeownership including principal, interest, property tax, homeowners insurance, PMI, HOA dues, and a maintenance reserve.",
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is included in true monthly cost?",
+          "acceptedAnswer": {"@type":"Answer","text":"True monthly cost includes principal and interest, property tax (divided monthly), homeowners insurance, PMI if your down payment is under 20%, HOA dues, and a maintenance reserve — typically around 1% of the home's value per year."}
+        },
+        {
+          "@type": "Question",
+          "name": "Why is a standard mortgage calculator misleading?",
+          "acceptedAnswer": {"@type":"Answer","text":"A mortgage calculator usually shows only principal and interest. That figure can be 30–40% lower than what you actually pay each month once taxes, insurance, HOA, PMI, and maintenance are included."}
+        },
+        {
+          "@type": "Question",
+          "name": "How is PMI calculated?",
+          "acceptedAnswer": {"@type":"Answer","text":"For conventional loans with less than 20% down, PMI typically runs 0.3% to 1.5% of the loan amount per year. We use 0.75% as a reasonable default. PMI is automatically removed once you reach 78% LTV."}
+        },
+        {
+          "@type": "Question",
+          "name": "What's a realistic maintenance reserve?",
+          "acceptedAnswer": {"@type":"Answer","text":"The most widely cited rule is 1% of the home's value per year, adjusted up for older homes or high-wear climates. For a $425,000 home, that's about $354 per month set aside."}
+        },
+        {
+          "@type": "Question",
+          "name": "Are these estimates accurate enough to make a decision on?",
+          "acceptedAnswer": {"@type":"Answer","text":"They're accurate enough to compare scenarios honestly, which is the goal. For a final number, confirm rates with your lender, taxes with your county, and insurance with a quote."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="#calc" class="btn btn--primary">Try the calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">True Monthly Cost</span>
+    </nav>
+  </div>
+
+  <section class="phero container" aria-labelledby="phero-title">
+    <div class="phero__grid">
+      <span class="eyebrow">Calculator</span>
+      <h1 id="phero-title">True Monthly Cost Calculator</h1>
+      <p class="phero__sub">The mortgage payment is only part of the story. See the full monthly cost of owning a home — principal, interest, property tax, insurance, PMI, HOA, and a realistic maintenance reserve — in one transparent figure.</p>
+      <div class="phero__meta">
+        <span class="chip is-live">Live tool</span>
+        <span class="chip">Free · No signup</span>
+        <span class="chip">Inputs stay in your browser</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATOR ========== -->
+  <section class="section section--tight" id="calc">
+    <div class="container">
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="True Monthly Cost calculator">
+        <div class="calc__form">
+          <h3>Your scenario</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice">$425,000</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" max="5000000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" value="425000">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown">20%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="20" min="0" max="100" step="1" aria-label="Down payment percent"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Interest rate</span><span class="field__value" id="lblRate">6.75%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="0.5" max="15" step="0.05" aria-label="Interest rate"><span class="suffix">%</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Property tax</span><span class="field__value" id="lblTax">1.5%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" max="5" step="0.05" aria-label="Property tax rate"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Loan term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="5" max="40" step="1" aria-label="Loan term years"><span class="suffix">yrs</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Insurance</span><span class="field__hint">per month</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpIns" value="142" min="0" step="5" aria-label="Monthly insurance"></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>HOA</span><span class="field__hint">per month</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpHoa" value="300" min="0" step="10" aria-label="Monthly HOA"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Maintenance reserve</span><span class="field__value" id="lblMain">1% / yr</span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpMain" value="1" min="0" max="5" step="0.1" aria-label="Maintenance percent"><span class="suffix">%</span></div>
+          </div>
+        </div>
+
+        <div class="calc__out">
+          <h3>True monthly cost</h3>
+          <div class="calc__total" id="outTotal" aria-live="polite">$3,533<small>Full cost of owning · not just the mortgage</small></div>
+
+          <div class="calc__summary" id="outSummary">
+            On a <strong>$425,000</strong> home with <strong>20%</strong> down at <strong>6.75%</strong>, the mortgage alone is $2,205. The full monthly cost is <strong>$3,533</strong> — <strong>$1,328 more</strong> than the mortgage figure suggests.
+          </div>
+
+          <div class="calc__bar" role="img" aria-label="Cost composition">
+            <span class="b1" id="segPI" style="flex:2205"></span>
+            <span class="b2" id="segTax" style="flex:531"></span>
+            <span class="b3" id="segIns" style="flex:142"></span>
+            <span class="b4" id="segPmi" style="flex:0.0001"></span>
+            <span class="b5" id="segHoa" style="flex:300"></span>
+            <span class="b6" id="segMain" style="flex:354"></span>
+          </div>
+
+          <div class="calc__rows">
+            <div class="calc__row"><span class="sw" style="background:var(--blue-700)"></span><span class="nm">Principal &amp; interest</span><span class="am" id="outPI">$2,205</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--blue-500)"></span><span class="nm">Property tax</span><span class="am" id="outTax">$531</span></div>
+            <div class="calc__row"><span class="sw" style="background:#7AA9EB"></span><span class="nm">Home insurance</span><span class="am" id="outIns">$142</span></div>
+            <div class="calc__row"><span class="sw" style="background:#B6CDF0"></span><span class="nm">PMI <small style="color:var(--subtle)">(if &lt; 20% down)</small></span><span class="am" id="outPmi">$0</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--green-500)"></span><span class="nm">HOA</span><span class="am" id="outHoa">$300</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--green-600)"></span><span class="nm">Maintenance reserve</span><span class="am" id="outMain">$354</span></div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Loan amount</strong> = home price × (1 − down %). <strong style="color:var(--ink)">Monthly P&amp;I</strong> uses the standard amortization formula: <code>L · r(1+r)ⁿ / ((1+r)ⁿ − 1)</code>, where <code>r</code> is the monthly rate and <code>n</code> is the loan term in months.</p>
+              <p><strong style="color:var(--ink)">Property tax</strong> = price × tax rate ÷ 12.&nbsp;<strong style="color:var(--ink)">PMI</strong> is included at ~0.75%/yr of the loan when down payment is under 20%.&nbsp;<strong style="color:var(--ink)">Maintenance</strong> defaults to 1%/yr of home value, divided monthly. All figures are estimates — verify with your lender, insurer, and local assessor before relying on them.</p>
+            </div>
+          </details>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== EXPLAINER ========== -->
+  <section class="section section--surface" aria-labelledby="explainer-title">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">Behind the number</span>
+        <h2 id="explainer-title" style="margin-top:.85rem">Why your mortgage payment is only 65% of the story.</h2>
+        <p class="lede">A standard mortgage calculator answers a narrow question: "what's the principal and interest on this loan?" That figure is real, but it's never what arrives in your bank statement. Once property taxes, insurance, HOA dues, PMI, and maintenance are layered in, the actual monthly cost of owning a home typically runs 35% to 60% higher than the mortgage payment alone.</p>
+
+        <p>For a $425,000 home with 20% down at 6.75%, that gap is roughly <strong>$1,300 per month</strong>. Over a five-year hold, that's $78,000 in costs that never appear on a typical mortgage estimate. This calculator exists to put those costs back where they belong: in the number you compare against your budget.</p>
+
+        <h3>Principal &amp; interest</h3>
+        <p>This is the loan repayment portion of your payment — the part that goes to the lender. It's calculated using a fixed-rate amortization formula and stays the same every month for the life of a fixed-rate loan. In the first years, most of it is interest; toward the end, most is principal. On the example above, P&amp;I is <strong>$2,205/month</strong>.</p>
+
+        <h3>Property tax</h3>
+        <p>Local governments tax real property at a percentage of assessed value, typically billed annually or semi-annually but escrowed monthly with most mortgages. Effective rates vary wildly — under 0.5% in Hawaii to over 2% in parts of Texas, New Jersey, and Illinois. Most lenders escrow tax and insurance into your monthly payment, so the same loan in two different counties can have very different monthly totals.</p>
+        <div class="callout"><strong>Often overlooked:</strong> property tax is reassessed periodically. If you buy in a market where prices have run, your first-year bill is often based on the previous owner's assessment, then jumps when reassessed. Build that into your cost expectation.</div>
+
+        <h3>Homeowners insurance</h3>
+        <p>A standard HO-3 policy covers the structure, your belongings, and liability. Premiums depend on the home's replacement cost, the construction type, the local risk profile (hurricane, hail, wildfire, flood), and your claims history. Coastal Florida and wildfire-exposed California carry premiums multiples of what a low-risk Midwest home pays — and rates have been climbing fast in disaster-exposed markets.</p>
+
+        <h3>PMI (Private Mortgage Insurance)</h3>
+        <p>PMI applies to conventional loans with less than 20% down. It protects the lender, not you, and typically costs 0.3%–1.5% of the loan per year — we default to 0.75% in this calculator. PMI drops off automatically once your loan-to-value ratio reaches 78%, but until then it can add $100–$300 per month on a typical home. FHA loans have a parallel system (MIP) with different rules; see our <a href="fha-vs-conventional-calculator.html">FHA vs Conventional Calculator</a>.</p>
+
+        <h3>HOA dues</h3>
+        <p>Homeowners associations collect monthly dues to maintain shared amenities and enforce community standards. Ranges are enormous — a suburban subdivision might charge $35/month while a Miami high-rise condo charges $1,200. Special assessments for major repairs (roofs, elevators, structural work) can land at any time. Always read the HOA's reserve study before buying into a building.</p>
+
+        <h3>Maintenance reserve</h3>
+        <p>This is the single most underestimated line item in homeownership. Roofs need replacing. HVAC systems fail. Water heaters die. Gutters clog. Termites arrive. The widely cited rule of thumb is <strong>1% of home value per year</strong> set aside for maintenance — slightly more for older homes or harsh climates. For a $425,000 home, that's about $354/month. You won't spend it every month, but over 10 years you'll spend close to it on average.</p>
+        <div class="callout"><strong>Why this matters most:</strong> homeowners who skip the maintenance reserve don't actually save money — they just defer the cost into emergency credit-card debt or letting the home deteriorate (which costs more on resale). Build the reserve into the budget from day one.</div>
+
+        <h3>Why the gap matters most</h3>
+        <p>The gap between mortgage payment and true cost is largest in three situations: low down payments (PMI is added), high property-tax states (Texas, NJ, IL, NH), and homes with HOA dues. In any of these, the difference between "what the calculator says" and "what your account shows" can exceed $1,500/month. A pre-approval that says you can "afford" $3,000 a month in mortgage payments often means you're actually committing to closer to $4,500 in housing cost. That's the gap the affordability assessment misses.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section__head section__head--left" style="margin-left:auto;margin-right:auto;text-align:center">
+        <span class="eyebrow section__kicker">FAQ</span>
+        <h2 id="faq-title">Common questions about true monthly cost.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>What's included in true monthly cost?</summary>
+          <div class="faq__a">Principal and interest, property tax (divided monthly), homeowners insurance, PMI if your down payment is under 20%, HOA dues, and a maintenance reserve. Some buyers also add utilities and lawn care to their personal definition — those aren't in this calculator because they vary too much, but they're real costs to plan for.</div>
+        </details>
+        <details>
+          <summary>Why is a standard mortgage calculator misleading?</summary>
+          <div class="faq__a">Most mortgage calculators show only principal and interest. That figure is typically 30–40% lower than what you actually pay each month once taxes, insurance, HOA, PMI, and maintenance are layered in. A pre-approval based on P&amp;I alone can leave buyers committed to housing payments that crowd out everything else in the budget.</div>
+        </details>
+        <details>
+          <summary>How is PMI calculated here?</summary>
+          <div class="faq__a">For conventional loans with less than 20% down, we apply a default annual PMI rate of 0.75% of the loan amount, divided monthly. Real PMI rates range from roughly 0.3% to 1.5% depending on credit score and LTV. PMI is automatically removed at 78% LTV, so it disappears from the cost over time.</div>
+        </details>
+        <details>
+          <summary>Is 1% per year a realistic maintenance reserve?</summary>
+          <div class="faq__a">It's the most widely accepted rule of thumb and matches what long-term studies of homeowner spending tend to find. Older homes, larger homes, and homes in harsh climates often run 1.5–2%. Newer construction may run lower in early years, then catch up later. We default to 1% but you can adjust it.</div>
+        </details>
+        <details>
+          <summary>Does this calculator account for property tax reassessment?</summary>
+          <div class="faq__a">Not directly — it uses the rate you enter. But this is one of the most common surprises in homeownership. In markets where prices have appreciated, the first-year tax bill is often based on the previous owner's assessment, then jumps when the property is reassessed. Adjust the tax rate upward in your scenario if you're buying in such a market.</div>
+        </details>
+        <details>
+          <summary>Are these estimates accurate enough to make a decision on?</summary>
+          <div class="faq__a">They're accurate enough to compare scenarios honestly and to set a realistic budget. For a final number, confirm rates with your lender, taxes with your county assessor, insurance with a real quote, and HOA dues with the association's bylaws and reserve study.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RELATED ========== -->
+  <section class="section section--surface" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <span class="eyebrow section__kicker">Keep going</span>
+        <h2 id="related-title">Related calculators.</h2>
+      </div>
+      <div class="related">
+        <a class="rcard" href="affordability-calculator.html">
+          <span class="rcard__tag">Affordability</span>
+          <h4>Can I actually afford this home?</h4>
+          <p>Pressure-test a price against your income, debts, and reserves — including a House Poor Risk Score.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="rent-vs-buy-calculator.html">
+          <span class="rcard__tag">Rent vs Buy</span>
+          <h4>Should I rent or buy at this price?</h4>
+          <p>Compare total cost over your real time horizon, with appreciation and opportunity cost included.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="fha-vs-conventional-calculator.html">
+          <span class="rcard__tag">Financing</span>
+          <h4>FHA vs Conventional</h4>
+          <p>Model both loan types over your hold period — including upfront MIP, monthly MIP, and PMI.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BAND ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="ctaband reveal">
+        <span class="eyebrow" style="color:#9BE08E">Next step</span>
+        <h2 style="margin-top:.85rem">Pressure-test your number against your life.</h2>
+        <p>Once you know the true monthly cost, run it against your income and reserves. The Affordability Calculator will tell you whether the number fits — or quietly breaks something.</p>
+        <div class="ctaband__row">
+          <a href="affordability-calculator.html" class="btn">Run affordability check</a>
+          <a href="calculators.html" class="btn btn--ghost">Browse all calculators</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          en.target.classList.add('is-in');
+          io.unobserve(en.target);
+        }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* True Monthly Cost calculator */
+  var fmt = function(n){
+    if (!isFinite(n)) n = 0;
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+  var pct = function(n, digits){
+    digits = digits == null ? 2 : digits;
+    return (Math.round(n * Math.pow(10, digits)) / Math.pow(10, digits)).toFixed(digits) + '%';
+  };
+
+  var inputs = {
+    price: document.getElementById('inpPrice'),
+    priceR: document.getElementById('rngPrice'),
+    down:  document.getElementById('inpDown'),
+    rate:  document.getElementById('inpRate'),
+    term:  document.getElementById('inpTerm'),
+    tax:   document.getElementById('inpTax'),
+    ins:   document.getElementById('inpIns'),
+    hoa:   document.getElementById('inpHoa'),
+    main:  document.getElementById('inpMain')
+  };
+  var labels = {
+    price: document.getElementById('lblPrice'),
+    down:  document.getElementById('lblDown'),
+    rate:  document.getElementById('lblRate'),
+    tax:   document.getElementById('lblTax'),
+    main:  document.getElementById('lblMain')
+  };
+  var out = {
+    total:   document.getElementById('outTotal'),
+    summary: document.getElementById('outSummary'),
+    pi:      document.getElementById('outPI'),
+    tax:     document.getElementById('outTax'),
+    ins:     document.getElementById('outIns'),
+    pmi:     document.getElementById('outPmi'),
+    hoa:     document.getElementById('outHoa'),
+    main:    document.getElementById('outMain'),
+    segPI:   document.getElementById('segPI'),
+    segTax:  document.getElementById('segTax'),
+    segIns:  document.getElementById('segIns'),
+    segPmi:  document.getElementById('segPmi'),
+    segHoa:  document.getElementById('segHoa'),
+    segMain: document.getElementById('segMain')
+  };
+
+  function compute(){
+    var price = parseFloat(inputs.price.value) || 0;
+    var downP = Math.min(100, Math.max(0, parseFloat(inputs.down.value) || 0));
+    var rate  = Math.max(0, parseFloat(inputs.rate.value) || 0);
+    var term  = Math.max(1, parseFloat(inputs.term.value) || 30);
+    var taxP  = Math.max(0, parseFloat(inputs.tax.value) || 0);
+    var ins   = Math.max(0, parseFloat(inputs.ins.value) || 0);
+    var hoa   = Math.max(0, parseFloat(inputs.hoa.value) || 0);
+    var mainP = Math.max(0, parseFloat(inputs.main.value) || 0);
+
+    var loan = Math.max(0, price - price * (downP/100));
+    var r = (rate/100)/12;
+    var n = term * 12;
+    var pi;
+    if (r === 0){ pi = loan / n; }
+    else        { pi = loan * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1); }
+
+    var propTax = (price * (taxP/100)) / 12;
+    var pmi = downP < 20 ? (loan * 0.0075) / 12 : 0;
+    var maint = (price * (mainP/100)) / 12;
+    var total = pi + propTax + ins + pmi + hoa + maint;
+
+    labels.price.textContent = fmt(price);
+    labels.down.textContent  = pct(downP, downP % 1 === 0 ? 0 : 1);
+    labels.rate.textContent  = pct(rate, 2);
+    labels.tax.textContent   = pct(taxP, 2);
+    labels.main.textContent  = pct(mainP, mainP % 1 === 0 ? 0 : 1) + ' / yr';
+
+    out.total.innerHTML = fmt(total) + '<small>Full cost of owning · not just the mortgage</small>';
+
+    var extra = total - pi;
+    out.summary.innerHTML =
+      'On a <strong>' + fmt(price) + '</strong> home with <strong>' + pct(downP, downP % 1 === 0 ? 0 : 1) + '</strong> down at <strong>' +
+      pct(rate, 2) + '</strong>, the mortgage alone is ' + fmt(pi) + '. The full monthly cost is <strong>' + fmt(total) + '</strong> — <strong>' +
+      fmt(extra) + ' more</strong> than the mortgage figure suggests.';
+
+    out.pi.textContent   = fmt(pi);
+    out.tax.textContent  = fmt(propTax);
+    out.ins.textContent  = fmt(ins);
+    out.pmi.textContent  = fmt(pmi);
+    out.hoa.textContent  = fmt(hoa);
+    out.main.textContent = fmt(maint);
+
+    out.segPI.style.flex   = Math.max(.0001, pi);
+    out.segTax.style.flex  = Math.max(.0001, propTax);
+    out.segIns.style.flex  = Math.max(.0001, ins);
+    out.segPmi.style.flex  = Math.max(.0001, pmi);
+    out.segHoa.style.flex  = Math.max(.0001, hoa);
+    out.segMain.style.flex = Math.max(.0001, maint);
+  }
+
+  function syncPriceFromNum(){
+    var v = Math.max(50000, Math.min(5000000, parseFloat(inputs.price.value) || 0));
+    inputs.priceR.value = Math.min(parseFloat(inputs.priceR.max), Math.max(parseFloat(inputs.priceR.min), v));
+    compute();
+  }
+  function syncPriceFromRange(){
+    inputs.price.value = inputs.priceR.value;
+    compute();
+  }
+
+  Object.keys(inputs).forEach(function(k){
+    if (inputs[k]){
+      inputs[k].addEventListener('input', function(){
+        if (k === 'price') syncPriceFromNum();
+        else if (k === 'priceR') syncPriceFromRange();
+        else compute();
+      });
+    }
+  });
+
+  compute();
+})();
+</script>
+
+</body>
+</html>

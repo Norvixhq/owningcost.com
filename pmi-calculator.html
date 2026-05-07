@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>PMI Calculator — Estimate cost and removal date | OwningCost</title>
+<meta name="description" content="Estimate monthly PMI by credit tier, see when the federal 78% LTV threshold removes it, and total PMI paid over the life of the loan." />
+<link rel="canonical" href="https://owningcost.com/pmi-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="PMI Calculator — Estimate cost and removal date" />
+<meta property="og:description" content="Estimate monthly PMI by credit tier, see when the federal 78% LTV threshold removes it, and total PMI paid over the life of the loan." />
+<meta property="og:url" content="https://owningcost.com/pmi-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PMI Calculator — Estimate cost and removal date | OwningCost" />
+<meta name="twitter:description" content="Estimate monthly PMI by credit tier, see when the federal 78% LTV threshold removes it, and total PMI paid over the life of the loan." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "PMI Calculator.", "item": "https://owningcost.com/"}]}, {"@type": "WebApplication", "name": "PMI Calculator.", "url": "https://owningcost.com/pmi-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Estimate monthly PMI by credit tier, see when the federal 78% LTV threshold removes it, and total PMI paid over the life of the loan.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is PMI different from FHA mortgage insurance?", "acceptedAnswer": {"@type": "Answer", "text": "PMI is private; it covers Conventional loans and ends when LTV reaches 78%. FHA mortgage insurance is government-backed and structured differently — there's a 1.75% upfront premium financed into the loan, plus monthly MIP at 0.55% annual. Critically, FHA monthly MIP lasts the life of the loan if down payment is under 10%, while Conventional PMI ends. This is why many FHA buyers refinance to Conventional once they hit 20% equity."}}, {"@type": "Question", "name": "Can I get PMI removed before the 78% threshold?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — at 80% LTV, you can request removal in writing. The lender may require a current appraisal at your cost, 24 months of payment history, and clean recent payment history. If your home has appreciated, an appraisal-based request can shave years off the timeline."}}, {"@type": "Question", "name": "Does PMI tax-deductibility still exist?", "acceptedAnswer": {"@type": "Answer", "text": "PMI deductibility expired for tax year 2022 federally. State rules vary. Don't factor it into your decision unless legislation changes."}}, {"@type": "Question", "name": "What about lender-paid PMI (LPMI)?", "acceptedAnswer": {"@type": "Answer", "text": "Lender-paid PMI bundles the cost into a higher interest rate instead of a separate monthly line item. It can look attractive on the disclosure but typically costs more over the long run because the higher rate doesn't go away when LTV hits 78%. Usually only worthwhile for buyers planning short holds."}}, {"@type": "Question", "name": "Is paying upfront PMI (single-premium) worth it?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes. Single-premium PMI replaces monthly PMI with a one-time payment at closing, often financed into the loan. The math works when you plan to keep the loan long enough to amortize the upfront cost — typically 5+ years. Ask your lender for both options on the loan estimate."}}, {"@type": "Question", "name": "How much can I save by improving my credit before applying?", "acceptedAnswer": {"@type": "Answer", "text": "On a $400K loan, moving from a 660 FICO (1.15% PMI) to a 740 FICO (0.65% PMI) saves about $167/month. Over the typical 10-year PMI life, that's $20,000. Three months of credit work before applying often returns more than any other single improvement."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">PMI Calculator.</span>
+    </nav>
+  </div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <div class="phero__grid">
+    <span class="eyebrow">Financing</span>
+    <h1 id="phero-title">PMI Calculator.</h1>
+    <p class="phero__sub">Estimate your monthly PMI by credit score, see exactly when it drops off based on standard amortization, and the total cost over the life of the loan.</p>
+    <div class="phero__meta">
+      <span class="chip is-live">Live tool</span>
+      <span class="chip">By credit tier</span><span class="chip">Federal 78% rule</span><span class="chip">Total cost</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="calc">
+  <div class="container">
+    <form class="calc reveal" onsubmit="return false" aria-label="PMI Calculator.">
+      <div class="calc__form">
+        <h3>Loan inputs</h3>
+
+<div class="field">
+  <div class="field__label"><span>Home price</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="pmiPrice" value="425000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Down payment</span><span class="field__hint">% of price</span></div>
+  <div class="field__input"><input type="number" id="pmiDown" value="10" min="3" max="20" step="0.5"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Mortgage rate</span></div>
+  <div class="field__input"><input type="number" id="pmiRate" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Term</span></div>
+  <div class="field__input"><input type="number" id="pmiTerm" value="30" min="10" max="40" step="1"><span class="suffix">yr</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">Credit profile</h3>
+
+<div class="field">
+  <div class="field__label"><span>Credit score</span><span class="field__hint">determines PMI rate</span></div>
+  <div class="field__input">
+    <select id="pmiCredit">
+      <option value="0.0050">760+ (excellent)</option>
+      <option value="0.0065">720–759 (very good)</option>
+      <option value="0.0085" selected>680–719 (good)</option>
+      <option value="0.0115">640–679 (fair)</option>
+      <option value="0.0150">620–639 (limited)</option>
+    </select>
+  </div>
+</div>
+      </div>
+      <div class="calc__out" aria-live="polite">
+        <h3>Your PMI estimate</h3>
+<div class="calc__total">
+  <span id="pmiMonthly">$235</span>/mo
+  <small>private mortgage insurance, until ~80% LTV</small>
+</div>
+
+<p class="calc__summary">PMI removes automatically when scheduled balance hits <strong>78% of original price</strong> — currently around <strong id="pmiRemoveYr">year 9.4</strong>.</p>
+
+<div class="calc__rows">
+  <div class="calc__row"><span class="sw" style="background:var(--blue-600)"></span><span class="nm">Loan amount</span><span class="am" id="pmiLoan">$382,500</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--blue-400)"></span><span class="nm">Annual PMI rate</span><span class="am" id="pmiRate2">0.85%</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--green-500)"></span><span class="nm">PMI removal month</span><span class="am" id="pmiMonth">~ month 113</span></div>
+  <div class="calc__row"><span class="sw" style="background:#C4571F"></span><span class="nm">Total PMI paid</span><span class="am" id="pmiTotal">$26,500</span></div>
+</div>
+
+<details class="calc__math">
+  <summary>How this is calculated</summary>
+  <div class="calc__math__body">
+    <p><strong>PMI rate</strong> is set by credit tier (5 brackets) and applied as <code>loan × rate / 12</code> per month.</p>
+    <p><strong>PMI removal</strong> happens automatically when the scheduled loan balance reaches <strong>78%</strong> of the original purchase price — federal law (Homeowners Protection Act of 1998). You can <em>request</em> removal at 80% LTV.</p>
+    <p><strong>Total PMI paid</strong> = monthly PMI × number of months until the 78% threshold based on standard amortization.</p>
+    <p>This calculator does not model home appreciation. Faster appreciation can shorten the timeline if you appraise and request removal early.</p>
+  </div>
+</details>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">PMI in plain terms</span>
+<h2 style="margin-top:.85rem">PMI is a tax on putting less than 20% down — and it ends.</h2>
+<p class="lede">Private mortgage insurance protects the lender, not you, in case you default. It's the price of buying a home with a smaller down payment, and on a conventional loan it goes away — usually around year 9 to 11 with standard amortization.</p>
+
+<h3>What determines your PMI rate</h3>
+<ul>
+  <li><strong>Credit score:</strong> Strong credit (760+) lands closer to 0.5% annual; weaker credit (620–639) closer to 1.5%. The spread is large — a 100-point credit bump can save you $50–$120 per month on the same loan.</li>
+  <li><strong>Loan-to-value ratio:</strong> 5% down pays more PMI than 15% down, even at the same credit score, because the insurer is taking on more risk.</li>
+  <li><strong>Loan type:</strong> Standard PMI on Conventional loans differs from FHA's MIP. FHA's monthly MIP is 0.55% lifetime if down is under 10%, which is why long-hold FHA buyers often refinance.</li>
+</ul>
+
+<h3>The federal 78% rule</h3>
+<p>By federal law (Homeowners Protection Act of 1998), the lender must automatically cancel PMI when the scheduled loan balance reaches <strong>78% of the original purchase price</strong>. You can request removal at <strong>80% LTV</strong>. With a 10% down payment and standard 30-year amortization, the 78% threshold is typically reached in year 9 to 10. With 15% down, year 6 to 7. With 5% down, year 11+.</p>
+
+<h3>How to accelerate PMI removal</h3>
+<ul>
+  <li><strong>Make extra principal payments.</strong> Each $1,000 in extra principal accelerates the timeline. The math compounds — early payments save the most because they reduce interest accrual.</li>
+  <li><strong>Request a new appraisal.</strong> If your home has appreciated meaningfully, you can request PMI removal based on current value rather than original price. Most lenders require 24 months of payments and a fresh appraisal at your expense ($400–$600). Worth it when appreciation is real.</li>
+  <li><strong>Refinance.</strong> If rates have dropped and you have 20%+ equity, refinancing simultaneously eliminates PMI and lowers your rate. Account for closing costs in the breakeven analysis.</li>
+</ul>
+
+<div class="callout"><strong>Math check:</strong> on a $400K loan with 0.85% PMI ($283/mo), if PMI removes at month 113 instead of 130, that saves $4,800 — well worth a $500 appraisal request once equity is real.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common questions about pmi calculator.</h2>
+    </div>
+    <div class="faq">
+      <details>
+  <summary>How is PMI different from FHA mortgage insurance?</summary>
+  <div class="faq__a">PMI is private; it covers Conventional loans and ends when LTV reaches 78%. FHA mortgage insurance is government-backed and structured differently — there's a 1.75% upfront premium financed into the loan, plus monthly MIP at 0.55% annual. Critically, FHA monthly MIP lasts the life of the loan if down payment is under 10%, while Conventional PMI ends. This is why many FHA buyers refinance to Conventional once they hit 20% equity.</div>
+</details>
+<details>
+  <summary>Can I get PMI removed before the 78% threshold?</summary>
+  <div class="faq__a">Yes — at 80% LTV, you can request removal in writing. The lender may require a current appraisal at your cost, 24 months of payment history, and clean recent payment history. If your home has appreciated, an appraisal-based request can shave years off the timeline.</div>
+</details>
+<details>
+  <summary>Does PMI tax-deductibility still exist?</summary>
+  <div class="faq__a">PMI deductibility expired for tax year 2022 federally. State rules vary. Don't factor it into your decision unless legislation changes.</div>
+</details>
+<details>
+  <summary>What about lender-paid PMI (LPMI)?</summary>
+  <div class="faq__a">Lender-paid PMI bundles the cost into a higher interest rate instead of a separate monthly line item. It can look attractive on the disclosure but typically costs more over the long run because the higher rate doesn't go away when LTV hits 78%. Usually only worthwhile for buyers planning short holds.</div>
+</details>
+<details>
+  <summary>Is paying upfront PMI (single-premium) worth it?</summary>
+  <div class="faq__a">Sometimes. Single-premium PMI replaces monthly PMI with a one-time payment at closing, often financed into the loan. The math works when you plan to keep the loan long enough to amortize the upfront cost — typically 5+ years. Ask your lender for both options on the loan estimate.</div>
+</details>
+<details>
+  <summary>How much can I save by improving my credit before applying?</summary>
+  <div class="faq__a">On a $400K loan, moving from a 660 FICO (1.15% PMI) to a 740 FICO (0.65% PMI) saves about $167/month. Over the typical 10-year PMI life, that's $20,000. Three months of credit work before applying often returns more than any other single improvement.</div>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Keep going</span>
+      <h2>Related calculators.</h2>
+    </div>
+    <div class="related">
+      <a class="rcard" href="fha-vs-conventional-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>FHA vs Conventional</h4>
+  <p>If your down is tight, model both loan types over your hold period.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="down-payment-strategy-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Down Payment Strategy</h4>
+  <p>5% vs 10% vs 15% — see how each level changes monthly cost and PMI duration.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="what-is-pmi-and-when-does-it-go-away.html">
+  <span class="rcard__tag">Guide</span>
+  <h4>PMI explained</h4>
+  <p>The mechanics, the federal automatic-removal rule, and how to speed it up.</p>
+  <span class="rcard__go">Open</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Next step</span>
+      <h2 style="margin-top:.85rem">Compare PMI economics across loan structures.</h2>
+      <p>PMI on Conventional ends; FHA monthly MIP often doesn't. The structural difference is worth modeling over your real hold period.</p>
+      <div class="ctaband__row">
+        <a href="fha-vs-conventional-calculator.html" class="btn">Open FHA vs Conventional</a>
+        <a href="down-payment-strategy-calculator.html" class="btn btn--ghost">Down Payment Strategy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var el = {
+    price: document.getElementById('pmiPrice'),
+    down:  document.getElementById('pmiDown'),
+    rate:  document.getElementById('pmiRate'),
+    term:  document.getElementById('pmiTerm'),
+    credit:document.getElementById('pmiCredit')
+  };
+  var fmt = function(n){ if(!isFinite(n))n=0; return '$' + Math.round(n).toLocaleString('en-US'); };
+
+  function compute(){
+    var price = +el.price.value || 0;
+    var downP = (+el.down.value || 0) / 100;
+    var rate  = (+el.rate.value || 0) / 100;
+    var term  = +el.term.value || 30;
+    var pmiRate = +el.credit.value || 0.0085;
+
+    var loan = price * (1 - downP);
+    var pmiMonthly = (loan * pmiRate) / 12;
+
+    // Amortize and find month when balance hits 78% of price
+    var r = rate / 12;
+    var n = term * 12;
+    var A = r === 0 ? (1/n) : (Math.pow(1+r,n)*r) / (Math.pow(1+r,n)-1);
+    var pAndI = loan * A;
+    var balance = loan;
+    var target = price * 0.78;
+    var removeMonth = n;
+    if (downP >= 0.20){ removeMonth = 0; }
+    else {
+      for (var m=1; m<=n; m++){
+        var interest = balance * r;
+        balance -= (pAndI - interest);
+        if (balance <= target){ removeMonth = m; break; }
+      }
+    }
+    var totalPmi = pmiMonthly * removeMonth;
+
+    document.getElementById('pmiMonthly').textContent = fmt(pmiMonthly);
+    document.getElementById('pmiLoan').textContent = fmt(loan);
+    document.getElementById('pmiRate2').textContent = (pmiRate*100).toFixed(2) + '%';
+    document.getElementById('pmiMonth').textContent = removeMonth === 0 ? 'No PMI (20%+ down)' : '~ month ' + removeMonth;
+    document.getElementById('pmiRemoveYr').textContent = removeMonth === 0 ? 'never (no PMI)' : 'year ' + (removeMonth/12).toFixed(1);
+    document.getElementById('pmiTotal').textContent = fmt(totalPmi);
+  }
+
+  ['price','down','rate','term','credit'].forEach(function(k){
+    var ev = el[k].tagName === 'SELECT' ? 'change' : 'input';
+    el[k].addEventListener(ev, compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

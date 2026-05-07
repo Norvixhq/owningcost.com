@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Down Payment Strategy Calculator — 5/10/15/20% compared | OwningCost</title>
+<meta name="description" content="See what 5%, 10%, 15%, or 20% down does to monthly cost, PMI duration, and total cost over your hold period. The honest down-payment trade-off." />
+<link rel="canonical" href="https://owningcost.com/down-payment-strategy-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Down Payment Strategy Calculator — 5/10/15/20% compared" />
+<meta property="og:description" content="See what 5%, 10%, 15%, or 20% down does to monthly cost, PMI duration, and total cost over your hold period. The honest down-payment trade-off." />
+<meta property="og:url" content="https://owningcost.com/down-payment-strategy-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Down Payment Strategy Calculator — 5/10/15/20% compared | OwningCost" />
+<meta name="twitter:description" content="See what 5%, 10%, 15%, or 20% down does to monthly cost, PMI duration, and total cost over your hold period. The honest down-payment trade-off." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Down Payment Strategy.", "item": "https://owningcost.com/"}]}, {"@type": "WebApplication", "name": "Down Payment Strategy.", "url": "https://owningcost.com/down-payment-strategy-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "See what 5%, 10%, 15%, or 20% down does to monthly cost, PMI duration, and total cost over your hold period. The honest down-payment trade-off.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why isn't 20% always the right answer?", "acceptedAnswer": {"@type": "Answer", "text": "Because money put down can't be invested elsewhere, and PMI ends. Over a long hold, more down does win in cash terms — but the gap shrinks once you account for opportunity cost on the extra capital. For shorter holds (under 5 years), smaller down often wins because PMI doesn't run long enough to matter."}}, {"@type": "Question", "name": "Does the calculator account for opportunity cost?", "acceptedAnswer": {"@type": "Answer", "text": "No — it shows pure cash out of pocket. The 20% scenario looks more favorable here than it would if you also modeled what the extra down payment would have earned in a brokerage account. The Rent vs Buy calculator does include opportunity cost for that broader comparison."}}, {"@type": "Question", "name": "What about loan-level pricing adjustments?", "acceptedAnswer": {"@type": "Answer", "text": "Conventional rates can vary slightly with LTV — some lenders price 5% down loans at 0.125–0.25 percentage points above 20% down loans. The calculator uses one rate for all tiers; if your lender quotes different rates by LTV, run separate scenarios."}}, {"@type": "Question", "name": "Should I just put 3% down with a Conventional loan?", "acceptedAnswer": {"@type": "Answer", "text": "Possible with strong credit. The math is similar to 5% down — PMI runs slightly longer, loan amount is slightly larger. The economic argument is the same: low down preserves cash and capital for other uses."}}, {"@type": "Question", "name": "How does this interact with FHA?", "acceptedAnswer": {"@type": "Answer", "text": "FHA's monthly MIP is 0.55% for life if down is under 10%, longer than Conventional PMI. For long holds, FHA almost always loses to Conventional with similar down. Run FHA vs Conventional separately if FHA is your only option due to credit."}}, {"@type": "Question", "name": "Can I split the difference and pay extra principal monthly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Putting 10% down and adding $200/month in extra principal is functionally similar to putting 12.5% down — and keeps the cash flexible until you commit it. Most loans allow extra principal payments without penalty."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Down Payment Strategy.</span>
+    </nav>
+  </div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <div class="phero__grid">
+    <span class="eyebrow">Financing</span>
+    <h1 id="phero-title">Down Payment Strategy.</h1>
+    <p class="phero__sub">5%, 10%, 15%, or 20% — see what each level does to your monthly cost, PMI duration, and total cash out of pocket over your hold period.</p>
+    <div class="phero__meta">
+      <span class="chip is-live">Live tool</span>
+      <span class="chip">4 tiers</span><span class="chip">PMI duration</span><span class="chip">Hold-period totals</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="calc">
+  <div class="container">
+    <form class="calc reveal" onsubmit="return false" aria-label="Down Payment Strategy.">
+      <div class="calc__form">
+        <h3>The home</h3>
+
+<div class="field">
+  <div class="field__label"><span>Home price</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpPrice" value="425000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Mortgage rate</span></div>
+  <div class="field__input"><input type="number" id="dpRate" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Term</span></div>
+  <div class="field__input"><input type="number" id="dpTerm" value="30" min="10" max="40" step="1"><span class="suffix">yr</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">Other monthly costs</h3>
+
+<div class="field">
+  <div class="field__label"><span>Property tax (annual)</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpTax" value="6375" min="0" step="50"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Insurance + HOA + maint (monthly)</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="dpOther" value="800" min="0" step="25"></div>
+</div>
+
+<h3 style="margin-top:1.4rem">Hold period</h3>
+
+<div class="field">
+  <div class="field__label"><span>Years you'll keep the loan</span></div>
+  <div class="field__input"><input type="number" id="dpHold" value="10" min="1" max="30" step="1"><span class="suffix">yr</span></div>
+</div>
+      </div>
+      <div class="calc__out" aria-live="polite">
+        <h3>Four down payment scenarios</h3>
+
+<div class="band" style="grid-template-columns:repeat(4,1fr)">
+  <div class="band__tier">
+    <span class="band__label">5% down</span>
+    <span class="band__amt" id="dp5Mo">$3,318</span>
+    <span class="band__note" id="dp5Note">PMI: ~$252/mo, removes month 130</span>
+  </div>
+  <div class="band__tier">
+    <span class="band__label">10% down</span>
+    <span class="band__amt" id="dp10Mo">$3,150</span>
+    <span class="band__note" id="dp10Note">PMI: ~$239/mo, removes month 78</span>
+  </div>
+  <div class="band__tier band__tier--mid">
+    <span class="band__label">15% down</span>
+    <span class="band__amt" id="dp15Mo">$2,983</span>
+    <span class="band__note" id="dp15Note">PMI: ~$226/mo, removes month 30</span>
+  </div>
+  <div class="band__tier">
+    <span class="band__label">20% down</span>
+    <span class="band__amt" id="dp20Mo">$2,725</span>
+    <span class="band__note" id="dp20Note">No PMI</span>
+  </div>
+</div>
+
+<h3 style="margin-top:1.6rem">Total cost over <span id="dpHoldEcho">10</span> years</h3>
+
+<div class="calc__rows">
+  <div class="calc__row"><span class="sw" style="background:var(--blue-200)"></span><span class="nm">5% down — total housing cost</span><span class="am" id="dp5Tot">$418,160</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--blue-400)"></span><span class="nm">10% down — total housing cost</span><span class="am" id="dp10Tot">$420,500</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--blue-600)"></span><span class="nm">15% down — total housing cost</span><span class="am" id="dp15Tot">$422,375</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--green-500)"></span><span class="nm">20% down — total housing cost</span><span class="am" id="dp20Tot">$391,500</span></div>
+</div>
+
+<p class="calc__summary" id="dpSummary"><strong>20% down wins</strong> over a 10-year hold — primarily because the larger down payment eliminates PMI entirely. The monthly difference accumulates substantially.</p>
+
+<details class="calc__math">
+  <summary>How this is calculated</summary>
+  <div class="calc__math__body">
+    <p>For each tier: loan amount = price × (1 − down %), monthly P&amp;I from standard amortization at your rate and term, monthly PMI = loan × 0.75% / 12 (when down &lt; 20%), removed when scheduled balance reaches 78% of price.</p>
+    <p><strong>Total housing cost</strong> includes down payment + (monthly cost × hold months). Tax and other costs are constant across tiers.</p>
+    <p>This calculator does not account for opportunity cost of the larger down payment — money put down isn't earning a market return. The 20% scenario looks cheapest in cash terms but ties up more capital.</p>
+  </div>
+</details>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">Down payment strategy</span>
+<h2 style="margin-top:.85rem">More down isn't always better. The right answer depends on your hold period.</h2>
+<p class="lede">Conventional wisdom says "put 20% down to avoid PMI." That's right when your hold period is long. It's not always right when capital is tight, when you have higher-yielding alternatives, or when your hold period is short.</p>
+
+<h3>What changes at each tier</h3>
+<ul>
+  <li><strong>5% down.</strong> Lowest cash to close. Highest loan amount. Highest monthly P&amp;I. PMI runs long — typically 11+ years to the 78% threshold under standard amortization. Best for buyers with limited liquidity and confidence they'll stay or refinance.</li>
+  <li><strong>10% down.</strong> Cash sweet spot for many buyers. PMI runs ~7–8 years. Loan amount sized to qualify cleanly under most underwriting. Good middle path.</li>
+  <li><strong>15% down.</strong> Substantially shorter PMI period (~3–4 years to threshold). Some lenders offer slightly better rates above 15% LTV. Underrated tier for buyers who can swing it.</li>
+  <li><strong>20% down.</strong> No PMI ever. Lowest monthly cost. Largest cash commitment. Lowest opportunity cost recovery — that 20% is now sitting in real estate rather than equity markets.</li>
+</ul>
+
+<h3>The PMI math, simplified</h3>
+<p>On a $425K home at 6.75% with 0.75% PMI: 5% down adds ~$252/mo of PMI for ~130 months ($32,800 total). 10% down adds ~$239/mo for ~78 months ($18,600). 15% down adds ~$226/mo for ~30 months ($6,800). 20% down: zero. The PMI premium isn't huge in any single month — but it accumulates.</p>
+
+<h3>The opportunity cost wrinkle</h3>
+<p>Every dollar above the 5% minimum is a dollar that could be invested elsewhere. If you can earn 7% in equity markets, the opportunity cost on the extra 15% down ($63,750 on a $425K home) is roughly $4,460/year — comparable to PMI cost on the smaller down. This calculator doesn't model opportunity cost; if it did, the 5% and 20% scenarios would land closer than they appear here.</p>
+
+<h3>Liquidity matters</h3>
+<p>The single biggest mistake in down-payment optimization is buying a 20%-down home and ending up with two months of liquid reserves. Reserves protect against job loss, medical events, and major repairs — events that are far more likely to derail homeownership than PMI cost. A 10% down purchase with 8 months of reserves is structurally safer than a 20% down purchase with 2 months of reserves.</p>
+
+<div class="callout"><strong>A useful sequence:</strong> first determine how much liquid reserve you need post-closing (target: 6 months of full housing cost). Whatever's left goes to down payment. If the math works at 10% down with strong reserves, that's usually the right answer — even if 20% would work mechanically.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common questions about down payment strategy.</h2>
+    </div>
+    <div class="faq">
+      <details>
+  <summary>Why isn't 20% always the right answer?</summary>
+  <div class="faq__a">Because money put down can't be invested elsewhere, and PMI ends. Over a long hold, more down does win in cash terms — but the gap shrinks once you account for opportunity cost on the extra capital. For shorter holds (under 5 years), smaller down often wins because PMI doesn't run long enough to matter.</div>
+</details>
+<details>
+  <summary>Does the calculator account for opportunity cost?</summary>
+  <div class="faq__a">No — it shows pure cash out of pocket. The 20% scenario looks more favorable here than it would if you also modeled what the extra down payment would have earned in a brokerage account. The Rent vs Buy calculator does include opportunity cost for that broader comparison.</div>
+</details>
+<details>
+  <summary>What about loan-level pricing adjustments?</summary>
+  <div class="faq__a">Conventional rates can vary slightly with LTV — some lenders price 5% down loans at 0.125–0.25 percentage points above 20% down loans. The calculator uses one rate for all tiers; if your lender quotes different rates by LTV, run separate scenarios.</div>
+</details>
+<details>
+  <summary>Should I just put 3% down with a Conventional loan?</summary>
+  <div class="faq__a">Possible with strong credit. The math is similar to 5% down — PMI runs slightly longer, loan amount is slightly larger. The economic argument is the same: low down preserves cash and capital for other uses.</div>
+</details>
+<details>
+  <summary>How does this interact with FHA?</summary>
+  <div class="faq__a">FHA's monthly MIP is 0.55% for life if down is under 10%, longer than Conventional PMI. For long holds, FHA almost always loses to Conventional with similar down. Run FHA vs Conventional separately if FHA is your only option due to credit.</div>
+</details>
+<details>
+  <summary>Can I split the difference and pay extra principal monthly?</summary>
+  <div class="faq__a">Yes. Putting 10% down and adding $200/month in extra principal is functionally similar to putting 12.5% down — and keeps the cash flexible until you commit it. Most loans allow extra principal payments without penalty.</div>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Keep going</span>
+      <h2>Related calculators.</h2>
+    </div>
+    <div class="related">
+      <a class="rcard" href="pmi-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>PMI Calculator</h4>
+  <p>Detail on PMI cost, removal date, and total — by credit tier.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="cash-to-close-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Cash to Close</h4>
+  <p>How down payment + closing costs combine into the wire-day number.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="fha-vs-conventional-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>FHA vs Conventional</h4>
+  <p>If your credit pushes you toward FHA, run the loan-type comparison.</p>
+  <span class="rcard__go">Open</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Decision tool</span>
+      <h2 style="margin-top:.85rem">Pair this with a reserves check.</h2>
+      <p>More down isn't better if it leaves you with two months of reserves. The Affordability calculator surfaces the trade-off between down payment and emergency cushion.</p>
+      <div class="ctaband__row">
+        <a href="affordability-calculator.html" class="btn">Open Affordability</a>
+        <a href="pmi-calculator.html" class="btn btn--ghost">PMI calculator</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var el = {
+    price: document.getElementById('dpPrice'),
+    rate:  document.getElementById('dpRate'),
+    term:  document.getElementById('dpTerm'),
+    tax:   document.getElementById('dpTax'),
+    other: document.getElementById('dpOther'),
+    hold:  document.getElementById('dpHold')
+  };
+  var fmt = function(n){ if(!isFinite(n))n=0; return '$' + Math.round(n).toLocaleString('en-US'); };
+
+  function pi(loan, annual, term){
+    var r=annual/12, n=term*12;
+    if (loan<=0) return 0;
+    if (r===0) return loan/n;
+    return loan*(Math.pow(1+r,n)*r)/(Math.pow(1+r,n)-1);
+  }
+  function pmiRemovalMonths(loan, annual, term, price){
+    var r=annual/12, n=term*12;
+    var pAndI = pi(loan, annual, term);
+    var bal = loan, target = price * 0.78;
+    if (bal <= target) return 0;
+    for (var m=1; m<=n; m++){
+      bal -= (pAndI - bal*r);
+      if (bal <= target) return m;
+    }
+    return n;
+  }
+  function compute(){
+    var price = +el.price.value || 0;
+    var rate  = (+el.rate.value || 0)/100;
+    var term  = +el.term.value || 30;
+    var tax   = (+el.tax.value || 0)/12;
+    var other = +el.other.value || 0;
+    var hold  = Math.max(1, +el.hold.value || 10);
+    var holdMo = hold * 12;
+
+    var tiers = [0.05, 0.10, 0.15, 0.20];
+    var ids = ['5','10','15','20'];
+
+    var monthlyCosts = [], totals = [];
+    tiers.forEach(function(downP, i){
+      var loan = price * (1 - downP);
+      var pAndI = pi(loan, rate, term);
+      var pmiMo = downP < 0.20 ? (loan * 0.0075)/12 : 0;
+      var pmiRem = downP < 0.20 ? pmiRemovalMonths(loan, rate, term, price) : 0;
+
+      // Total housing cost over hold period:
+      // down payment + months_with_pmi*(pi+pmi+tax+other) + months_without_pmi*(pi+tax+other)
+      var monthsWithPmi = Math.min(holdMo, pmiRem);
+      var monthsWithout = holdMo - monthsWithPmi;
+      var total = (price * downP)
+                + monthsWithPmi * (pAndI + pmiMo + tax + other)
+                + monthsWithout * (pAndI + tax + other);
+
+      // Average monthly during the EARLY period (with PMI if any)
+      var avgMonthly = pAndI + pmiMo + tax + other;
+      monthlyCosts.push(avgMonthly);
+      totals.push(total);
+
+      document.getElementById('dp'+ids[i]+'Mo').textContent = fmt(avgMonthly);
+      document.getElementById('dp'+ids[i]+'Tot').textContent = fmt(total);
+      var note = downP < 0.20
+        ? 'PMI: ~' + fmt(pmiMo) + '/mo, removes month ' + pmiRem
+        : 'No PMI';
+      document.getElementById('dp'+ids[i]+'Note').textContent = note;
+    });
+
+    document.getElementById('dpHoldEcho').textContent = hold;
+
+    // Find the cheapest tier
+    var minIdx = totals.indexOf(Math.min.apply(null, totals));
+    var labels = ['5% down','10% down','15% down','20% down'];
+    var summary = '<strong>' + labels[minIdx] + ' wins</strong> over a ' + hold + '-year hold by total cash out of pocket. ';
+    if (minIdx === 3){
+      summary += 'The larger down eliminates PMI and lowers monthly cost enough to outweigh the bigger upfront commitment.';
+    } else if (minIdx <= 1){
+      summary += 'The smaller down keeps capital free for other uses, and PMI doesn\'t run long enough to overcome the savings.';
+    } else {
+      summary += 'A balanced down payment with relatively short PMI duration tends to be most efficient over your hold period.';
+    }
+    document.getElementById('dpSummary').innerHTML = summary;
+  }
+  ['price','rate','term','tax','other','hold'].forEach(function(k){
+    el[k].addEventListener('input', compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

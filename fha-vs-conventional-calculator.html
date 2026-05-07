@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>FHA vs Conventional Calculator — Compare true cost over your hold period | OwningCost</title>
+<meta name="description" content="Model FHA and Conventional side by side over your real hold period. See monthly cost, upfront cash, mortgage insurance differences, and when each loan type actually wins." />
+<link rel="canonical" href="https://owningcost.com/fha-vs-conventional-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="FHA vs Conventional | OwningCost" />
+<meta property="og:description" content="A serious financing comparison — not a generic article. See which loan type actually saves you money over the years you'll keep the home." />
+<meta property="og:url" content="https://owningcost.com/fha-vs-conventional-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="FHA vs Conventional | OwningCost" />
+<meta name="twitter:description" content="Hold-period total cost. Upfront cash. Monthly. All in one view." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  /* Page-specific: side-by-side loan cards */
+  .fha2{
+    display:grid;gap:1rem;grid-template-columns:1fr;
+  }
+  @media (min-width:760px){.fha2{grid-template-columns:repeat(2,1fr)}}
+
+  .lcard{
+    border-radius:16px;padding:1.45rem 1.4rem;display:flex;flex-direction:column;gap:.45rem;
+    position:relative;
+  }
+  .lcard--fha{
+    background:linear-gradient(180deg,#fff,var(--blue-50) 110%);
+    border:1.5px solid var(--blue-200);
+  }
+  .lcard--conv{
+    background:linear-gradient(180deg,#fff,var(--green-100) 110%);
+    border:1.5px solid rgba(78,182,60,.35);
+  }
+  .lcard.is-winner{box-shadow:var(--shadow-md)}
+  .lcard__tag{
+    font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.4rem;
+  }
+  .lcard--fha .lcard__tag{color:var(--blue-700)}
+  .lcard--conv .lcard__tag{color:var(--green-700)}
+  .lcard__win{
+    background:#0d1321;color:#fff;font-size:.62rem;letter-spacing:.14em;
+    padding:.18rem .5rem;border-radius:999px;font-weight:700;
+  }
+  .lcard__title{
+    font-family:var(--serif);font-size:1.18rem;font-weight:600;letter-spacing:-.015em;color:var(--ink);
+    margin-top:.15rem;
+  }
+  .lcard__amt{
+    font-family:var(--serif);font-size:2.2rem;font-weight:600;letter-spacing:-.025em;line-height:1.05;
+    color:var(--ink);font-variant-numeric:tabular-nums;margin-top:.3rem;
+  }
+  .lcard__amt small{
+    font-family:var(--sans);font-size:.85rem;font-weight:500;color:var(--muted);letter-spacing:0;
+    display:block;margin-top:.25rem;
+  }
+  .lcard__rows{
+    margin-top:.95rem;padding-top:.85rem;border-top:1px dashed var(--border);
+    display:grid;gap:.45rem;font-size:.9rem;
+  }
+  .lcard__row{display:flex;justify-content:space-between;gap:1rem;color:var(--ink-2)}
+  .lcard__row strong{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+  .lcard__row em{font-style:normal;color:var(--subtle);font-size:.8rem}
+
+  .holdrange{
+    display:flex;align-items:center;gap:.85rem;
+    padding:.7rem .9rem;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;
+    margin-bottom:1.1rem;
+  }
+  .holdrange input[type=range]{flex:1;accent-color:var(--blue-600)}
+  .holdrange__lbl{font-size:.85rem;color:var(--muted);white-space:nowrap}
+  .holdrange__val{
+    font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);
+    min-width:90px;text-align:right;font-variant-numeric:tabular-nums;
+  }
+
+  .stat-row{
+    display:grid;gap:.7rem;grid-template-columns:1fr;margin-top:1.1rem;
+  }
+  @media (min-width:600px){.stat-row{grid-template-columns:repeat(3,1fr)}}
+  .stat{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;
+    padding:.8rem .9rem;display:flex;flex-direction:column;gap:.2rem;
+  }
+  .stat__lbl{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle)}
+  .stat__val{
+    font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;letter-spacing:-.015em;
+  }
+  .stat__sub{font-size:.78rem;color:var(--muted)}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://owningcost.com/"},
+        {"@type":"ListItem","position":2,"name":"Calculators","item":"https://owningcost.com/calculators.html"},
+        {"@type":"ListItem","position":3,"name":"FHA vs Conventional","item":"https://owningcost.com/fha-vs-conventional-calculator.html"}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "FHA vs Conventional Calculator",
+      "url": "https://owningcost.com/fha-vs-conventional-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "description": "Models FHA and Conventional loans side by side over a user-selected hold period, accounting for upfront FHA mortgage insurance, monthly MIP, conventional PMI removal, and total cost of financing.",
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the main difference between FHA and Conventional loans?",
+          "acceptedAnswer": {"@type":"Answer","text":"FHA loans are insured by the Federal Housing Administration and are designed for buyers with lower credit scores or smaller down payments. They allow as little as 3.5% down with a 580 credit score, but charge an upfront 1.75% mortgage insurance premium plus monthly MIP that lasts the life of the loan if the down payment is under 10%. Conventional loans are not government-insured, typically require 5–20% down, and use private mortgage insurance (PMI) that can be removed once the loan-to-value ratio reaches 80%."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is upfront FHA mortgage insurance?",
+          "acceptedAnswer": {"@type":"Answer","text":"Every FHA loan carries a one-time upfront mortgage insurance premium of 1.75% of the loan amount. Most borrowers finance it into the loan rather than paying cash at closing, which means you're paying interest on it for the life of the loan. On a $400K loan, that's $7,000 added to the principal."}
+        },
+        {
+          "@type": "Question",
+          "name": "How long does FHA monthly MIP last?",
+          "acceptedAnswer": {"@type":"Answer","text":"For most modern FHA loans, monthly MIP lasts the life of the loan if the down payment is under 10%. If the down payment is 10% or more, MIP is removed after 11 years. This is a meaningful difference: a buyer with a 3.5% down payment will pay MIP for 30 years unless they refinance into a conventional loan once they have enough equity."}
+        },
+        {
+          "@type": "Question",
+          "name": "When does Conventional PMI go away?",
+          "acceptedAnswer": {"@type":"Answer","text":"By federal law, the lender must automatically remove PMI when the loan-to-value ratio reaches 78% based on the original schedule. You can also request removal at 80% LTV. With a 5% down payment and standard amortization, that point is typically reached around year 10–11. Faster appreciation or extra principal payments can shorten the timeline."}
+        },
+        {
+          "@type": "Question",
+          "name": "Which loan type is cheaper overall?",
+          "acceptedAnswer": {"@type":"Answer","text":"It depends on three things: how long you'll keep the loan, how much you put down, and what rates you can get. Over very short hold periods (under 4 years), FHA can win because the rate is sometimes lower. Over long hold periods with under 10% down, Conventional almost always wins because PMI eventually drops off and FHA MIP doesn't. Run your actual numbers in the calculator above."}
+        },
+        {
+          "@type": "Question",
+          "name": "Can I refinance from FHA to Conventional later?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes, and many buyers do exactly this. Once you have ~20% equity (through paydown or appreciation), you can refinance into a conventional loan and eliminate the lifetime MIP. The refinance carries closing costs (typically 2–3% of the loan), so the math depends on how long you'll stay in the home and where rates are. The calculator's hold-period view is the right place to model the no-refinance baseline."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="#calc" class="btn btn--primary">Try the calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">FHA vs Conventional</span>
+    </nav>
+  </div>
+
+  <section class="phero container" aria-labelledby="phero-title">
+    <div class="phero__grid">
+      <span class="eyebrow">Financing</span>
+      <h1 id="phero-title">FHA vs Conventional — <em style="font-style:italic;color:var(--blue-700)">true cost over your hold period</em></h1>
+      <p class="phero__sub">A real financing comparison — not a generic article. We model both loan types over the years you'll actually keep the home, including upfront FHA MIP, monthly MIP duration rules, and Conventional PMI removal at 78% LTV.</p>
+      <div class="phero__meta">
+        <span class="chip is-live">Live tool</span>
+        <span class="chip">Hold-period totals</span>
+        <span class="chip">Upfront + monthly</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATOR ========== -->
+  <section class="section section--tight" id="calc">
+    <div class="container">
+      <form class="calc reveal" id="fhaForm" onsubmit="return false" aria-label="FHA vs Conventional calculator">
+        <div class="calc__form">
+          <h3>The home</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="fInpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Hold period</span><span class="field__hint">how long you'll keep the loan</span></div>
+            <div class="field__input"><input type="number" id="fInpHold" value="7" min="1" max="30" step="1" aria-label="Hold period years"><span class="suffix">yr</span></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Property tax rate</span><span class="field__hint">applied to both</span></div>
+            <div class="field__input"><input type="number" id="fInpTax" value="1.5" min="0" max="5" step="0.05" aria-label="Property tax rate"><span class="suffix">%</span></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Homeowners insurance</span><span class="field__hint">monthly · applied to both</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="fInpIns" value="142" min="0" step="5" aria-label="Insurance monthly"></div>
+          </div>
+
+          <h3 style="margin-top:1.4rem;color:var(--blue-700)">FHA loan</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Down payment</span><span class="field__hint">3.5% min · 580+ FICO</span></div>
+            <div class="field__input"><input type="number" id="fInpFhaDown" value="3.5" min="3.5" max="20" step="0.5" aria-label="FHA down payment percent"><span class="suffix">%</span></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>FHA rate</span></div>
+            <div class="field__input"><input type="number" id="fInpFhaRate" value="6.50" min="0" max="20" step="0.01" aria-label="FHA rate"><span class="suffix">%</span></div>
+          </div>
+
+          <h3 style="margin-top:1.4rem;color:var(--green-700)">Conventional loan</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Down payment</span><span class="field__hint">3% min · 620+ FICO</span></div>
+            <div class="field__input"><input type="number" id="fInpConvDown" value="5" min="3" max="50" step="0.5" aria-label="Conventional down payment percent"><span class="suffix">%</span></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Conventional rate</span></div>
+            <div class="field__input"><input type="number" id="fInpConvRate" value="6.75" min="0" max="20" step="0.01" aria-label="Conventional rate"><span class="suffix">%</span></div>
+          </div>
+        </div>
+
+        <div class="calc__out" aria-live="polite">
+          <h3>Side-by-side at year <span id="fHoldEcho">7</span></h3>
+
+          <div class="holdrange">
+            <span class="holdrange__lbl">Hold period</span>
+            <input type="range" id="fHoldRange" min="1" max="30" step="1" value="7" aria-label="Hold period slider">
+            <span class="holdrange__val" id="fHoldRangeVal">7 years</span>
+          </div>
+
+          <div class="fha2">
+            <article class="lcard lcard--fha" id="fhaCard">
+              <div class="lcard__tag">
+                <span>FHA</span>
+                <span class="lcard__win" id="fhaWin" hidden>Wins</span>
+              </div>
+              <div class="lcard__title">FHA loan path</div>
+              <div class="lcard__amt" id="fhaTotal">$284,520<small id="fhaTotalSub">total cost over 7 years</small></div>
+              <div class="lcard__rows">
+                <div class="lcard__row"><span>Cash to close</span><strong id="fhaCash">$14,875</strong></div>
+                <div class="lcard__row"><span>Upfront MIP financed</span><strong id="fhaUpMip">$7,177</strong></div>
+                <div class="lcard__row"><span>Loan amount</span><strong id="fhaLoan">$417,302</strong></div>
+                <div class="lcard__row"><span>Monthly P&amp;I</span><strong id="fhaPi">$2,637</strong></div>
+                <div class="lcard__row"><span>Monthly MIP</span><strong id="fhaMip">$191</strong></div>
+                <div class="lcard__row"><span>Tax + insurance</span><strong id="fhaTax">$673</strong></div>
+                <div class="lcard__row"><span>Total monthly</span><strong id="fhaMonthly">$3,501</strong></div>
+                <div class="lcard__row"><em id="fhaMipNote">MIP for life of loan (down &lt; 10%)</em></div>
+              </div>
+            </article>
+
+            <article class="lcard lcard--conv" id="convCard">
+              <div class="lcard__tag">
+                <span>Conventional</span>
+                <span class="lcard__win" id="convWin" hidden>Wins</span>
+              </div>
+              <div class="lcard__title">Conventional loan path</div>
+              <div class="lcard__amt" id="convTotal">$278,940<small id="convTotalSub">total cost over 7 years</small></div>
+              <div class="lcard__rows">
+                <div class="lcard__row"><span>Cash to close</span><strong id="convCash">$21,250</strong></div>
+                <div class="lcard__row"><span>Upfront MI</span><strong>$0</strong></div>
+                <div class="lcard__row"><span>Loan amount</span><strong id="convLoan">$403,750</strong></div>
+                <div class="lcard__row"><span>Monthly P&amp;I</span><strong id="convPi">$2,618</strong></div>
+                <div class="lcard__row"><span>Monthly PMI</span><strong id="convPmi">$252</strong></div>
+                <div class="lcard__row"><span>Tax + insurance</span><strong id="convTax">$673</strong></div>
+                <div class="lcard__row"><span>Total monthly</span><strong id="convMonthly">$3,543</strong></div>
+                <div class="lcard__row"><em id="convPmiNote">PMI removed around month 128 (~year 10.7)</em></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="verdict" id="fhaVerdict">
+            <div class="verdict__label">Verdict at year 7</div>
+            <div class="verdict__head" id="verdictHead">Conventional saves about $5,580 over the hold period.</div>
+            <div class="verdict__sub" id="verdictSub">FHA carries lower upfront cash but lifetime MIP. Over a 7-year hold, the Conventional path costs less in total — primarily because MIP doesn't drop off on this FHA structure.</div>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat">
+              <div class="stat__lbl">Total at month 1</div>
+              <div class="stat__val" id="m1Diff">+$42</div>
+              <div class="stat__sub">Conventional monthly cost vs FHA</div>
+            </div>
+            <div class="stat">
+              <div class="stat__lbl">Total at year 5</div>
+              <div class="stat__val" id="y5Diff">+$3,985</div>
+              <div class="stat__sub">Cumulative difference (Conv − FHA)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__lbl">Total at year 10</div>
+              <div class="stat__val" id="y10Diff">−$2,140</div>
+              <div class="stat__sub">After PMI typically drops, Conv pulls ahead</div>
+            </div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p><strong>FHA loan amount</strong> = base loan × 1.0175 (the 1.75% upfront MIP is financed into the loan).</p>
+              <p><strong>FHA monthly MIP</strong> = adjusted loan × 0.55% / 12. Duration: lifetime if down payment &lt; 10%, otherwise 11 years.</p>
+              <p><strong>Conventional PMI</strong> = base loan × 0.75% / 12, applied while LTV &gt; 78%. The calculator amortizes the loan and finds the month at which scheduled balance reaches 78% of the original price (no appreciation assumed).</p>
+              <p><strong>Total over hold period</strong> = down payment + (monthly housing cost summed across all months in the hold) − no resale value modeled. Both loan paths use the same property tax and insurance, so the comparison isolates financing cost.</p>
+              <p><strong>P&amp;I formula</strong> = <code>L · r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup>−1)</code>, with <code>L</code> the loan, <code>r</code> the monthly rate, <code>n</code> the term in months (360).</p>
+            </div>
+          </details>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== EXPLAINER ========== -->
+  <section class="section section--surface" aria-labelledby="explainer-title">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">Real comparison</span>
+        <h2 id="explainer-title" style="margin-top:.85rem">FHA vs Conventional isn't an opinion. It's an arithmetic.</h2>
+        <p class="lede">The honest answer to "which loan should I take" depends on three numbers: how long you'll keep the loan, how much you can put down, and what rates you can each qualify for. Everything else — credit score thresholds, debt-to-income ceilings, property type rules — flows from there.</p>
+
+        <h3>What FHA actually is</h3>
+        <p>FHA loans are insured by the Federal Housing Administration. The federal insurance protects the lender, not you. In exchange for that insurance, lenders accept lower credit scores (580 minimum for 3.5% down, 500 for 10% down) and looser debt-to-income ratios than conventional underwriting. The cost is mortgage insurance — both upfront and monthly.</p>
+        <ul>
+          <li><strong>Upfront MIP: 1.75%</strong> of the loan amount, almost always financed into the loan rather than paid in cash. On a $410K loan, that's $7,175 added to your principal.</li>
+          <li><strong>Monthly MIP: roughly 0.55%</strong> of the loan annually for most 30-year loans. Crucially, this lasts <em>the life of the loan</em> if your down payment is under 10%. If your down payment is 10% or more, MIP drops after 11 years.</li>
+          <li><strong>Down payment: 3.5% minimum</strong> with a 580 FICO. Allows gift funds, down payment assistance programs, and family contributions.</li>
+        </ul>
+
+        <h3>What Conventional actually is</h3>
+        <p>Conventional loans are not government-insured. They follow Fannie Mae and Freddie Mac underwriting guidelines, which require stronger credit (typically 620+) and use private mortgage insurance (PMI) when the down payment is under 20%.</p>
+        <ul>
+          <li><strong>No upfront MI.</strong> The cash to close is just down payment plus standard closing costs.</li>
+          <li><strong>Monthly PMI: roughly 0.5%–1.0%</strong> of the loan annually, depending on credit score and LTV. Strong credit lands closer to 0.5%; tight credit closer to 1.0%.</li>
+          <li><strong>PMI ends.</strong> By federal law, the lender automatically cancels PMI when the loan-to-value ratio reaches 78% based on the original amortization schedule. You can request removal at 80% LTV. Faster appreciation or extra principal payments shortens this timeline.</li>
+          <li><strong>Down payment: 3% minimum</strong> with strong credit, more typically 5%–20%.</li>
+        </ul>
+
+        <h3>Where each loan tends to win</h3>
+        <div class="compare2">
+          <div class="cc">
+            <div class="cc__head"><span class="cc__dot cc__dot--a"></span> When FHA tends to win</div>
+            <ul>
+              <li>Credit score below 680 — FHA's pricing barely changes with FICO; Conventional pricing punishes lower scores hard.</li>
+              <li>Tight cash to close — 3.5% down with gift funds is often the only path.</li>
+              <li>Short hold expectation (under ~4 years) and the FHA rate is meaningfully lower than the Conventional rate.</li>
+              <li>You plan to refinance into a Conventional loan once you reach 20% equity, eliminating MIP early.</li>
+              <li>Higher debt-to-income ratios that wouldn't clear Conventional underwriting.</li>
+            </ul>
+          </div>
+          <div class="cc">
+            <div class="cc__head"><span class="cc__dot cc__dot--b"></span> When Conventional tends to win</div>
+            <ul>
+              <li>Credit score 740+ — Conventional pricing rewards strong credit; FHA mostly doesn't.</li>
+              <li>Down payment of 10% or more — PMI drops fast, MIP doesn't.</li>
+              <li>Long hold expectation (8+ years) — PMI ends and FHA MIP keeps charging if your down was under 10%.</li>
+              <li>You can put 20% down — no mortgage insurance at all on the Conventional path.</li>
+              <li>Investment property or second home — FHA isn't available for non-primary-residence purchases.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>The "FHA into Conventional" refinance play</h3>
+        <p>A pattern many buyers use intentionally: take the FHA loan to get into the home with low down and lower credit, then refinance to Conventional once equity reaches 20%. This eliminates MIP entirely. The math works when (a) home values rise, (b) you stay long enough to recoup the refinance closing costs (typically 2%–3% of the loan), and (c) prevailing rates at refinance are reasonable. The hold-period view in the calculator above shows the no-refinance baseline. If you plan to refinance, the actual cost lands somewhere between the FHA and Conventional total at your refinance year.</p>
+
+        <h3>True monthly cost — both paths</h3>
+        <p>This calculator focuses on the financing portion. Property tax, insurance, HOA, and maintenance reserve are the same regardless of loan type — but they're real, and they're large. For a complete picture of either path, run the home through the <a href="true-monthly-cost-calculator.html">True Monthly Cost calculator</a> after deciding which loan structure to use.</p>
+
+        <div class="callout"><strong>Quick read:</strong> If your credit score is 740+ and you can put 5%+ down, Conventional almost always wins. If your credit score is below 680 or your down payment is at the 3.5% floor, FHA is often the only path — and the math works fine if you intend to refinance once equity allows.</div>
+
+        <h3>What this calculator does not model</h3>
+        <ul>
+          <li><strong>Future refinances.</strong> The hold-period total assumes you keep the original loan. Refinancing from FHA to Conventional once you hit 20% equity changes the answer materially in FHA's favor.</li>
+          <li><strong>Home appreciation effects on PMI.</strong> The calculator removes Conventional PMI based on the scheduled amortization to 78% LTV. Faster appreciation shortens this; we use the conservative case.</li>
+          <li><strong>Lender credits and rate buy-downs.</strong> Real lender quotes often include credits, points, or seller concessions that shift the comparison. Use the calculator's rate inputs to model what you've actually been quoted.</li>
+          <li><strong>VA, USDA, and Jumbo loans.</strong> Each has its own structure. Comparison tools for those are on the roadmap.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow section__kicker">FAQ</span>
+        <h2 id="faq-title">Common questions about FHA vs Conventional.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>What's the main difference between FHA and Conventional loans?</summary>
+          <div class="faq__a">FHA loans are insured by the Federal Housing Administration and are designed for buyers with lower credit scores or smaller down payments. They allow as little as 3.5% down with a 580 credit score, but charge an upfront 1.75% mortgage insurance premium plus monthly MIP that lasts the life of the loan if the down payment is under 10%. Conventional loans are not government-insured, typically require 5–20% down, and use private mortgage insurance (PMI) that can be removed once the loan-to-value ratio reaches 80%.</div>
+        </details>
+        <details>
+          <summary>What is upfront FHA mortgage insurance?</summary>
+          <div class="faq__a">Every FHA loan carries a one-time upfront mortgage insurance premium of 1.75% of the loan amount. Most borrowers finance it into the loan rather than paying cash at closing, which means you're paying interest on it for the life of the loan. On a $400K loan, that's $7,000 added to the principal.</div>
+        </details>
+        <details>
+          <summary>How long does FHA monthly MIP last?</summary>
+          <div class="faq__a">For most modern FHA loans, monthly MIP lasts the life of the loan if the down payment is under 10%. If the down payment is 10% or more, MIP is removed after 11 years. This is a meaningful difference: a buyer with a 3.5% down payment will pay MIP for 30 years unless they refinance into a Conventional loan once they have enough equity.</div>
+        </details>
+        <details>
+          <summary>When does Conventional PMI go away?</summary>
+          <div class="faq__a">By federal law, the lender must automatically remove PMI when the loan-to-value ratio reaches 78% based on the original schedule. You can also request removal at 80% LTV. With a 5% down payment and standard amortization, that point is typically reached around year 10–11. Faster appreciation or extra principal payments can shorten the timeline.</div>
+        </details>
+        <details>
+          <summary>Which loan type is cheaper overall?</summary>
+          <div class="faq__a">It depends on three things: how long you'll keep the loan, how much you put down, and what rates you can get. Over very short hold periods (under 4 years), FHA can win because the rate is sometimes lower. Over long hold periods with under 10% down, Conventional almost always wins because PMI eventually drops off and FHA MIP doesn't. Run your actual numbers in the calculator above.</div>
+        </details>
+        <details>
+          <summary>Can I refinance from FHA to Conventional later?</summary>
+          <div class="faq__a">Yes, and many buyers do exactly this. Once you have ~20% equity (through paydown or appreciation), you can refinance into a Conventional loan and eliminate the lifetime MIP. The refinance carries closing costs (typically 2–3% of the loan), so the math depends on how long you'll stay and where rates are. The hold-period view above is the no-refinance baseline.</div>
+        </details>
+        <details>
+          <summary>Do FHA rates run lower than Conventional?</summary>
+          <div class="faq__a">Sometimes. FHA rates are often quoted slightly below Conventional headline rates because the government insurance reduces lender risk. But the upfront MIP and lifetime monthly MIP usually erase that advantage over a typical hold period. Use the actual rate quotes you have, not the rate-shopping numbers you see in ads.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RELATED ========== -->
+  <section class="section section--surface" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <span class="eyebrow section__kicker">Keep going</span>
+        <h2 id="related-title">Related calculators.</h2>
+      </div>
+      <div class="related">
+        <a class="rcard" href="true-monthly-cost-calculator.html">
+          <span class="rcard__tag">Buying</span>
+          <h4>True Monthly Cost</h4>
+          <p>Once you've picked a loan structure, run the full home-cost breakdown — every line item exposed.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="affordability-calculator.html">
+          <span class="rcard__tag">Affordability</span>
+          <h4>Affordability + House Poor Risk</h4>
+          <p>Find the price band that fits your income, debts, and reserves — at the loan structure you'll actually use.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="listing-reality-check.html">
+          <span class="rcard__tag">Reality Check</span>
+          <h4>Listing Reality Check</h4>
+          <p>See the honest cost of any listing — with the line items Zillow and Redfin leave out.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="ctaband reveal">
+        <span class="eyebrow" style="color:#9BE08E">Next step</span>
+        <h2 style="margin-top:.85rem">Loan structure decided? Now stress-test the home itself.</h2>
+        <p>The financing comparison isolates loan cost. To get the full monthly picture for a specific home — taxes, insurance, HOA, maintenance reserve — drop the address into the True Monthly Cost calculator.</p>
+        <div class="ctaband__row">
+          <a href="true-monthly-cost-calculator.html" class="btn">Open True Monthly Cost</a>
+          <a href="affordability-calculator.html" class="btn btn--ghost">Check affordability</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* === Standard scripts === */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* === FHA vs Conventional calculator === */
+  var fmt = function(n){
+    if (!isFinite(n)) n = 0;
+    var s = n < 0 ? '−' : '';
+    return s + '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+  };
+  var fmtSign = function(n){
+    if (!isFinite(n)) n = 0;
+    if (Math.abs(n) < 0.5) return '$0';
+    return (n >= 0 ? '+' : '−') + '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+  };
+
+  var ids = ['fInpPrice','fInpHold','fInpTax','fInpIns','fInpFhaDown','fInpFhaRate','fInpConvDown','fInpConvRate'];
+  var el = {};
+  ids.forEach(function(id){ el[id] = document.getElementById(id); });
+
+  var holdRange = document.getElementById('fHoldRange');
+  var holdRangeVal = document.getElementById('fHoldRangeVal');
+  var holdEcho = document.getElementById('fHoldEcho');
+
+  /* Sync hold input <-> range slider */
+  holdRange.addEventListener('input', function(){
+    el.fInpHold.value = holdRange.value;
+    compute();
+  });
+  el.fInpHold.addEventListener('input', function(){
+    var v = Math.max(1, Math.min(30, +el.fInpHold.value || 1));
+    holdRange.value = v;
+    compute();
+  });
+
+  /* Standard mortgage P&I */
+  function pi(loan, annualRate, termYears){
+    var r = annualRate / 12;
+    var n = termYears * 12;
+    if (loan <= 0) return 0;
+    if (r === 0) return loan / n;
+    return loan * (Math.pow(1+r, n) * r) / (Math.pow(1+r, n) - 1);
+  }
+
+  /* Find month when amortization balance reaches target % of original price (for PMI removal) */
+  function monthsUntilLTV(loan, annualRate, termYears, price, targetLTV){
+    var r = annualRate / 12;
+    var n = termYears * 12;
+    if (loan <= 0) return 0;
+    var pAndI = pi(loan, annualRate, termYears);
+    var balance = loan;
+    var target = price * targetLTV;
+    if (balance <= target) return 0;
+    for (var m = 1; m <= n; m++){
+      var interest = balance * r;
+      var principal = pAndI - interest;
+      balance -= principal;
+      if (balance <= target) return m;
+    }
+    return n;
+  }
+
+  /* Compute cumulative cost over `holdMonths` months */
+  function cumulativeCost(price, downPct, baseRate, isFha, taxRate, insMo, holdMonths){
+    var downCash = price * downPct;
+    var baseLoan = price - downCash;
+
+    var loan, monthlyPi, mipMonthlyRate, mipDurationMonths, pmiCancelMonth;
+
+    if (isFha){
+      /* FHA: 1.75% upfront financed */
+      var upfrontMip = baseLoan * 0.0175;
+      loan = baseLoan + upfrontMip;
+      monthlyPi = pi(loan, baseRate, 30);
+      /* Annual MIP rate ~0.55% for most modern FHA loans */
+      mipMonthlyRate = 0.0055 / 12;
+      /* Duration: lifetime if down < 10%, 11yr otherwise */
+      mipDurationMonths = downPct < 0.10 ? 360 : 132;
+    } else {
+      /* Conventional */
+      loan = baseLoan;
+      monthlyPi = pi(loan, baseRate, 30);
+      if (downPct < 0.20){
+        mipMonthlyRate = 0.0075 / 12;
+        /* PMI removed when scheduled balance reaches 78% of price */
+        pmiCancelMonth = monthsUntilLTV(loan, baseRate, 30, price, 0.78);
+        mipDurationMonths = pmiCancelMonth;
+      } else {
+        mipMonthlyRate = 0;
+        mipDurationMonths = 0;
+      }
+    }
+
+    var monthlyMip = loan * mipMonthlyRate; /* per month */
+    var monthlyTax = (price * taxRate) / 12;
+    var monthlyIns = insMo;
+
+    var totalCost = downCash; /* cash to close — closing costs not modeled */
+    var monthsCounted = Math.min(holdMonths, 360);
+    for (var m = 1; m <= monthsCounted; m++){
+      var mipThisMonth = m <= mipDurationMonths ? monthlyMip : 0;
+      totalCost += monthlyPi + mipThisMonth + monthlyTax + monthlyIns;
+    }
+
+    return {
+      downCash: downCash,
+      upfrontMip: isFha ? baseLoan * 0.0175 : 0,
+      loan: loan,
+      monthlyPi: monthlyPi,
+      monthlyMip: monthlyMip,
+      monthlyTax: monthlyTax,
+      monthlyIns: monthlyIns,
+      mipDurationMonths: mipDurationMonths,
+      totalCost: totalCost
+    };
+  }
+
+  function compute(){
+    var price    = +el.fInpPrice.value || 0;
+    var hold     = Math.max(1, Math.min(30, +el.fInpHold.value || 1));
+    var taxRate  = (+el.fInpTax.value || 0) / 100;
+    var insMo    = +el.fInpIns.value || 0;
+    var fhaDown  = (+el.fInpFhaDown.value || 0) / 100;
+    var fhaRate  = (+el.fInpFhaRate.value || 0) / 100;
+    var convDown = (+el.fInpConvDown.value || 0) / 100;
+    var convRate = (+el.fInpConvRate.value || 0) / 100;
+
+    holdRange.value = hold;
+    holdRangeVal.textContent = hold + (hold === 1 ? ' year' : ' years');
+    holdEcho.textContent = hold;
+
+    var holdMonths = hold * 12;
+
+    var fha  = cumulativeCost(price, fhaDown,  fhaRate,  true,  taxRate, insMo, holdMonths);
+    var conv = cumulativeCost(price, convDown, convRate, false, taxRate, insMo, holdMonths);
+
+    /* FHA card */
+    document.getElementById('fhaTotal').firstChild.nodeValue = fmt(fha.totalCost);
+    document.getElementById('fhaTotalSub').textContent = 'total cost over ' + hold + (hold === 1 ? ' year' : ' years');
+    document.getElementById('fhaCash').textContent = fmt(fha.downCash);
+    document.getElementById('fhaUpMip').textContent = fmt(fha.upfrontMip);
+    document.getElementById('fhaLoan').textContent = fmt(fha.loan);
+    document.getElementById('fhaPi').textContent = fmt(fha.monthlyPi);
+    document.getElementById('fhaMip').textContent = fmt(fha.monthlyMip);
+    document.getElementById('fhaTax').textContent = fmt(fha.monthlyTax + fha.monthlyIns);
+    document.getElementById('fhaMonthly').textContent = fmt(fha.monthlyPi + fha.monthlyMip + fha.monthlyTax + fha.monthlyIns);
+    document.getElementById('fhaMipNote').textContent =
+      fhaDown < 0.10
+        ? 'MIP for life of loan (down payment under 10%)'
+        : 'MIP removed at year 11 (down payment 10%+)';
+
+    /* Conv card */
+    document.getElementById('convTotal').firstChild.nodeValue = fmt(conv.totalCost);
+    document.getElementById('convTotalSub').textContent = 'total cost over ' + hold + (hold === 1 ? ' year' : ' years');
+    document.getElementById('convCash').textContent = fmt(conv.downCash);
+    document.getElementById('convLoan').textContent = fmt(conv.loan);
+    document.getElementById('convPi').textContent = fmt(conv.monthlyPi);
+    document.getElementById('convPmi').textContent = fmt(conv.monthlyMip);
+    document.getElementById('convTax').textContent = fmt(conv.monthlyTax + conv.monthlyIns);
+    document.getElementById('convMonthly').textContent = fmt(conv.monthlyPi + conv.monthlyMip + conv.monthlyTax + conv.monthlyIns);
+    var pmiYr = (conv.mipDurationMonths / 12).toFixed(1);
+    document.getElementById('convPmiNote').textContent =
+      convDown >= 0.20
+        ? 'No PMI (20%+ down)'
+        : 'PMI removed around month ' + Math.round(conv.mipDurationMonths) + ' (year ' + pmiYr + ')';
+
+    /* Verdict + winner badge */
+    var diff = conv.totalCost - fha.totalCost;
+    var fhaCard = document.getElementById('fhaCard');
+    var convCard = document.getElementById('convCard');
+    var fhaWin = document.getElementById('fhaWin');
+    var convWin = document.getElementById('convWin');
+    fhaCard.classList.remove('is-winner');
+    convCard.classList.remove('is-winner');
+    fhaWin.hidden = true;
+    convWin.hidden = true;
+
+    var verdict = document.getElementById('fhaVerdict');
+    verdict.classList.remove('is-buy','is-rent','is-neutral');
+    document.getElementById('verdictHead').innerHTML = '';
+    var head = '';
+    var sub = '';
+
+    if (Math.abs(diff) < 500){
+      verdict.classList.add('is-neutral');
+      head = 'Roughly a tie at year ' + hold + '.';
+      sub = 'The two paths land within $500 of each other over this hold period. Pick on credit, cash, and refinance flexibility rather than total cost.';
+    } else if (diff > 0){
+      /* conv > fha → FHA wins */
+      verdict.classList.add('is-buy');
+      fhaCard.classList.add('is-winner');
+      fhaWin.hidden = false;
+      head = 'FHA saves about ' + fmt(Math.abs(diff)) + ' over the hold period.';
+      sub = 'On these inputs, the FHA path costs less in total over ' + hold + ' year' + (hold === 1 ? '' : 's') + '. The lower upfront cash and (often) lower rate offset the lifetime MIP at this hold length.';
+    } else {
+      /* fha > conv → Conv wins */
+      verdict.classList.add('is-rent');
+      convCard.classList.add('is-winner');
+      convWin.hidden = false;
+      head = 'Conventional saves about ' + fmt(Math.abs(diff)) + ' over the hold period.';
+      sub = (conv.mipDurationMonths < holdMonths
+              ? 'PMI drops off mid-hold; FHA MIP keeps charging on this structure. '
+              : '') +
+            'Over ' + hold + ' year' + (hold === 1 ? '' : 's') + ', Conventional total cost lands lower despite the larger down payment.';
+    }
+    document.getElementById('verdictHead').textContent = head;
+    document.getElementById('verdictSub').textContent = sub;
+
+    /* Stat row: cumulative differences at month 1, year 5, year 10 */
+    function diffAt(months){
+      var f = cumulativeCost(price, fhaDown,  fhaRate,  true,  taxRate, insMo, months);
+      var c = cumulativeCost(price, convDown, convRate, false, taxRate, insMo, months);
+      return c.totalCost - f.totalCost;
+    }
+    var d1  = diffAt(1)   - (conv.downCash - fha.downCash); /* month-1 monthly diff (excluding down) */
+    /* Better: compute the MONTHLY difference for month 1 directly */
+    var convMonthly1 = conv.monthlyPi + conv.monthlyMip + conv.monthlyTax + conv.monthlyIns;
+    var fhaMonthly1  = fha.monthlyPi  + fha.monthlyMip  + fha.monthlyTax  + fha.monthlyIns;
+    document.getElementById('m1Diff').textContent = fmtSign(convMonthly1 - fhaMonthly1);
+
+    document.getElementById('y5Diff').textContent  = fmtSign(diffAt(60));
+    document.getElementById('y10Diff').textContent = fmtSign(diffAt(120));
+  }
+
+  ids.forEach(function(id){ if (el[id]) el[id].addEventListener('input', compute); });
+  compute();
+})();
+</script>
+
+</body>
+</html>

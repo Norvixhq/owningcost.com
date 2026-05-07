@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Listing Reality Check — What the listing hides | OwningCost</title>
+<meta name="description" content="Paste a listing or enter a home price and see what your real monthly cost will look like — with maintenance, accurate insurance, post-purchase tax reassessment, HOA, and special assessments included. The number Zillow doesn't show." />
+<link rel="canonical" href="https://owningcost.com/listing-reality-check.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Listing Reality Check | OwningCost" />
+<meta property="og:description" content="The honest monthly cost behind any listing — with everything Zillow leaves out." />
+<meta property="og:url" content="https://owningcost.com/listing-reality-check.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Listing Reality Check | OwningCost" />
+<meta name="twitter:description" content="What the listing shows vs what you'll actually pay." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  /* Page-specific: the side-by-side "gap" visualization */
+  .lrc{
+    display:grid;gap:1.25rem;grid-template-columns:1fr;
+    margin-top:1rem;
+  }
+  @media (min-width:880px){
+    .lrc{grid-template-columns:1fr auto 1fr;align-items:stretch}
+  }
+  .lrc__card{
+    border-radius:16px;padding:1.6rem 1.5rem;
+    display:flex;flex-direction:column;gap:.55rem;min-height:220px;
+    position:relative;overflow:hidden;
+  }
+  .lrc__card--listing{
+    background:#fff;border:1px solid var(--border);
+  }
+  .lrc__card--real{
+    background:linear-gradient(180deg, var(--blue-50), #fff 70%);
+    border:1.5px solid var(--blue-200);
+    box-shadow:var(--shadow-md);
+  }
+  .lrc__tag{
+    font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--subtle);
+  }
+  .lrc__card--real .lrc__tag{color:var(--blue-700)}
+  .lrc__title{
+    font-family:var(--serif);font-size:1.05rem;font-weight:600;letter-spacing:-.01em;color:var(--ink);
+    margin-top:.1rem;
+  }
+  .lrc__amt{
+    font-family:var(--serif);font-size:2.6rem;font-weight:600;letter-spacing:-.03em;line-height:1.02;
+    color:var(--ink);margin-top:.4rem;font-variant-numeric:tabular-nums;
+  }
+  .lrc__card--real .lrc__amt{color:var(--blue-700)}
+  .lrc__sub{font-size:.86rem;color:var(--muted);line-height:1.55}
+  .lrc__list{
+    margin-top:.85rem;padding-top:.85rem;border-top:1px dashed var(--border);
+    display:grid;gap:.4rem;font-size:.88rem;
+  }
+  .lrc__line{display:flex;justify-content:space-between;gap:1rem;color:var(--ink-2)}
+  .lrc__line strong{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+  .lrc__line.is-missing{color:var(--subtle)}
+  .lrc__line.is-missing strong{color:var(--subtle);font-style:italic}
+
+  .lrc__gap{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:1rem .5rem;text-align:center;gap:.4rem;
+  }
+  @media (max-width:879px){.lrc__gap{padding:.4rem 0;flex-direction:row}}
+  .lrc__gap__amt{
+    font-family:var(--serif);font-size:1.85rem;font-weight:600;letter-spacing:-.025em;
+    color:#C4571F;line-height:1;font-variant-numeric:tabular-nums;
+  }
+  .lrc__gap__lbl{
+    font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--subtle);
+  }
+  .lrc__gap__arrow{
+    width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(135deg,#FFF3EA,#FFE4D1);border:1.5px solid #F2C9A6;
+    color:#C4571F;display:flex;align-items:center;justify-content:center;
+  }
+  @media (max-width:879px){.lrc__gap__arrow{transform:rotate(90deg)}}
+
+  .lrc-callouts{
+    display:grid;gap:.85rem;grid-template-columns:1fr;margin-top:1.4rem;
+  }
+  @media (min-width:780px){.lrc-callouts{grid-template-columns:repeat(3,1fr)}}
+  .lrc-callout{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:12px;
+    padding:1rem 1.05rem;display:flex;flex-direction:column;gap:.35rem;
+  }
+  .lrc-callout__lbl{
+    font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:#C4571F;
+  }
+  .lrc-callout__title{
+    font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);
+  }
+  .lrc-callout__body{font-size:.85rem;color:var(--muted);line-height:1.55}
+
+  .urlbar{
+    display:flex;gap:.5rem;background:#fff;border:1.5px solid var(--border);
+    border-radius:12px;padding:.45rem;align-items:center;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .urlbar:focus-within{border-color:var(--blue-300);box-shadow:0 0 0 4px rgba(28,109,217,.08)}
+  .urlbar input{
+    flex:1;border:0;outline:0;background:transparent;font:inherit;color:var(--ink);
+    padding:.55rem .55rem;font-size:.95rem;min-width:0;
+  }
+  .urlbar input::placeholder{color:var(--subtle)}
+  .urlbar__btn{
+    flex:0 0 auto;background:var(--surface-2);color:var(--subtle);border:1px solid var(--border);
+    border-radius:8px;padding:.55rem .85rem;font-size:.82rem;font-weight:600;cursor:not-allowed;
+    letter-spacing:.01em;
+  }
+  .urlbar__hint{
+    margin-top:.55rem;font-size:.78rem;color:var(--subtle);display:flex;align-items:center;gap:.4rem;
+  }
+  .urlbar__hint .dot{width:6px;height:6px;border-radius:50%;background:#D4AF37;display:inline-block}
+
+  .or-divide{
+    display:flex;align-items:center;gap:.85rem;margin:1.4rem 0 1.1rem;
+    font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle);
+  }
+  .or-divide::before,.or-divide::after{content:"";flex:1;height:1px;background:var(--border)}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://owningcost.com/"},
+        {"@type":"ListItem","position":2,"name":"Calculators","item":"https://owningcost.com/calculators.html"},
+        {"@type":"ListItem","position":3,"name":"Listing Reality Check","item":"https://owningcost.com/listing-reality-check.html"}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Listing Reality Check",
+      "url": "https://owningcost.com/listing-reality-check.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "description": "Compares a listing site's advertised monthly payment to a complete true monthly cost — adding maintenance reserve, accurate insurance, post-purchase property tax reassessment, HOA, and special assessments.",
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is the Zillow or Redfin estimated payment so much lower than my real cost?",
+          "acceptedAnswer": {"@type":"Answer","text":"Listing-site estimates almost always include only principal, interest, and property tax — sometimes a token insurance number. They typically exclude maintenance reserve, HOA dues, special assessments, and the post-purchase property tax reassessment. The Listing Reality Check adds these in to produce a number you can plan around."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is property tax reassessment after purchase?",
+          "acceptedAnswer": {"@type":"Answer","text":"In most jurisdictions, property tax is calculated against the assessed value. When a home sells, the assessor often resets that value to the sale price. If the previous owner had owned for years and the home appreciated, the listing's tax estimate can be 30–60% lower than what you'll actually pay. Texas, Florida, and California have well-known reassessment effects."}
+        },
+        {
+          "@type": "Question",
+          "name": "Why include a maintenance reserve when the listing doesn't?",
+          "acceptedAnswer": {"@type":"Answer","text":"Because the money is real. Roofs, HVAC systems, water heaters, and exterior paint all wear out on predictable schedules. The standard rule of thumb is 1% of home value per year for a single-family home, lower for townhomes, and lower still for condos where the HOA covers the exterior. Whether the listing shows it or not, you will spend it."}
+        },
+        {
+          "@type": "Question",
+          "name": "What's a special assessment and why does it appear here?",
+          "acceptedAnswer": {"@type":"Answer","text":"Special assessments are one-time charges levied by HOAs or condo boards for major capital projects — roofs, foundation work, elevators, parking decks. They can run from a few hundred to several thousand dollars per month, spread over a fixed term. Always ask for pending or recent assessments before signing. The calculator amortizes any assessment you enter over a 60-month default window."}
+        },
+        {
+          "@type": "Question",
+          "name": "Is URL parsing live?",
+          "acceptedAnswer": {"@type":"Answer","text":"Not yet. The URL paste input is a placeholder for an upcoming feature that will pull listing details directly from a URL. For now, enter the home price and the listing's estimated payment manually — it takes about ten seconds and produces the same result."}
+        },
+        {
+          "@type": "Question",
+          "name": "Does this work for condos and townhomes?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes. Choose the property type and the calculator adjusts the maintenance reserve and baseline insurance accordingly — single-family carries the highest reserve (1% per year), townhome roughly 0.7%, and condo around 0.4% because the HOA covers the exterior envelope. HOA dues and any special assessments still apply on top."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="#calc" class="btn btn--primary">Run a check</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Listing Reality Check</span>
+    </nav>
+  </div>
+
+  <section class="phero container" aria-labelledby="phero-title">
+    <div class="phero__grid">
+      <span class="eyebrow">Signature tool</span>
+      <h1 id="phero-title">Listing Reality Check.</h1>
+      <p class="phero__sub">The number on the listing isn't the number you'll pay. Run any home through the Reality Check and see the gap — maintenance, accurate insurance, post-purchase tax reassessment, HOA, and special assessments, all included.</p>
+      <div class="phero__meta">
+        <span class="chip is-live">Live tool</span>
+        <span class="chip">Honest math</span>
+        <span class="chip">Side-by-side gap</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TOOL ========== -->
+  <section class="section section--tight" id="calc">
+    <div class="container">
+      <form class="calc reveal" id="lrcForm" onsubmit="return false" aria-label="Listing Reality Check">
+        <div class="calc__form">
+          <h3>Listing details</h3>
+
+          <div class="urlbar">
+            <input type="text" placeholder="Paste a Zillow, Redfin, or Realtor URL" disabled aria-label="Listing URL — coming soon" />
+            <span class="urlbar__btn" aria-disabled="true">Coming soon</span>
+          </div>
+          <div class="urlbar__hint"><span class="dot"></span> URL parsing is in development. Enter details manually below.</div>
+
+          <div class="or-divide">Or enter manually</div>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__hint">listing price</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="lInpPrice" value="475000" min="50000" step="5000" aria-label="Home price"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Listing's estimated payment</span><span class="field__hint">what Zillow / Redfin shows</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="lInpListed" value="2800" min="0" step="25" aria-label="Listing estimated payment"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Property type</span></div>
+            <div class="field__input">
+              <select id="lInpType" aria-label="Property type">
+                <option value="sfh">Single-family home</option>
+                <option value="th">Townhome</option>
+                <option value="condo">Condo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>ZIP code</span><span class="field__hint">optional · adjusts tax band</span></div>
+            <div class="field__input"><input type="text" id="lInpZip" value="75034" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" aria-label="ZIP code" style="padding-left:.85rem"></div>
+          </div>
+
+          <h3 style="margin-top:1.5rem">Financing</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Down payment</span></div>
+            <div class="field__input"><input type="number" id="lInpDown" value="20" min="0" max="100" step="1" aria-label="Down payment percent"><span class="suffix">%</span></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Mortgage rate</span></div>
+            <div class="field__input"><input type="number" id="lInpRate" value="6.75" min="0" max="20" step="0.01" aria-label="Mortgage rate"><span class="suffix">%</span></div>
+          </div>
+
+          <h3 style="margin-top:1.5rem">Add-ons</h3>
+
+          <div class="field">
+            <div class="field__label"><span>HOA dues</span><span class="field__hint">if any</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="lInpHoa" value="0" min="0" step="25" aria-label="HOA monthly"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Special assessment</span><span class="field__hint">total, if pending</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="lInpSpec" value="0" min="0" step="500" aria-label="Special assessment total"></div>
+          </div>
+        </div>
+
+        <div class="calc__out" aria-live="polite">
+          <h3>Side-by-side</h3>
+
+          <div class="lrc">
+            <article class="lrc__card lrc__card--listing">
+              <div class="lrc__tag">What the listing shows</div>
+              <div class="lrc__title">Advertised monthly payment</div>
+              <div class="lrc__amt" id="lListed">$2,800</div>
+              <div class="lrc__sub">Typically principal, interest, and a token tax/insurance estimate.</div>
+              <div class="lrc__list" id="lListedList">
+                <div class="lrc__line"><span>Listed payment</span><strong id="lListedV">$2,800</strong></div>
+                <div class="lrc__line is-missing"><span>Maintenance reserve</span><strong>not shown</strong></div>
+                <div class="lrc__line is-missing"><span>HOA dues</span><strong>not shown</strong></div>
+                <div class="lrc__line is-missing"><span>Tax reassessment</span><strong>not applied</strong></div>
+                <div class="lrc__line is-missing"><span>Special assessments</span><strong>not shown</strong></div>
+              </div>
+            </article>
+
+            <div class="lrc__gap" aria-hidden="true">
+              <div class="lrc__gap__lbl">Gap</div>
+              <div class="lrc__gap__arrow">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </div>
+              <div class="lrc__gap__amt" id="lGap">+$847/mo</div>
+            </div>
+
+            <article class="lrc__card lrc__card--real">
+              <div class="lrc__tag">What you'll actually pay</div>
+              <div class="lrc__title">True monthly cost</div>
+              <div class="lrc__amt" id="lReal">$3,647</div>
+              <div class="lrc__sub" id="lRealSub">Reassessed taxes, realistic insurance, maintenance reserve, HOA, and assessments included.</div>
+              <div class="lrc__list">
+                <div class="lrc__line"><span>Principal &amp; interest</span><strong id="lPi">$2,464</strong></div>
+                <div class="lrc__line"><span>Property tax (reassessed)</span><strong id="lTax">$594</strong></div>
+                <div class="lrc__line"><span>Homeowners insurance</span><strong id="lIns">$142</strong></div>
+                <div class="lrc__line" id="lPmiRow" style="display:none"><span>PMI</span><strong id="lPmi">$0</strong></div>
+                <div class="lrc__line" id="lHoaRow" style="display:none"><span>HOA dues</span><strong id="lHoa">$0</strong></div>
+                <div class="lrc__line"><span>Maintenance reserve</span><strong id="lMaint">$396</strong></div>
+                <div class="lrc__line" id="lSpecRow" style="display:none"><span>Special assessment (60-mo)</span><strong id="lSpec">$0</strong></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="lrc-callouts" aria-label="What listings hide">
+            <div class="lrc-callout">
+              <div class="lrc-callout__lbl">Hidden #1</div>
+              <div class="lrc-callout__title">Maintenance reserve</div>
+              <div class="lrc-callout__body">Roofs, HVAC, paint, water heaters. The standard reserve is 1% of home value per year for a single-family home — and you will spend it.</div>
+            </div>
+            <div class="lrc-callout">
+              <div class="lrc-callout__lbl">Hidden #2</div>
+              <div class="lrc-callout__title">Tax reassessment</div>
+              <div class="lrc-callout__body">When a home sells, the assessor often resets value to the sale price. The listing's tax estimate is usually based on the prior owner's number — sometimes 30–60% low.</div>
+            </div>
+            <div class="lrc-callout">
+              <div class="lrc-callout__lbl">Hidden #3</div>
+              <div class="lrc-callout__title">Insurance and HOA reality</div>
+              <div class="lrc-callout__body">Listings often show stale or token insurance numbers and skip HOA pass-throughs entirely. Pending special assessments rarely appear at all.</div>
+            </div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p>The listing column is whatever you entered in <em>Listing's estimated payment</em>. The reality column rebuilds the cost from scratch:</p>
+              <p><strong>P&amp;I</strong> = <code>L · r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup>−1)</code> where <code>L</code> is loan amount, <code>r</code> is monthly rate, <code>n</code> is term in months.</p>
+              <p><strong>Property tax</strong> defaults to a typical effective rate by ZIP tier (Texas suburbs ~1.5–2.2%). The estimate assumes the home is reassessed to the listing price after sale.</p>
+              <p><strong>Insurance</strong> uses a baseline by property type — single-family $142/mo, townhome $115/mo, condo $85/mo (HO-6 only) — adjustable in the True Monthly Cost calculator.</p>
+              <p><strong>Maintenance reserve</strong> is 1.0% of home value per year for SFH, 0.7% for townhome, 0.4% for condo, divided by 12.</p>
+              <p><strong>Special assessment</strong> total is amortized over a 60-month default window. Confirm the actual term with the HOA.</p>
+            </div>
+          </details>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== EXPLAINER ========== -->
+  <section class="section section--surface" aria-labelledby="explainer-title">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">The listing problem</span>
+        <h2 id="explainer-title" style="margin-top:.85rem">The number on the listing was never meant to plan a life around.</h2>
+        <p class="lede">When you see a "$2,800/mo" estimate on Zillow or Redfin, you're seeing a marketing number. It's calibrated to make the home seem accessible, not to tell you what your bank account will look like a year after closing. The Listing Reality Check exists to put the missing pieces back.</p>
+
+        <h3>What listing-site estimates almost always include</h3>
+        <ul>
+          <li>Principal and interest, computed at a national-average rate that may not be your rate.</li>
+          <li>A property tax estimate — usually based on the <em>previous</em> assessed value, not the value the assessor will set after you buy.</li>
+          <li>Sometimes a token homeowners insurance number, often $50–$80 per month, often well under what an insurer will quote.</li>
+        </ul>
+
+        <h3>What they almost always leave out</h3>
+        <ul>
+          <li><strong>Maintenance reserve.</strong> The single largest hidden cost. For a $475K single-family home, that's roughly $396/month set aside for inevitable repairs and replacements.</li>
+          <li><strong>HOA dues.</strong> Usually missing entirely from listing estimates, even when the property has them. Texas master-planned communities, condos, and townhome developments often run $100–$500/month.</li>
+          <li><strong>Tax reassessment.</strong> If the previous owner held the property for ten years and the assessed value lagged the market, the post-sale property tax can be 30–60% higher than the listing estimate. This is especially pronounced in California (Prop 13 reset), Texas (annual reappraisal at sale), and Florida (Save Our Homes cap reset).</li>
+          <li><strong>Special assessments.</strong> Major capital projects voted by an HOA or condo board — roof replacement, foundation work, elevator overhauls — can add $200 to $2,000 a month for the duration of the assessment. They almost never appear on listing pages.</li>
+          <li><strong>Realistic insurance.</strong> Florida, Texas hail country, California wildfire zones, and coastal markets have seen insurance double or triple in five years. The token number on the listing rarely reflects current quotes.</li>
+        </ul>
+
+        <h3>Why the gap matters</h3>
+        <p>A $700 monthly gap between what a buyer expects and what they actually owe doesn't just dent a budget — it changes which home is the right one. A buyer pre-approved for a $475K home based on listing-site estimates may discover after closing that the same home costs them $850 more per month than they planned. That's the difference between comfortable and house poor.</p>
+        <p>The Reality Check flips the order of operations: you start from the honest number, then decide whether the home fits.</p>
+
+        <div class="callout"><strong>Use this tool before any showing.</strong> Run the Reality Check on every listing you're seriously considering — five seconds of input, an honest number out. It's the cheapest insurance you'll buy in the homebuying process.</div>
+
+        <h3>How property type changes the math</h3>
+        <p>Maintenance and insurance scale with how much of the building you're responsible for. A single-family home includes the roof, foundation, exterior, and yard — full reserve. A townhome typically shares some exterior responsibility — moderate reserve. A condo shifts most exterior maintenance to the HOA, so the personal reserve drops, but the HOA dues rise to cover what you no longer maintain directly. Insurance follows the same logic: SFH carries the highest baseline; condo unit-owner policies (HO-6) are the lowest because they cover only the interior.</p>
+
+        <h3>Tax reassessment in plain terms</h3>
+        <p>Most U.S. counties calculate property tax against an "assessed value" that the local assessor sets. When a home changes hands, that value typically resets — to either the sale price or some statutory percentage of it. If the previous owner held the home for years while values rose, their tax bill was based on yesterday's number. Yours will be based on today's. The gap can be enormous: a $500K home in Texas where the previous owner had a $320K assessment will see the tax bill jump from roughly $4,800/year to $7,500/year — a $225/month increase that the listing wouldn't have shown.</p>
+
+        <h3>What to do with the gap number</h3>
+        <p>If the Reality Check shows a $400/month gap, that's a manageable adjustment to your underwriting expectations. If it shows $900/month, you have a real decision to make: either the home isn't the right fit, or you need to look at the comfort band on the <a href="affordability-calculator.html">Affordability calculator</a> to confirm the larger number still works for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow section__kicker">FAQ</span>
+        <h2 id="faq-title">Common questions about the Reality Check.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Why is the Zillow or Redfin estimate so much lower than my real cost?</summary>
+          <div class="faq__a">Listing-site estimates almost always include only principal, interest, and property tax — sometimes a token insurance figure. They typically exclude maintenance reserve, HOA dues, special assessments, and the post-purchase property tax reassessment. The Reality Check adds these back in to produce a number you can plan around.</div>
+        </details>
+        <details>
+          <summary>What is property tax reassessment after purchase?</summary>
+          <div class="faq__a">In most jurisdictions, property tax is calculated against an assessed value. When a home sells, the assessor often resets that value to the sale price. If the previous owner held for years and the home appreciated, the listing's tax estimate can be 30–60% lower than what you'll actually pay. Texas, Florida, and California have well-documented reassessment effects.</div>
+        </details>
+        <details>
+          <summary>Why include a maintenance reserve when the listing doesn't?</summary>
+          <div class="faq__a">Because the money is real. Roofs, HVAC, water heaters, exterior paint, and major appliances all wear out on predictable schedules. The standard rule of thumb is 1% of home value per year for a single-family home — lower for townhomes, lowest for condos where the HOA covers the exterior. Whether the listing shows it or not, you will spend it.</div>
+        </details>
+        <details>
+          <summary>What's a special assessment, and why does it appear here?</summary>
+          <div class="faq__a">A special assessment is a one-time charge levied by an HOA or condo board for major capital projects: roofs, foundation work, elevators, parking decks. They can run from a few hundred to several thousand dollars per month, spread over a fixed term. Always ask for any pending or recent assessments before signing. The calculator amortizes the total you enter over a 60-month default window.</div>
+        </details>
+        <details>
+          <summary>Is URL parsing live yet?</summary>
+          <div class="faq__a">Not yet. The URL paste input is a placeholder for an upcoming feature that will pull listing details directly from a URL. For now, enter the home price, listing payment, and any HOA manually — it takes about ten seconds and produces the same answer.</div>
+        </details>
+        <details>
+          <summary>Does this work for condos and townhomes?</summary>
+          <div class="faq__a">Yes. Choose the property type and the calculator adjusts the maintenance reserve and baseline insurance accordingly — single-family carries the highest reserve (1% per year), townhome around 0.7%, condo around 0.4% because the HOA covers the building exterior. HOA dues and any special assessments still apply on top.</div>
+        </details>
+        <details>
+          <summary>How is the property tax rate chosen?</summary>
+          <div class="faq__a">If you enter a Texas ZIP, the calculator uses a typical effective rate for the area — North Texas suburbs run roughly 1.5% to 2.2% of home value annually. For ZIP-precise tax data, use the True Monthly Cost calculator, which exposes the tax rate as an input you can override.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RELATED ========== -->
+  <section class="section section--surface" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <span class="eyebrow section__kicker">Keep going</span>
+        <h2 id="related-title">Related calculators.</h2>
+      </div>
+      <div class="related">
+        <a class="rcard" href="true-monthly-cost-calculator.html">
+          <span class="rcard__tag">Buying</span>
+          <h4>True Monthly Cost</h4>
+          <p>Run the full breakdown for a specific home — every line item exposed and adjustable.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="affordability-calculator.html">
+          <span class="rcard__tag">Affordability</span>
+          <h4>Affordability + House Poor Risk</h4>
+          <p>Once the real number is honest, find the price band that fits your income, debts, and reserves.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="rent-vs-buy-calculator.html">
+          <span class="rcard__tag">Rent vs Buy</span>
+          <h4>Should I rent or buy?</h4>
+          <p>Compare total cost over your real time horizon, with appreciation and opportunity cost included.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="ctaband reveal">
+        <span class="eyebrow" style="color:#9BE08E">Next step</span>
+        <h2 style="margin-top:.85rem">Reality-checked the number? Now stress-test it.</h2>
+        <p>Drop the honest figure into the Affordability calculator and see how it lands against your income, reserves, and the House Poor Risk Score. The two tools are made to be used together.</p>
+        <div class="ctaband__row">
+          <a href="affordability-calculator.html" class="btn">Open Affordability</a>
+          <a href="true-monthly-cost-calculator.html" class="btn btn--ghost">Open True Monthly Cost</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* === Standard scripts === */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* === Reality Check calculator === */
+  var fmt = function(n){
+    if (!isFinite(n)) n = 0;
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+
+  var ids = ['lInpPrice','lInpListed','lInpType','lInpZip','lInpDown','lInpRate','lInpHoa','lInpSpec'];
+  var el = {};
+  ids.forEach(function(id){ el[id] = document.getElementById(id); });
+
+  /* Property-type configuration */
+  var typeConfig = {
+    sfh:   { maintRate: 0.010, insMo: 142, label: 'single-family' },
+    th:    { maintRate: 0.007, insMo: 115, label: 'townhome' },
+    condo: { maintRate: 0.004, insMo: 85,  label: 'condo' }
+  };
+
+  /* Rough effective tax rate by ZIP — defaults to 1.5% */
+  function taxRateForZip(zip){
+    if (!zip || zip.length !== 5) return 0.015;
+    var z = parseInt(zip, 10);
+    if (isNaN(z)) return 0.015;
+    /* North Texas suburbs (Frisco, Plano, McKinney, Allen) */
+    if (z >= 75000 && z <= 75099) return 0.020;
+    /* Texas major metros */
+    if (z >= 75000 && z <= 79999) return 0.022;
+    /* Florida, NJ — high */
+    if ((z >= 32000 && z <= 34999) || (z >= 7000 && z <= 8999)) return 0.018;
+    /* California — Prop 13 keeps post-sale low */
+    if (z >= 90000 && z <= 96199) return 0.0115;
+    return 0.015;
+  }
+
+  function compute(){
+    var price  = +el.lInpPrice.value || 0;
+    var listed = +el.lInpListed.value || 0;
+    var type   = el.lInpType.value || 'sfh';
+    var zip    = (el.lInpZip.value || '').replace(/\D/g,'').slice(0,5);
+    var downP  = (+el.lInpDown.value || 0) / 100;
+    var rate   = (+el.lInpRate.value || 0) / 100;
+    var hoa    = +el.lInpHoa.value || 0;
+    var spec   = +el.lInpSpec.value || 0;
+
+    var cfg = typeConfig[type] || typeConfig.sfh;
+    var taxR = taxRateForZip(zip);
+
+    /* Loan & P&I */
+    var loan = price * (1 - downP);
+    var r = rate / 12;
+    var n = 360;
+    var A = r === 0 ? (1 / n) : (Math.pow(1+r, n) * r) / (Math.pow(1+r, n) - 1);
+    var pi = loan * A;
+
+    /* Tax (reassessed at price) */
+    var tax = (price * taxR) / 12;
+
+    /* Insurance baseline by type */
+    var ins = cfg.insMo;
+
+    /* Maintenance */
+    var maint = (price * cfg.maintRate) / 12;
+
+    /* PMI if down% < 20% */
+    var pmi = 0;
+    if (downP < 0.20 && downP > 0){
+      pmi = (loan * 0.0075) / 12;
+    }
+
+    /* Special assessment amortized over 60 months */
+    var specMo = spec > 0 ? spec / 60 : 0;
+
+    var real = pi + tax + ins + pmi + hoa + maint + specMo;
+    var gap = real - listed;
+
+    /* Render listing column */
+    document.getElementById('lListed').textContent = fmt(listed);
+    document.getElementById('lListedV').textContent = fmt(listed);
+
+    /* Render real column */
+    document.getElementById('lReal').textContent = fmt(real);
+    document.getElementById('lPi').textContent = fmt(pi);
+    document.getElementById('lTax').textContent = fmt(tax);
+    document.getElementById('lIns').textContent = fmt(ins);
+    document.getElementById('lMaint').textContent = fmt(maint);
+
+    var pmiRow = document.getElementById('lPmiRow');
+    if (pmi > 0){
+      pmiRow.style.display = '';
+      document.getElementById('lPmi').textContent = fmt(pmi);
+    } else {
+      pmiRow.style.display = 'none';
+    }
+
+    var hoaRow = document.getElementById('lHoaRow');
+    if (hoa > 0){
+      hoaRow.style.display = '';
+      document.getElementById('lHoa').textContent = fmt(hoa);
+    } else {
+      hoaRow.style.display = 'none';
+    }
+
+    var specRow = document.getElementById('lSpecRow');
+    if (specMo > 0){
+      specRow.style.display = '';
+      document.getElementById('lSpec').textContent = fmt(specMo);
+    } else {
+      specRow.style.display = 'none';
+    }
+
+    /* Render gap */
+    var gapEl = document.getElementById('lGap');
+    var sign = gap >= 0 ? '+' : '−';
+    gapEl.textContent = sign + fmt(Math.abs(gap)) + '/mo';
+
+    /* Sub copy */
+    var sub = document.getElementById('lRealSub');
+    var pct = listed > 0 ? Math.round((gap / listed) * 100) : 0;
+    if (gap > 0 && listed > 0){
+      sub.textContent = 'About ' + pct + '% above the listing estimate · ' + cfg.label + ' assumptions.';
+    } else if (gap < 0){
+      sub.textContent = 'The listing estimate is higher than the rebuilt cost — uncommon. Verify inputs.';
+    } else {
+      sub.textContent = 'Rebuilt from ' + cfg.label + ' assumptions.';
+    }
+  }
+
+  ids.forEach(function(id){
+    if (!el[id]) return;
+    var ev = el[id].tagName === 'SELECT' ? 'change' : 'input';
+    el[id].addEventListener(ev, compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

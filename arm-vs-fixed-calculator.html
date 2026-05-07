@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>ARM vs Fixed Calculator — 5/1, 7/1, 10/1 vs 30-yr fixed | OwningCost</title>
+<meta name="description" content="Compare a 5/1, 7/1, or 10/1 ARM against a 30-year fixed. Models the fixed period and the worst-case post-reset rate over your real hold." />
+<link rel="canonical" href="https://owningcost.com/arm-vs-fixed-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="ARM vs Fixed Calculator — 5/1, 7/1, 10/1 vs 30-yr fixed" />
+<meta property="og:description" content="Compare a 5/1, 7/1, or 10/1 ARM against a 30-year fixed. Models the fixed period and the worst-case post-reset rate over your real hold." />
+<meta property="og:url" content="https://owningcost.com/arm-vs-fixed-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ARM vs Fixed Calculator — 5/1, 7/1, 10/1 vs 30-yr fixed | OwningCost" />
+<meta name="twitter:description" content="Compare a 5/1, 7/1, or 10/1 ARM against a 30-year fixed. Models the fixed period and the worst-case post-reset rate over your real hold." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "ARM vs Fixed.", "item": "https://owningcost.com/"}]}, {"@type": "WebApplication", "name": "ARM vs Fixed.", "url": "https://owningcost.com/arm-vs-fixed-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Compare a 5/1, 7/1, or 10/1 ARM against a 30-year fixed. Models the fixed period and the worst-case post-reset rate over your real hold.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much rate spread is typical between ARM and fixed?", "acceptedAnswer": {"@type": "Answer", "text": "It varies with the rate environment. In flat-curve periods, ARMs may price 0–25 basis points below fixed (not worth the rate risk). In normal-curve periods, ARMs run 50–100 basis points below fixed. In inverted-curve periods (2022–2023), some ARMs were higher than fixed — at which point ARMs make no sense at all."}}, {"@type": "Question", "name": "Can I prepay the ARM during the fixed period?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — most ARMs have no prepayment penalty. Prepaying during the fixed period reduces the balance that's subject to the reset rate, which can substantially soften the post-reset shock."}}, {"@type": "Question", "name": "Will I be forced to refinance at reset?", "acceptedAnswer": {"@type": "Answer", "text": "No. The ARM continues with the new rate; the loan amortizes against the new rate over the remaining term. Many borrowers choose to stay and absorb the new rate; some refinance into a new fixed-rate loan; some sell. The reset is a payment change, not a forced action."}}, {"@type": "Question", "name": "What's the rate floor on most ARMs?", "acceptedAnswer": {"@type": "Answer", "text": "Some ARMs have a floor (the rate can't drop below a certain level even if the index does); some don't. Read the note. In recent years, floors have mattered less because rates have moved up — but during a falling-rate cycle, a floor protects the lender's margin and limits your downside."}}, {"@type": "Question", "name": "Is an ARM useful for an investment property?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes — if your exit strategy is to sell or refinance within the fixed period. Investment properties have stricter underwriting, including the ability to qualify at the post-reset rate ('qualifying rate'), so the lender is testing the worst-case anyway."}}, {"@type": "Question", "name": "Can I convert an ARM to fixed mid-life?", "acceptedAnswer": {"@type": "Answer", "text": "Some ARMs include a one-time conversion option to fixed. Most don't. The standard path is to refinance the ARM into a new fixed loan, which has closing costs (~2–3% of loan). Run the breakeven."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">ARM vs Fixed.</span>
+    </nav>
+  </div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <div class="phero__grid">
+    <span class="eyebrow">Financing</span>
+    <h1 id="phero-title">ARM vs Fixed.</h1>
+    <p class="phero__sub">A 5/1, 7/1, or 10/1 ARM against a 30-year fixed — over your real hold period, with the worst-case post-reset rate stressed honestly.</p>
+    <div class="phero__meta">
+      <span class="chip is-live">Live tool</span>
+      <span class="chip">Fixed period totals</span><span class="chip">Worst-case reset</span><span class="chip">Hold-aware</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="calc">
+  <div class="container">
+    <form class="calc reveal" onsubmit="return false" aria-label="ARM vs Fixed.">
+      <div class="calc__form">
+        <h3>Loan basics</h3>
+
+<div class="field">
+  <div class="field__label"><span>Loan amount</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="armLoan" value="400000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Term</span></div>
+  <div class="field__input"><input type="number" id="armTerm" value="30" min="15" max="40" step="1"><span class="suffix">yr</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">Fixed loan</h3>
+
+<div class="field">
+  <div class="field__label"><span>30-year fixed rate</span></div>
+  <div class="field__input"><input type="number" id="armFixedRate" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">ARM loan</h3>
+
+<div class="field">
+  <div class="field__label"><span>ARM type</span></div>
+  <div class="field__input">
+    <select id="armType">
+      <option value="5">5/1 ARM (fixed 5 yrs)</option>
+      <option value="7" selected>7/1 ARM (fixed 7 yrs)</option>
+      <option value="10">10/1 ARM (fixed 10 yrs)</option>
+    </select>
+  </div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Initial ARM rate</span></div>
+  <div class="field__input"><input type="number" id="armRate" value="5.875" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Worst-case rate after reset</span></div>
+  <div class="field__input"><input type="number" id="armReset" value="9.0" min="0" max="20" step="0.25"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Hold period</span></div>
+  <div class="field__input"><input type="number" id="armHold" value="7" min="1" max="30" step="1"><span class="suffix">yr</span></div>
+</div>
+      </div>
+      <div class="calc__out" aria-live="polite">
+        <h3>ARM vs Fixed at year <span id="armHoldEcho">7</span></h3>
+
+<div class="verdict" id="armVerdict">
+  <div class="verdict__label">Verdict</div>
+  <div class="verdict__head" id="armHead">7/1 ARM saves about $13,000 over 7 years</div>
+  <div class="verdict__sub" id="armSub">If you exit before reset (year 7), ARM wins. After reset at the worst-case rate, ARM loses ~$240/mo.</div>
+</div>
+
+<div class="compare2" style="margin-top:1.1rem">
+  <div class="cc">
+    <div class="cc__head"><span class="cc__dot cc__dot--a"></span> Fixed</div>
+    <ul>
+      <li>Rate (life of loan) <strong id="armFixedShow">6.75%</strong></li>
+      <li>Monthly P&amp;I <strong id="armFixedPi">$2,594</strong></li>
+      <li>Total over <span id="armFixedHold">7</span> years <strong id="armFixedTotal">$217,896</strong></li>
+    </ul>
+  </div>
+  <div class="cc">
+    <div class="cc__head"><span class="cc__dot cc__dot--b"></span> ARM</div>
+    <ul>
+      <li>Initial rate <strong id="armRateShow">5.875%</strong></li>
+      <li>Monthly P&amp;I (fixed period) <strong id="armPiInit">$2,366</strong></li>
+      <li>Worst-case post-reset P&amp;I <strong id="armPiReset">$3,090</strong></li>
+      <li>Total over <span id="armArmHold">7</span> years <strong id="armArmTotal">$198,744</strong></li>
+    </ul>
+  </div>
+</div>
+
+<details class="calc__math">
+  <summary>How this is calculated</summary>
+  <div class="calc__math__body">
+    <p><strong>Fixed total</strong> = P&amp;I × hold months. P&amp;I uses the fixed rate over the full term.</p>
+    <p><strong>ARM total within fixed period</strong> = initial-rate P&amp;I × min(hold, fixed-period) months.</p>
+    <p><strong>ARM total beyond fixed period</strong> = recomputes P&amp;I at the worst-case reset rate, applied to the remaining balance over the remaining term, multiplied by the months past the reset.</p>
+    <p>Most modern ARMs cap the first reset at +2 percentage points and lifetime adjustments at +5–6 points. The "worst-case rate" should reflect those caps for a realistic stress scenario.</p>
+  </div>
+</details>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">ARM vs Fixed</span>
+<h2 style="margin-top:.85rem">An ARM is rational for some buyers. Most buyers should not have one.</h2>
+<p class="lede">An adjustable-rate mortgage trades stability for a lower initial rate. The trade is rational when your hold period is shorter than the fixed period, when you have strong income trajectory, or when you intend to refinance. The trade is irrational when you're betting that rates will be lower later — that's a forecast, not a plan.</p>
+
+<h3>How an ARM is structured</h3>
+<ul>
+  <li><strong>Initial fixed period.</strong> Rate is locked for 5, 7, or 10 years. The initial rate is typically 50–125 basis points below 30-year fixed.</li>
+  <li><strong>Reset.</strong> After the fixed period, rate adjusts annually based on a benchmark index (SOFR, CMT) plus a margin (~2.5–3.0%).</li>
+  <li><strong>Caps.</strong> Modern ARMs typically cap the first adjustment at 2 percentage points, annual subsequent adjustments at 1 point, and lifetime adjustments at 5–6 points. Read the loan documents — caps vary.</li>
+</ul>
+
+<h3>When ARM is rational</h3>
+<ul>
+  <li><strong>Confirmed shorter hold.</strong> Job that's reliably going to relocate you in 5 years. Plan to upsize before year 7. Confirmed retirement timing. Use the fixed period that matches your hold length.</li>
+  <li><strong>Strong refinance backstop.</strong> You have meaningful equity already (large down payment) and credit/income that would qualify you for a competitive refinance if rates were higher at reset.</li>
+  <li><strong>Substantial rate spread.</strong> If the 7/1 ARM is 75 basis points below fixed, the math is meaningfully different than a 20-basis-point spread. Run the actual numbers.</li>
+  <li><strong>Income trajectory.</strong> Junior associate at a law firm, medical resident heading toward attending status — confirmed major income jumps before reset can absorb a worst-case reset.</li>
+</ul>
+
+<h3>When ARM is a trap</h3>
+<ul>
+  <li>You're using the lower payment to qualify for a more expensive home than you could afford fixed. The ARM let you stretch; the reset will not be kind.</li>
+  <li>You don't have a confirmed exit before reset and your reasoning is "rates will probably be lower by then."</li>
+  <li>Your reserves are thin and a worst-case reset would force a refinance regardless of rates at that point.</li>
+  <li>You don't fully understand the rate caps in your loan and the math behind a worst-case reset.</li>
+</ul>
+
+<h3>Modeling the worst-case</h3>
+<p>The "worst-case rate after reset" input matters. Most buyers default to "the index can't possibly go that high" — and many were proven wrong in 2022–2024. A realistic worst-case is the lower of (a) loan's lifetime cap above starting rate, or (b) initial rate + 4 percentage points. For a 5.875% start with a 5-point lifetime cap, that's 10.875% as the absolute ceiling; 9.875% is a reasonable stress test.</p>
+
+<div class="callout"><strong>The honest filter:</strong> if you can't comfortably afford the worst-case post-reset payment, you should not take the ARM — even if you're "sure" you'll exit before reset. Plans change. The reset doesn't.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common questions about arm vs fixed.</h2>
+    </div>
+    <div class="faq">
+      <details>
+  <summary>How much rate spread is typical between ARM and fixed?</summary>
+  <div class="faq__a">It varies with the rate environment. In flat-curve periods, ARMs may price 0–25 basis points below fixed (not worth the rate risk). In normal-curve periods, ARMs run 50–100 basis points below fixed. In inverted-curve periods (2022–2023), some ARMs were higher than fixed — at which point ARMs make no sense at all.</div>
+</details>
+<details>
+  <summary>Can I prepay the ARM during the fixed period?</summary>
+  <div class="faq__a">Yes — most ARMs have no prepayment penalty. Prepaying during the fixed period reduces the balance that's subject to the reset rate, which can substantially soften the post-reset shock.</div>
+</details>
+<details>
+  <summary>Will I be forced to refinance at reset?</summary>
+  <div class="faq__a">No. The ARM continues with the new rate; the loan amortizes against the new rate over the remaining term. Many borrowers choose to stay and absorb the new rate; some refinance into a new fixed-rate loan; some sell. The reset is a payment change, not a forced action.</div>
+</details>
+<details>
+  <summary>What's the rate floor on most ARMs?</summary>
+  <div class="faq__a">Some ARMs have a floor (the rate can't drop below a certain level even if the index does); some don't. Read the note. In recent years, floors have mattered less because rates have moved up — but during a falling-rate cycle, a floor protects the lender's margin and limits your downside.</div>
+</details>
+<details>
+  <summary>Is an ARM useful for an investment property?</summary>
+  <div class="faq__a">Sometimes — if your exit strategy is to sell or refinance within the fixed period. Investment properties have stricter underwriting, including the ability to qualify at the post-reset rate ('qualifying rate'), so the lender is testing the worst-case anyway.</div>
+</details>
+<details>
+  <summary>Can I convert an ARM to fixed mid-life?</summary>
+  <div class="faq__a">Some ARMs include a one-time conversion option to fixed. Most don't. The standard path is to refinance the ARM into a new fixed loan, which has closing costs (~2–3% of loan). Run the breakeven.</div>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Keep going</span>
+      <h2>Related calculators.</h2>
+    </div>
+    <div class="related">
+      <a class="rcard" href="fha-vs-conventional-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>FHA vs Conventional</h4>
+  <p>Most ARM decisions sit alongside loan-type decisions. Run both.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="payment-shock-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Payment Shock</h4>
+  <p>Stress-test the post-reset payment against your real income and reserves.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="arm-vs-fixed-guide.html">
+  <span class="rcard__tag">Guide</span>
+  <h4>ARM vs Fixed — long version</h4>
+  <p>When an ARM is rational, when it's a trap, and how to read the cap structure.</p>
+  <span class="rcard__go">Open</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Reality check</span>
+      <h2 style="margin-top:.85rem">Could you handle the worst-case reset payment?</h2>
+      <p>If the answer isn't a confident yes, the ARM is the wrong loan — even if you're sure you'll exit before reset. Run the Payment Shock test on the post-reset number.</p>
+      <div class="ctaband__row">
+        <a href="payment-shock-calculator.html" class="btn">Run Payment Shock</a>
+        <a href="arm-vs-fixed-guide.html" class="btn btn--ghost">Read the long ARM guide</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var el = {
+    loan:  document.getElementById('armLoan'),
+    term:  document.getElementById('armTerm'),
+    fixed: document.getElementById('armFixedRate'),
+    type:  document.getElementById('armType'),
+    rate:  document.getElementById('armRate'),
+    reset: document.getElementById('armReset'),
+    hold:  document.getElementById('armHold')
+  };
+  var fmt = function(n){ if(!isFinite(n))n=0; return '$' + Math.round(n).toLocaleString('en-US'); };
+  function pi(loan, annual, termMonths){
+    var r=annual/12;
+    if (loan<=0) return 0;
+    if (r===0) return loan/termMonths;
+    return loan*(Math.pow(1+r,termMonths)*r)/(Math.pow(1+r,termMonths)-1);
+  }
+  function balanceAfter(loan, annual, termMonths, monthsElapsed){
+    var r=annual/12;
+    var pAndI = pi(loan, annual, termMonths);
+    var bal = loan;
+    for (var m=1; m<=monthsElapsed; m++){
+      bal -= (pAndI - bal*r);
+    }
+    return bal;
+  }
+
+  function compute(){
+    var loan = +el.loan.value || 0;
+    var termY = +el.term.value || 30;
+    var termM = termY * 12;
+    var fixedRate = (+el.fixed.value || 0)/100;
+    var armFixedYrs = +el.type.value || 7;
+    var armFixedMo = armFixedYrs * 12;
+    var armRate = (+el.rate.value || 0)/100;
+    var resetRate = (+el.reset.value || 0)/100;
+    var hold = Math.max(1, +el.hold.value || 7);
+    var holdMo = hold * 12;
+
+    // Fixed scenario
+    var fixedPi = pi(loan, fixedRate, termM);
+    var fixedTotal = fixedPi * holdMo;
+
+    // ARM scenario
+    var armPiInit = pi(loan, armRate, termM);
+    var armTotal;
+    var armPiReset = 0;
+    if (holdMo <= armFixedMo){
+      // Exit before reset
+      armTotal = armPiInit * holdMo;
+    } else {
+      // Within fixed period
+      var fixedPart = armPiInit * armFixedMo;
+      // After reset: recompute payment at reset rate over remaining term
+      var balAtReset = balanceAfter(loan, armRate, termM, armFixedMo);
+      var remainingTerm = termM - armFixedMo;
+      armPiReset = pi(balAtReset, resetRate, remainingTerm);
+      var monthsAfterReset = holdMo - armFixedMo;
+      armTotal = fixedPart + armPiReset * monthsAfterReset;
+    }
+    if (armPiReset === 0) {
+      // Even if hold doesn't reach reset, show what reset payment would be
+      var balAtReset2 = balanceAfter(loan, armRate, termM, armFixedMo);
+      armPiReset = pi(balAtReset2, resetRate, termM - armFixedMo);
+    }
+
+    var diff = fixedTotal - armTotal;
+
+    document.getElementById('armHoldEcho').textContent = hold;
+    document.getElementById('armFixedShow').textContent = (fixedRate*100).toFixed(2) + '%';
+    document.getElementById('armFixedPi').textContent = fmt(fixedPi);
+    document.getElementById('armFixedHold').textContent = hold;
+    document.getElementById('armFixedTotal').textContent = fmt(fixedTotal);
+
+    document.getElementById('armRateShow').textContent = (armRate*100).toFixed(3) + '%';
+    document.getElementById('armPiInit').textContent = fmt(armPiInit);
+    document.getElementById('armPiReset').textContent = fmt(armPiReset);
+    document.getElementById('armArmHold').textContent = hold;
+    document.getElementById('armArmTotal').textContent = fmt(armTotal);
+
+    var v = document.getElementById('armVerdict');
+    v.classList.remove('is-buy','is-rent','is-neutral');
+    var head = '', sub = '';
+    if (Math.abs(diff) < 1500){
+      v.classList.add('is-neutral');
+      head = 'Roughly a tie at this hold length.';
+      sub = 'The two paths land within $1,500 over the hold period. Pick on rate stability vs flexibility, not on cost.';
+    } else if (diff > 0){
+      v.classList.add('is-buy');
+      head = 'ARM saves about ' + fmt(diff) + ' over ' + hold + ' years';
+      if (holdMo <= armFixedMo){
+        sub = 'You exit before the reset, so the ARM saves the full rate spread. The savings are clean.';
+      } else {
+        sub = 'Even with the worst-case reset, the lower initial rate during the fixed period compensates over your hold. Verify the reset assumption matches your loan caps.';
+      }
+    } else {
+      v.classList.add('is-rent');
+      head = 'Fixed wins by about ' + fmt(Math.abs(diff)) + ' over ' + hold + ' years';
+      sub = 'The post-reset rate environment in your scenario more than offsets the lower initial ARM rate. If your worst-case is realistic, fixed is the safer path.';
+    }
+    document.getElementById('armHead').textContent = head;
+    document.getElementById('armSub').textContent = sub;
+  }
+  ['loan','term','fixed','type','rate','reset','hold'].forEach(function(k){
+    var ev = el[k].tagName === 'SELECT' ? 'change' : 'input';
+    el[k].addEventListener(ev, compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

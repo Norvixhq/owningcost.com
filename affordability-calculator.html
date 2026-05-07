@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Affordability Calculator with House Poor Risk Score | OwningCost</title>
+<meta name="description" content="See three honest home-price tiers from your income, debts, and reserves — Conservative, Comfortable, Stretch — plus a House Poor Risk Score that surfaces what would break first." />
+<link rel="canonical" href="https://owningcost.com/affordability-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Affordability Calculator with House Poor Risk | OwningCost" />
+<meta property="og:description" content="Three honest price tiers + a diagnostic risk score, not just a max-DTI ceiling." />
+<meta property="og:url" content="https://owningcost.com/affordability-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Affordability Calculator | OwningCost" />
+<meta name="twitter:description" content="Comfort band + House Poor Risk Score." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://owningcost.com/"},
+        {"@type":"ListItem","position":2,"name":"Calculators","item":"https://owningcost.com/calculators.html"},
+        {"@type":"ListItem","position":3,"name":"Affordability","item":"https://owningcost.com/affordability-calculator.html"}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Affordability Calculator with House Poor Risk Score",
+      "url": "https://owningcost.com/affordability-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "description": "Computes three home-price tiers (Conservative, Comfortable, Stretch) from income, debts, down payment, and reserves — plus a House Poor Risk Score that weights reserve adequacy, rate sensitivity, hidden cost exposure, and stress DTI.",
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the difference between what a lender approves and what I can actually afford?",
+          "acceptedAnswer": {"@type":"Answer","text":"Lenders typically approve up to 43–50% back-end DTI. That ceiling assumes you have no other priorities — no savings goals, no kids, no medical emergencies, no plans. The Comfortable tier (28/36 DTI) reflects what most homeowners can sustain without strain. The Stretch tier shows the upper limit, with the risk score quantifying how much you'd be exposed if anything changed."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is the House Poor Risk Score?",
+          "acceptedAnswer": {"@type":"Answer","text":"It's a 0–100 diagnostic that combines four factors: cash reserves (how many months of housing you could cover if income stopped), rate sensitivity (how much the payment grows under a 1% rate shock), hidden cost exposure (the share of monthly housing cost that isn't principal and interest), and stress DTI (back-end DTI at the higher rate). Lower is safer."}
+        },
+        {
+          "@type": "Question",
+          "name": "Why include a maintenance reserve when calculating affordability?",
+          "acceptedAnswer": {"@type":"Answer","text":"Because you'll spend it. Skipping it from the affordability math is how buyers end up cash-strapped two years in when the HVAC fails. We default to 1% of home value per year — the most widely accepted rule of thumb — which you can adjust."}
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use Conservative, Comfortable, or Stretch?",
+          "acceptedAnswer": {"@type":"Answer","text":"Comfortable (28/36) is the historical default and a sensible target for most buyers. Conservative is appropriate if your income is variable, you're early in your career, or you have other major financial goals. Stretch should be used only with eyes open — verify the risk score is in the safe zone before signing."}
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator include PMI if my down payment is under 20%?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes. When the down payment percentage falls below 20%, we include PMI at roughly 0.75% of the loan annually, which lowers the home price you can afford because the monthly payment is higher."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="#calc" class="btn btn--primary">Try the calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Affordability</span>
+    </nav>
+  </div>
+
+  <section class="phero container" aria-labelledby="phero-title">
+    <div class="phero__grid">
+      <span class="eyebrow">Calculator</span>
+      <h1 id="phero-title">Affordability Calculator <em style="font-style:italic;color:var(--blue-700)">with House Poor Risk Score</em></h1>
+      <p class="phero__sub">Three honest price tiers from your income, debts, down payment, and reserves — Conservative, Comfortable, Stretch — plus a diagnostic risk score that surfaces what would break first if anything changed.</p>
+      <div class="phero__meta">
+        <span class="chip is-live">Live tool</span>
+        <span class="chip">Comfort band</span>
+        <span class="chip">House Poor Risk Score</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATOR ========== -->
+  <section class="section section--tight" id="calc">
+    <div class="container">
+      <form class="calc reveal" id="affForm" onsubmit="return false" aria-label="Affordability calculator">
+        <div class="calc__form">
+          <h3>Your finances</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Annual gross income</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpInc" value="125000" min="20000" step="1000" aria-label="Annual gross income"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Monthly debts</span><span class="field__hint">cars, student loans, cards</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpDebt" value="650" min="0" step="25" aria-label="Monthly debt payments"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Down payment available</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpDown" value="85000" min="0" step="1000" aria-label="Down payment"></div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Cash reserves</span><span class="field__hint">after closing</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpRes" value="25000" min="0" step="1000" aria-label="Cash reserves"></div>
+          </div>
+
+          <h3 style="margin-top:1.4rem">Loan &amp; property assumptions</h3>
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Rate</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="0.5" max="15" step="0.05" aria-label="Interest rate"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="5" max="40" step="1" aria-label="Loan term"><span class="suffix">yrs</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Property tax</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" step="0.05" aria-label="Property tax"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Maint reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpMaint" value="1" min="0" step="0.1" aria-label="Maintenance"><span class="suffix">%</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Insurance</span><span class="field__hint">/mo</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpIns" value="142" min="0" step="5" aria-label="Insurance"></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>HOA</span><span class="field__hint">/mo</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpHoa" value="50" min="0" step="10" aria-label="HOA"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc__out">
+          <h3>Your comfort band</h3>
+
+          <div class="band">
+            <div class="band__tier">
+              <div class="band__label">Conservative · 25/33</div>
+              <div class="band__amt" id="priceCons">$285,000</div>
+              <div class="band__note" id="payCons">~$2,650/mo · safe even with income shocks</div>
+              <div class="band__dti" id="dtiCons">DTI 25% / 33%</div>
+            </div>
+            <div class="band__tier band__tier--mid">
+              <div class="band__label">Comfortable · 28/36</div>
+              <div class="band__amt" id="priceComf">$340,000</div>
+              <div class="band__note" id="payComf">~$3,180/mo · the historical default</div>
+              <div class="band__dti" id="dtiComf">DTI 28% / 36%</div>
+            </div>
+            <div class="band__tier">
+              <div class="band__label">Stretch · 33/43</div>
+              <div class="band__amt" id="priceStr">$425,000</div>
+              <div class="band__note" id="payStr">~$3,830/mo · upper limit · check risk score</div>
+              <div class="band__dti" id="dtiStr">DTI 33% / 43%</div>
+            </div>
+          </div>
+
+          <!-- ========== HOUSE POOR RISK SCORE ========== -->
+          <div class="risk" id="risk-score">
+            <div class="risk__head">
+              <div>
+                <div class="risk__title">House Poor Risk Score</div>
+                <div style="font-size:.83rem;color:var(--muted);margin-top:.2rem">At the Comfortable tier · lower is safer</div>
+              </div>
+              <div class="risk__score"><span id="riskNum">28</span><small>/100</small></div>
+            </div>
+            <div class="risk__bar"><div class="risk__fill" id="riskFill" style="width:28%"></div></div>
+
+            <div class="risk__factors" id="riskFactors">
+              <div class="rfactor">
+                <span class="rfactor__name">Cash reserves</span>
+                <span class="rfactor__bar"><span class="rfactor__fill" id="rfRes" style="width:18%"></span></span>
+                <span class="rfactor__val" id="rfResV">7.9 mo · low risk</span>
+              </div>
+              <div class="rfactor">
+                <span class="rfactor__name">Rate sensitivity</span>
+                <span class="rfactor__bar"><span class="rfactor__fill" id="rfRate" style="width:25%"></span></span>
+                <span class="rfactor__val" id="rfRateV">+10% at +1pp · moderate</span>
+              </div>
+              <div class="rfactor">
+                <span class="rfactor__name">Hidden cost exposure</span>
+                <span class="rfactor__bar"><span class="rfactor__fill" id="rfHidden" style="width:42%"></span></span>
+                <span class="rfactor__val" id="rfHiddenV">42% of total · moderate</span>
+              </div>
+              <div class="rfactor">
+                <span class="rfactor__name">Stress DTI</span>
+                <span class="rfactor__bar"><span class="rfactor__fill" id="rfStress" style="width:30%"></span></span>
+                <span class="rfactor__val" id="rfStressV">39% back-end · acceptable</span>
+              </div>
+            </div>
+
+            <div class="calc__summary" id="riskSummary" style="margin-top:1rem">
+              At the Comfortable tier, your reserves cover roughly <strong>8 months</strong> of housing cost and a 1-point rate shock would raise your payment by <strong>~$320/mo</strong>. Overall risk is <strong>low–moderate</strong>.
+            </div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Each tier's max housing cost</strong> = the lesser of (income × front-end DTI ÷ 12) and (income × back-end DTI ÷ 12 − monthly debts). From that we subtract tax, insurance, HOA, and maintenance, then solve for the loan amount that fits the remaining principal-and-interest budget.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Max price</strong> = max loan + your down payment. PMI is added to the monthly cost when down payment is under 20%, lowering the affordable price.</p>
+              <p><strong style="color:var(--ink)">House Poor Risk Score</strong> weights four factors: reserves (30%), rate sensitivity at +1pp (25%), hidden cost share — non-P&amp;I share of total housing (20%), and back-end DTI under stress (25%). 0 = very safe, 100 = severe risk.</p>
+            </div>
+          </details>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== EXPLAINER ========== -->
+  <section class="section section--surface" aria-labelledby="explainer-title">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">Real affordability</span>
+        <h2 id="explainer-title" style="margin-top:.85rem">A pre-approval is a ceiling, not an answer.</h2>
+        <p class="lede">Lenders approve buyers up to roughly 43–50% back-end debt-to-income. That ceiling assumes you have no other priorities — no savings goals, no children, no medical emergencies, no career changes, no rate exposure. The number you can actually live with is almost always lower than the number the lender will let you sign for.</p>
+
+        <p>This calculator runs three honest tiers — Conservative, Comfortable, Stretch — and grades the comfortable tier with a House Poor Risk Score so you can see what would break first if anything changed.</p>
+
+        <h3>The comfort band, explained</h3>
+        <p>Each tier is defined by two ratios. The first number is front-end DTI: housing payment as a percent of gross income. The second is back-end DTI: total debt obligations (housing plus car, student, credit) as a percent of gross income.</p>
+        <ul>
+          <li><strong>Conservative — 25/33.</strong> Housing stays under 25% of gross income. Total debt under 33%. This tier leaves room for retirement contributions, real savings, kids' expenses, and a margin for the unexpected. Appropriate when income is variable or you have other major goals.</li>
+          <li><strong>Comfortable — 28/36.</strong> The historical lender default and the most sustainable for most households. Housing is meaningful but doesn't crowd out everything else. This is where most buyers should aim.</li>
+          <li><strong>Stretch — 33/43.</strong> The upper limit. Workable for stable, high-savings households with low non-housing debt — risky for everyone else. The risk score should be in the safe zone before considering this tier.</li>
+        </ul>
+
+        <h3>Lender approval vs real affordability</h3>
+        <p>The single biggest mistake in homebuying is treating the pre-approval letter as a target instead of a maximum. Lenders are paid to write loans. They use front-end and back-end DTI ceilings that haven't meaningfully changed since the 1980s, applied to a generation that now carries much more student debt, has much less pension security, and faces a property-tax and insurance environment that's rising faster than wages. Use the lender's number as the maximum the system will let you commit to. Use the comfort band as the number you can actually live with.</p>
+
+        <h3>Reserves matter as much as price</h3>
+        <p>A $400K home with 12 months of reserves is a different financial position from a $400K home with one month of reserves — even though the monthly payment is identical. Reserves are what carry you through a job loss, a medical event, an HVAC replacement, or a car totaling out at the wrong moment. The Risk Score weights reserve adequacy at 30% for that reason: it's the largest single determinant of whether a payment that's "fine on paper" stays fine when life happens.</p>
+        <div class="callout"><strong>A simple rule:</strong> if buying this home would leave you with less than 3 months of housing cost in liquid reserves after closing, the home is too expensive — regardless of what the lender approves. Aim for 6+ months. The risk score tells you where you actually land.</div>
+
+        <h3>The House Poor Risk Score — what's inside</h3>
+        <p>Four factors, weighted to reflect what actually puts homeowners under stress:</p>
+        <ul>
+          <li><strong>Cash reserves (30%).</strong> How many months of full housing cost your liquid reserves cover. 6+ months scores low risk; under 3 scores high.</li>
+          <li><strong>Rate sensitivity (25%).</strong> The percentage payment increase under a 1-point rate shock. Matters most for ARM holders, near-term refinancers, and anyone in adjustable territory. Even fixed-rate buyers feel this if they need to refinance to access equity.</li>
+          <li><strong>Hidden cost exposure (20%).</strong> The share of monthly housing cost that isn't principal and interest. Higher exposure means more of your bill is non-discretionary recurring expense (taxes, insurance, HOA, maintenance) that doesn't build equity. Markets like Texas and New Jersey see this run high.</li>
+          <li><strong>Stress DTI (25%).</strong> Back-end DTI under a stressed rate scenario. This is the lender's real ceiling: when rates climb and you need to refinance or re-qualify, this is the number they look at.</li>
+        </ul>
+        <p>The composite score gives you a single read on whether the home you're considering is likely to leave room in your life for everything else, or quietly take the room.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow section__kicker">FAQ</span>
+        <h2 id="faq-title">Common questions about real affordability.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>What's the difference between what a lender approves and what I can actually afford?</summary>
+          <div class="faq__a">Lenders typically approve up to 43–50% back-end DTI. That ceiling assumes you have no other priorities. The Comfortable tier (28/36) reflects what most homeowners can sustain without strain. The Stretch tier shows the upper limit — with the risk score quantifying exposure if anything changes.</div>
+        </details>
+        <details>
+          <summary>What is the House Poor Risk Score?</summary>
+          <div class="faq__a">A 0–100 diagnostic combining cash reserves, rate sensitivity, hidden cost exposure, and stress DTI. Lower is safer. It tells you which factor would break first if income dropped, rates rose, or a major repair landed.</div>
+        </details>
+        <details>
+          <summary>Why include a maintenance reserve when calculating affordability?</summary>
+          <div class="faq__a">Because you'll spend it. Skipping it is how buyers end up cash-strapped two years in when the HVAC fails. We default to 1% of home value per year — the most widely accepted rule of thumb — adjustable based on home age and climate.</div>
+        </details>
+        <details>
+          <summary>Should I use Conservative, Comfortable, or Stretch?</summary>
+          <div class="faq__a">Comfortable (28/36) is the sensible default for most buyers. Use Conservative if your income is variable, you're early-career, or you have other major financial goals. Use Stretch only with the risk score in the safe zone — and even then, with eyes open.</div>
+        </details>
+        <details>
+          <summary>Does this account for PMI if my down payment is under 20%?</summary>
+          <div class="faq__a">Yes. When the down payment percentage falls below 20%, we include PMI at roughly 0.75% of the loan annually. This raises the monthly payment, which lowers the affordable home price. To eliminate PMI, increase the down payment to 20% or use a different loan type.</div>
+        </details>
+        <details>
+          <summary>What if I have a co-borrower or two incomes?</summary>
+          <div class="faq__a">Combine both incomes into the income field and combine all monthly debt obligations into the debts field. The DTI ratios apply to household income, so the math handles two-earner households the same way.</div>
+        </details>
+        <details>
+          <summary>Why does my approved loan amount feel higher than the Comfortable tier?</summary>
+          <div class="faq__a">Lenders use back-end DTI ceilings of 43–50%. The Comfortable tier uses 36%. Your bank may approve $475K when this calculator suggests $340K — and both numbers are mathematically consistent. The bank is showing you the maximum; this calculator is showing you what's livable. Use whichever fits your goals.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RELATED ========== -->
+  <section class="section section--surface" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <span class="eyebrow section__kicker">Keep going</span>
+        <h2 id="related-title">Related calculators.</h2>
+      </div>
+      <div class="related">
+        <a class="rcard" href="true-monthly-cost-calculator.html">
+          <span class="rcard__tag">Buying</span>
+          <h4>True Monthly Cost</h4>
+          <p>Get the complete monthly figure for any specific home — PITI plus HOA, PMI, and maintenance.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="rent-vs-buy-calculator.html">
+          <span class="rcard__tag">Rent vs Buy</span>
+          <h4>Should I rent or buy?</h4>
+          <p>Compare total cost over your real time horizon, with appreciation and opportunity cost included.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+        <a class="rcard" href="fha-vs-conventional-calculator.html">
+          <span class="rcard__tag">Financing</span>
+          <h4>FHA vs Conventional</h4>
+          <p>If your down payment is tight, model both loan types over your hold period and see which actually wins.</p>
+          <span class="rcard__go">Open</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="ctaband reveal">
+        <span class="eyebrow" style="color:#9BE08E">Next step</span>
+        <h2 style="margin-top:.85rem">Found a price that fits? Now check what each home actually costs.</h2>
+        <p>Affordability tells you the price band. The True Monthly Cost calculator tells you the real number for a specific home, with every line item exposed.</p>
+        <div class="ctaband__row">
+          <a href="true-monthly-cost-calculator.html" class="btn">Open True Monthly Cost</a>
+          <a href="listing-reality-check.html" class="btn btn--ghost">Run a Listing Reality Check</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* === Standard scripts === */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* === Affordability calculator === */
+  var fmt = function(n){
+    if (!isFinite(n)) n = 0;
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+  var fmtK = function(n){
+    if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return '$' + Math.round(n/1e3) + 'K';
+    return '$' + Math.round(n);
+  };
+
+  var ids = ['inpInc','inpDebt','inpDown','inpRes','inpRate','inpTerm','inpTax','inpMaint','inpIns','inpHoa'];
+  var el = {};
+  ids.forEach(function(id){ el[id] = document.getElementById(id); });
+
+  function maxPrice(income, debts, downCash, frontDTI, backDTI, rate, term, taxP, maintP, insMo, hoa){
+    var maxFront = (income / 12) * frontDTI;
+    var maxBack  = (income / 12) * backDTI - debts;
+    var M = Math.min(maxFront, maxBack);
+    if (M <= 0) return {price:0, payment:0, pi:0, propTax:0, ins:insMo, pmi:0, hoa:hoa, maint:0};
+
+    var r = rate / 12;
+    var n = term * 12;
+    var A = r === 0 ? (1 / n) : (Math.pow(1+r, n) * r) / (Math.pow(1+r, n) - 1);
+    var K = (taxP + maintP) / 12;
+
+    /* First pass without PMI */
+    var P = (M - insMo - hoa + downCash * A) / (A + K);
+    if (P < 0) P = 0;
+
+    /* If down% falls below 20%, add PMI */
+    var pmiR = 0.0075 / 12;
+    if (downCash / Math.max(1, P) < 0.20){
+      P = (M - insMo - hoa + downCash * (A + pmiR)) / (A + K + pmiR);
+      if (P < 0) P = 0;
+    }
+
+    var loan = Math.max(0, P - downCash);
+    var pi = loan * A;
+    var propTax = (P * taxP) / 12;
+    var maint = (P * maintP) / 12;
+    var pmi = (downCash / Math.max(1, P)) < 0.20 ? loan * pmiR : 0;
+    var payment = pi + propTax + insMo + pmi + hoa + maint;
+
+    return {
+      price: P,
+      payment: payment,
+      pi: pi,
+      propTax: propTax,
+      ins: insMo,
+      pmi: pmi,
+      hoa: hoa,
+      maint: maint,
+      loan: loan
+    };
+  }
+
+  function compute(){
+    var income = +el.inpInc.value || 0;
+    var debts  = +el.inpDebt.value || 0;
+    var downC  = +el.inpDown.value || 0;
+    var res    = +el.inpRes.value || 0;
+    var rate   = (+el.inpRate.value || 0) / 100;
+    var term   = +el.inpTerm.value || 30;
+    var taxP   = (+el.inpTax.value || 0) / 100;
+    var maintP = (+el.inpMaint.value || 0) / 100;
+    var insMo  = +el.inpIns.value || 0;
+    var hoa    = +el.inpHoa.value || 0;
+
+    var cons = maxPrice(income, debts, downC, .25, .33, rate, term, taxP, maintP, insMo, hoa);
+    var comf = maxPrice(income, debts, downC, .28, .36, rate, term, taxP, maintP, insMo, hoa);
+    var str  = maxPrice(income, debts, downC, .33, .43, rate, term, taxP, maintP, insMo, hoa);
+
+    document.getElementById('priceCons').textContent = fmtK(cons.price);
+    document.getElementById('payCons').textContent   = '~' + fmt(cons.payment) + '/mo · safe even with income shocks';
+    document.getElementById('priceComf').textContent = fmtK(comf.price);
+    document.getElementById('payComf').textContent   = '~' + fmt(comf.payment) + '/mo · the historical default';
+    document.getElementById('priceStr').textContent  = fmtK(str.price);
+    document.getElementById('payStr').textContent    = '~' + fmt(str.payment) + '/mo · upper limit · check risk score';
+
+    /* === House Poor Risk Score (computed at Comfortable tier) === */
+    var monthlyHousing = comf.payment;
+    var pi = comf.pi;
+    var loan = comf.loan;
+
+    /* Factor 1 — reserves: months of housing covered */
+    var monthsRes = monthlyHousing > 0 ? res / monthlyHousing : 0;
+    var rRes;
+    if (monthsRes >= 6) rRes = 0;
+    else if (monthsRes >= 3) rRes = 50 * (6 - monthsRes) / 3;
+    else rRes = 50 + 50 * (3 - monthsRes) / 3;
+    rRes = Math.max(0, Math.min(100, rRes));
+
+    /* Factor 2 — rate sensitivity: % payment increase at +1pp */
+    var rStress = (rate + 0.01) / 12;
+    var nMo = term * 12;
+    var Astress = rStress === 0 ? (1 / nMo) : (Math.pow(1+rStress, nMo) * rStress) / (Math.pow(1+rStress, nMo) - 1);
+    var piStress = loan * Astress;
+    var paymentStress = piStress + comf.propTax + comf.ins + comf.pmi + comf.hoa + comf.maint;
+    var rateIncreasePct = monthlyHousing > 0 ? ((paymentStress - monthlyHousing) / monthlyHousing) * 100 : 0;
+    var rRate;
+    if (rateIncreasePct < 8) rRate = 0;
+    else if (rateIncreasePct < 15) rRate = 50 * (rateIncreasePct - 8) / 7;
+    else rRate = 50 + 50 * Math.min(15, rateIncreasePct - 15) / 15;
+    rRate = Math.max(0, Math.min(100, rRate));
+
+    /* Factor 3 — hidden cost exposure: non-PI / total */
+    var hiddenShare = monthlyHousing > 0 ? (1 - pi / monthlyHousing) * 100 : 0;
+    var rHidden;
+    if (hiddenShare < 30) rHidden = 0;
+    else if (hiddenShare < 50) rHidden = 50 * (hiddenShare - 30) / 20;
+    else rHidden = 50 + 50 * Math.min(30, hiddenShare - 50) / 30;
+    rHidden = Math.max(0, Math.min(100, rHidden));
+
+    /* Factor 4 — stress DTI: back-end at +1pp */
+    var stressDTI = income > 0 ? ((paymentStress + debts) * 12 / income) * 100 : 0;
+    var rStressDTI;
+    if (stressDTI < 36) rStressDTI = 0;
+    else if (stressDTI < 43) rStressDTI = 50 * (stressDTI - 36) / 7;
+    else if (stressDTI < 50) rStressDTI = 50 + 50 * (stressDTI - 43) / 7;
+    else rStressDTI = 100;
+    rStressDTI = Math.max(0, Math.min(100, rStressDTI));
+
+    /* Composite */
+    var score = Math.round(rRes * 0.30 + rRate * 0.25 + rHidden * 0.20 + rStressDTI * 0.25);
+
+    document.getElementById('riskNum').textContent = score;
+    var fill = document.getElementById('riskFill');
+    fill.style.width = score + '%';
+
+    function setFactor(barId, valId, pct, valText){
+      var b = document.getElementById(barId);
+      var v = document.getElementById(valId);
+      b.style.width = Math.max(2, pct) + '%';
+      b.classList.remove('is-warn','is-bad');
+      if (pct >= 65) b.classList.add('is-bad');
+      else if (pct >= 35) b.classList.add('is-warn');
+      v.textContent = valText;
+    }
+
+    function tier(p){
+      if (p < 25) return 'low risk';
+      if (p < 50) return 'moderate';
+      if (p < 75) return 'elevated';
+      return 'high risk';
+    }
+
+    setFactor('rfRes',   'rfResV',
+      rRes,
+      monthsRes.toFixed(1) + ' mo · ' + tier(rRes));
+    setFactor('rfRate',  'rfRateV',
+      rRate,
+      '+' + rateIncreasePct.toFixed(0) + '% at +1pp · ' + tier(rRate));
+    setFactor('rfHidden','rfHiddenV',
+      rHidden,
+      hiddenShare.toFixed(0) + '% of total · ' + tier(rHidden));
+    setFactor('rfStress','rfStressV',
+      rStressDTI,
+      stressDTI.toFixed(0) + '% back-end · ' + tier(rStressDTI));
+
+    var overallWord =
+      score < 25 ? 'low' :
+      score < 50 ? 'low–moderate' :
+      score < 75 ? 'elevated' : 'high';
+
+    document.getElementById('riskSummary').innerHTML =
+      'At the Comfortable tier, your reserves cover roughly <strong>' + monthsRes.toFixed(1) +
+      ' months</strong> of housing cost and a 1-point rate shock would raise your payment by <strong>' +
+      fmt(paymentStress - monthlyHousing) + '/mo</strong>. Overall risk is <strong>' + overallWord + '</strong>.';
+  }
+
+  ids.forEach(function(id){ if (el[id]) el[id].addEventListener('input', compute); });
+  compute();
+})();
+</script>
+
+</body>
+</html>

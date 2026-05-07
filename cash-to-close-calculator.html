@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Cash to Close Calculator — The wire-day total | OwningCost</title>
+<meta name="description" content="The exact number you'll wire on closing day — down payment plus closing costs minus earnest money and seller credits. Production-grade math." />
+<link rel="canonical" href="https://owningcost.com/cash-to-close-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Cash to Close Calculator — The wire-day total" />
+<meta property="og:description" content="The exact number you'll wire on closing day — down payment plus closing costs minus earnest money and seller credits. Production-grade math." />
+<meta property="og:url" content="https://owningcost.com/cash-to-close-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Cash to Close Calculator — The wire-day total | OwningCost" />
+<meta name="twitter:description" content="The exact number you'll wire on closing day — down payment plus closing costs minus earnest money and seller credits. Production-grade math." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Cash to Close.", "item": "https://owningcost.com/"}]}, {"@type": "WebApplication", "name": "Cash to Close.", "url": "https://owningcost.com/cash-to-close-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "The exact number you'll wire on closing day — down payment plus closing costs minus earnest money and seller credits. Production-grade math.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is cash to close different from closing costs?", "acceptedAnswer": {"@type": "Answer", "text": "Closing costs are just the fees and prepaids — typically 2–5% of price. Cash to close is the wire amount on closing day, which equals down payment + closing costs − any credits or earnest money already paid. The Closing Cost calculator handles the fees side; this one handles the all-in wire."}}, {"@type": "Question", "name": "Can my entire down payment come from a gift?", "acceptedAnswer": {"@type": "Answer", "text": "Usually yes, with documentation. Conventional loans for primary residences allow 100% gift down (with a gift letter from the donor). FHA loans allow gift funds for the entire down payment. The lender will require a paper trail: gift letter, donor's statement showing the funds, and the receipt of funds in your account. Plan 60+ days ahead."}}, {"@type": "Question", "name": "What's earnest money typically?", "acceptedAnswer": {"@type": "Answer", "text": "1–3% of purchase price is typical, with hot markets pushing higher. Earnest money goes into escrow when you go under contract and is applied as a credit at closing. If you back out for a reason not covered in your contract, you forfeit it; if the contract terminates for an inspection or financing contingency, you usually get it back."}}, {"@type": "Question", "name": "Can I wire from a brokerage account?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes. Most title companies want the wire from a bank account in your name. Wires from brokerage accounts are often acceptable but can be slower; transfer to a bank checking account 5–7 business days before closing to be safe."}}, {"@type": "Question", "name": "What's a 'no money down' VA closing actually look like?", "acceptedAnswer": {"@type": "Answer", "text": "Cash to close on a 0% down VA loan is typically just the closing costs minus any seller credits, plus prepaids. On a $400K VA loan, that often lands at $6,000–$10,000 cash to close — sometimes lower with seller concessions covering all closing costs."}}, {"@type": "Question", "name": "Why did my cash-to-close number change between estimate and closing?", "acceptedAnswer": {"@type": "Answer", "text": "Prorations finalize as the closing date is set; insurance binders update; tax credits shift. Small changes (a few hundred dollars) are normal. Changes over $1,000 should be questioned — ask your closer to walk you through the line items that moved."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Cash to Close.</span>
+    </nav>
+  </div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <div class="phero__grid">
+    <span class="eyebrow">Buying</span>
+    <h1 id="phero-title">Cash to Close.</h1>
+    <p class="phero__sub">The exact wire amount you'll need on closing day. Down payment plus closing costs, with earnest money and seller credits applied.</p>
+    <div class="phero__meta">
+      <span class="chip is-live">Live tool</span>
+      <span class="chip">Wire-day total</span><span class="chip">Credits applied</span><span class="chip">Closing-day ready</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="calc">
+  <div class="container">
+    <form class="calc reveal" onsubmit="return false" aria-label="Cash to Close.">
+      <div class="calc__form">
+        <h3>Purchase</h3>
+
+<div class="field">
+  <div class="field__label"><span>Home price</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ccPrice" value="425000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Down payment</span><span class="field__hint">% of price</span></div>
+  <div class="field__input"><input type="number" id="ccDownP" value="20" min="0" max="100" step="0.5"><span class="suffix">%</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">Closing costs</h3>
+
+<div class="field">
+  <div class="field__label"><span>Estimated closing costs</span><span class="field__hint">% of price · default 2.5%</span></div>
+  <div class="field__input"><input type="number" id="ccClosing" value="2.5" min="0" max="10" step="0.1"><span class="suffix">%</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">Credits and earnest money</h3>
+
+<div class="field">
+  <div class="field__label"><span>Earnest money already paid</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ccEarn" value="5000" min="0" step="500"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Seller credits</span><span class="field__hint">negotiated concession</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ccSeller" value="0" min="0" step="500"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Lender credits</span><span class="field__hint">if any</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ccLender" value="0" min="0" step="500"></div>
+</div>
+      </div>
+      <div class="calc__out" aria-live="polite">
+        <h3>Cash to close</h3>
+<div class="calc__total">
+  <span id="ctcTotal">$90,625</span>
+  <small>the wire amount on closing day</small>
+</div>
+
+<p class="calc__summary">This is what you'll need <strong>liquid and ready to wire</strong> 24 hours before closing. The wire amount is verified by the title company.</p>
+
+<div class="calc__rows">
+  <div class="calc__row"><span class="sw" style="background:var(--blue-600)"></span><span class="nm">Down payment</span><span class="am" id="ctcDown">$85,000</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--blue-400)"></span><span class="nm">+ Closing costs</span><span class="am" id="ctcCC">$10,625</span></div>
+  <div class="calc__row"><span class="sw" style="background:var(--green-500)"></span><span class="nm">− Earnest money</span><span class="am" id="ctcEar">−$5,000</span></div>
+  <div class="calc__row"><span class="sw" style="background:#9BE08E"></span><span class="nm">− Seller credits</span><span class="am" id="ctcSel">$0</span></div>
+  <div class="calc__row"><span class="sw" style="background:#7B61D5"></span><span class="nm">− Lender credits</span><span class="am" id="ctcLen">$0</span></div>
+</div>
+
+<details class="calc__math">
+  <summary>How this is calculated</summary>
+  <div class="calc__math__body">
+    <p><strong>Cash to close</strong> = down payment + closing costs − earnest money − seller credits − lender credits.</p>
+    <p>The down payment and closing costs are owed at closing. Earnest money was paid when the contract was signed, so it's credited back. Seller credits and lender credits offset the buyer's total.</p>
+    <p>This calculator does not account for prorated taxes or HOA dues — those typically appear as line items on the closing disclosure but vary by closing date. Add roughly $200–$800 in either direction.</p>
+  </div>
+</details>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">Cash to close in plain terms</span>
+<h2 style="margin-top:.85rem">The exact dollar amount you'll wire on closing day.</h2>
+<p class="lede">Cash to close is the single number on the closing disclosure that matters most operationally — it's what your title company will tell you to wire 24 hours before signing. It includes your down payment, your closing costs, and any prorations, with credits applied.</p>
+
+<h3>The math</h3>
+<p>Cash to close = <strong>down payment + closing costs − earnest money − seller credits − lender credits</strong>. The down payment is the largest piece on most purchases. Closing costs typically run 2–5% of price. Earnest money — paid when you went under contract — gets applied as a credit at closing.</p>
+
+<h3>Why the number isn't always intuitive</h3>
+<ul>
+  <li><strong>Earnest money credit can surprise you</strong> — it's already paid, so seeing it deducted from cash to close can make people think the deal got cheaper. It didn't; the cash just moved earlier.</li>
+  <li><strong>Seller credits feel like a discount but are technically a transfer.</strong> The seller agrees to pay X dollars of your closing costs at closing, reducing your cash-to-close need. Some lenders cap how much seller credit can offset (typically 3% of price for conventional, 6% for FHA).</li>
+  <li><strong>Prorated property tax can swing the number.</strong> If you close mid-year and the seller already paid the year's property tax, you'll owe them back the months you'll occupy. If the tax hasn't been paid yet, the seller credits you their portion.</li>
+  <li><strong>The HOA prorate.</strong> Same logic — if you close mid-month, you'll prorate the HOA dues. Usually small, sometimes not.</li>
+</ul>
+
+<h3>Wire-day checklist</h3>
+<ol>
+  <li><strong>Verify the wire instructions verbally.</strong> Wire fraud in real estate is rampant. Call the title company at a number you found independently — not in the email — to confirm wire details.</li>
+  <li><strong>Confirm 48 hours before signing.</strong> The cash-to-close number on the closing disclosure can change up to closing day if there are late additions to the prorations.</li>
+  <li><strong>Have a backup payment method.</strong> If the wire doesn't arrive in time, some title companies accept cashier's checks. Confirm with your closer in advance.</li>
+  <li><strong>Bring ID.</strong> Government-issued photo ID, sometimes two pieces. The title company will tell you what's required.</li>
+</ol>
+
+<div class="callout"><strong>Wire fraud warning:</strong> if you receive an email with updated wire instructions in the days before closing, treat it as fraudulent. Verify any change verbally with the title company at a phone number you sourced from your contract or their website — never from the email itself.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common questions about cash to close.</h2>
+    </div>
+    <div class="faq">
+      <details>
+  <summary>How is cash to close different from closing costs?</summary>
+  <div class="faq__a">Closing costs are just the fees and prepaids — typically 2–5% of price. Cash to close is the wire amount on closing day, which equals down payment + closing costs − any credits or earnest money already paid. The Closing Cost calculator handles the fees side; this one handles the all-in wire.</div>
+</details>
+<details>
+  <summary>Can my entire down payment come from a gift?</summary>
+  <div class="faq__a">Usually yes, with documentation. Conventional loans for primary residences allow 100% gift down (with a gift letter from the donor). FHA loans allow gift funds for the entire down payment. The lender will require a paper trail: gift letter, donor's statement showing the funds, and the receipt of funds in your account. Plan 60+ days ahead.</div>
+</details>
+<details>
+  <summary>What's earnest money typically?</summary>
+  <div class="faq__a">1–3% of purchase price is typical, with hot markets pushing higher. Earnest money goes into escrow when you go under contract and is applied as a credit at closing. If you back out for a reason not covered in your contract, you forfeit it; if the contract terminates for an inspection or financing contingency, you usually get it back.</div>
+</details>
+<details>
+  <summary>Can I wire from a brokerage account?</summary>
+  <div class="faq__a">Sometimes. Most title companies want the wire from a bank account in your name. Wires from brokerage accounts are often acceptable but can be slower; transfer to a bank checking account 5–7 business days before closing to be safe.</div>
+</details>
+<details>
+  <summary>What's a 'no money down' VA closing actually look like?</summary>
+  <div class="faq__a">Cash to close on a 0% down VA loan is typically just the closing costs minus any seller credits, plus prepaids. On a $400K VA loan, that often lands at $6,000–$10,000 cash to close — sometimes lower with seller concessions covering all closing costs.</div>
+</details>
+<details>
+  <summary>Why did my cash-to-close number change between estimate and closing?</summary>
+  <div class="faq__a">Prorations finalize as the closing date is set; insurance binders update; tax credits shift. Small changes (a few hundred dollars) are normal. Changes over $1,000 should be questioned — ask your closer to walk you through the line items that moved.</div>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Keep going</span>
+      <h2>Related calculators.</h2>
+    </div>
+    <div class="related">
+      <a class="rcard" href="closing-cost-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Closing Cost Estimator</h4>
+  <p>Itemize the closing fees by state — title, escrow, lender, appraisal, prepaids.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="down-payment-strategy-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Down Payment Strategy</h4>
+  <p>How 5%, 10%, 15%, or 20% changes monthly cost, PMI duration, and cash to close.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="first-time-homebuyer-guide.html">
+  <span class="rcard__tag">Guide</span>
+  <h4>First-time homebuyer guide</h4>
+  <p>From pre-approval to wire day — what to expect at each stage.</p>
+  <span class="rcard__go">Open</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">After closing</span>
+      <h2 style="margin-top:.85rem">Now confirm what each month will cost.</h2>
+      <p>Cash to close is one number. The True Monthly Cost calculator gives you the recurring number — every month after closing, with every line item exposed.</p>
+      <div class="ctaband__row">
+        <a href="true-monthly-cost-calculator.html" class="btn">Open True Monthly Cost</a>
+        <a href="affordability-calculator.html" class="btn btn--ghost">Run an Affordability check</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var el = {
+    price:  document.getElementById('ccPrice'),
+    downP:  document.getElementById('ccDownP'),
+    closing:document.getElementById('ccClosing'),
+    earn:   document.getElementById('ccEarn'),
+    seller: document.getElementById('ccSeller'),
+    lender: document.getElementById('ccLender')
+  };
+  var fmt = function(n,signed){
+    if(!isFinite(n))n=0;
+    if (signed && n > 0) return '−$' + Math.round(n).toLocaleString('en-US');
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+
+  function compute(){
+    var price = +el.price.value || 0;
+    var downP = (+el.downP.value || 0)/100;
+    var ccP   = (+el.closing.value || 0)/100;
+    var earn  = +el.earn.value || 0;
+    var sell  = +el.seller.value || 0;
+    var lend  = +el.lender.value || 0;
+
+    var down = price * downP;
+    var cc   = price * ccP;
+    var total = down + cc - earn - sell - lend;
+    if (total < 0) total = 0;
+
+    document.getElementById('ctcTotal').textContent = fmt(total);
+    document.getElementById('ctcDown').textContent = fmt(down);
+    document.getElementById('ctcCC').textContent = fmt(cc);
+    document.getElementById('ctcEar').textContent = fmt(earn, true);
+    document.getElementById('ctcSel').textContent = fmt(sell, true);
+    document.getElementById('ctcLen').textContent = fmt(lend, true);
+  }
+  ['price','downP','closing','earn','seller','lender'].forEach(function(k){
+    el[k].addEventListener('input', compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

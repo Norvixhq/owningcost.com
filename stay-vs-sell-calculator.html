@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Stay vs Sell Break-Even Calculator | OwningCost</title>
+<meta name="description" content="Break-even analysis for selling now vs staying. Selling within three years almost always loses; this calculator shows when staying actually pays off." />
+<link rel="canonical" href="https://owningcost.com/stay-vs-sell-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Stay vs Sell Break-Even Calculator" />
+<meta property="og:description" content="Break-even analysis for selling now vs staying. Selling within three years almost always loses; this calculator shows when staying actually pays off." />
+<meta property="og:url" content="https://owningcost.com/stay-vs-sell-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Stay vs Sell Break-Even Calculator | OwningCost" />
+<meta name="twitter:description" content="Break-even analysis for selling now vs staying. Selling within three years almost always loses; this calculator shows when staying actually pays off." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Stay vs Sell Break-Even.", "item": "https://owningcost.com/"}]}, {"@type": "WebApplication", "name": "Stay vs Sell Break-Even.", "url": "https://owningcost.com/stay-vs-sell-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Break-even analysis for selling now vs staying. Selling within three years almost always loses; this calculator shows when staying actually pays off.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What's a realistic selling cost?", "acceptedAnswer": {"@type": "Answer", "text": "7% is a good default. 5–6% goes to agent commissions (split between listing and buyer's agents). 1% covers title, escrow, and recording. 1–2% covers concessions and minor repairs. In hot markets with bidding wars and skipped repairs, you can sometimes net closer to 6%. In slower markets with significant concessions, 8–9% is realistic."}}, {"@type": "Question", "name": "Should I include the cost of buying a new home?", "acceptedAnswer": {"@type": "Answer", "text": "This calculator doesn't, because it's modeling the standalone sell-vs-stay decision. If you'd buy elsewhere, add buyer-side closing costs (~2.5% of new purchase price) to the stay scenario as a cost avoided. The Rent vs Buy calculator handles a fuller version of this comparison."}}, {"@type": "Question", "name": "What about renting it out instead of selling?", "acceptedAnswer": {"@type": "Answer", "text": "A different decision. Run the cap rate: annual rent (less expenses) divided by current value. A property with 5%+ cap rate and reliable tenant demand often justifies keeping. Sub-3% cap rates (common in expensive coastal markets) typically don't justify the management overhead."}}, {"@type": "Question", "name": "How does mortgage interest deduction affect this?", "acceptedAnswer": {"@type": "Answer", "text": "Marginally. Most homeowners take the standard deduction post-2017 tax law changes, which makes the mortgage interest deduction irrelevant for them. High-income owners with large mortgages in high-tax states still benefit, but not by enough to change the staying decision in most cases."}}, {"@type": "Question", "name": "What if my home value has appreciated a lot since purchase?", "acceptedAnswer": {"@type": "Answer", "text": "Capital gains exclusion applies — $250K single, $500K married filing jointly, on a primary residence held 2 of the last 5 years. Most owners aren't taxed on the sale. The calculator doesn't model capital gains explicitly because the exclusion handles the typical case."}}, {"@type": "Question", "name": "Should I just refinance instead of selling?", "acceptedAnswer": {"@type": "Answer", "text": "Different question. Refinancing keeps the home and lowers the monthly cost; selling exits the home and frees the equity. If staying is the right call but the monthly is uncomfortable, refinancing (when rates allow) is the answer. If exiting the home is the right call, refinancing doesn't help."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Stay vs Sell Break-Even.</span>
+    </nav>
+  </div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <div class="phero__grid">
+    <span class="eyebrow">Owning</span>
+    <h1 id="phero-title">Stay vs Sell Break-Even.</h1>
+    <p class="phero__sub">Selling costs run 7–9% of sale price. The break-even calculator shows when net proceeds from staying overtake selling today — and when they don't.</p>
+    <div class="phero__meta">
+      <span class="chip is-live">Live tool</span>
+      <span class="chip">Net proceeds</span><span class="chip">Hold-period math</span><span class="chip">Break-even year</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="calc">
+  <div class="container">
+    <form class="calc reveal" onsubmit="return false" aria-label="Stay vs Sell Break-Even.">
+      <div class="calc__form">
+        <h3>Your home now</h3>
+
+<div class="field">
+  <div class="field__label"><span>Estimated current value</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssVal" value="525000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Loan balance</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssLoan" value="320000" min="0" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Original purchase price</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssOrig" value="425000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Years owned so far</span></div>
+  <div class="field__input"><input type="number" id="ssYrs" value="3" min="0" max="30" step="1"><span class="suffix">yr</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">If you stay</h3>
+
+<div class="field">
+  <div class="field__label"><span>Annual appreciation</span></div>
+  <div class="field__input"><input type="number" id="ssAppr" value="3.0" min="-5" max="15" step="0.25"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Total monthly housing</span><span class="field__hint">PITI + HOA + maint</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssMonthly" value="3200" min="0" step="50"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Of which, P&amp;I</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="ssPi" value="2050" min="0" step="50"></div>
+</div>
+
+<h3 style="margin-top:1.4rem">If you sell</h3>
+
+<div class="field">
+  <div class="field__label"><span>Selling cost</span><span class="field__hint">% of sale price</span></div>
+  <div class="field__input"><input type="number" id="ssSellPct" value="7" min="0" max="15" step="0.5"><span class="suffix">%</span></div>
+</div>
+      </div>
+      <div class="calc__out" aria-live="polite">
+        <h3>Sell today vs stay and sell later</h3>
+
+<div class="verdict" id="ssVerdict">
+  <div class="verdict__label">Break-even</div>
+  <div class="verdict__head" id="ssHead">Selling today nets about $168,250</div>
+  <div class="verdict__sub" id="ssSub">Staying is worthwhile if you'd hold an additional 4+ years — that's when net proceeds catch up after appreciation and equity build.</div>
+</div>
+
+<div class="compare2" style="margin-top:1.1rem">
+  <div class="cc">
+    <div class="cc__head"><span class="cc__dot cc__dot--a"></span> Sell today</div>
+    <ul>
+      <li>Sale price <strong id="ssSaleNow">$525,000</strong></li>
+      <li>− Selling costs <strong id="ssCost">−$36,750</strong></li>
+      <li>− Loan payoff <strong id="ssPayoff">−$320,000</strong></li>
+      <li>= Net proceeds <strong id="ssNet">$168,250</strong></li>
+    </ul>
+  </div>
+  <div class="cc">
+    <div class="cc__head"><span class="cc__dot cc__dot--b"></span> Stay 5 more years</div>
+    <ul>
+      <li>Future sale price <strong id="ssSaleFut">$608,500</strong></li>
+      <li>− Selling costs <strong id="ssCost2">−$42,595</strong></li>
+      <li>− Future loan balance <strong id="ssBalFut">$291,400</strong></li>
+      <li>= Net proceeds <strong id="ssNetFut">$274,505</strong></li>
+      <li>− Cumulative non-PI payments <strong id="ssNonPi">$69,000</strong></li>
+      <li>≈ Net advantage to staying <strong id="ssAdv">$37,255</strong></li>
+    </ul>
+  </div>
+</div>
+
+<details class="calc__math">
+  <summary>How this is calculated</summary>
+  <div class="calc__math__body">
+    <p><strong>Sell today net</strong> = current value − (current value × selling cost %) − loan balance.</p>
+    <p><strong>Stay scenario</strong> projects forward 5 years using your appreciation rate. The future loan balance comes from amortization at your inputs. Non-PI portion of housing cost (taxes, insurance, HOA, maintenance) is treated as a holding cost; P&amp;I builds equity, so it's not a sunk cost.</p>
+    <p><strong>Break-even year</strong> is the year at which staying nets more than selling now, after subtracting non-PI holding costs.</p>
+    <p>This calculator does not model rental income (if you'd rent it out vs sell), investment returns on the freed-up equity, or the cost of buying a new home.</p>
+  </div>
+</details>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">Stay vs Sell</span>
+<h2 style="margin-top:.85rem">Selling within three years almost always loses money. Here's why.</h2>
+<p class="lede">Most homeowners underestimate the cost of selling. Selling costs run 7–9% of sale price between agent commissions (5–6%), title and escrow (~1%), and concessions/repairs (~1%). On a $525K sale, that's $36,000–$47,000 — a real number that has to be earned back through appreciation and equity build before the sale "pays off."</p>
+
+<h3>The math, simplified</h3>
+<p><strong>Net proceeds today</strong> = current value − selling costs − loan payoff. That's the cash that lands in your account at closing.</p>
+<p><strong>Net proceeds five years from now</strong> = future value (after appreciation) − future selling costs − reduced loan balance (after 5 more years of principal pay-down). The non-P&amp;I portion of your monthly cost (taxes, insurance, HOA, maintenance) accrues over those years as holding cost — money you'd spend whether or not you stayed in this home, but money you could have avoided by renting somewhere cheaper.</p>
+
+<h3>What pushes "stay" to win</h3>
+<ul>
+  <li><strong>Strong appreciation.</strong> A 5% annual market beats a 2% market by a wide margin over five years. Local context matters here — Frisco's recent appreciation is very different from Akron's.</li>
+  <li><strong>Long original loan.</strong> The longer you've owned, the more of each payment is principal vs interest, accelerating equity build.</li>
+  <li><strong>Low non-P&amp;I share.</strong> If your taxes, insurance, and HOA total 30% of your monthly payment, holding is cheap. If they total 55% (Texas suburbs with HOA), holding is expensive.</li>
+  <li><strong>You'd buy a similar home anyway.</strong> If selling means buying a different home of similar cost, you've paid 7% to move sideways. Make sure the new home solves something the old one couldn't.</li>
+</ul>
+
+<h3>What pushes "sell" to win</h3>
+<ul>
+  <li><strong>Stagnant or declining market.</strong> If you don't expect appreciation, holding doesn't recover the selling cost.</li>
+  <li><strong>High holding costs.</strong> Texas, NJ, IL property taxes and HOA-heavy properties make every year of holding expensive in non-equity-building dollars.</li>
+  <li><strong>Significant life change.</strong> Job relocation, divorce, family restructuring, school zone needs. The math may say stay; life often overrides.</li>
+  <li><strong>You'd downsize meaningfully.</strong> If selling and buying smaller frees up substantial cash for retirement or investment, the math improves.</li>
+</ul>
+
+<div class="callout"><strong>A practical rule:</strong> if you've owned for fewer than 3 years and you don't have a major life-driven reason to sell, the math almost always favors staying. After year 5, the answer becomes much more case-dependent — run it.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common questions about stay vs sell break-even.</h2>
+    </div>
+    <div class="faq">
+      <details>
+  <summary>What's a realistic selling cost?</summary>
+  <div class="faq__a">7% is a good default. 5–6% goes to agent commissions (split between listing and buyer's agents). 1% covers title, escrow, and recording. 1–2% covers concessions and minor repairs. In hot markets with bidding wars and skipped repairs, you can sometimes net closer to 6%. In slower markets with significant concessions, 8–9% is realistic.</div>
+</details>
+<details>
+  <summary>Should I include the cost of buying a new home?</summary>
+  <div class="faq__a">This calculator doesn't, because it's modeling the standalone sell-vs-stay decision. If you'd buy elsewhere, add buyer-side closing costs (~2.5% of new purchase price) to the stay scenario as a cost avoided. The Rent vs Buy calculator handles a fuller version of this comparison.</div>
+</details>
+<details>
+  <summary>What about renting it out instead of selling?</summary>
+  <div class="faq__a">A different decision. Run the cap rate: annual rent (less expenses) divided by current value. A property with 5%+ cap rate and reliable tenant demand often justifies keeping. Sub-3% cap rates (common in expensive coastal markets) typically don't justify the management overhead.</div>
+</details>
+<details>
+  <summary>How does mortgage interest deduction affect this?</summary>
+  <div class="faq__a">Marginally. Most homeowners take the standard deduction post-2017 tax law changes, which makes the mortgage interest deduction irrelevant for them. High-income owners with large mortgages in high-tax states still benefit, but not by enough to change the staying decision in most cases.</div>
+</details>
+<details>
+  <summary>What if my home value has appreciated a lot since purchase?</summary>
+  <div class="faq__a">Capital gains exclusion applies — $250K single, $500K married filing jointly, on a primary residence held 2 of the last 5 years. Most owners aren't taxed on the sale. The calculator doesn't model capital gains explicitly because the exclusion handles the typical case.</div>
+</details>
+<details>
+  <summary>Should I just refinance instead of selling?</summary>
+  <div class="faq__a">Different question. Refinancing keeps the home and lowers the monthly cost; selling exits the home and frees the equity. If staying is the right call but the monthly is uncomfortable, refinancing (when rates allow) is the answer. If exiting the home is the right call, refinancing doesn't help.</div>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Keep going</span>
+      <h2>Related calculators.</h2>
+    </div>
+    <div class="related">
+      <a class="rcard" href="rent-vs-buy-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Rent vs Buy</h4>
+  <p>If you'd rent after selling, the broader sell-vs-rent comparison sits here.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="selling-costs-explained.html">
+  <span class="rcard__tag">Guide</span>
+  <h4>Selling costs explained</h4>
+  <p>The 7–9% reality of selling — what each line item covers and where to negotiate.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="refinance-vs-keep-current-mortgage.html">
+  <span class="rcard__tag">Guide</span>
+  <h4>Refinance vs keep current</h4>
+  <p>If exiting isn't the answer, refinancing might be. When the math actually works.</p>
+  <span class="rcard__go">Open</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">After the decision</span>
+      <h2 style="margin-top:.85rem">If you're staying, stress-test the payment.</h2>
+      <p>Insurance and tax creep are quiet. The Payment Shock test surfaces what your payment could become over the next few years if costs continue to rise.</p>
+      <div class="ctaband__row">
+        <a href="payment-shock-calculator.html" class="btn">Run Payment Shock</a>
+        <a href="refinance-vs-keep-current-mortgage.html" class="btn btn--ghost">Run Refinance vs Keep guide</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var el = {
+    val:    document.getElementById('ssVal'),
+    loan:   document.getElementById('ssLoan'),
+    orig:   document.getElementById('ssOrig'),
+    yrs:    document.getElementById('ssYrs'),
+    appr:   document.getElementById('ssAppr'),
+    monthly:document.getElementById('ssMonthly'),
+    pi:     document.getElementById('ssPi'),
+    sellPct:document.getElementById('ssSellPct')
+  };
+  var fmt = function(n,signed){
+    if(!isFinite(n))n=0;
+    var s = signed && n>0 ? '−' : (n<0?'−':'');
+    return s + '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+  };
+
+  function compute(){
+    var val = +el.val.value || 0;
+    var loan = +el.loan.value || 0;
+    var orig = +el.orig.value || 0;
+    var yrsOwned = +el.yrs.value || 0;
+    var appr = (+el.appr.value || 0)/100;
+    var monthly = +el.monthly.value || 0;
+    var pi = +el.pi.value || 0;
+    var sellPct = (+el.sellPct.value || 0)/100;
+
+    // Sell today
+    var sellCostNow = val * sellPct;
+    var netNow = val - sellCostNow - loan;
+
+    // Project 5 years forward
+    var futurePrice = val * Math.pow(1+appr, 5);
+    var futureSellCost = futurePrice * sellPct;
+    // Approximate loan paydown over 5 years: assume ~$3,000/yr principal paid (conservative)
+    // Actually compute from P&I & remaining balance — approximation:
+    // monthly principal in early years roughly = pi - (loan * implied_rate/12)
+    // Use 60-month amortization assuming an effective rate
+    var rateImplied = pi > 0 ? (12 * (pi - loan/360)) / loan : 0.06;  // rough fallback
+    if (rateImplied < 0.02 || rateImplied > 0.12) rateImplied = 0.065;
+    var r = rateImplied / 12;
+    var balance = loan;
+    for (var m = 1; m <= 60; m++){
+      var interest = balance * r;
+      var principal = pi - interest;
+      if (principal < 0) principal = 0;
+      balance -= principal;
+      if (balance < 0) balance = 0;
+    }
+    var futureBalance = balance;
+    var netFuture = futurePrice - futureSellCost - futureBalance;
+    var nonPi5yr = (monthly - pi) * 60;
+
+    var advantage = (netFuture - nonPi5yr) - netNow;
+
+    document.getElementById('ssSaleNow').textContent = fmt(val);
+    document.getElementById('ssCost').textContent = fmt(sellCostNow, true);
+    document.getElementById('ssPayoff').textContent = fmt(loan, true);
+    document.getElementById('ssNet').textContent = fmt(netNow);
+
+    document.getElementById('ssSaleFut').textContent = fmt(futurePrice);
+    document.getElementById('ssCost2').textContent = fmt(futureSellCost, true);
+    document.getElementById('ssBalFut').textContent = fmt(futureBalance);
+    document.getElementById('ssNetFut').textContent = fmt(netFuture);
+    document.getElementById('ssNonPi').textContent = fmt(nonPi5yr);
+    document.getElementById('ssAdv').textContent = fmt(advantage);
+
+    // Verdict
+    var v = document.getElementById('ssVerdict');
+    v.classList.remove('is-buy','is-rent','is-neutral');
+    var head = '', sub = '';
+
+    // Find break-even year by iterating
+    var beYear = -1;
+    var balIter = loan;
+    for (var y = 1; y <= 15; y++){
+      var priceY = val * Math.pow(1+appr, y);
+      var sellY = priceY * sellPct;
+      // Amortize balIter for one more year
+      for (var mm = 1; mm <= 12; mm++){
+        var i = balIter * r;
+        var p = pi - i; if (p<0) p=0;
+        balIter -= p; if (balIter<0) balIter=0;
+      }
+      var netY = priceY - sellY - balIter;
+      var nonPiY = (monthly - pi) * 12 * y;
+      if ((netY - nonPiY) > netNow && beYear < 0){
+        beYear = y;
+      }
+    }
+
+    if (advantage > 5000){
+      v.classList.add('is-buy');
+      head = 'Staying 5+ years adds roughly ' + fmt(advantage) + ' over selling today.';
+      sub = 'Equity build, appreciation, and ongoing P&I principal recovery exceed the holding cost over a multi-year horizon. Selling today on these inputs nets ' + fmt(netNow) + '.';
+    } else if (advantage < -5000){
+      v.classList.add('is-rent');
+      head = 'Selling today nets about ' + fmt(Math.abs(advantage)) + ' more than staying 5 years.';
+      sub = 'Holding costs (the non-P&I portion of your monthly payment) outpace the appreciation and equity build on these inputs. If you have a reason to move, the math supports it.';
+    } else {
+      v.classList.add('is-neutral');
+      head = 'Roughly a tie at the 5-year mark.';
+      sub = 'Net proceeds cross over around year ' + (beYear > 0 ? beYear : '5+') + '. Decide based on life factors — job, family, neighborhood — rather than the math.';
+    }
+    document.getElementById('ssHead').textContent = head;
+    document.getElementById('ssSub').textContent = sub;
+  }
+  ['val','loan','orig','yrs','appr','monthly','pi','sellPct'].forEach(function(k){
+    el[k].addEventListener('input', compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Buy Now vs Wait Calculator — With rent during the wait | OwningCost</title>
+<meta name="description" content="Run the same home now vs 12 months from now under your assumptions for prices and rates — including the rent you'll pay during the wait." />
+<link rel="canonical" href="https://owningcost.com/buy-now-vs-wait-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Buy Now vs Wait Calculator — With rent during the wait" />
+<meta property="og:description" content="Run the same home now vs 12 months from now under your assumptions for prices and rates — including the rent you'll pay during the wait." />
+<meta property="og:url" content="https://owningcost.com/buy-now-vs-wait-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Buy Now vs Wait Calculator — With rent during the wait | OwningCost" />
+<meta name="twitter:description" content="Run the same home now vs 12 months from now under your assumptions for prices and rates — including the rent you'll pay during the wait." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Buy Now vs Wait.", "item": "https://owningcost.com/"}]}, {"@type": "WebApplication", "name": "Buy Now vs Wait.", "url": "https://owningcost.com/buy-now-vs-wait-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Run the same home now vs 12 months from now under your assumptions for prices and rates — including the rent you'll pay during the wait.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does this calculator account for home appreciation?", "acceptedAnswer": {"@type": "Answer", "text": "The 'price change' input does — set it to a positive number if you expect appreciation, or negative if you expect a decline. The default is 0% (flat). Long-run U.S. average is ~3% annual, but local markets vary substantially."}}, {"@type": "Question", "name": "Why does rent during the wait matter so much?", "acceptedAnswer": {"@type": "Answer", "text": "Because it's real money flowing out monthly. A common mistake in wait-vs-buy framing is treating the 12-month wait as a free option. It isn't — you're paying rent the whole time, and that money doesn't come back."}}, {"@type": "Question", "name": "Should I include the opportunity cost on my down payment in either scenario?", "acceptedAnswer": {"@type": "Answer", "text": "This calculator doesn't, because the down payment sits in cash in both scenarios — once now, once in 12 months. The opportunity cost is similar enough that it cancels. The Rent vs Buy calculator does include opportunity cost for longer-horizon decisions."}}, {"@type": "Question", "name": "What if my rent is going up during the wait?", "acceptedAnswer": {"@type": "Answer", "text": "Use the average over the 12-month wait. If rent goes from $2,400 to $2,500 mid-year, $2,450 is a reasonable input."}}, {"@type": "Question", "name": "Why doesn't this account for HOA or property tax?", "acceptedAnswer": {"@type": "Answer", "text": "Because those are nearly identical in both scenarios — the home and the location are the same. Including them adds complexity without changing the answer. If you're modeling two different homes, use the True Monthly Cost calculator at each."}}, {"@type": "Question", "name": "How do I model a buydown or temporary rate?", "acceptedAnswer": {"@type": "Answer", "text": "Use the actual rate you'll pay rather than the headline rate. A 2-1 buydown that gives you 4.75% in year 1 and 5.75% in year 2 should be averaged with year-3+ rates over your hold period for a fair comparison."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html" class="is-active">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span class="current">Buy Now vs Wait.</span>
+    </nav>
+  </div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <div class="phero__grid">
+    <span class="eyebrow">Buying</span>
+    <h1 id="phero-title">Buy Now vs Wait.</h1>
+    <p class="phero__sub">The wait-or-buy decision, with the rent you'll pay during the wait counted honestly. Run both scenarios under your own assumptions for prices and rates.</p>
+    <div class="phero__meta">
+      <span class="chip is-live">Live tool</span>
+      <span class="chip">Rent counted</span><span class="chip">Hold-period totals</span><span class="chip">Honest break-even</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="calc">
+  <div class="container">
+    <form class="calc reveal" onsubmit="return false" aria-label="Buy Now vs Wait.">
+      <div class="calc__form">
+        <h3>The home today</h3>
+
+<div class="field">
+  <div class="field__label"><span>Home price now</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="bnPrice" value="475000" min="50000" step="5000"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Down payment</span></div>
+  <div class="field__input"><input type="number" id="bnDown" value="20" min="3" max="50" step="0.5"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Rate now</span></div>
+  <div class="field__input"><input type="number" id="bnRateNow" value="6.75" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">12 months from now</h3>
+
+<div class="field">
+  <div class="field__label"><span>Price change</span><span class="field__hint">vs today</span></div>
+  <div class="field__input"><input type="number" id="bnPriceChg" value="0" min="-15" max="15" step="0.5"><span class="suffix">%</span></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Rate then</span></div>
+  <div class="field__input"><input type="number" id="bnRateThen" value="6.00" min="0" max="20" step="0.01"><span class="suffix">%</span></div>
+</div>
+
+<h3 style="margin-top:1.4rem">During the wait</h3>
+
+<div class="field">
+  <div class="field__label"><span>Current rent</span></div>
+  <div class="field__input"><span class="prefix">$</span><input type="number" id="bnRent" value="2400" min="0" step="50"></div>
+</div>
+
+<div class="field">
+  <div class="field__label"><span>Hold period after buying</span></div>
+  <div class="field__input"><input type="number" id="bnHold" value="7" min="1" max="30" step="1"><span class="suffix">yr</span></div>
+</div>
+      </div>
+      <div class="calc__out" aria-live="polite">
+        <h3>Total cost over hold period</h3>
+
+<div class="verdict" id="bnVerdict">
+  <div class="verdict__label">Verdict</div>
+  <div class="verdict__head" id="bnHead">Buy now wins by about $5,800</div>
+  <div class="verdict__sub" id="bnSub">The 12-month wait costs $28,800 in rent. The price/rate move would need to be larger to overcome it.</div>
+</div>
+
+<div class="compare2" style="margin-top:1.1rem">
+  <div class="cc">
+    <div class="cc__head"><span class="cc__dot cc__dot--a"></span> Buy now</div>
+    <ul>
+      <li>Price <strong id="bnBuyPrice">$475,000</strong></li>
+      <li>Rate <strong id="bnBuyRate">6.75%</strong></li>
+      <li>Monthly P&amp;I <strong id="bnBuyPi">$2,464</strong></li>
+      <li>Total over <span id="bnBuyHold">7</span> years <strong id="bnBuyTotal">$293,776</strong></li>
+    </ul>
+  </div>
+  <div class="cc">
+    <div class="cc__head"><span class="cc__dot cc__dot--b"></span> Wait 12 months</div>
+    <ul>
+      <li>Price <strong id="bnWaitPrice">$475,000</strong></li>
+      <li>Rate <strong id="bnWaitRate">6.00%</strong></li>
+      <li>Monthly P&amp;I <strong id="bnWaitPi">$2,278</strong></li>
+      <li>+ Rent during wait <strong id="bnWaitRent">$28,800</strong></li>
+      <li>Total over <span id="bnWaitHold">7</span> years <strong id="bnWaitTotal">$299,556</strong></li>
+    </ul>
+  </div>
+</div>
+
+<details class="calc__math">
+  <summary>How this is calculated</summary>
+  <div class="calc__math__body">
+    <p><strong>Buy now total</strong> = monthly P&amp;I × hold months. Calculated at today's price and today's rate.</p>
+    <p><strong>Wait total</strong> = (rent × 12) + (monthly P&amp;I × hold months). Wait scenario uses the future price and future rate; rent during the wait counts as cost.</p>
+    <p>This calculator focuses on the financing portion of the comparison. Property tax and insurance are similar in both scenarios, so they cancel from the math. For a fully-loaded comparison including taxes, HOA, and maintenance, run the True Monthly Cost calculator at each scenario.</p>
+  </div>
+</details>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">Beyond the headline rate</span>
+<h2 style="margin-top:.85rem">"Wait for rates to drop" ignores the rent you'll pay during the wait.</h2>
+<p class="lede">The wait-or-buy decision is rarely as one-sided as headline-rate framing suggests. A 75-basis-point rate drop sounds decisive — until you account for 12 months of rent during the wait, plus whatever the home does in price.</p>
+
+<h3>What's in the comparison</h3>
+<ul>
+  <li><strong>Buy now:</strong> price today × monthly P&amp;I at today's rate, summed over your hold period, plus down payment paid today.</li>
+  <li><strong>Wait 12 months:</strong> price 12 months from now × monthly P&amp;I at the future rate, summed over the same hold period — plus 12 months of rent paid during the wait, plus down payment paid then.</li>
+</ul>
+
+<h3>What's not in the comparison</h3>
+<p>This calculator focuses on financing. Property tax, insurance, HOA, and maintenance are very similar in both scenarios — same home, eventually — so they cancel from the math. The simplification is intentional: it isolates the variables that actually differ between buying now and waiting.</p>
+
+<h3>The break-even rate move</h3>
+<p>For a typical $475K home with $2,400 rent, the break-even is roughly: <strong>each $100 of monthly rent during the wait justifies about a 0.10–0.15 percentage-point rate drop.</strong> So $2,400 of rent for 12 months ($28,800) justifies needing a rate drop of roughly 2.5–3 percentage points to come out ahead — much larger than most "rates will drop" arguments imply.</p>
+
+<h3>When waiting actually wins</h3>
+<ul>
+  <li>You expect a substantial price decline (5%+ in your local market within 12 months).</li>
+  <li>You can rent very cheaply (well below market) during the wait — staying with family, room-mating temporarily.</li>
+  <li>You expect a substantial rate drop (1.5+ percentage points) and current rent is meaningfully below the True Monthly Cost of buying now.</li>
+  <li>You're not yet in a financial position to buy comfortably — waiting is structurally about saving more, not timing.</li>
+</ul>
+
+<h3>When buying now is the right call</h3>
+<ul>
+  <li>You've found the right home and your hold period is long (5+ years). Hold length compounds; small near-term moves wash out.</li>
+  <li>Rent is at or above the True Monthly Cost of comparable purchase. Renting at par with buying loses to buying over any meaningful hold.</li>
+  <li>Your forecast for rates and prices is "I have no idea." Don't optimize against a forecast you don't believe.</li>
+</ul>
+
+<div class="callout"><strong>The honest read:</strong> if the calculator shows a wait advantage of less than $5,000–$8,000 over a 7-year hold, treat it as a tie and decide on non-financial factors. The model uncertainty is larger than the answer.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="faq-title">Common questions about buy now vs wait.</h2>
+    </div>
+    <div class="faq">
+      <details>
+  <summary>Does this calculator account for home appreciation?</summary>
+  <div class="faq__a">The 'price change' input does — set it to a positive number if you expect appreciation, or negative if you expect a decline. The default is 0% (flat). Long-run U.S. average is ~3% annual, but local markets vary substantially.</div>
+</details>
+<details>
+  <summary>Why does rent during the wait matter so much?</summary>
+  <div class="faq__a">Because it's real money flowing out monthly. A common mistake in wait-vs-buy framing is treating the 12-month wait as a free option. It isn't — you're paying rent the whole time, and that money doesn't come back.</div>
+</details>
+<details>
+  <summary>Should I include the opportunity cost on my down payment in either scenario?</summary>
+  <div class="faq__a">This calculator doesn't, because the down payment sits in cash in both scenarios — once now, once in 12 months. The opportunity cost is similar enough that it cancels. The Rent vs Buy calculator does include opportunity cost for longer-horizon decisions.</div>
+</details>
+<details>
+  <summary>What if my rent is going up during the wait?</summary>
+  <div class="faq__a">Use the average over the 12-month wait. If rent goes from $2,400 to $2,500 mid-year, $2,450 is a reasonable input.</div>
+</details>
+<details>
+  <summary>Why doesn't this account for HOA or property tax?</summary>
+  <div class="faq__a">Because those are nearly identical in both scenarios — the home and the location are the same. Including them adds complexity without changing the answer. If you're modeling two different homes, use the True Monthly Cost calculator at each.</div>
+</details>
+<details>
+  <summary>How do I model a buydown or temporary rate?</summary>
+  <div class="faq__a">Use the actual rate you'll pay rather than the headline rate. A 2-1 buydown that gives you 4.75% in year 1 and 5.75% in year 2 should be averaged with year-3+ rates over your hold period for a fair comparison.</div>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Keep going</span>
+      <h2>Related calculators.</h2>
+    </div>
+    <div class="related">
+      <a class="rcard" href="rent-vs-buy-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>Rent vs Buy</h4>
+  <p>If you're not committed to buying eventually, the longer-horizon comparison is here.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="true-monthly-cost-calculator.html">
+  <span class="rcard__tag">Calculator</span>
+  <h4>True Monthly Cost</h4>
+  <p>Run the full monthly figure at each scenario for a fully-loaded comparison.</p>
+  <span class="rcard__go">Open</span>
+</a>
+      <a class="rcard" href="buying-now-vs-waiting-guide.html">
+  <span class="rcard__tag">Guide</span>
+  <h4>Buying now vs waiting</h4>
+  <p>The honest math behind the wait-or-buy question — beyond the headline rate.</p>
+  <span class="rcard__go">Open</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Decide right</span>
+      <h2 style="margin-top:.85rem">Pair this with the long-horizon Rent vs Buy.</h2>
+      <p>Buy Now vs Wait covers the 12-month decision. Rent vs Buy covers the multi-year decision. Both are useful; together they answer most timing questions.</p>
+      <div class="ctaband__row">
+        <a href="rent-vs-buy-calculator.html" class="btn">Open Rent vs Buy</a>
+        <a href="true-monthly-cost-calculator.html" class="btn btn--ghost">Run True Monthly Cost</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var el = {
+    price:    document.getElementById('bnPrice'),
+    down:     document.getElementById('bnDown'),
+    rateNow:  document.getElementById('bnRateNow'),
+    priceChg: document.getElementById('bnPriceChg'),
+    rateThen: document.getElementById('bnRateThen'),
+    rent:     document.getElementById('bnRent'),
+    hold:     document.getElementById('bnHold')
+  };
+  var fmt = function(n){ if(!isFinite(n))n=0; return '$' + Math.round(n).toLocaleString('en-US'); };
+  function pi(loan, annual){
+    var r = annual/12, n = 360;
+    if (loan<=0) return 0;
+    if (r===0) return loan/n;
+    return loan*(Math.pow(1+r,n)*r)/(Math.pow(1+r,n)-1);
+  }
+  function compute(){
+    var price = +el.price.value || 0;
+    var downP = (+el.down.value || 0)/100;
+    var rateNow = (+el.rateNow.value || 0)/100;
+    var priceThen = price * (1 + (+el.priceChg.value || 0)/100);
+    var rateThen = (+el.rateThen.value || 0)/100;
+    var rent = +el.rent.value || 0;
+    var hold = Math.max(1, Math.min(30, +el.hold.value || 7));
+    var months = hold * 12;
+
+    var loanNow = price * (1 - downP);
+    var loanThen = priceThen * (1 - downP);
+    var piNow = pi(loanNow, rateNow);
+    var piThen = pi(loanThen, rateThen);
+
+    var buyTotal = piNow * months + (price * downP);
+    var waitTotal = piThen * months + (priceThen * downP) + (rent * 12);
+
+    var diff = waitTotal - buyTotal;
+
+    document.getElementById('bnBuyPrice').textContent = fmt(price);
+    document.getElementById('bnBuyRate').textContent = ((+el.rateNow.value)).toFixed(2) + '%';
+    document.getElementById('bnBuyPi').textContent = fmt(piNow);
+    document.getElementById('bnBuyHold').textContent = hold;
+    document.getElementById('bnBuyTotal').textContent = fmt(buyTotal);
+
+    document.getElementById('bnWaitPrice').textContent = fmt(priceThen);
+    document.getElementById('bnWaitRate').textContent = ((+el.rateThen.value)).toFixed(2) + '%';
+    document.getElementById('bnWaitPi').textContent = fmt(piThen);
+    document.getElementById('bnWaitRent').textContent = fmt(rent * 12);
+    document.getElementById('bnWaitHold').textContent = hold;
+    document.getElementById('bnWaitTotal').textContent = fmt(waitTotal);
+
+    var v = document.getElementById('bnVerdict');
+    v.classList.remove('is-buy','is-rent','is-neutral');
+    var head = '', sub = '';
+    if (Math.abs(diff) < 1500){
+      v.classList.add('is-neutral');
+      head = 'Roughly a tie.';
+      sub = 'The two paths land within $1,500 over ' + hold + ' years. The decision should rest on non-financial factors — life timing, market preference, flexibility — rather than this math.';
+    } else if (diff > 0){
+      v.classList.add('is-buy');
+      head = 'Buy now wins by about ' + fmt(diff);
+      sub = 'The wait scenario costs more — primarily because rent during the wait is real money, and the rate/price drop would need to be larger to overcome it.';
+    } else {
+      v.classList.add('is-rent');
+      head = 'Waiting wins by about ' + fmt(Math.abs(diff));
+      sub = 'On these inputs, the lower future rate (or price) more than offsets the cost of paying rent during the wait.';
+    }
+    document.getElementById('bnHead').textContent = head;
+    document.getElementById('bnSub').textContent = sub;
+  }
+  ['price','down','rateNow','priceChg','rateThen','rent','hold'].forEach(function(k){
+    el[k].addEventListener('input', compute);
+  });
+  compute();
+})();
+</script>
+
+</body>
+</html>

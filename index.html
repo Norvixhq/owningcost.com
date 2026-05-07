@@ -1,0 +1,1207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>OwningCost — The true cost of renting, buying, and owning a home</title>
+<meta name="description" content="OwningCost is a housing-cost intelligence platform. Transparent calculators, ZIP-level local intelligence, financing comparisons across FHA/VA/USDA/conventional, and AI-assisted decision support — built for real housing decisions." />
+<link rel="canonical" href="https://owningcost.com/" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="OwningCost — The true cost of renting, buying, and owning a home" />
+<meta property="og:description" content="Go beyond the mortgage payment. Calculators, ZIP-level local intelligence, and financing comparisons for real housing decisions." />
+<meta property="og:url" content="https://owningcost.com/" />
+<meta property="og:image" content="https://owningcost.com/image.png" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="OwningCost — The true cost of home" />
+<meta name="twitter:description" content="Calculators, ZIP-level intelligence, and financing comparisons for real housing decisions." />
+<meta name="twitter:image" content="https://owningcost.com/image.png" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="image.png" />
+<link rel="apple-touch-icon" href="image.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="styles.css" />
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://owningcost.com/#organization",
+      "name": "OwningCost",
+      "url": "https://owningcost.com/",
+      "logo": "https://owningcost.com/image.png",
+      "description": "Independent housing-cost intelligence platform with transparent calculators, ZIP-level local data, and financing comparisons."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://owningcost.com/#website",
+      "url": "https://owningcost.com/",
+      "name": "OwningCost",
+      "publisher": { "@id": "https://owningcost.com/#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does OwningCost actually do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OwningCost is a housing-cost intelligence platform. It shows the full monthly cost of housing — mortgage, taxes, insurance, HOA, maintenance, and the costs generic calculators skip. It compares renting versus buying, models financing across FHA, VA, USDA, and conventional, and produces ZIP-level local cost intelligence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is OwningCost a lender?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. OwningCost is independent. We do not originate loans, sell your information, or pass you to a specific lender. Every calculation runs in your browser."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What loan types does OwningCost cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OwningCost covers conventional, FHA, VA, USDA, jumbo, fixed-rate, and adjustable-rate mortgages — with side-by-side comparison calculators that model true cost over your hold period including PMI, mortgage insurance, and rate buydowns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from a mortgage calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A mortgage calculator shows principal and interest. OwningCost shows what you will actually pay each month once property taxes, insurance, HOA, PMI, maintenance, and closing costs are included — plus how that compares to renting and how it varies by ZIP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do the calculators work without signing up?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every calculator on OwningCost is free to use with no account required. The math is transparent and the inputs stay in your browser."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ======================= HEADER ======================= -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="calculators.html">Calculators</a>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="#true-monthly-cost" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+    <a href="calculators.html">Calculators</a>
+    <a href="buying.html">Buying</a>
+    <a href="renting.html">Renting</a>
+    <a href="owning.html">Owning</a>
+    <a href="financing.html">Financing</a>
+    <a href="learn.html">Learn</a>
+    <a href="loan-types.html">Loan types</a>
+    <a href="zip-lookup.html">ZIP intelligence</a>
+    <a href="ai-tools.html">AI tools</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__grid">
+      <div>
+        <span class="eyebrow">Housing Cost Intelligence</span>
+        <h1 class="hero__headline" id="hero-title">
+          The true cost of <em>renting,</em> buying, and&nbsp;owning a home.
+        </h1>
+        <p class="hero__lede">
+          OwningCost is a housing-cost intelligence platform. Calculators that go beyond the mortgage payment, ZIP-level local data, financing comparisons across FHA, VA, USDA, and conventional — built for real housing decisions, not lead generation.
+        </p>
+        <div class="hero__ctas">
+          <a href="#true-monthly-cost" class="btn btn--primary">
+            See your true monthly cost
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="calculators.html" class="btn btn--ghost">Browse calculators</a>
+        </div>
+        <div class="hero__proof">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span><strong>Independent.</strong> Use the tools anonymously — your inputs never leave your browser.</span>
+        </div>
+      </div>
+
+      <!-- Live cost breakdown card -->
+      <aside class="costcard" aria-label="Sample monthly cost breakdown">
+        <div class="costcard__head">
+          <span class="costcard__label">True Monthly Cost</span>
+          <span class="costcard__pill"><span class="dot"></span>Live</span>
+        </div>
+        <div class="costcard__addr">$425,000 home · 20% down · 6.75%</div>
+        <div class="costcard__sub">Single-family · ZIP 75034 · $300/mo HOA</div>
+
+        <div class="costcard__total">
+          <span class="num">$3,533</span>
+          <span class="per">/month</span>
+        </div>
+
+        <div class="bar" role="img" aria-label="Cost composition bar chart">
+          <span class="b1" style="width:62%"></span>
+          <span class="b2" style="width:15%"></span>
+          <span class="b3" style="width:4%"></span>
+          <span class="b5" style="width:9%"></span>
+          <span class="b6" style="width:10%"></span>
+        </div>
+        <div class="bar__legend">Principal &amp; interest · Property tax · Insurance · HOA · Maintenance</div>
+
+        <div class="stack" style="margin-top:1.15rem">
+          <div class="stack__row">
+            <span class="stack__swatch stack__swatch--1"></span>
+            <span class="stack__label">Principal &amp; interest</span>
+            <span class="stack__amt">$2,205</span>
+          </div>
+          <div class="stack__row">
+            <span class="stack__swatch stack__swatch--2"></span>
+            <span class="stack__label">Property tax</span>
+            <span class="stack__amt">$531</span>
+          </div>
+          <div class="stack__row">
+            <span class="stack__swatch stack__swatch--3"></span>
+            <span class="stack__label">Home insurance</span>
+            <span class="stack__amt">$142</span>
+          </div>
+          <div class="stack__row is-hidden">
+            <span class="stack__swatch stack__swatch--5"></span>
+            <span class="stack__label">HOA</span>
+            <span class="stack__amt">$300</span>
+          </div>
+          <div class="stack__row is-hidden">
+            <span class="stack__swatch stack__swatch--6"></span>
+            <span class="stack__label">Maintenance reserve</span>
+            <span class="stack__amt">$354</span>
+          </div>
+          <div class="stack__row--note stack__row">
+            <span>Standard calculators stop at $2,205. We show what comes after.</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ======================= TRUST STRIP ======================= -->
+  <section class="strip" aria-label="Platform proof points">
+    <div class="container strip__row">
+      <span class="strip__label">Built for real decisions</span>
+      <div class="strip__item"><span class="strip__num">25+</span><span class="strip__name">housing calculators</span></div>
+      <div class="strip__item"><span class="strip__num">6</span><span class="strip__name">loan types covered</span></div>
+      <div class="strip__item"><span class="strip__num">0</span><span class="strip__name">signups required</span></div>
+      <div class="strip__item"><span class="strip__num">100%</span><span class="strip__name">transparent math</span></div>
+    </div>
+  </section>
+
+  <!-- ======================= PILLARS ======================= -->
+  <section class="section" aria-labelledby="pillars-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">Three questions, answered</span>
+        <h2 id="pillars-title">Housing math that reflects reality.</h2>
+        <p class="section__sub">Every tool on OwningCost exists to answer a question real renters, buyers, and owners ask — no vanity calculators, no lender bait.</p>
+      </div>
+
+      <div class="pillars">
+        <article class="pillar reveal">
+          <span class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+          </span>
+          <h3>What will this actually cost me each month?</h3>
+          <p>Principal and interest are only the start. See the full monthly figure with taxes, insurance, HOA, PMI, and a realistic maintenance reserve included.</p>
+          <a class="pillar__link" href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+        </article>
+        <article class="pillar reveal">
+          <span class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10M7 12h10M7 17h6"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+          </span>
+          <h3>Am I better off renting or buying?</h3>
+          <p>A side-by-side comparison of total renting cost versus total ownership cost — including opportunity cost, appreciation, and your time horizon.</p>
+          <a class="pillar__link" href="rent-vs-buy-calculator.html">Rent vs Buy</a>
+        </article>
+        <article class="pillar reveal">
+          <span class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <h3>Can I actually afford this home?</h3>
+          <p>Pressure-test a price against your income, debts, down payment, and reserves. Includes our House Poor Risk Score — not just a max-DTI ceiling.</p>
+          <a class="pillar__link" href="affordability-calculator.html">Affordability Check</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= REAL MONTHLY COST FEATURE ======================= -->
+  <section class="section section--surface" id="real-cost" aria-labelledby="rmc-title">
+    <div class="container">
+      <div class="feature">
+        <div>
+          <span class="eyebrow">True Monthly Cost</span>
+          <h2 id="rmc-title">The mortgage payment is only 65% of the story.</h2>
+          <p class="feature__sub">
+            Generic calculators show a principal-and-interest figure. Then property tax arrives. Then insurance renews. Then the HVAC dies. OwningCost shows the complete picture up front — with ZIP-aware defaults so it reflects your market.
+          </p>
+          <ul class="feature__points">
+            <li>
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Every line item, in one place.</strong> Principal, interest, property tax, home insurance, PMI, HOA, and a realistic maintenance reserve — all in one monthly figure.</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>ZIP-aware defaults.</strong> Local tax rates, insurance averages, and maintenance costs preloaded so estimates reflect your specific market, not a national average.</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Built for comparison.</strong> Stack scenarios side by side — different prices, down payments, loan types, or ZIPs.</span>
+            </li>
+          </ul>
+          <div style="margin-top:1.85rem">
+            <a href="true-monthly-cost-calculator.html" class="btn btn--primary">Open the calculator</a>
+          </div>
+        </div>
+
+        <div class="breakdown reveal">
+          <div class="breakdown__head">
+            <h4>Sample · $425,000 home</h4>
+            <span class="val">$3,533</span>
+          </div>
+          <div class="breakdown__rows">
+            <div class="brow">
+              <span class="brow__name">Principal &amp; interest<small>30-yr fixed · 6.75%</small></span>
+              <span class="brow__track"><span class="brow__fill" style="width:92%"></span></span>
+              <span class="brow__amt">$2,205</span>
+            </div>
+            <div class="brow">
+              <span class="brow__name">Property tax<small>1.5% of home value</small></span>
+              <span class="brow__track"><span class="brow__fill" style="width:22%"></span></span>
+              <span class="brow__amt">$531</span>
+            </div>
+            <div class="brow">
+              <span class="brow__name">Home insurance<small>Standard HO-3 coverage</small></span>
+              <span class="brow__track"><span class="brow__fill" style="width:6%"></span></span>
+              <span class="brow__amt">$142</span>
+            </div>
+            <div class="brow">
+              <span class="brow__name">PMI<small>Not required at 20% down</small></span>
+              <span class="brow__track"><span class="brow__fill" style="width:0%"></span></span>
+              <span class="brow__amt">$0</span>
+            </div>
+            <div class="brow">
+              <span class="brow__name">HOA<small>Suburban association</small></span>
+              <span class="brow__track"><span class="brow__fill" style="width:12%"></span></span>
+              <span class="brow__amt">$300</span>
+            </div>
+            <div class="brow">
+              <span class="brow__name">Maintenance reserve<small>~1% of value annually</small></span>
+              <span class="brow__track"><span class="brow__fill" style="width:15%"></span></span>
+              <span class="brow__amt">$354</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= RENT vs BUY ======================= -->
+  <section class="section" id="rent-vs-buy" aria-labelledby="rvb-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">Rent vs Buy</span>
+        <h2 id="rvb-title">Compare your specific scenario, side by side.</h2>
+        <p class="section__sub">The right answer depends on your time horizon, your market, and your trade-offs — not on a national narrative. Run your numbers and see.</p>
+      </div>
+
+      <div class="versus reveal">
+        <div class="vside vside--rent">
+          <span class="vside__tag"><span aria-hidden="true">●</span> Renting</span>
+          <h3>$2,650/mo apartment</h3>
+          <div class="vside__amt">$159,000</div>
+          <div class="vside__per">Total 5-year cost · DFW metro sample</div>
+          <ul class="vside__list">
+            <li><span>Monthly rent</span><span>$2,650</span></li>
+            <li><span>Est. annual increase</span><span>3.8%</span></li>
+            <li><span>Renter's insurance</span><span>$18/mo</span></li>
+            <li><span>Deposit &amp; move-in</span><span>$3,200</span></li>
+            <li><span>Opportunity cost of cash</span><span>Low</span></li>
+          </ul>
+          <p class="vside__verdict"><strong>Often wins when:</strong> you plan to move within 3–5 years, want flexibility, or would rather invest the down payment elsewhere.</p>
+        </div>
+        <div class="versus__divider" aria-hidden="true"></div>
+        <div class="vside vside--buy">
+          <span class="vside__tag"><span aria-hidden="true">●</span> Buying</span>
+          <h3>$425,000 home</h3>
+          <div class="vside__amt">$147,300</div>
+          <div class="vside__per">Net 5-year cost after equity &amp; appreciation</div>
+          <ul class="vside__list">
+            <li><span>True monthly cost</span><span>$3,533</span></li>
+            <li><span>Closing costs (3%)</span><span>$12,750</span></li>
+            <li><span>Equity built (5 yr)</span><span>+$42,180</span></li>
+            <li><span>Est. appreciation (3%)</span><span>+$67,700</span></li>
+            <li><span>Selling costs on exit</span><span>~6%</span></li>
+          </ul>
+          <p class="vside__verdict"><strong>Often wins when:</strong> you'll stay 5+ years, have stable income, and value building equity over liquidity.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:1.85rem">
+        <a href="rent-vs-buy-calculator.html" class="btn btn--primary">Run the rent vs buy calculator</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= LIVE CALCULATOR (true monthly cost preview) ======================= -->
+  <section class="section section--surface" id="true-monthly-cost" aria-labelledby="calc-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">Interactive Tool</span>
+        <h2 id="calc-title">Your true monthly cost, live.</h2>
+        <p class="section__sub">Adjust any input. Watch the full cost update in real time. No email, no credit pull, no redirect to a lender.</p>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="True Monthly Cost calculator">
+        <div class="calc__form">
+          <h3>Your scenario</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice">$425,000</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" max="5000000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" value="425000">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown">20%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="20" min="0" max="100" step="1" aria-label="Down payment percent"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Interest rate</span><span class="field__value" id="lblRate">6.75%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="0.5" max="15" step="0.05" aria-label="Interest rate"><span class="suffix">%</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Property tax</span><span class="field__value" id="lblTax">1.5%</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" max="5" step="0.05" aria-label="Property tax rate"><span class="suffix">%</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Loan term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="5" max="40" step="1" aria-label="Loan term years"><span class="suffix">yrs</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Insurance</span><span class="field__hint">per month</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpIns" value="142" min="0" step="5" aria-label="Monthly insurance"></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>HOA</span><span class="field__hint">per month</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpHoa" value="300" min="0" step="10" aria-label="Monthly HOA"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Maintenance reserve</span><span class="field__value" id="lblMain">1% / yr</span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpMain" value="1" min="0" max="5" step="0.1" aria-label="Maintenance percent"><span class="suffix">%</span></div>
+          </div>
+        </div>
+
+        <div class="calc__out">
+          <h3>True monthly cost</h3>
+          <div class="calc__total" id="outTotal" aria-live="polite">$3,533<small>Full cost of owning · not just mortgage</small></div>
+
+          <div class="calc__summary" id="outSummary">
+            On a <strong>$425,000</strong> home with <strong>20%</strong> down at <strong>6.75%</strong>, the mortgage alone is $2,205. The full monthly cost is <strong>$3,533</strong> — <strong>$1,328 more</strong> than the mortgage figure suggests.
+          </div>
+
+          <div class="calc__bar" role="img" aria-label="Cost composition">
+            <span class="b1" id="segPI" style="flex:2205"></span>
+            <span class="b2" id="segTax" style="flex:531"></span>
+            <span class="b3" id="segIns" style="flex:142"></span>
+            <span class="b4" id="segPmi" style="flex:0.0001"></span>
+            <span class="b5" id="segHoa" style="flex:300"></span>
+            <span class="b6" id="segMain" style="flex:354"></span>
+          </div>
+
+          <div class="calc__rows">
+            <div class="calc__row"><span class="sw" style="background:var(--blue-700)"></span><span class="nm">Principal &amp; interest</span><span class="am" id="outPI">$2,205</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--blue-500)"></span><span class="nm">Property tax</span><span class="am" id="outTax">$531</span></div>
+            <div class="calc__row"><span class="sw" style="background:#7AA9EB"></span><span class="nm">Home insurance</span><span class="am" id="outIns">$142</span></div>
+            <div class="calc__row"><span class="sw" style="background:#B6CDF0"></span><span class="nm">PMI <small style="color:var(--subtle)">(if &lt; 20% down)</small></span><span class="am" id="outPmi">$0</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--green-500)"></span><span class="nm">HOA</span><span class="am" id="outHoa">$300</span></div>
+            <div class="calc__row"><span class="sw" style="background:var(--green-600)"></span><span class="nm">Maintenance reserve</span><span class="am" id="outMain">$354</span></div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Loan amount</strong> = home price × (1 − down %). <strong style="color:var(--ink)">Monthly P&amp;I</strong> uses the standard amortization formula: <code>L · r(1+r)ⁿ / ((1+r)ⁿ − 1)</code>, with <code>r</code> as the monthly rate and <code>n</code> as the loan term in months.</p>
+              <p><strong style="color:var(--ink)">Property tax</strong> = price × tax rate ÷ 12.&nbsp;<strong style="color:var(--ink)">PMI</strong> is included at ~0.75%/yr of the loan when down payment is under 20%.&nbsp;<strong style="color:var(--ink)">Maintenance</strong> defaults to 1%/yr of the home value, divided monthly. All figures are estimates — verify with your lender, insurer, and local assessor.</p>
+            </div>
+          </details>
+
+          <div style="margin-top:1.15rem">
+            <a href="true-monthly-cost-calculator.html" class="btn btn--ghost btn--sm">Open the full calculator page →</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ======================= HIDDEN COSTS (Owning) ======================= -->
+  <section class="section" id="hidden" aria-labelledby="hidden-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">The Quiet Expenses</span>
+        <h2 id="hidden-title">The costs that show up after you move in.</h2>
+        <p class="section__sub">Real homeownership comes with recurring expenses no one advertises on Zillow. Here's what the first year actually looks like for a typical $425K home.</p>
+      </div>
+
+      <div class="hgrid">
+        <article class="hcard reveal">
+          <div class="hcard__top"><span class="hcard__tag">Recurring · Yearly</span><span class="hcard__amt">$4,250</span></div>
+          <h4>Maintenance reserve</h4>
+          <p>Roof, HVAC, appliances, water heaters — budget roughly 1% of home value per year for upkeep, or you'll be borrowing for it.</p>
+        </article>
+        <article class="hcard reveal">
+          <div class="hcard__top"><span class="hcard__tag">One-time · Move-in</span><span class="hcard__amt">$12,750</span></div>
+          <h4>Closing costs</h4>
+          <p>Origination fees, title insurance, escrow, recording, appraisal. Typically 2–5% of the loan — easy to overlook, hard to avoid.</p>
+        </article>
+        <article class="hcard reveal">
+          <div class="hcard__top"><span class="hcard__tag">Recurring · Yearly</span><span class="hcard__amt">$6,375</span></div>
+          <h4>Property tax</h4>
+          <p>Varies widely by state and county — from under 0.5% in Hawaii to over 2% in Texas, New Jersey, and Illinois. Reassessed periodically.</p>
+        </article>
+        <article class="hcard reveal">
+          <div class="hcard__top"><span class="hcard__tag">Conditional</span><span class="hcard__amt">$0–$285/mo</span></div>
+          <h4>Private mortgage insurance</h4>
+          <p>Required on most conventional loans under 20% down. Drops off automatically at 78% LTV — and protects the lender, not you.</p>
+        </article>
+        <article class="hcard reveal">
+          <div class="hcard__top"><span class="hcard__tag">Recurring · Monthly</span><span class="hcard__amt">$50–$600</span></div>
+          <h4>HOA dues</h4>
+          <p>The range is enormous. A suburban HOA may be $35/mo; a Miami high-rise can hit $1,200. Special assessments can land at any time.</p>
+        </article>
+        <article class="hcard reveal">
+          <div class="hcard__top"><span class="hcard__tag">Exit</span><span class="hcard__amt">~6% of sale</span></div>
+          <h4>Selling costs on exit</h4>
+          <p>Agent commissions, staging, concessions, closing on the other side. Selling within three years often means appreciation doesn't cover it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FINANCING PILLAR (NEW) ======================= -->
+  <section class="section section--surface" id="financing" aria-labelledby="fin-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">Financing</span>
+        <h2 id="fin-title">Every loan type, modeled honestly.</h2>
+        <p class="section__sub">FHA, VA, USDA, conventional, jumbo, ARM. We model the true cost of each over your hold period — including upfront fees, mortgage insurance, and rate-buydown trade-offs. No lender funnel; just the math.</p>
+      </div>
+
+      <div class="finrow">
+        <a class="fintile reveal" href="calculators.html">
+          <span class="fintile__name">Conventional</span>
+          <span class="fintile__sub">3–20% down · PMI under 20%</span>
+          <span class="fintile__tag">Loan type</span>
+        </a>
+        <a class="fintile reveal" href="calculators.html">
+          <span class="fintile__name">FHA</span>
+          <span class="fintile__sub">3.5% down · upfront + monthly MIP</span>
+          <span class="fintile__tag">Loan type</span>
+        </a>
+        <a class="fintile reveal" href="calculators.html">
+          <span class="fintile__name">VA</span>
+          <span class="fintile__sub">0% down · funding fee · no PMI</span>
+          <span class="fintile__tag">Loan type</span>
+        </a>
+        <a class="fintile reveal" href="calculators.html">
+          <span class="fintile__name">USDA</span>
+          <span class="fintile__sub">0% down · rural-eligible areas</span>
+          <span class="fintile__tag">Loan type</span>
+        </a>
+        <a class="fintile reveal" href="calculators.html">
+          <span class="fintile__name">Jumbo</span>
+          <span class="fintile__sub">Above conforming limits</span>
+          <span class="fintile__tag">Loan type</span>
+        </a>
+        <a class="fintile reveal" href="calculators.html">
+          <span class="fintile__name">ARM</span>
+          <span class="fintile__sub">5/1, 7/1, 10/1 · adjustable rate</span>
+          <span class="fintile__tag">Loan type</span>
+        </a>
+      </div>
+
+      <div class="fincallout reveal">
+        <p><strong>FHA vs Conventional Calculator</strong> — model both side by side over your hold period, including upfront MIP, monthly MIP, conventional PMI, and rate differences. Get a specific dollar answer to "which loan should I pick?"</p>
+        <a href="fha-vs-conventional-calculator.html" class="btn btn--primary">Compare FHA vs Conventional</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= LOCAL / ZIP INTELLIGENCE (NEW) ======================= -->
+  <section class="section" id="local" aria-labelledby="local-title">
+    <div class="container">
+      <div class="local">
+        <div>
+          <span class="eyebrow">Local intelligence</span>
+          <h2 id="local-title" style="margin-top:.85rem">Cost data tuned to your ZIP, not a national average.</h2>
+          <p class="section__sub" style="margin-top:1rem">
+            Property tax rates vary 4× across the country. Insurance premiums vary 6×. Median rent and home prices vary 10×. A national-average mortgage calculator can't model your specific market — ours can. Every OwningCost calculator pulls from a ZIP-level data layer covering tax rates, insurance averages, median prices and rents, and local risk factors.
+          </p>
+          <ul class="feature__points" style="margin-top:1.4rem">
+            <li>
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>ZIP-aware defaults</strong> across every calculator — taxes, insurance, maintenance, median rent.</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Risk flags</strong> for hurricane, wildfire, flood zones, and tax reassessment volatility.</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span><strong>Comparable ZIPs</strong> — see how nearby and similar markets stack up on cost.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="zipcard reveal">
+          <div class="zipcard__demo">Sample · Frisco, TX</div>
+          <div class="zipcard__form">
+            <input type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" class="zipcard__input" placeholder="Enter your ZIP" aria-label="ZIP code" id="zipInput" />
+            <button class="zipcard__btn" type="button" id="zipBtn">Look up</button>
+          </div>
+          <div class="zipcard__head">
+            <h4>75034 · Frisco, TX</h4>
+            <span class="pill">Sample data</span>
+          </div>
+          <div class="zipgrid">
+            <div class="zipstat"><div class="zipstat__lbl">Median home</div><div class="zipstat__val">$612K</div></div>
+            <div class="zipstat"><div class="zipstat__lbl">Median rent</div><div class="zipstat__val">$2,650<small>/mo</small></div></div>
+            <div class="zipstat"><div class="zipstat__lbl">Property tax</div><div class="zipstat__val">2.07%<small>effective</small></div></div>
+            <div class="zipstat"><div class="zipstat__lbl">Insurance avg</div><div class="zipstat__val">$1,840<small>/yr</small></div></div>
+            <div class="zipstat"><div class="zipstat__lbl">5-yr appreciation</div><div class="zipstat__val">+38%</div></div>
+            <div class="zipstat"><div class="zipstat__lbl">Risk flags</div><div class="zipstat__val">Tax · Hail</div></div>
+          </div>
+          <p style="margin-top:1rem;font-size:.82rem;color:var(--subtle);line-height:1.5">
+            ZIP profiles roll out in phases — top metros first. Enter a ZIP above to be notified when yours is live.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= AI INSIGHTS ======================= -->
+  <section class="section section--surface" aria-labelledby="ai-title">
+    <div class="container">
+      <div class="ai reveal">
+        <div class="ai__copy">
+          <span class="ai__chip"><span class="dot"></span> Coming soon</span>
+          <h2 id="ai-title">A scenario assistant for housing decisions.</h2>
+          <p>Type a situation in plain English. The assistant walks through the math, surfaces the trade-offs, and helps you understand what a pre-approval doesn't: what's actually comfortable to live with.</p>
+          <ul class="ai__features">
+            <li>Compare two scenarios without rebuilding the calculator</li>
+            <li>Explain mortgage terms without the jargon</li>
+            <li>Stress-test your payment against rate hikes or a job change</li>
+            <li>Summarize hidden costs specific to your ZIP and home type</li>
+          </ul>
+          <div style="margin-top:1.6rem">
+            <a href="#true-monthly-cost" class="btn btn--primary">Use the live calculator</a>
+          </div>
+        </div>
+        <div class="ai__demo">
+          <div class="chat" aria-hidden="true">
+            <div class="chat__q">If rates drop to 5.5% next year, should I wait? I'm looking at a $425K home in 75034.</div>
+            <div class="chat__a">
+              Waiting saves about <strong>$275/mo</strong> on principal &amp; interest — but it also assumes the home doesn't appreciate.
+              <span class="num">~$88/mo net benefit</span>
+              After likely 4% appreciation ($17K), you break even in roughly five years. If you're staying 7+, waiting helps. Shorter than that, buying now is usually the better call.
+              <span class="chat__typing"><span></span><span></span><span></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= WHY DIFFERENT ======================= -->
+  <section class="section" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">Why OwningCost</span>
+        <h2 id="why-title">Built for real decisions, not lead generation.</h2>
+        <p class="section__sub">We are not a lender, broker, or realtor. We don't get paid when you close — the incentives are clean.</p>
+      </div>
+
+      <div class="why">
+        <article class="wcard reveal">
+          <div class="wcard__num">01</div>
+          <div>
+            <h3>Transparent math, no black boxes.</h3>
+            <p>Every calculation is paired with the formula and assumption behind it. Adjust any default to match your situation and watch the result update.</p>
+          </div>
+        </article>
+        <article class="wcard reveal">
+          <div class="wcard__num">02</div>
+          <div>
+            <h3>No lender funnel. No data sale.</h3>
+            <p>Your inputs stay in your browser. We don't log them, store them, or pass them to mortgage brokers — use the tools anonymously.</p>
+          </div>
+        </article>
+        <article class="wcard reveal">
+          <div class="wcard__num">03</div>
+          <div>
+            <h3>Reality-adjusted defaults.</h3>
+            <p>Tax rates, insurance averages, and maintenance reserves reflect what homeowners actually pay today — not a sunny-day best case.</p>
+          </div>
+        </article>
+        <article class="wcard reveal">
+          <div class="wcard__num">04</div>
+          <div>
+            <h3>Free, with no premium tier.</h3>
+            <p>Every calculator and every insight on the site is free to use. There is no paywall that unlocks "the real numbers" later on.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= TOOLS GRID ======================= -->
+  <section class="section section--surface" id="tools" aria-labelledby="tools-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">The Toolkit</span>
+        <h2 id="tools-title">Built and building.</h2>
+        <p class="section__sub">A growing set of tools for real housing decisions. Live tools are open today; the rest are in active development.</p>
+      </div>
+
+      <div class="tools">
+        <a class="tool reveal" href="true-monthly-cost-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+            <div><h4>True Monthly Cost Calculator</h4><p>The full PITI + HOA + maintenance picture for any home.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="rent-vs-buy-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
+            <div><h4>Rent vs Buy Calculator</h4><p>Total cost over your real time horizon, not a 30-year hypothetical.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="affordability-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><h4>Affordability Calculator</h4><p>Comfort band + House Poor Risk Score, not just max DTI.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="listing-reality-check.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><path d="M9 11h6M12 8v6"/></svg></span>
+            <div><h4>Listing Reality Check</h4><p>Strip the optimism off a listing and see the true cost.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="fha-vs-conventional-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h7M14 12h7M10 8v8M14 8v8"/></svg></span>
+            <div><h4>FHA vs Conventional</h4><p>True cost over your hold period — MIP, PMI, rate, all in.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="affordability-calculator.html#risk-score">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div><h4>House Poor Risk Score</h4><p>Diagnostic affordability score — surfaces what would break first.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <div class="tool tool--soon reveal" role="presentation" aria-label="ZIP Housing Cost Lookup — coming soon">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
+            <div><h4>ZIP Housing Cost Lookup</h4><p>Local cost intelligence for any ZIP — taxes, insurance, rent, prices.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
+        </div>
+        <div class="tool tool--soon reveal" role="presentation" aria-label="Buy Now vs Wait — coming soon">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><h4>Buy Now vs Wait</h4><p>Model rate drops, appreciation, and opportunity cost together.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
+        </div>
+        <div class="tool tool--soon reveal" role="presentation" aria-label="Stay vs Sell Break-Even — coming soon">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
+            <div><h4>Stay vs Sell Break-Even</h4><p>For owners — at what hold period does selling beat staying?</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
+        </div>
+        <div class="tool tool--soon reveal" role="presentation" aria-label="Down Payment Strategy — coming soon">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V4M3 20h18M7 16V9M11 16V6M15 16v-4M19 16v-8"/></svg></span>
+            <div><h4>Down Payment Strategy</h4><p>3% / 5% / 10% / 20% — PMI, opportunity cost, reserves modeled.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
+        </div>
+        <div class="tool tool--soon reveal" role="presentation" aria-label="Payment Shock — coming soon">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-2 8 10-12h-8z"/></svg></span>
+            <div><h4>Payment Shock</h4><p>For ARM holders — payment range under rate stress scenarios.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
+        </div>
+        <div class="tool tool--soon reveal" role="presentation" aria-label="VA vs Conventional — coming soon">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/></svg></span>
+            <div><h4>VA vs Conventional</h4><p>0% down + funding fee + no PMI — modeled honestly.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= TRUST / TRANSPARENCY ======================= -->
+  <section class="section" aria-labelledby="trust-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">How We Operate</span>
+        <h2 id="trust-title">Transparency, on the record.</h2>
+        <p class="section__sub">Here is how OwningCost handles your data, your money, and your decisions.</p>
+      </div>
+
+      <div class="trust">
+        <article class="tcard reveal">
+          <div class="tcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <div>
+            <h3>Your inputs stay in your browser.</h3>
+            <p>Calculator values never leave your device. We don't log them or associate them with you. Refresh the page and they're gone — that's the design.</p>
+          </div>
+        </article>
+        <article class="tcard reveal">
+          <div class="tcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/></svg></div>
+          <div>
+            <h3>No lender bidding, ever.</h3>
+            <p>We never sell your email to a mortgage broker or pass your scenario to a "partner" for a rate quote. OwningCost takes no referral fees from lenders.</p>
+          </div>
+        </article>
+        <article class="tcard reveal">
+          <div class="tcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div>
+            <h3>Estimates are updated regularly.</h3>
+            <p>Rate and tax defaults are refreshed against public data sources on a recurring cadence. Each estimate is timestamped so you can see how fresh it is.</p>
+          </div>
+        </article>
+        <article class="tcard reveal">
+          <div class="tcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20l9-12H3z"/><path d="M12 4v4"/></svg></div>
+          <div>
+            <h3>We show our work.</h3>
+            <p>Every assumption is visible and editable. The math behind each line item is shown in plain language — no proprietary "score," no hidden formula.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FAQ ======================= -->
+  <section class="section section--surface" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">FAQ</span>
+        <h2 id="faq-title">Things people ask us.</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>What does OwningCost actually do?</summary>
+          <div class="faq__a">OwningCost is a housing-cost intelligence platform. It shows the full monthly cost of housing, compares renting versus buying, models financing across FHA, VA, USDA, and conventional, and produces ZIP-level local cost intelligence — all without selling your data or routing you to a lender.</div>
+        </details>
+        <details>
+          <summary>Is OwningCost a lender or a broker?</summary>
+          <div class="faq__a">No. OwningCost is independent. We do not originate loans, sell your information, or pass you to a specific lender. Our goal is clarity.</div>
+        </details>
+        <details>
+          <summary>What loan types do you cover?</summary>
+          <div class="faq__a">Conventional, FHA, VA, USDA, jumbo, fixed-rate, and adjustable-rate mortgages. Each is modeled with its actual cost shape — upfront fees, mortgage insurance, rate differences — so comparisons are honest, not generic.</div>
+        </details>
+        <details>
+          <summary>How is this different from a standard mortgage calculator?</summary>
+          <div class="faq__a">A mortgage calculator shows principal and interest. OwningCost shows what you will actually pay each month once property taxes, insurance, HOA, PMI, maintenance, and closing costs are included — plus how that compares to renting and how it varies by ZIP.</div>
+        </details>
+        <details>
+          <summary>What does "ZIP-aware" mean?</summary>
+          <div class="faq__a">Every calculator pulls from a ZIP-level data layer covering tax rates, insurance averages, median rents and prices, and local risk factors. So a $425K home in 75034 (Frisco, TX) will model differently from a $425K home in 30303 (Atlanta, GA) — because the underlying cost shape is genuinely different.</div>
+        </details>
+        <details>
+          <summary>Do the calculators work without signing up?</summary>
+          <div class="faq__a">Yes. Every calculator is free with no account required. The math is transparent and the inputs stay in your browser.</div>
+        </details>
+        <details>
+          <summary>How accurate are the estimates?</summary>
+          <div class="faq__a">Estimates use current national, regional, and ZIP-level averages for rates, taxes, insurance, and maintenance. They are designed to reflect real housing costs, not a best-case scenario. For a final number, always verify with your lender, insurer, and local tax authority.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CTA BAND ======================= -->
+  <section class="section">
+    <div class="container">
+      <div class="ctaband reveal">
+        <span class="eyebrow" style="color:#9BE08E">Start here</span>
+        <h2 style="margin-top:.85rem">Run your real number in 60 seconds.</h2>
+        <p>No email, no credit check, no lender follow-up. Just your full monthly housing cost, broken down clearly so you can decide with confidence.</p>
+        <div class="ctaband__row">
+          <a href="true-monthly-cost-calculator.html" class="btn">Open the calculator</a>
+          <a href="rent-vs-buy-calculator.html" class="btn btn--ghost">Compare rent vs buy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= SCRIPTS ======================= -->
+<script>
+(function(){
+  'use strict';
+
+  /* Header scroll state */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* Mobile nav */
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* Smooth in-page scroll, header-aware */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  /* Scroll reveal */
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          en.target.classList.add('is-in');
+          io.unobserve(en.target);
+        }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  /* Year */
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  /* ZIP lookup placeholder — until /local/ is live */
+  var zipBtn = document.getElementById('zipBtn');
+  var zipInput = document.getElementById('zipInput');
+  if (zipBtn && zipInput){
+    zipBtn.addEventListener('click', function(){
+      var v = (zipInput.value || '').trim();
+      if (!/^\d{5}$/.test(v)){
+        zipInput.focus();
+        zipInput.style.borderColor = 'var(--blue-600)';
+        return;
+      }
+      zipBtn.textContent = 'On the list ✓';
+      zipBtn.disabled = true;
+      zipBtn.style.background = 'var(--green-600)';
+      zipBtn.style.borderColor = 'var(--green-600)';
+    });
+  }
+
+  /* ===== Calculator (homepage embed) ===== */
+  var fmt = function(n){
+    if (!isFinite(n)) n = 0;
+    return '$' + Math.round(n).toLocaleString('en-US');
+  };
+  var pct = function(n, digits){
+    digits = digits == null ? 2 : digits;
+    return (Math.round(n * Math.pow(10, digits)) / Math.pow(10, digits)).toFixed(digits) + '%';
+  };
+
+  var inputs = {
+    price: document.getElementById('inpPrice'),
+    priceR: document.getElementById('rngPrice'),
+    down:  document.getElementById('inpDown'),
+    rate:  document.getElementById('inpRate'),
+    term:  document.getElementById('inpTerm'),
+    tax:   document.getElementById('inpTax'),
+    ins:   document.getElementById('inpIns'),
+    hoa:   document.getElementById('inpHoa'),
+    main:  document.getElementById('inpMain')
+  };
+  var labels = {
+    price: document.getElementById('lblPrice'),
+    down:  document.getElementById('lblDown'),
+    rate:  document.getElementById('lblRate'),
+    tax:   document.getElementById('lblTax'),
+    main:  document.getElementById('lblMain')
+  };
+  var out = {
+    total:   document.getElementById('outTotal'),
+    summary: document.getElementById('outSummary'),
+    pi:      document.getElementById('outPI'),
+    tax:     document.getElementById('outTax'),
+    ins:     document.getElementById('outIns'),
+    pmi:     document.getElementById('outPmi'),
+    hoa:     document.getElementById('outHoa'),
+    main:    document.getElementById('outMain'),
+    segPI:   document.getElementById('segPI'),
+    segTax:  document.getElementById('segTax'),
+    segIns:  document.getElementById('segIns'),
+    segPmi:  document.getElementById('segPmi'),
+    segHoa:  document.getElementById('segHoa'),
+    segMain: document.getElementById('segMain')
+  };
+
+  function compute(){
+    var price = parseFloat(inputs.price.value) || 0;
+    var downP = Math.min(100, Math.max(0, parseFloat(inputs.down.value) || 0));
+    var rate  = Math.max(0, parseFloat(inputs.rate.value) || 0);
+    var term  = Math.max(1, parseFloat(inputs.term.value) || 30);
+    var taxP  = Math.max(0, parseFloat(inputs.tax.value) || 0);
+    var ins   = Math.max(0, parseFloat(inputs.ins.value) || 0);
+    var hoa   = Math.max(0, parseFloat(inputs.hoa.value) || 0);
+    var mainP = Math.max(0, parseFloat(inputs.main.value) || 0);
+
+    var loan = Math.max(0, price - price * (downP/100));
+    var r = (rate/100)/12;
+    var n = term * 12;
+    var pi;
+    if (r === 0){ pi = loan / n; }
+    else        { pi = loan * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1); }
+
+    var propTax = (price * (taxP/100)) / 12;
+    var pmi = downP < 20 ? (loan * 0.0075) / 12 : 0;
+    var maint = (price * (mainP/100)) / 12;
+    var total = pi + propTax + ins + pmi + hoa + maint;
+
+    labels.price.textContent = fmt(price);
+    labels.down.textContent  = pct(downP, downP % 1 === 0 ? 0 : 1);
+    labels.rate.textContent  = pct(rate, 2);
+    labels.tax.textContent   = pct(taxP, 2);
+    labels.main.textContent  = pct(mainP, mainP % 1 === 0 ? 0 : 1) + ' / yr';
+
+    out.total.innerHTML = fmt(total) + '<small>Full cost of owning · not just mortgage</small>';
+
+    var extra = total - pi;
+    out.summary.innerHTML =
+      'On a <strong>' + fmt(price) + '</strong> home with <strong>' + pct(downP, downP % 1 === 0 ? 0 : 1) + '</strong> down at <strong>' +
+      pct(rate, 2) + '</strong>, the mortgage alone is ' + fmt(pi) + '. The full monthly cost is <strong>' + fmt(total) + '</strong> — <strong>' +
+      fmt(extra) + ' more</strong> than the mortgage figure suggests.';
+
+    out.pi.textContent   = fmt(pi);
+    out.tax.textContent  = fmt(propTax);
+    out.ins.textContent  = fmt(ins);
+    out.pmi.textContent  = fmt(pmi);
+    out.hoa.textContent  = fmt(hoa);
+    out.main.textContent = fmt(maint);
+
+    out.segPI.style.flex   = Math.max(.0001, pi);
+    out.segTax.style.flex  = Math.max(.0001, propTax);
+    out.segIns.style.flex  = Math.max(.0001, ins);
+    out.segPmi.style.flex  = Math.max(.0001, pmi);
+    out.segHoa.style.flex  = Math.max(.0001, hoa);
+    out.segMain.style.flex = Math.max(.0001, maint);
+  }
+
+  function syncPriceFromNum(){
+    var v = Math.max(50000, Math.min(5000000, parseFloat(inputs.price.value) || 0));
+    inputs.priceR.value = Math.min(parseFloat(inputs.priceR.max), Math.max(parseFloat(inputs.priceR.min), v));
+    compute();
+  }
+  function syncPriceFromRange(){
+    inputs.price.value = inputs.priceR.value;
+    compute();
+  }
+
+  Object.keys(inputs).forEach(function(k){
+    if (inputs[k]){
+      inputs[k].addEventListener('input', function(){
+        if (k === 'price') syncPriceFromNum();
+        else if (k === 'priceR') syncPriceFromRange();
+        else compute();
+      });
+    }
+  });
+
+  compute();
+})();
+</script>
+
+</body>
+</html>
