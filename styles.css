@@ -8,6 +8,7 @@
   --blue-50:  #EEF5FF;
   --blue-100: #DDEBFE;
   --blue-200: #B9D5FD;
+  --blue-300: #8DBAFA;
   --blue-500: #2B7BE0;
   --blue-600: #1C6DD9;
   --blue-700: #0F55B5;
@@ -15,6 +16,8 @@
   --green-100:#E7F7E3;
   --green-500:#4EB63C;
   --green-600:#3F9A2F;
+  --green-700:#2F7C24;
+  --green-800:#246019;
 
   /* Editorial neutrals */
   --bg:       #FAFAF7;
@@ -132,24 +135,27 @@ p{margin:0}
 @media (min-width:520px){.brand__logo{height:40px}}
 .brand__wordmark{display:none}
 
-.nav{display:none;margin-left:auto;gap:.05rem}
-@media (min-width:1040px){.nav{display:flex}}
-.nav a{
-  position:relative;padding:.55rem .8rem;color:var(--muted);font-weight:500;font-size:.92rem;
+.nav{display:none;margin-left:auto;gap:.05rem;align-items:center}
+@media (min-width:1080px){.nav{display:flex}}
+.nav > a, .nav__item--mega > a.has-mega{
+  position:relative;padding:.55rem .7rem;color:var(--muted);font-weight:500;font-size:.9rem;
   transition:color .2s ease;
 }
-.nav a::after{
-  content:"";position:absolute;left:.8rem;right:.8rem;bottom:.4rem;height:1px;
+.nav > a::after, .nav__item--mega > a.has-mega::after{
+  content:"";position:absolute;left:.7rem;right:.7rem;bottom:.4rem;height:1px;
   background:var(--ink);transform:scaleX(0);transform-origin:center;
   transition:transform .25s ease;
 }
-.nav a:hover{color:var(--ink)}
-.nav a:hover::after{transform:scaleX(.6)}
-.nav a.is-active{color:var(--ink)}
-.nav a.is-active::after{transform:scaleX(.6)}
+.nav > a:hover, .nav__item--mega > a.has-mega:hover{color:var(--ink)}
+.nav > a:hover::after, .nav__item--mega > a.has-mega:hover::after{transform:scaleX(.6)}
+.nav > a.is-active, .nav__item--mega > a.is-active{color:var(--ink)}
+.nav > a.is-active::after, .nav__item--mega > a.is-active::after{transform:scaleX(.6)}
+
+/* Hide the breakpoint switch on the menu toggle to match new threshold */
+@media (min-width:1080px){.menu-toggle{display:none}}
 
 .header__cta{margin-left:auto;display:flex;align-items:center;gap:.5rem}
-@media (min-width:1040px){.header__cta{margin-left:1rem}}
+@media (min-width:1080px){.header__cta{margin-left:1rem}}
 .header__cta .btn{padding:.7rem 1.05rem;font-size:.9rem}
 
 .menu-toggle{
@@ -158,16 +164,134 @@ p{margin:0}
   transition:background .2s ease,border-color .2s ease;
 }
 .menu-toggle:hover{background:var(--surface-2);border-color:var(--border-2)}
-@media (min-width:1040px){.menu-toggle{display:none}}
 .menu-toggle svg{width:18px;height:18px}
 
 .mobile-nav{display:none;border-top:1px solid var(--border);background:var(--bg);padding:.5rem 0 1rem}
 .mobile-nav.is-open{display:block}
-.mobile-nav a{
+.mobile-nav > a{
   display:block;padding:.85rem 0;font-size:1rem;color:var(--ink-2);font-weight:500;
   border-bottom:1px solid var(--border);
 }
-.mobile-nav a:last-of-type{border-bottom:0}
+.mobile-nav > a:last-of-type{border-bottom:0}
+
+/* Grouped mobile drawer (Calculators / Sections / More) */
+.mnav__group{border-bottom:1px solid var(--border)}
+.mnav__group:last-child{border-bottom:0}
+.mnav__group > summary{
+  list-style:none;cursor:pointer;
+  padding:1rem .25rem;
+  font-family:var(--sans);font-size:.78rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.mnav__group > summary::-webkit-details-marker{display:none}
+.mnav__group > summary::after{
+  content:"+";font-size:1.3rem;font-weight:400;color:var(--muted);
+  transition:transform .2s ease;
+}
+.mnav__group[open] > summary::after{content:"−"}
+.mnav__group a{
+  display:block;padding:.7rem 0 .7rem .25rem;font-size:.96rem;
+  color:var(--ink-2);font-weight:500;border-top:1px solid var(--border);
+}
+.mnav__group a:hover{color:var(--ink)}
+.mnav__group a.is-active{color:var(--blue-700);font-weight:600}
+
+/* ============================================================
+   MEGA-MENU (Calculators dropdown panel)
+   ============================================================ */
+
+/* Wrap Calculators item so the panel can be absolutely positioned */
+.nav__item--mega{position:relative;display:inline-block}
+
+/* The trigger anchor */
+.nav__item--mega > a.has-mega{
+  display:inline-flex;align-items:center;gap:.35rem;cursor:pointer;
+}
+.nav__caret{
+  transition:transform .2s ease;color:var(--subtle);
+  transform:translateY(.5px);
+}
+.nav__item--mega:hover .nav__caret,
+.nav__item--mega:focus-within .nav__caret,
+.nav__item--mega.is-open .nav__caret{
+  transform:translateY(.5px) rotate(180deg);color:var(--ink);
+}
+
+/* The panel itself */
+.mega{
+  position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%) translateY(-6px);
+  width:min(840px, calc(100vw - 32px));
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:0 22px 50px -10px rgba(15,23,42,.18), 0 8px 16px rgba(15,23,42,.06);
+  padding:1.35rem 1.5rem 1.1rem;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .15s ease, transform .18s ease, visibility .15s linear;
+  z-index:50;
+}
+/* Open on hover (desktop) and on focus-within (keyboard) */
+.nav__item--mega:hover .mega,
+.nav__item--mega:focus-within .mega,
+.nav__item--mega.is-open .mega{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* Bridge gap so cursor moving from trigger to panel doesn't lose hover */
+.nav__item--mega::before{
+  content:"";position:absolute;left:0;right:0;top:100%;height:6px;
+}
+
+.mega__grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:1.6rem 1.4rem;
+}
+.mega__col h4.mega__heading{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--subtle);
+  margin:0 0 .65rem;
+}
+.mega__col ul{list-style:none;margin:0;padding:0}
+.mega__col li{margin:0}
+.mega__col a{
+  display:block;padding:.4rem 0;
+  color:var(--ink-2);font-size:.92rem;font-weight:500;line-height:1.35;
+  border-radius:4px;
+  transition:color .15s ease, transform .15s ease;
+}
+.mega__col a:hover{color:var(--blue-700);transform:translateX(2px)}
+.mega__tag{
+  display:inline-block;margin-left:.45rem;padding:1px 7px;
+  font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--green-100, #E5F4DF);color:var(--green-800, #2E7621);
+  border-radius:99px;vertical-align:middle;
+}
+.mega__tag--beta{
+  background:rgba(28,109,217,.1);color:var(--blue-700);
+}
+
+.mega__footer{
+  margin-top:1.15rem;padding-top:.95rem;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem;
+  font-size:.85rem;
+}
+.mega__footer a{
+  color:var(--blue-700);font-weight:500;
+  transition:color .15s ease;
+}
+.mega__footer a:hover{color:var(--blue-900, #093A82)}
+.mega__footer a:last-child{font-weight:600}
+
+/* Hide mega-menu on small screens — mobile drawer takes over */
+@media (max-width:1039px){
+  .mega{display:none}
+  .nav__item--mega > a.has-mega{pointer-events:auto}
+}
 
 /* ============================================================
    BREADCRUMBS (subpages)
@@ -1077,6 +1201,75 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
 .hubcard p{font-size:.92rem;line-height:1.55;color:var(--muted);margin:0}
 .hubcard__cta{margin-top:auto;padding-top:.6rem;font-size:.82rem;font-weight:600;color:var(--blue-700);display:inline-flex;align-items:center;gap:.35rem}
 .hubcard__cta::after{content:"→";transition:transform .2s ease}
+
+/* ============================================================
+   SITUATION NAVIGATOR (homepage "Pick your situation" panel)
+   ============================================================ */
+.sitgrid{
+  display:grid;gap:1rem;margin-top:1.6rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:680px){.sitgrid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.sitgrid{grid-template-columns:repeat(3,1fr)}}
+
+.sitcard{
+  display:flex;flex-direction:column;gap:.55rem;
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  padding:1.4rem 1.4rem 1.25rem;text-decoration:none;color:inherit;
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.sitcard:hover{
+  border-color:var(--blue-300);
+  box-shadow:0 6px 20px -8px rgba(28,109,217,.16), var(--shadow-md);
+  transform:translateY(-2px);
+}
+.sitcard__tag{
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-700);
+  align-self:flex-start;
+  padding:3px 9px;background:rgba(28,109,217,.08);
+  border-radius:99px;
+}
+.sitcard h3{
+  font-family:var(--serif);font-size:1.18rem;font-weight:600;
+  letter-spacing:-.012em;color:var(--ink);
+  margin:.1rem 0 .1rem;line-height:1.3;
+}
+.sitcard p{font-size:.93rem;line-height:1.55;color:var(--muted);margin:0 0 .5rem}
+.sitcard__row{
+  margin-top:auto;padding-top:.7rem;
+  border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:.35rem;
+  font-size:.85rem;
+}
+.sitcard__primary{color:var(--blue-700);font-weight:600}
+.sitcard__secondary a{color:var(--muted);text-decoration:underline;text-decoration-color:rgba(100,116,139,.3)}
+.sitcard__secondary a:hover{color:var(--ink);text-decoration-color:var(--ink)}
+
+/* ============================================================
+   DISCOVERY ROW (in-section "go deeper" footer link strip)
+   ============================================================ */
+.discoveryrow{
+  margin-top:1.5rem;padding-top:1.1rem;
+  border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:.55rem 1.1rem;
+  font-size:.9rem;
+}
+.discoveryrow__label{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);
+}
+.discoveryrow a{
+  color:var(--blue-700);font-weight:500;
+  text-decoration:underline;text-decoration-color:rgba(28,109,217,.25);
+  text-underline-offset:3px;
+}
+.discoveryrow a:hover{
+  color:var(--blue-900,#093A82);
+  text-decoration-color:var(--blue-700);
+}
 .hubcard:hover .hubcard__cta::after{transform:translateX(3px)}
 .hubcard.is-soon .hubcard__cta{color:#9A6B00}
 

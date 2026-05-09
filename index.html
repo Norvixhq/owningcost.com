@@ -68,22 +68,69 @@
 <!-- ======================= HEADER ======================= -->
 <header class="header" id="header">
   <div class="container header__inner">
-    <a href="/" class="brand" aria-label="OwningCost — home">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
       <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
       <span class="brand__wordmark">OwningCost</span>
     </a>
 
     <nav class="nav" aria-label="Primary">
-      <a href="calculators.html">Calculators</a>
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk</a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 15 calculators</a>
+      </div>
+    </div>
+    </div>
       <a href="buying.html">Buying</a>
       <a href="renting.html">Renting</a>
       <a href="owning.html">Owning</a>
       <a href="financing.html">Financing</a>
       <a href="learn.html">Learn</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="about.html">About</a>
     </nav>
 
     <div class="header__cta">
-      <a href="#true-monthly-cost" class="btn btn--primary">Try a calculator</a>
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -91,16 +138,41 @@
   </div>
 
   <div class="mobile-nav container" id="mobileNav" hidden>
-    <a href="calculators.html">Calculators</a>
-    <a href="buying.html">Buying</a>
-    <a href="renting.html">Renting</a>
-    <a href="owning.html">Owning</a>
-    <a href="financing.html">Financing</a>
-    <a href="learn.html">Learn</a>
-    <a href="loan-types.html">Loan types</a>
-    <a href="zip-lookup.html">ZIP intelligence</a>
-    <a href="ai-tools.html">AI tools</a>
-    <a href="about.html">About</a>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
   </div>
 </header>
 
@@ -195,6 +267,79 @@
       <div class="strip__item"><span class="strip__num">6</span><span class="strip__name">loan types covered</span></div>
       <div class="strip__item"><span class="strip__num">0</span><span class="strip__name">signups required</span></div>
       <div class="strip__item"><span class="strip__num">100%</span><span class="strip__name">transparent math</span></div>
+    </div>
+  </section>
+
+  <!-- ======================= SITUATION NAVIGATOR ======================= -->
+  <section class="section section--surface" id="situation" aria-labelledby="sit-title">
+    <div class="container">
+      <div class="section__head section__head--left">
+        <span class="eyebrow section__kicker">Find your starting point</span>
+        <h2 id="sit-title">What kind of housing decision are you making?</h2>
+        <p class="section__lede">Five common situations, each with a tool and a guide. Pick the one that matches yours.</p>
+      </div>
+
+      <div class="sitgrid">
+        <a class="sitcard" href="rent-vs-buy-calculator.html">
+          <span class="sitcard__tag">Renter</span>
+          <h3>I'm renting and wondering if I should buy.</h3>
+          <p>Compare total cost over your real time horizon — including the closing costs, selling costs, and opportunity cost most calculators skip.</p>
+          <div class="sitcard__row">
+            <span class="sitcard__primary">Rent vs. Buy calculator →</span>
+            <span class="sitcard__secondary"><a href="should-you-rent-another-year.html">Read: Should you rent another year?</a></span>
+          </div>
+        </a>
+
+        <a class="sitcard" href="affordability-calculator.html">
+          <span class="sitcard__tag">First-time buyer</span>
+          <h3>I'm buying my first home.</h3>
+          <p>Find the comfortable target — not just the lender's approval ceiling. Includes a House Poor Risk score that surfaces what would break first.</p>
+          <div class="sitcard__row">
+            <span class="sitcard__primary">Affordability calculator →</span>
+            <span class="sitcard__secondary"><a href="first-time-homebuyer-guide.html">Read: First-time homebuyer guide</a></span>
+          </div>
+        </a>
+
+        <a class="sitcard" href="true-monthly-cost-calculator.html">
+          <span class="sitcard__tag">Current owner</span>
+          <h3>I just bought, or I already own.</h3>
+          <p>The true monthly cost is bigger than your mortgage payment. PITI plus HOA, PMI, and a realistic maintenance reserve — the complete picture.</p>
+          <div class="sitcard__row">
+            <span class="sitcard__primary">True Monthly Cost calculator →</span>
+            <span class="sitcard__secondary"><a href="hidden-costs-of-homeownership.html">Read: Hidden costs of homeownership</a></span>
+          </div>
+        </a>
+
+        <a class="sitcard" href="fha-vs-conventional-calculator.html">
+          <span class="sitcard__tag">Comparing loans</span>
+          <h3>I'm comparing FHA, VA, or conventional financing.</h3>
+          <p>Side-by-side over your real hold period. Includes upfront FHA MIP, monthly MIP duration, conventional PMI removal at 78% LTV, and VA funding fee.</p>
+          <div class="sitcard__row">
+            <span class="sitcard__primary">FHA vs. Conventional →</span>
+            <span class="sitcard__secondary"><a href="financing.html">Visit Financing hub</a></span>
+          </div>
+        </a>
+
+        <a class="sitcard" href="listing-reality-check.html">
+          <span class="sitcard__tag">Listing in hand</span>
+          <h3>I'm looking at a specific home right now.</h3>
+          <p>Most listings hide 30–40% of the true monthly cost. Paste a listing or enter a price and see what you'd actually be paying.</p>
+          <div class="sitcard__row">
+            <span class="sitcard__primary">Listing Reality Check →</span>
+            <span class="sitcard__secondary"><a href="methodology.html">See the methodology</a></span>
+          </div>
+        </a>
+
+        <a class="sitcard" href="learn.html">
+          <span class="sitcard__tag">Just researching</span>
+          <h3>I'm not making a decision yet — I just want to understand the math.</h3>
+          <p>Eighteen guides on housing cost, mortgages, and decision frameworks. Pick by topic; each links to the calculator that proves the point.</p>
+          <div class="sitcard__row">
+            <span class="sitcard__primary">Browse the Learn library →</span>
+            <span class="sitcard__secondary"><a href="methodology.html">See the methodology</a></span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -495,6 +640,13 @@
           <p>Agent commissions, staging, concessions, closing on the other side. Selling within three years often means appreciation doesn't cover it.</p>
         </article>
       </div>
+
+      <div class="discoveryrow reveal">
+        <span class="discoveryrow__label">Go deeper:</span>
+        <a href="hidden-costs-of-homeownership.html">Read the full Hidden Costs guide →</a>
+        <a href="true-cost-of-owning-a-home.html">Year-by-year cost projection</a>
+        <a href="owning.html">Owning hub</a>
+      </div>
     </div>
   </section>
 
@@ -508,32 +660,32 @@
       </div>
 
       <div class="finrow">
-        <a class="fintile reveal" href="calculators.html">
+        <a class="fintile reveal" href="fha-vs-conventional-calculator.html">
           <span class="fintile__name">Conventional</span>
           <span class="fintile__sub">3–20% down · PMI under 20%</span>
           <span class="fintile__tag">Loan type</span>
         </a>
-        <a class="fintile reveal" href="calculators.html">
+        <a class="fintile reveal" href="fha-vs-conventional-calculator.html">
           <span class="fintile__name">FHA</span>
           <span class="fintile__sub">3.5% down · upfront + monthly MIP</span>
           <span class="fintile__tag">Loan type</span>
         </a>
-        <a class="fintile reveal" href="calculators.html">
+        <a class="fintile reveal" href="va-vs-conventional-calculator.html">
           <span class="fintile__name">VA</span>
           <span class="fintile__sub">0% down · funding fee · no PMI</span>
           <span class="fintile__tag">Loan type</span>
         </a>
-        <a class="fintile reveal" href="calculators.html">
+        <a class="fintile reveal" href="loan-types.html">
           <span class="fintile__name">USDA</span>
           <span class="fintile__sub">0% down · rural-eligible areas</span>
           <span class="fintile__tag">Loan type</span>
         </a>
-        <a class="fintile reveal" href="calculators.html">
+        <a class="fintile reveal" href="loan-types.html">
           <span class="fintile__name">Jumbo</span>
           <span class="fintile__sub">Above conforming limits</span>
           <span class="fintile__tag">Loan type</span>
         </a>
-        <a class="fintile reveal" href="calculators.html">
+        <a class="fintile reveal" href="arm-vs-fixed-calculator.html">
           <span class="fintile__name">ARM</span>
           <span class="fintile__sub">5/1, 7/1, 10/1 · adjustable rate</span>
           <span class="fintile__tag">Loan type</span>
@@ -543,6 +695,14 @@
       <div class="fincallout reveal">
         <p><strong>FHA vs Conventional Calculator</strong> — model both side by side over your hold period, including upfront MIP, monthly MIP, conventional PMI, and rate differences. Get a specific dollar answer to "which loan should I pick?"</p>
         <a href="fha-vs-conventional-calculator.html" class="btn btn--primary">Compare FHA vs Conventional</a>
+      </div>
+
+      <div class="discoveryrow reveal">
+        <span class="discoveryrow__label">Go deeper:</span>
+        <a href="financing.html">Visit the Financing hub</a>
+        <a href="fha-vs-conventional-guide.html">Read: FHA vs. Conventional guide</a>
+        <a href="loan-types.html">Compare all loan types</a>
+        <a href="what-is-pmi-and-when-does-it-go-away.html">PMI explained</a>
       </div>
     </div>
   </section>
@@ -596,6 +756,13 @@
           </p>
         </div>
       </div>
+
+      <div class="discoveryrow reveal" style="margin-top:1.6rem">
+        <span class="discoveryrow__label">Go deeper:</span>
+        <a href="zip-lookup.html">ZIP Lookup tool</a>
+        <a href="property-tax-explained.html">Property tax explained</a>
+        <a href="homeowners-insurance-explained.html">Homeowners insurance explained</a>
+      </div>
     </div>
   </section>
 
@@ -604,30 +771,39 @@
     <div class="container">
       <div class="ai reveal">
         <div class="ai__copy">
-          <span class="ai__chip"><span class="dot"></span> Coming soon</span>
-          <h2 id="ai-title">A scenario assistant for housing decisions.</h2>
-          <p>Type a situation in plain English. The assistant walks through the math, surfaces the trade-offs, and helps you understand what a pre-approval doesn't: what's actually comfortable to live with.</p>
-          <ul class="ai__features">
-            <li>Compare two scenarios without rebuilding the calculator</li>
-            <li>Explain mortgage terms without the jargon</li>
-            <li>Stress-test your payment against rate hikes or a job change</li>
-            <li>Summarize hidden costs specific to your ZIP and home type</li>
-          </ul>
-          <div style="margin-top:1.6rem">
-            <a href="#true-monthly-cost" class="btn btn--primary">Use the live calculator</a>
+          <span class="ai__chip"><span class="dot"></span> AI roadmap</span>
+          <h2 id="ai-title">AI as a layer over the calculators — not a replacement for the math.</h2>
+          <p>OwningCost's AI direction is deliberate: every AI tool sits on top of an existing calculator that does the deterministic math. The AI handles the language layer — explaining results, framing trade-offs, helping you reason through scenarios. The numbers stay verifiable.</p>
+
+          <p style="margin-top:1.1rem"><strong>First tool, in development:</strong> <em>Explain My Output</em> — a chatbot embedded directly on each calculator that contextualizes your specific result. Why your true monthly cost is what it is, what would change if your tax rate were different, where the biggest swing factors are. Plain-language analysis backed by transparent math.</p>
+
+          <p style="margin-top:1.1rem;color:var(--muted)"><strong>What's coming after:</strong> Scenario Assistant (describe a situation, find the right calculator and run it), then more focused tools. We don't promise what we haven't built.</p>
+
+          <div style="margin-top:1.6rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <a href="ai-tools.html" class="btn btn--primary">See the AI roadmap</a>
+            <a href="#true-monthly-cost" class="btn btn--ghost">Use the live calculator now</a>
           </div>
         </div>
         <div class="ai__demo">
           <div class="chat" aria-hidden="true">
-            <div class="chat__q">If rates drop to 5.5% next year, should I wait? I'm looking at a $425K home in 75034.</div>
+            <div class="chat__q">Why is my true monthly cost $3,533 when my mortgage payment is only $2,205?</div>
             <div class="chat__a">
-              Waiting saves about <strong>$275/mo</strong> on principal &amp; interest — but it also assumes the home doesn't appreciate.
-              <span class="num">~$88/mo net benefit</span>
-              After likely 4% appreciation ($17K), you break even in roughly five years. If you're staying 7+, waiting helps. Shorter than that, buying now is usually the better call.
+              Three line items account for most of the gap on your specific calculation:
+              <span class="num">+$531 /mo · taxes &amp; insurance</span>
+              <span class="num">+$354 /mo · 1% maintenance reserve</span>
+              <span class="num">+$300 /mo · HOA</span>
+              The maintenance number is the one most calculators skip. It's a reserve, not a bill — but without it, deferred maintenance becomes a future emergency.
               <span class="chat__typing"><span></span><span></span><span></span></span>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="discoveryrow reveal" style="margin-top:1.6rem">
+        <span class="discoveryrow__label">More on AI tools:</span>
+        <a href="ai-tools.html">AI Tools roadmap</a>
+        <a href="scenario-assistant.html">Scenario Assistant (planned)</a>
+        <a href="methodology.html">How OwningCost calculates</a>
       </div>
     </div>
   </section>
@@ -790,6 +966,70 @@
           </div>
           <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FROM THE LIBRARY ======================= -->
+  <section class="section" id="library" aria-labelledby="lib-title">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow section__kicker">From the library</span>
+        <h2 id="lib-title">Eighteen guides on the housing decisions that actually matter.</h2>
+        <p class="section__sub">Each guide is a 7–11 minute read and connects to the calculator that proves the point. Reading is the first half; running your own numbers is the half that changes a decision.</p>
+      </div>
+
+      <div class="hubgrid">
+        <a class="hubcard is-article" href="hidden-costs-of-homeownership.html">
+          <span class="hubcard__tag">Owning · 8 min</span>
+          <h3>Hidden costs of homeownership</h3>
+          <p>Maintenance reserve, post-purchase tax reset, PMI, and HOA assessments — the four lines mortgage calculators leave out and how much they actually cost.</p>
+          <span class="hubcard__cta">Read</span>
+        </a>
+
+        <a class="hubcard is-article" href="fha-vs-conventional-guide.html">
+          <span class="hubcard__tag">Financing · 11 min</span>
+          <h3>FHA vs. Conventional: the full guide</h3>
+          <p>When FHA actually wins, when conventional wins, and the structural mortgage-insurance difference that compounds over a 30-year hold.</p>
+          <span class="hubcard__cta">Read</span>
+        </a>
+
+        <a class="hubcard is-article" href="how-much-house-can-you-really-afford.html">
+          <span class="hubcard__tag">Buying · 9 min</span>
+          <h3>How much house can you really afford?</h3>
+          <p>Lender's approval ceiling vs. comfortable target — two genuinely different numbers. Why the gap matters and how to find your honest answer.</p>
+          <span class="hubcard__cta">Read</span>
+        </a>
+
+        <a class="hubcard is-article" href="buying-now-vs-waiting-guide.html">
+          <span class="hubcard__tag">Buying · 11 min</span>
+          <h3>Buying now vs. waiting</h3>
+          <p>The four variables that move when you wait — rates, prices, rent, and savings — and how to think about the decision without the headline trap.</p>
+          <span class="hubcard__cta">Read</span>
+        </a>
+
+        <a class="hubcard is-article" href="what-is-pmi-and-when-does-it-go-away.html">
+          <span class="hubcard__tag">Financing · 10 min</span>
+          <h3>What is PMI and when does it go away?</h3>
+          <p>The federal rules that require automatic PMI termination at 78% LTV — plus the appraisal path most borrowers don't know exists.</p>
+          <span class="hubcard__cta">Read</span>
+        </a>
+
+        <a class="hubcard is-article" href="selling-costs-explained.html">
+          <span class="hubcard__tag">Owning · 9 min</span>
+          <h3>Selling costs explained</h3>
+          <p>The 7–9% on the way out — agent commissions, title, concessions, the mortgage payoff math — and why short holds usually break even at best.</p>
+          <span class="hubcard__cta">Read</span>
+        </a>
+      </div>
+
+      <div class="discoveryrow reveal" style="margin-top:1.6rem">
+        <span class="discoveryrow__label">Or browse:</span>
+        <a href="learn.html">Full Learn library (18 guides)</a>
+        <a href="buying.html">Buying section</a>
+        <a href="renting.html">Renting section</a>
+        <a href="owning.html">Owning section</a>
+        <a href="financing.html">Financing section</a>
       </div>
     </div>
   </section>
@@ -1176,6 +1416,45 @@
   });
 
   compute();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return;
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
 })();
 </script>
 
