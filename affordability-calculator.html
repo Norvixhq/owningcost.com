@@ -175,7 +175,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -256,18 +257,21 @@
           <h3>Your finances</h3>
 
           <div class="field">
-            <div class="field__label"><span>Annual gross income</span></div>
+            <div class="field__label"><span>Annual gross income</span><span class="field__value" id="lblInc"></span></div>
             <div class="field__input"><span class="prefix">$</span><input type="number" id="inpInc" value="125000" min="20000" step="1000" aria-label="Annual gross income"></div>
+            <input type="range" id="rngInc" class="field__range" min="20000" max="500000" step="1000" aria-label="Annual gross income">
           </div>
 
           <div class="field">
-            <div class="field__label"><span>Monthly debts</span><span class="field__hint">cars, student loans, cards</span></div>
+            <div class="field__label"><span>Monthly debts</span><span class="field__value" id="lblDebt"></span><span class="field__hint">cars, student loans, cards</span></div>
             <div class="field__input"><span class="prefix">$</span><input type="number" id="inpDebt" value="650" min="0" step="25" aria-label="Monthly debt payments"></div>
+            <input type="range" id="rngDebt" class="field__range" min="0" max="5000" step="50" aria-label="Monthly debts">
           </div>
 
           <div class="field">
-            <div class="field__label"><span>Down payment available</span></div>
+            <div class="field__label"><span>Down payment available</span><span class="field__value" id="lblDown"></span></div>
             <div class="field__input"><span class="prefix">$</span><input type="number" id="inpDown" value="85000" min="0" step="1000" aria-label="Down payment"></div>
+            <input type="range" id="rngDown" class="field__range" min="0" max="300000" step="1000" aria-label="Down payment available">
           </div>
 
           <div class="field">
@@ -278,12 +282,14 @@
           <h3 style="margin-top:1.4rem">Loan &amp; property assumptions</h3>
           <div class="field__grid">
             <div class="field">
-              <div class="field__label"><span>Rate</span></div>
+              <div class="field__label"><span>Rate</span><span class="field__value" id="lblRate"></span></div>
               <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="0.5" max="15" step="0.05" aria-label="Interest rate"><span class="suffix">%</span></div>
+            <input type="range" id="rngRate" class="field__range" min="2" max="12" step="0.05" aria-label="Rate">
             </div>
             <div class="field">
-              <div class="field__label"><span>Term</span></div>
+              <div class="field__label"><span>Term</span><span class="field__value" id="lblTerm"></span></div>
               <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="5" max="40" step="1" aria-label="Loan term"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngTerm" class="field__range" min="15" max="30" step="5" aria-label="Term">
             </div>
           </div>
 
@@ -379,7 +385,7 @@
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Each tier's max housing cost</strong> = the lesser of (income × front-end DTI ÷ 12) and (income × back-end DTI ÷ 12 − monthly debts). From that we subtract tax, insurance, HOA, and maintenance, then solve for the loan amount that fits the remaining principal-and-interest budget.</p>
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Max price</strong> = max loan + your down payment. PMI is added to the monthly cost when down payment is under 20%, lowering the affordable price.</p>
               <p><strong style="color:var(--ink)">House Poor Risk Score</strong> weights four factors: reserves (30%), rate sensitivity at +1pp (25%), hidden cost share — non-P&amp;I share of total housing (20%), and back-end DTI under stress (25%). 0 = very safe, 100 = severe risk.</p>
-              <p class="calc__math__cta"><a href="methodology.html#house-poor-risk-score">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#house-poor-risk-score">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
           </details>
         </div>
@@ -595,12 +601,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }
@@ -862,5 +870,55 @@
 })();
 </script>
 
+<script>
+  // OC_SLIDER_PAIRS — defined by Session 4 standardization
+  window.__OC_SLIDER_PAIRS__ = [{"inp": "inpInc", "rng": "rngInc", "lbl": "lblInc", "fmt": "USD"}, {"inp": "inpDebt", "rng": "rngDebt", "lbl": "lblDebt", "fmt": "USD"}, {"inp": "inpDown", "rng": "rngDown", "lbl": "lblDown", "fmt": "USD"}, {"inp": "inpRate", "rng": "rngRate", "lbl": "lblRate", "fmt": "PCT2"}, {"inp": "inpTerm", "rng": "rngTerm", "lbl": "lblTerm", "fmt": "YR"}];
+
+// OC_SLIDER_SHIM_v1
+(function(){
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  var pairs = window.__OC_SLIDER_PAIRS__ || [];
+  pairs.forEach(function(cfg){
+    var inp = document.getElementById(cfg.inp);
+    var rng = document.getElementById(cfg.rng);
+    var lbl = document.getElementById(cfg.lbl);
+    if (!inp) return;
+    function paint(){
+      if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value);
+    }
+    if (rng){
+      // sync slider <-> input
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        // Clamp slider position; don't fight the user's typed value.
+        var v = parseFloat(inp.value);
+        if (!isNaN(v)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (v < mn) rng.value = mn;
+          else if (v > mx) rng.value = mx;
+          else rng.value = v;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+})();
+
+</script>
 </body>
 </html>

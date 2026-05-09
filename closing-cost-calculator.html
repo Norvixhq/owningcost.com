@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -204,13 +205,15 @@
         <h3>Purchase details</h3>
 
 <div class="field">
-  <div class="field__label"><span>Home price</span></div>
+  <div class="field__label"><span>Home price</span><span class="field__value" id="lblCcoPrice"></span></div>
   <div class="field__input"><span class="prefix">$</span><input type="number" id="ccPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngCcPrice" class="field__range" min="50000" max="1500000" step="5000" aria-label="Home price">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Loan amount</span><span class="field__hint">price minus down</span></div>
+  <div class="field__label"><span>Loan amount</span><span class="field__value" id="lblCcoLoan"></span><span class="field__hint">price minus down</span></div>
   <div class="field__input"><span class="prefix">$</span><input type="number" id="ccLoan" value="340000" min="0" step="5000" aria-label="Loan amount"></div>
+            <input type="range" id="rngCcLoan" class="field__range" min="0" max="1500000" step="5000" aria-label="Loan amount">
 </div>
 
 <div class="field">
@@ -229,13 +232,15 @@
 <h3 style="margin-top:1.4rem">Loan-related fees</h3>
 
 <div class="field">
-  <div class="field__label"><span>Lender origination</span><span class="field__hint">% of loan</span></div>
+  <div class="field__label"><span>Lender origination</span><span class="field__value" id="lblCcoOrig"></span><span class="field__hint">% of loan</span></div>
   <div class="field__input"><input type="number" id="ccOrig" value="0.5" min="0" max="3" step="0.1" aria-label="Lender origination"><span class="suffix">%</span></div>
+            <input type="range" id="rngCcOrig" class="field__range" min="0" max="2" step="0.05" aria-label="Lender origination">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Discount points</span><span class="field__hint">% of loan</span></div>
+  <div class="field__label"><span>Discount points</span><span class="field__value" id="lblCcoPoints"></span><span class="field__hint">% of loan</span></div>
   <div class="field__input"><input type="number" id="ccPoints" value="0" min="0" max="3" step="0.25" aria-label="Discount points"><span class="suffix">%</span></div>
+            <input type="range" id="rngCcPoints" class="field__range" min="0" max="3" step="0.125" aria-label="Discount points">
 </div>
 
 <h3 style="margin-top:1.4rem">Prepaids</h3>
@@ -278,7 +283,7 @@
     <p><strong>Prepaid taxes</strong> = 3 months of property tax held in escrow at closing.</p>
     <p><strong>Prepaid insurance</strong> = 12 months of homeowners insurance paid at closing.</p>
     <p><strong>Discount points</strong> = points% × loan amount. One point = 1% of loan.</p>
-              <p class="calc__math__cta"><a href="methodology.html#closing-costs">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#closing-costs">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
 </details>
       </div>
@@ -480,12 +485,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }
@@ -627,5 +634,55 @@
 })();
 </script>
 
+<script>
+  // OC_SLIDER_PAIRS — defined by Session 4 standardization
+  window.__OC_SLIDER_PAIRS__ = [{"inp": "ccPrice", "rng": "rngCcPrice", "lbl": "lblCcoPrice", "fmt": "USD"}, {"inp": "ccLoan", "rng": "rngCcLoan", "lbl": "lblCcoLoan", "fmt": "USD"}, {"inp": "ccOrig", "rng": "rngCcOrig", "lbl": "lblCcoOrig", "fmt": "PCT"}, {"inp": "ccPoints", "rng": "rngCcPoints", "lbl": "lblCcoPoints", "fmt": "PCT"}];
+
+// OC_SLIDER_SHIM_v1
+(function(){
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  var pairs = window.__OC_SLIDER_PAIRS__ || [];
+  pairs.forEach(function(cfg){
+    var inp = document.getElementById(cfg.inp);
+    var rng = document.getElementById(cfg.rng);
+    var lbl = document.getElementById(cfg.lbl);
+    if (!inp) return;
+    function paint(){
+      if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value);
+    }
+    if (rng){
+      // sync slider <-> input
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        // Clamp slider position; don't fight the user's typed value.
+        var v = parseFloat(inp.value);
+        if (!isNaN(v)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (v < mn) rng.value = mn;
+          else if (v > mx) rng.value = mx;
+          else rng.value = v;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+})();
+
+</script>
 </body>
 </html>

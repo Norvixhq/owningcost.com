@@ -175,7 +175,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -390,7 +391,7 @@
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Rent total</strong> = sum across years of <code>12 × rent × (1 + rentInc)^(year−1)</code>.</p>
               <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Buy total cash out</strong> = (down + closing) + sum of monthly housing costs over the horizon.&nbsp;<strong style="color:var(--ink)">Net buy cost</strong> = total cash out − (home value at exit × (1 − selling cost) − loan balance at exit). Loan balance at month <code>m</code> uses <code>L × ((1+r)ⁿ − (1+r)ᵐ) / ((1+r)ⁿ − 1)</code>.</p>
               <p><strong style="color:var(--ink)">Opportunity cost</strong> on initial cash (down + closing) compounds at the investment return; we add this to the buy side and subtract it from the rent side to make the comparison apples-to-apples. The <strong style="color:var(--ink)">break-even year</strong> is the first year where adjusted cumulative buy cost ≤ cumulative rent cost.</p>
-              <p class="calc__math__cta"><a href="methodology.html#opportunity-cost">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#opportunity-cost">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
           </details>
         </div>
@@ -596,12 +597,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }

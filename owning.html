@@ -50,7 +50,7 @@
 
 <link rel="stylesheet" href="styles.css" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Owning", "item": "https://owningcost.com/owning.html"}]}, {"@type": "CollectionPage", "name": "Owning hub", "description": "Tools and guides for current homeowners — true monthly cost, hidden costs, property tax, insurance, selling costs, and stay vs. sell.", "url": "https://owningcost.com/owning.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US"}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Owning", "item": "https://owningcost.com/owning.html"}]}, {"@type": "CollectionPage", "name": "Owning hub", "description": "Tools and guides for current homeowners — true monthly cost, hidden costs, property tax, insurance, selling costs, and stay vs. sell.", "url": "https://owningcost.com/owning.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US", "mainEntity": {"@type": "ItemList", "numberOfItems": 8, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Hidden Costs of Homeownership", "url": "https://owningcost.com/hidden-costs-of-homeownership.html"}, {"@type": "ListItem", "position": 2, "name": "True Cost of Owning a Home", "url": "https://owningcost.com/true-cost-of-owning-a-home.html"}, {"@type": "ListItem", "position": 3, "name": "Selling Costs Explained", "url": "https://owningcost.com/selling-costs-explained.html"}, {"@type": "ListItem", "position": 4, "name": "Property Tax Explained", "url": "https://owningcost.com/property-tax-explained.html"}, {"@type": "ListItem", "position": 5, "name": "Homeowners Insurance Explained", "url": "https://owningcost.com/homeowners-insurance-explained.html"}, {"@type": "ListItem", "position": 6, "name": "Stay vs. Sell Calculator", "url": "https://owningcost.com/stay-vs-sell-calculator.html"}, {"@type": "ListItem", "position": 7, "name": "Payment Shock Calculator", "url": "https://owningcost.com/payment-shock-calculator.html"}, {"@type": "ListItem", "position": 8, "name": "True Monthly Cost Calculator", "url": "https://owningcost.com/true-monthly-cost-calculator.html"}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much should I budget for maintenance each year?", "acceptedAnswer": {"@type": "Answer", "text": "The standard rule is 1% of home value for a single-family home, 0.7% for a townhome, and 0.4% for a condo where the HOA covers the exterior. Older homes and those in harsh climates run higher. Whether you set it aside in a sinking fund or not, you'll spend it."}}, {"@type": "Question", "name": "When should I refinance?", "acceptedAnswer": {"@type": "Answer", "text": "When the rate drop is large enough to recoup closing costs (typically 2–3% of the loan) within your remaining hold period. A common rule of thumb: rates need to drop at least 0.75 percentage points and you need to plan to stay at least 3–5 more years. Run the actual numbers — don't trust the rule of thumb."}}, {"@type": "Question", "name": "Why did my property tax jump so much last year?", "acceptedAnswer": {"@type": "Answer", "text": "Two main reasons: the assessor reset your value (often after purchase or on a periodic reappraisal cycle), or the millage rate rose to fund local services. Texas, Florida, and California all have well-documented post-sale reassessment effects."}}, {"@type": "Question", "name": "Should I sell or keep renting it out if I move?", "acceptedAnswer": {"@type": "Answer", "text": "Depends on the cap rate (annual rent / property value, net of expenses), the local rental demand, and whether you can manage the property remotely. A well-located property with a 5%+ cap rate and steady tenant demand often justifies keeping. A property with a sub-3% cap rate is often financially better to sell."}}]}]}
 </script>
 
 </head>
@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -301,6 +302,43 @@
   </div>
 </section>
 
+<!-- HUB CROSS-LINK PANEL -->
+<section class="section section--surface" aria-labelledby="adj-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Adjacent on the platform</span>
+      <h2 id="adj-title">What you do once you own.</h2>
+      <p class="section__lede">Ownership decisions don't end at closing. These hubs cover the recurring trade-offs and the eventual exit.</p>
+    </div>
+    <div class="hubgrid">
+        <a class="hubcard is-hub" href="stay-vs-sell-calculator.html">
+          <span class="hubcard__tag">Tool</span>
+          <h3>Stay vs. Sell</h3>
+          <p>When holding longer makes sense and when the appreciation has already done its work.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="financing.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Financing</h3>
+          <p>Refinance decisions, rate environment, and when restructuring the loan changes the long-run number.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="calculators.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Calculators</h3>
+          <p>Stay vs. Sell, Payment Shock, House Poor Risk, and the True Monthly Cost recheck for current owners.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="learn.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Learn</h3>
+          <p>Hidden costs of homeownership, selling costs explained, and other guides for current owners.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="ctaband reveal">
@@ -399,12 +437,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }

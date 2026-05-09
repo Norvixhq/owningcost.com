@@ -50,7 +50,7 @@
 
 <link rel="stylesheet" href="styles.css" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://owningcost.com/learn.html"}]}, {"@type": "CollectionPage", "name": "Learn", "description": "Articles, guides, and education on housing costs, mortgages, renting, owning, and decision-support frameworks.", "url": "https://owningcost.com/learn.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US"}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://owningcost.com/learn.html"}]}, {"@type": "CollectionPage", "name": "Learn", "description": "Articles, guides, and education on housing costs, mortgages, renting, owning, and decision-support frameworks.", "url": "https://owningcost.com/learn.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US", "mainEntity": {"@type": "ItemList", "numberOfItems": 16, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "First-time Homebuyer Guide", "url": "https://owningcost.com/first-time-homebuyer-guide.html"}, {"@type": "ListItem", "position": 2, "name": "How Much House Can You Really Afford?", "url": "https://owningcost.com/how-much-house-can-you-really-afford.html"}, {"@type": "ListItem", "position": 3, "name": "Hidden Costs of Homeownership", "url": "https://owningcost.com/hidden-costs-of-homeownership.html"}, {"@type": "ListItem", "position": 4, "name": "True Cost of Owning a Home", "url": "https://owningcost.com/true-cost-of-owning-a-home.html"}, {"@type": "ListItem", "position": 5, "name": "FHA vs. Conventional Guide", "url": "https://owningcost.com/fha-vs-conventional-guide.html"}, {"@type": "ListItem", "position": 6, "name": "VA Loan Guide", "url": "https://owningcost.com/va-loan-guide.html"}, {"@type": "ListItem", "position": 7, "name": "ARM vs. Fixed Guide", "url": "https://owningcost.com/arm-vs-fixed-guide.html"}, {"@type": "ListItem", "position": 8, "name": "What is PMI and When Does It Go Away?", "url": "https://owningcost.com/what-is-pmi-and-when-does-it-go-away.html"}, {"@type": "ListItem", "position": 9, "name": "Buying Now vs. Waiting", "url": "https://owningcost.com/buying-now-vs-waiting-guide.html"}, {"@type": "ListItem", "position": 10, "name": "Should You Rent Another Year", "url": "https://owningcost.com/should-you-rent-another-year.html"}, {"@type": "ListItem", "position": 11, "name": "Lease Renewal vs. Moving", "url": "https://owningcost.com/lease-renewal-vs-moving.html"}, {"@type": "ListItem", "position": 12, "name": "Renting vs. Buying — Total Cost", "url": "https://owningcost.com/renting-vs-buying-total-cost.html"}, {"@type": "ListItem", "position": 13, "name": "Selling Costs Explained", "url": "https://owningcost.com/selling-costs-explained.html"}, {"@type": "ListItem", "position": 14, "name": "Property Tax Explained", "url": "https://owningcost.com/property-tax-explained.html"}, {"@type": "ListItem", "position": 15, "name": "Homeowners Insurance Explained", "url": "https://owningcost.com/homeowners-insurance-explained.html"}, {"@type": "ListItem", "position": 16, "name": "What Mortgage Calculators Leave Out", "url": "https://owningcost.com/what-mortgage-calculators-leave-out.html"}]}}]}
 </script>
 
 </head>
@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -298,6 +299,43 @@
   </div>
 </section>
 
+<!-- HUB CROSS-LINK PANEL -->
+<section class="section section--surface" aria-labelledby="adj-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Adjacent on the platform</span>
+      <h2 id="adj-title">Move from reading to running numbers.</h2>
+      <p class="section__lede">Reading is the first half of a housing decision. These hubs are where the calculators that prove the points live.</p>
+    </div>
+    <div class="hubgrid">
+        <a class="hubcard is-hub" href="calculators.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Calculators</h3>
+          <p>Fifteen tools, each tied to one or more guides. Reading and running pair naturally.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="buying.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Buying</h3>
+          <p>If the article you read was about buying, here's the full hub — process, costs, and decisions.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="owning.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Owning</h3>
+          <p>If the article was about ownership costs, the Owning hub continues the conversation.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="financing.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Financing</h3>
+          <p>If the article covered loan structures, the Financing hub puts it in the broader rate context.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="ctaband reveal">
@@ -396,12 +434,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }

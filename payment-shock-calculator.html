@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -204,13 +205,15 @@
         <h3>Current housing</h3>
 
 <div class="field">
-  <div class="field__label"><span>Current monthly payment</span><span class="field__hint">PITI + HOA</span></div>
+  <div class="field__label"><span>Current monthly payment</span><span class="field__value" id="lblPsNow"></span><span class="field__hint">PITI + HOA</span></div>
   <div class="field__input"><span class="prefix">$</span><input type="number" id="psNow" value="3200" min="0" step="50" aria-label="Current monthly payment"></div>
+            <input type="range" id="rngPsNow" class="field__range" min="500" max="12000" step="50" aria-label="Current monthly payment">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Current rate</span></div>
+  <div class="field__label"><span>Current rate</span><span class="field__value" id="lblPsRate"></span></div>
   <div class="field__input"><input type="number" id="psRate" value="4.50" min="0" max="20" step="0.01" aria-label="Current rate"><span class="suffix">%</span></div>
+            <input type="range" id="rngPsRate" class="field__range" min="2" max="12" step="0.05" aria-label="Current rate">
 </div>
 
 <div class="field">
@@ -226,8 +229,9 @@
 <h3 style="margin-top:1.4rem">Stress scenarios</h3>
 
 <div class="field">
-  <div class="field__label"><span>Rate change</span><span class="field__hint">e.g. ARM reset, refi</span></div>
+  <div class="field__label"><span>Rate change</span><span class="field__value" id="lblPsRateChg"></span><span class="field__hint">e.g. ARM reset, refi</span></div>
   <div class="field__input"><input type="number" id="psRateChg" value="2.5" min="-3" max="5" step="0.25" aria-label="Rate change"><span class="suffix">pp</span></div>
+            <input type="range" id="rngPsRateChg" class="field__range" min="-2" max="5" step="0.05" aria-label="Rate change">
 </div>
 
 <div class="field">
@@ -270,7 +274,7 @@
     <p><strong>Insurance Δ</strong> = (current insurance share, ~25% of non-PI) × % increase.</p>
     <p><strong>Property tax Δ</strong> = (current tax share, ~50% of non-PI) × % increase.</p>
     <p>HOA and maintenance are held constant in this scenario — adjust your starting payment if those change too.</p>
-              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
 </details>
       </div>
@@ -468,12 +472,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }
@@ -626,5 +632,55 @@
 })();
 </script>
 
+<script>
+  // OC_SLIDER_PAIRS — defined by Session 4 standardization
+  window.__OC_SLIDER_PAIRS__ = [{"inp": "psNow", "rng": "rngPsNow", "lbl": "lblPsNow", "fmt": "USD"}, {"inp": "psRate", "rng": "rngPsRate", "lbl": "lblPsRate", "fmt": "PCT2"}, {"inp": "psRateChg", "rng": "rngPsRateChg", "lbl": "lblPsRateChg", "fmt": "PCT2"}];
+
+// OC_SLIDER_SHIM_v1
+(function(){
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  var pairs = window.__OC_SLIDER_PAIRS__ || [];
+  pairs.forEach(function(cfg){
+    var inp = document.getElementById(cfg.inp);
+    var rng = document.getElementById(cfg.rng);
+    var lbl = document.getElementById(cfg.lbl);
+    if (!inp) return;
+    function paint(){
+      if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value);
+    }
+    if (rng){
+      // sync slider <-> input
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        // Clamp slider position; don't fight the user's typed value.
+        var v = parseFloat(inp.value);
+        if (!isNaN(v)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (v < mn) rng.value = mn;
+          else if (v > mx) rng.value = mx;
+          else rng.value = v;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+})();
+
+</script>
 </body>
 </html>

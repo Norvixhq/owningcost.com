@@ -258,7 +258,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -388,7 +389,7 @@
 
           <div class="holdrange">
             <span class="holdrange__lbl">Hold period</span>
-            <input type="range" id="fHoldRange" min="1" max="30" step="1" value="7" aria-label="Hold period slider">
+            <input type="range" id="fHoldRange" class="field__range" min="1" max="30" step="1" value="7" aria-label="Hold period slider">
             <span class="holdrange__val" id="fHoldRangeVal">7 years</span>
           </div>
 
@@ -464,7 +465,7 @@
               <p><strong>Conventional PMI</strong> = base loan × 0.75% / 12, applied while LTV &gt; 78%. The calculator amortizes the loan and finds the month at which scheduled balance reaches 78% of the original price (no appreciation assumed).</p>
               <p><strong>Total over hold period</strong> = down payment + (monthly housing cost summed across all months in the hold) − no resale value modeled. Both loan paths use the same property tax and insurance, so the comparison isolates financing cost.</p>
               <p><strong>P&amp;I formula</strong> = <code>L · r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup>−1)</code>, with <code>L</code> the loan, <code>r</code> the monthly rate, <code>n</code> the term in months (360).</p>
-              <p class="calc__math__cta"><a href="methodology.html#fha-mortgage-insurance">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#fha-mortgage-insurance">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
           </details>
         </div>
@@ -710,12 +711,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }

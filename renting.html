@@ -50,7 +50,7 @@
 
 <link rel="stylesheet" href="styles.css" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Renting", "item": "https://owningcost.com/renting.html"}]}, {"@type": "CollectionPage", "name": "Renting hub", "description": "Tools and guides for renters — rent affordability, rent vs. buy, lease renewal, and renting a house vs. apartment.", "url": "https://owningcost.com/renting.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US"}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Renting", "item": "https://owningcost.com/renting.html"}]}, {"@type": "CollectionPage", "name": "Renting hub", "description": "Tools and guides for renters — rent affordability, rent vs. buy, lease renewal, and renting a house vs. apartment.", "url": "https://owningcost.com/renting.html", "isPartOf": {"@type": "WebSite", "name": "OwningCost", "url": "https://owningcost.com"}, "inLanguage": "en-US", "mainEntity": {"@type": "ItemList", "numberOfItems": 4, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Should You Rent Another Year", "url": "https://owningcost.com/should-you-rent-another-year.html"}, {"@type": "ListItem", "position": 2, "name": "Lease Renewal vs. Moving", "url": "https://owningcost.com/lease-renewal-vs-moving.html"}, {"@type": "ListItem", "position": 3, "name": "Renting vs. Buying — Total Cost", "url": "https://owningcost.com/renting-vs-buying-total-cost.html"}, {"@type": "ListItem", "position": 4, "name": "Rent vs. Buy Calculator", "url": "https://owningcost.com/rent-vs-buy-calculator.html"}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is buying always better than renting?", "acceptedAnswer": {"@type": "Answer", "text": "No. Buying is better than renting when you stay long enough to absorb closing costs and selling costs, when home appreciation outpaces what your down payment would have earned invested, and when the property tax + insurance + maintenance load doesn't crowd out everything else in your budget. The Rent vs Buy calculator quantifies the breakeven for your situation."}}, {"@type": "Question", "name": "How long do I need to stay for buying to make sense?", "acceptedAnswer": {"@type": "Answer", "text": "For most buyers, the breakeven sits between 4 and 7 years, depending on appreciation rate, opportunity cost, closing costs, and selling costs. Selling within three years almost always loses money compared to renting because you haven't built enough equity to cover the 6–8% selling cost yet."}}, {"@type": "Question", "name": "What's the case for renting another year?", "acceptedAnswer": {"@type": "Answer", "text": "Cash buffer, flexibility, lower total monthly cost in many markets, and the freedom to keep saving aggressively for a larger down payment. If your rent is meaningfully below the True Monthly Cost of an equivalent home you'd buy, the math often points to renting."}}, {"@type": "Question", "name": "Will my rent definitely go up?", "acceptedAnswer": {"@type": "Answer", "text": "Rent inflation has averaged 3–4% annually in most markets, with bigger jumps in supply-constrained metros. Some markets have seen flat or declining rent in 2024–2026 due to apartment construction. Check your local rent trend before assuming a 5% year-over-year increase."}}]}]}
 </script>
 
 </head>
@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -309,6 +310,43 @@
   </div>
 </section>
 
+<!-- HUB CROSS-LINK PANEL -->
+<section class="section section--surface" aria-labelledby="adj-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Adjacent on the platform</span>
+      <h2 id="adj-title">When renting becomes a buying question.</h2>
+      <p class="section__lede">If you're considering whether to keep renting or shift toward ownership, these hubs cover the next layer of the decision.</p>
+    </div>
+    <div class="hubgrid">
+        <a class="hubcard is-hub" href="rent-vs-buy-calculator.html">
+          <span class="hubcard__tag">Tool</span>
+          <h3>Rent vs. Buy calculator</h3>
+          <p>The honest comparison — total cost over your real time horizon, not a 30-year hypothetical.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="buying.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Buying</h3>
+          <p>The full process if you decide ownership is the right move — from credit prep to closing day.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="learn.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Learn</h3>
+          <p>Long-form guides on the rent-vs-buy decision and the lease-renewal-vs-moving math.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+        <a class="hubcard is-hub" href="calculators.html">
+          <span class="hubcard__tag">Hub</span>
+          <h3>Calculators</h3>
+          <p>Fifteen tools for housing decisions, several of which work for renting scenarios as well as buying.</p>
+          <span class="hubcard__cta">Open</span>
+        </a>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="ctaband reveal">
@@ -407,12 +445,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }

@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -204,8 +205,9 @@
         <h3>Loan basics</h3>
 
 <div class="field">
-  <div class="field__label"><span>Loan amount</span></div>
+  <div class="field__label"><span>Loan amount</span><span class="field__value" id="lblArmLoan"></span></div>
   <div class="field__input"><span class="prefix">$</span><input type="number" id="armLoan" value="400000" min="50000" step="5000" aria-label="Loan amount"></div>
+            <input type="range" id="rngArmLoan" class="field__range" min="50000" max="1500000" step="5000" aria-label="Loan amount">
 </div>
 
 <div class="field">
@@ -216,8 +218,9 @@
 <h3 style="margin-top:1.4rem">Fixed loan</h3>
 
 <div class="field">
-  <div class="field__label"><span>30-year fixed rate</span></div>
+  <div class="field__label"><span>30-year fixed rate</span><span class="field__value" id="lblArmFixedRate"></span></div>
   <div class="field__input"><input type="number" id="armFixedRate" value="6.75" min="0" max="20" step="0.01" aria-label="30-year fixed rate"><span class="suffix">%</span></div>
+            <input type="range" id="rngArmFixedRate" class="field__range" min="2" max="12" step="0.05" aria-label="30-year fixed rate">
 </div>
 
 <h3 style="margin-top:1.4rem">ARM loan</h3>
@@ -234,18 +237,21 @@
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Initial ARM rate</span></div>
+  <div class="field__label"><span>Initial ARM rate</span><span class="field__value" id="lblArmRate"></span></div>
   <div class="field__input"><input type="number" id="armRate" value="5.875" min="0" max="20" step="0.01" aria-label="Initial ARM rate"><span class="suffix">%</span></div>
+            <input type="range" id="rngArmRate" class="field__range" min="2" max="12" step="0.05" aria-label="Initial ARM rate">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Worst-case rate after reset</span></div>
+  <div class="field__label"><span>Worst-case rate after reset</span><span class="field__value" id="lblArmReset"></span></div>
   <div class="field__input"><input type="number" id="armReset" value="9.0" min="0" max="20" step="0.25" aria-label="Worst-case rate after reset"><span class="suffix">%</span></div>
+            <input type="range" id="rngArmReset" class="field__range" min="2" max="14" step="0.1" aria-label="Worst-case rate after reset">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Hold period</span></div>
+  <div class="field__label"><span>Hold period</span><span class="field__value" id="lblArmHold"></span></div>
   <div class="field__input"><input type="number" id="armHold" value="7" min="1" max="30" step="1" aria-label="Hold period"><span class="suffix">yr</span></div>
+            <input type="range" id="rngArmHold" class="field__range" min="1" max="20" step="1" aria-label="Hold period">
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -284,7 +290,7 @@
     <p><strong>ARM total within fixed period</strong> = initial-rate P&amp;I × min(hold, fixed-period) months.</p>
     <p><strong>ARM total beyond fixed period</strong> = recomputes P&amp;I at the worst-case reset rate, applied to the remaining balance over the remaining term, multiplied by the months past the reset.</p>
     <p>Most modern ARMs cap the first reset at +2 percentage points and lifetime adjustments at +5–6 points. The "worst-case rate" should reflect those caps for a realistic stress scenario.</p>
-              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
 </details>
       </div>
@@ -492,12 +498,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }
@@ -696,5 +704,55 @@
 })();
 </script>
 
+<script>
+  // OC_SLIDER_PAIRS — defined by Session 4 standardization
+  window.__OC_SLIDER_PAIRS__ = [{"inp": "armLoan", "rng": "rngArmLoan", "lbl": "lblArmLoan", "fmt": "USD"}, {"inp": "armFixedRate", "rng": "rngArmFixedRate", "lbl": "lblArmFixedRate", "fmt": "PCT2"}, {"inp": "armRate", "rng": "rngArmRate", "lbl": "lblArmRate", "fmt": "PCT2"}, {"inp": "armReset", "rng": "rngArmReset", "lbl": "lblArmReset", "fmt": "PCT2"}, {"inp": "armHold", "rng": "rngArmHold", "lbl": "lblArmHold", "fmt": "YR"}];
+
+// OC_SLIDER_SHIM_v1
+(function(){
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  var pairs = window.__OC_SLIDER_PAIRS__ || [];
+  pairs.forEach(function(cfg){
+    var inp = document.getElementById(cfg.inp);
+    var rng = document.getElementById(cfg.rng);
+    var lbl = document.getElementById(cfg.lbl);
+    if (!inp) return;
+    function paint(){
+      if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value);
+    }
+    if (rng){
+      // sync slider <-> input
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        // Clamp slider position; don't fight the user's typed value.
+        var v = parseFloat(inp.value);
+        if (!isNaN(v)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (v < mn) rng.value = mn;
+          else if (v > mx) rng.value = mx;
+          else rng.value = v;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+})();
+
+</script>
 </body>
 </html>

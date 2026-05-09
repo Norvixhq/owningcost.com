@@ -124,7 +124,8 @@
     <div class="header__cta">
       <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
       </button>
     </div>
   </div>
@@ -204,30 +205,35 @@
         <h3>The home today</h3>
 
 <div class="field">
-  <div class="field__label"><span>Home price now</span></div>
+  <div class="field__label"><span>Home price now</span><span class="field__value" id="lblBnPrice"></span></div>
   <div class="field__input"><span class="prefix">$</span><input type="number" id="bnPrice" value="475000" min="50000" step="5000" aria-label="Home price now"></div>
+            <input type="range" id="rngBnPrice" class="field__range" min="50000" max="1500000" step="5000" aria-label="Home price now">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Down payment</span></div>
+  <div class="field__label"><span>Down payment</span><span class="field__value" id="lblBnDown"></span></div>
   <div class="field__input"><input type="number" id="bnDown" value="20" min="3" max="50" step="0.5" aria-label="Down payment"><span class="suffix">%</span></div>
+            <input type="range" id="rngBnDown" class="field__range" min="3" max="50" step="0.5" aria-label="Down payment">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Rate now</span></div>
+  <div class="field__label"><span>Rate now</span><span class="field__value" id="lblBnRateNow"></span></div>
   <div class="field__input"><input type="number" id="bnRateNow" value="6.75" min="0" max="20" step="0.01" aria-label="Rate now"><span class="suffix">%</span></div>
+            <input type="range" id="rngBnRateNow" class="field__range" min="2" max="12" step="0.05" aria-label="Rate now">
 </div>
 
 <h3 style="margin-top:1.4rem">12 months from now</h3>
 
 <div class="field">
-  <div class="field__label"><span>Price change</span><span class="field__hint">vs today</span></div>
+  <div class="field__label"><span>Price change</span><span class="field__value" id="lblBnPriceChg"></span><span class="field__hint">vs today</span></div>
   <div class="field__input"><input type="number" id="bnPriceChg" value="0" min="-15" max="15" step="0.5" aria-label="Price change"><span class="suffix">%</span></div>
+            <input type="range" id="rngBnPriceChg" class="field__range" min="-15" max="15" step="0.5" aria-label="Price change">
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Rate then</span></div>
+  <div class="field__label"><span>Rate then</span><span class="field__value" id="lblBnRateThen"></span></div>
   <div class="field__input"><input type="number" id="bnRateThen" value="6.00" min="0" max="20" step="0.01" aria-label="Rate then"><span class="suffix">%</span></div>
+            <input type="range" id="rngBnRateThen" class="field__range" min="2" max="12" step="0.05" aria-label="Rate then">
 </div>
 
 <h3 style="margin-top:1.4rem">During the wait</h3>
@@ -238,8 +244,9 @@
 </div>
 
 <div class="field">
-  <div class="field__label"><span>Hold period after buying</span></div>
+  <div class="field__label"><span>Hold period after buying</span><span class="field__value" id="lblBnHold"></span></div>
   <div class="field__input"><input type="number" id="bnHold" value="7" min="1" max="30" step="1" aria-label="Hold period after buying"><span class="suffix">yr</span></div>
+            <input type="range" id="rngBnHold" class="field__range" min="1" max="20" step="1" aria-label="Hold period after buying">
 </div>
       </div>
       <div class="calc__out" aria-live="polite">
@@ -279,7 +286,7 @@
     <p><strong>Buy now total</strong> = monthly P&amp;I × hold months. Calculated at today's price and today's rate.</p>
     <p><strong>Wait total</strong> = (rent × 12) + (monthly P&amp;I × hold months). Wait scenario uses the future price and future rate; rent during the wait counts as cost.</p>
     <p>This calculator focuses on the financing portion of the comparison. Property tax and insurance are similar in both scenarios, so they cancel from the math. For a fully-loaded comparison including taxes, HOA, and maintenance, run the True Monthly Cost calculator at each scenario.</p>
-              <p class="calc__math__cta"><a href="methodology.html#opportunity-cost">Read the full methodology →</a></p>
+              <p class="calc__math__cta"><a href="methodology.html#opportunity-cost">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
             </div>
 </details>
       </div>
@@ -488,12 +495,14 @@
       var open = mobile.classList.toggle('is-open');
       mobile.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     mobile.addEventListener('click', function(e){
       if (e.target.tagName === 'A'){
         mobile.classList.remove('is-open');
         mobile.hidden = true;
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
       }
     });
   }
@@ -657,5 +666,55 @@
 })();
 </script>
 
+<script>
+  // OC_SLIDER_PAIRS — defined by Session 4 standardization
+  window.__OC_SLIDER_PAIRS__ = [{"inp": "bnPrice", "rng": "rngBnPrice", "lbl": "lblBnPrice", "fmt": "USD"}, {"inp": "bnDown", "rng": "rngBnDown", "lbl": "lblBnDown", "fmt": "PCT"}, {"inp": "bnRateNow", "rng": "rngBnRateNow", "lbl": "lblBnRateNow", "fmt": "PCT2"}, {"inp": "bnPriceChg", "rng": "rngBnPriceChg", "lbl": "lblBnPriceChg", "fmt": "PCT"}, {"inp": "bnRateThen", "rng": "rngBnRateThen", "lbl": "lblBnRateThen", "fmt": "PCT2"}, {"inp": "bnHold", "rng": "rngBnHold", "lbl": "lblBnHold", "fmt": "YR"}];
+
+// OC_SLIDER_SHIM_v1
+(function(){
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  var pairs = window.__OC_SLIDER_PAIRS__ || [];
+  pairs.forEach(function(cfg){
+    var inp = document.getElementById(cfg.inp);
+    var rng = document.getElementById(cfg.rng);
+    var lbl = document.getElementById(cfg.lbl);
+    if (!inp) return;
+    function paint(){
+      if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value);
+    }
+    if (rng){
+      // sync slider <-> input
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        // Clamp slider position; don't fight the user's typed value.
+        var v = parseFloat(inp.value);
+        if (!isNaN(v)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (v < mn) rng.value = mn;
+          else if (v > mx) rng.value = mx;
+          else rng.value = v;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+})();
+
+</script>
 </body>
 </html>
