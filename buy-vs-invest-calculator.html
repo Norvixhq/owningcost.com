@@ -69,20 +69,47 @@
 .bvi__verdict__by{font-size:.92rem;color:var(--muted)}
 .bvi__verdict__by strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 
+.bvi__breakdown__intro{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--subtle);
+  margin:1.4rem 0 .55rem;text-align:center;
+}
 .bvi__breakdown{
-  display:grid;gap:1rem;margin:1.2rem 0 .8rem;
+  display:grid;gap:.95rem;margin:0 0 1rem;
   grid-template-columns:1fr;
 }
-@media (min-width:640px){.bvi__breakdown{grid-template-columns:1fr 1fr}}
-.bvi__breakdown__col{padding:.95rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px}
-.bvi__breakdown__col h4{
+@media (min-width:640px){.bvi__breakdown{grid-template-columns:1fr 1fr;gap:1rem}}
+.bvi__breakdown__col{
+  padding:1.1rem 1.1rem 1rem;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;
+  display:flex;flex-direction:column;
+}
+.bvi__breakdown__col__head{
+  display:flex;align-items:center;gap:.55rem;
+  margin-bottom:.85rem;padding-bottom:.7rem;
+  border-bottom:1px solid var(--border);
+}
+.bvi__breakdown__col__head h4{
+  font-family:var(--serif);font-size:1rem;font-weight:600;letter-spacing:-.005em;
+  color:var(--ink);margin:0;text-transform:none;
+}
+.bvi__breakdown__col__tag{
+  display:inline-block;font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;line-height:1.2;
+}
+.bvi__breakdown__col__tag--buy{background:rgba(28,109,217,.1);color:var(--blue-700)}
+.bvi__breakdown__col__tag--invest{background:rgba(78,182,60,.12);color:var(--green-700)}
+/* keep legacy h4 selector available in case it appears elsewhere, but
+   the new head__h4 is what renders */
+.bvi__breakdown__col h4:not(.bvi__breakdown__col__head h4){
   font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--subtle);margin:0 0 .55rem;
 }
-.bvi__row{display:flex;justify-content:space-between;gap:.6rem;padding:.32rem 0;font-size:.86rem;color:var(--muted)}
+.bvi__row{display:flex;justify-content:space-between;gap:.6rem;padding:.4rem 0;font-size:.88rem;color:var(--muted);line-height:1.4}
 .bvi__row span:last-child{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
-.bvi__row--net{margin-top:.45rem;padding-top:.55rem;border-top:1px solid var(--border);font-weight:600;color:var(--ink)}
-.bvi__row--net span:last-child{color:var(--ink);font-weight:600}
+.bvi__row--net{margin-top:.55rem;padding-top:.7rem;border-top:1px solid var(--border);font-weight:600;color:var(--ink);font-size:.95rem}
+.bvi__row--net span:last-child{color:var(--ink);font-weight:700;font-size:1.05rem}
 
 .bvi__context{margin-top:1.1rem;padding:.95rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
 .bvi__context__title{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:.55rem}
@@ -99,7 +126,7 @@
 
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Buy vs. Invest Calculator", "item": "https://owningcost.com/buy-vs-invest-calculator.html"}]}, {"@type": "WebApplication", "name": "Buy vs. Invest Calculator", "url": "https://owningcost.com/buy-vs-invest-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Compare buying a home against renting and investing the difference. Net position over your hold period — equity vs. portfolio, including all costs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is buying always better than renting?", "acceptedAnswer": {"@type": "Answer", "text": "No. The right answer depends on hold period, local price-to-rent ratio, your specific rate, and the return you'd realistically earn on the money you'd otherwise tie up in the down payment. Short holds (under 5 years) usually favor renting because closing costs and selling costs aren't recovered by appreciation. Long holds in appreciating markets usually favor buying."}}, {"@type": "Question", "name": "Why compare a home to the S&P 500?", "acceptedAnswer": {"@type": "Answer", "text": "Because it's the most common benchmark for what you'd do with the money instead. If you're not buying, the cash you would have used for a down payment doesn't sit idle — most people invest it. The S&P 500 is the standard yardstick for diversified equity exposure. It's a comparison, not a recommendation."}}, {"@type": "Question", "name": "Should I compare a home to Bitcoin?", "acceptedAnswer": {"@type": "Answer", "text": "For sensitivity testing, yes. As a baseline, no. Bitcoin's historical returns include drawdowns of 70-80% that lasted years — if you happen to need to liquidate during one, the headline return doesn't apply to you. The comparison is most useful for showing how much of a 'rent and invest' verdict depends on which asset you're modeling."}}, {"@type": "Question", "name": "Does this include selling costs and maintenance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Selling costs default to 7% of sale price (agent commissions, title, transfer taxes, concessions). Maintenance reserve defaults to 1% of home value annually as a real ongoing cost. Both are editable. Skipping these is the most common error in DIY rent-vs-buy spreadsheets, and it usually overstates the buy path by 5-15% over a typical hold."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a scenario-modeling tool that runs your assumptions through documented math. The decision to buy a home, rent and invest, or anything in between is yours to make with the relevant professionals."}}, {"@type": "Question", "name": "What assumptions matter most?", "acceptedAnswer": {"@type": "Answer", "text": "Three: home appreciation, investment return, and hold period. These three numbers usually determine the verdict. Closing costs, selling costs, and maintenance also matter — skipping them inflates the buy path. Run the calculator at your base assumptions, then run it again with each of those three swung 1-2 points to see which way the answer moves."}}, {"@type": "Question", "name": "What time horizon matters most?", "acceptedAnswer": {"@type": "Answer", "text": "The one that matches your real plans. If you're realistically going to be in a home 5 years, run the calculator at 5 — not at 30. Most rent-vs-buy frameworks default to 30 years and produce wildly optimistic answers because compounding has had three decades to do its work. The honest answer for most U.S. households is closer to 7 years than 30."}}, {"@type": "Question", "name": "Does the calculator account for taxes on investment gains?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this version. Portfolio value at exit is pre-tax. The buy path doesn't model the home-sale capital gains exclusion either. Both omissions roughly cancel for a primary-residence buyer; for an investor with the same money in a taxable account, the rent+invest side overstates somewhat."}}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Buy vs. Invest Calculator", "item": "https://owningcost.com/buy-vs-invest-calculator.html"}]}, {"@type": "WebApplication", "name": "Buy vs. Invest Calculator", "url": "https://owningcost.com/buy-vs-invest-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Compare buying a home against renting and investing the difference. Net position over your hold period — equity vs. portfolio, including all costs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is buying always better than renting?", "acceptedAnswer": {"@type": "Answer", "text": "No. The right answer depends on hold period, local price-to-rent ratio, your specific rate, and the return you'd realistically earn on the money you'd otherwise tie up in the down payment. Short holds (under 5 years) usually favor renting because closing costs and selling costs aren't recovered by appreciation. Long holds in appreciating markets usually favor buying."}}, {"@type": "Question", "name": "Why compare a home to the S&P 500?", "acceptedAnswer": {"@type": "Answer", "text": "Because it's the most common benchmark for what you'd do with the money instead. If you're not buying, the cash you would have used for a down payment doesn't sit idle — most people invest it. The S&P 500 is the standard yardstick for diversified equity exposure. It's a comparison, not a recommendation."}}, {"@type": "Question", "name": "Should I compare a home to Bitcoin?", "acceptedAnswer": {"@type": "Answer", "text": "For sensitivity testing, yes. As a baseline, no. Bitcoin's historical returns include drawdowns of 70-80% that lasted years — if you happen to need to liquidate during one, the headline return doesn't apply to you. The comparison is most useful for showing how much of a 'rent and invest' verdict depends on which asset you're modeling."}}, {"@type": "Question", "name": "Does this include selling costs and maintenance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Selling costs default to 7% of sale price (agent commissions, title, transfer taxes, concessions). Maintenance reserve defaults to 1% of home value annually as a real ongoing cost. Both are editable. Skipping these is the most common error in DIY rent-vs-buy spreadsheets, and it usually overstates the buy path by 5-15% over a typical hold."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a scenario-modeling tool that runs your assumptions through documented math. The decision to buy a home, rent and invest, or anything in between is yours to make with the relevant professionals."}}, {"@type": "Question", "name": "What assumptions matter most?", "acceptedAnswer": {"@type": "Answer", "text": "Three: home appreciation, investment return, and hold period. These three numbers usually determine the verdict. Closing costs, selling costs, and maintenance also matter — skipping them inflates the buy path. Run the calculator at your base assumptions, then run it again with each of those three swung 1-2 points to see which way the answer moves."}}, {"@type": "Question", "name": "What time horizon matters most?", "acceptedAnswer": {"@type": "Answer", "text": "The one that matches your real plans. If you're realistically going to be in a home 5 years, run the calculator at 5 — not at 30. Most rent-vs-buy frameworks default to 30 years and produce wildly optimistic answers because compounding has had three decades to do its work. The honest answer for most U.S. households is closer to 7 years than 30."}}, {"@type": "Question", "name": "Does the calculator account for taxes on investment gains?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this version. Portfolio value at exit is pre-tax. The buy path doesn't model the home-sale capital gains exclusion either. Both omissions roughly cancel for a primary-residence buyer; for an investor with the same money in a taxable account, the rent+invest side overstates somewhat."}}]}]}
 </script>
 
 </head>
@@ -109,7 +136,7 @@
 
 <header class="header" id="header">
   <div class="container header__inner">
-    <a href="index.html" class="brand" aria-label="OwningCost — home">
+    <a href="/" class="brand" aria-label="OwningCost — home">
       <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
       <span class="brand__wordmark">OwningCost</span>
     </a>
@@ -235,7 +262,7 @@
 
 <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <span class="sep">›</span>
       <a href="calculators.html">Calculators</a>
       <span class="sep">›</span>
@@ -409,14 +436,14 @@
             <div class="bvi__verdict__by">by <strong id="outDiff">—</strong></div>
           </div>
 
-          <div class="calc__rows">
-            <div class="calc__row"><span>Buy path — net proceeds at exit</span><span class="amt" id="outBuyNet">—</span></div>
-            <div class="calc__row"><span>Rent + invest — portfolio value</span><span class="amt" id="outInvNet">—</span></div>
-          </div>
+          <div class="bvi__breakdown__intro">Side-by-side at year <span id="outHold2">7</span></div>
 
           <div class="bvi__breakdown">
             <div class="bvi__breakdown__col">
-              <h4>Buy path</h4>
+              <div class="bvi__breakdown__col__head">
+                <span class="bvi__breakdown__col__tag bvi__breakdown__col__tag--buy">Buy</span>
+                <h4>Buy path</h4>
+              </div>
               <div class="bvi__row"><span>Home value at exit</span><span id="outHomeVal">—</span></div>
               <div class="bvi__row"><span>Mortgage balance remaining</span><span id="outBal">—</span></div>
               <div class="bvi__row"><span>Equity</span><span id="outEquity">—</span></div>
@@ -424,7 +451,10 @@
               <div class="bvi__row bvi__row--net"><span>Net proceeds</span><span id="outBuyNet2">—</span></div>
             </div>
             <div class="bvi__breakdown__col">
-              <h4>Rent + invest path</h4>
+              <div class="bvi__breakdown__col__head">
+                <span class="bvi__breakdown__col__tag bvi__breakdown__col__tag--invest">Invest</span>
+                <h4>Rent + invest path</h4>
+              </div>
               <div class="bvi__row"><span>Initial investment</span><span id="outInvInit">—</span></div>
               <div class="bvi__row"><span>Total contributions</span><span id="outInvContrib">—</span></div>
               <div class="bvi__row"><span>Investment growth</span><span id="outInvGrow">—</span></div>
@@ -601,7 +631,7 @@
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="index.html" class="brand" aria-label="OwningCost">
+        <a href="/" class="brand" aria-label="OwningCost">
           <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
           <span class="brand__wordmark">OwningCost</span>
         </a>
@@ -886,9 +916,10 @@
 
     // --- Render ---
     $('outHold').textContent = hold;
-    $('outBuyNet').textContent = fmtUSD(buyNet);
+    var elHold2 = $('outHold2'); if (elHold2) elHold2.textContent = hold;
+    var elBuyNet = $('outBuyNet'); if (elBuyNet) elBuyNet.textContent = fmtUSD(buyNet);
     $('outBuyNet2').textContent = fmtUSD(buyNet);
-    $('outInvNet').textContent = fmtUSD(portfolio);
+    var elInvNet = $('outInvNet'); if (elInvNet) elInvNet.textContent = fmtUSD(portfolio);
     $('outInvNet2').textContent = fmtUSD(portfolio);
     $('outHomeVal').textContent = fmtUSD(homeValue);
     $('outBal').textContent = fmtUSD(bal);

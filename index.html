@@ -68,7 +68,7 @@
 <!-- ======================= HEADER ======================= -->
 <header class="header" id="header">
   <div class="container header__inner">
-    <a href="index.html" class="brand" aria-label="OwningCost — home">
+    <a href="/" class="brand" aria-label="OwningCost — home">
       <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
       <span class="brand__wordmark">OwningCost</span>
     </a>
@@ -203,23 +203,23 @@
           OwningCost is a housing-cost intelligence platform. Calculators that go beyond the mortgage payment, ZIP-level local data, financing comparisons across FHA, VA, USDA, and conventional — built for real housing decisions, not lead generation.
         </p>
         <div class="hero__ctas">
-          <a href="#true-monthly-cost" class="btn btn--primary">
+          <a href="true-monthly-cost-calculator.html" class="btn btn--primary">
             See your true monthly cost
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
           <a href="calculators.html" class="btn btn--ghost">Browse calculators</a>
         </div>
         <div class="hero__proof">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span><strong>Independent.</strong> Use the tools anonymously — your inputs never leave your browser.</span>
+          <span class="hero__proof__icon" aria-hidden="true">●</span>
+          <span><strong>Independent housing-cost intelligence.</strong> Use the tools anonymously — inputs never leave your browser.</span>
         </div>
       </div>
 
       <!-- Live cost breakdown card -->
       <aside class="costcard" aria-label="Sample monthly cost breakdown">
         <div class="costcard__head">
-          <span class="costcard__label">True Monthly Cost</span>
-          <span class="costcard__pill"><span class="dot"></span>Live</span>
+          <span class="costcard__label">True Monthly Cost — sample</span>
+          <span class="costcard__pill costcard__pill--sample">Example</span>
         </div>
         <div class="costcard__addr">$425,000 home · 20% down · 6.75%</div>
         <div class="costcard__sub">Single-family · ZIP 75034 · $300/mo HOA</div>
@@ -254,12 +254,12 @@
             <span class="stack__label">Home insurance</span>
             <span class="stack__amt">$142</span>
           </div>
-          <div class="stack__row is-hidden">
+          <div class="stack__row">
             <span class="stack__swatch stack__swatch--5"></span>
             <span class="stack__label">HOA</span>
             <span class="stack__amt">$300</span>
           </div>
-          <div class="stack__row is-hidden">
+          <div class="stack__row">
             <span class="stack__swatch stack__swatch--6"></span>
             <span class="stack__label">Maintenance reserve</span>
             <span class="stack__amt">$354</span>
@@ -268,6 +268,10 @@
             <span>Standard calculators stop at $2,205. We show what comes after.</span>
           </div>
         </div>
+
+        <a class="costcard__cta" href="true-monthly-cost-calculator.html">
+          Run this with your numbers <span aria-hidden="true">→</span>
+        </a>
       </aside>
     </div>
   </section>
@@ -276,7 +280,7 @@
   <section class="strip" aria-label="Platform proof points">
     <div class="container strip__row">
       <span class="strip__label">Built for real decisions</span>
-      <div class="strip__item"><span class="strip__num">25+</span><span class="strip__name">housing calculators</span></div>
+      <div class="strip__item"><span class="strip__num">21</span><span class="strip__name">housing calculators</span></div>
       <div class="strip__item"><span class="strip__num">6</span><span class="strip__name">loan types covered</span></div>
       <div class="strip__item"><span class="strip__num">0</span><span class="strip__name">signups required</span></div>
       <div class="strip__item"><span class="strip__num">100%</span><span class="strip__name">transparent math</span></div>
@@ -295,7 +299,7 @@
       <div class="sitgrid">
         <a class="sitcard" href="rent-vs-buy-calculator.html">
           <span class="sitcard__tag">Renter</span>
-          <h3>I'm renting and wondering if I should buy.</h3>
+          <h3>Renting and wondering if I should buy</h3>
           <p>Compare total cost over your real time horizon — including the closing costs, selling costs, and opportunity cost most calculators skip.</p>
           <div class="sitcard__row">
             <span class="sitcard__primary">Rent vs. Buy calculator →</span>
@@ -305,7 +309,7 @@
 
         <a class="sitcard" href="affordability-calculator.html">
           <span class="sitcard__tag">First-time buyer</span>
-          <h3>I'm buying my first home.</h3>
+          <h3>Buying my first home</h3>
           <p>Find the comfortable target — not just the lender's approval ceiling. Includes a House Poor Risk score that surfaces what would break first.</p>
           <div class="sitcard__row">
             <span class="sitcard__primary">Affordability calculator →</span>
@@ -315,7 +319,7 @@
 
         <a class="sitcard" href="true-monthly-cost-calculator.html">
           <span class="sitcard__tag">Current owner</span>
-          <h3>I just bought, or I already own.</h3>
+          <h3>I just bought, or already own</h3>
           <p>The true monthly cost is bigger than your mortgage payment. PITI plus HOA, PMI, and a realistic maintenance reserve — the complete picture.</p>
           <div class="sitcard__row">
             <span class="sitcard__primary">True Monthly Cost calculator →</span>
@@ -325,7 +329,7 @@
 
         <a class="sitcard" href="fha-vs-conventional-calculator.html">
           <span class="sitcard__tag">Comparing loans</span>
-          <h3>I'm comparing FHA, VA, or conventional financing.</h3>
+          <h3>Comparing FHA, VA, or conventional</h3>
           <p>Side-by-side over your real hold period. Includes upfront FHA MIP, monthly MIP duration, conventional PMI removal at 78% LTV, and VA funding fee.</p>
           <div class="sitcard__row">
             <span class="sitcard__primary">FHA vs. Conventional →</span>
@@ -335,7 +339,7 @@
 
         <a class="sitcard" href="listing-reality-check.html">
           <span class="sitcard__tag">Listing in hand</span>
-          <h3>I'm looking at a specific home right now.</h3>
+          <h3>Looking at a specific home now</h3>
           <p>Most listings hide 30–40% of the true monthly cost. Paste a listing or enter a price and see what you'd actually be paying.</p>
           <div class="sitcard__row">
             <span class="sitcard__primary">Listing Reality Check →</span>
@@ -345,7 +349,7 @@
 
         <a class="sitcard" href="learn.html">
           <span class="sitcard__tag">Just researching</span>
-          <h3>I'm not making a decision yet — I just want to understand the math.</h3>
+          <h3>Just want to understand the math</h3>
           <p>Eighteen guides on housing cost, mortgages, and decision frameworks. Pick by topic; each links to the calculator that proves the point.</p>
           <div class="sitcard__row">
             <span class="sitcard__primary">Browse the Learn library →</span>
@@ -890,36 +894,64 @@
     <div class="container">
       <div class="section__head">
         <span class="eyebrow section__kicker">The Toolkit</span>
-        <h2 id="tools-title">Built and building.</h2>
-        <p class="section__sub">A growing set of tools for real housing decisions. Live tools are open today; the rest are in active development.</p>
+        <h2 id="tools-title">Twenty-one calculators, all live.</h2>
+        <p class="section__sub">Each tool answers a specific decision question. The math is exposed, the assumptions are editable, and nothing leaves your browser. Browse the highlights below or see the full set in the calculators hub.</p>
       </div>
 
       <div class="tools">
         <a class="tool reveal" href="true-monthly-cost-calculator.html">
           <div class="tool__head">
             <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
-            <div><h4>True Monthly Cost Calculator</h4><p>The full PITI + HOA + maintenance picture for any home.</p></div>
+            <div><h4>True Monthly Cost</h4><p>The full PITI + HOA + maintenance picture for any specific home.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="true-first-year-cost-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+            <div><h4>True First-Year Cost</h4><p>Day-zero cash + setup + 12 months of carry — the complete year-one picture.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="affordability-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div><h4>Affordability + Risk</h4><p>Comfort band + House Poor Risk Score, not just max DTI.</p></div>
           </div>
           <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
         </a>
         <a class="tool reveal" href="rent-vs-buy-calculator.html">
           <div class="tool__head">
             <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span>
-            <div><h4>Rent vs Buy Calculator</h4><p>Total cost over your real time horizon, not a 30-year hypothetical.</p></div>
+            <div><h4>Rent vs Buy</h4><p>Total cost over your real time horizon, not a 30-year hypothetical.</p></div>
           </div>
           <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
         </a>
-        <a class="tool reveal" href="affordability-calculator.html">
+        <a class="tool reveal" href="buy-vs-invest-calculator.html">
           <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><h4>Affordability Calculator</h4><p>Comfort band + House Poor Risk Score, not just max DTI.</p></div>
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+            <div><h4>Buy vs Invest</h4><p>Buy a home, or rent and invest the difference — net position at exit.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="property-type-cost-comparison-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="6" height="10"/><rect x="9" y="7" width="6" height="14"/><rect x="15" y="3" width="6" height="18"/></svg></span>
+            <div><h4>Property Type Comparison</h4><p>Condo vs townhouse vs single-family at the same price — full cost structure.</p></div>
           </div>
           <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
         </a>
         <a class="tool reveal" href="listing-reality-check.html">
           <div class="tool__head">
             <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><path d="M9 11h6M12 8v6"/></svg></span>
-            <div><h4>Listing Reality Check</h4><p>Strip the optimism off a listing and see the true cost.</p></div>
+            <div><h4>Listing Reality Check</h4><p>Strip the optimism off any listing and see the true monthly cost.</p></div>
+          </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="lease-renewal-vs-move-calculator.html">
+          <div class="tool__head">
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6"/><path d="M3 12h18"/><path d="M21 12l-6-6"/><path d="M21 12l-6 6"/></svg></span>
+            <div><h4>Lease Renewal vs Move</h4><p>Stay at the new rent, or move — true total cost over the next 12 months.</p></div>
           </div>
           <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
         </a>
@@ -930,56 +962,32 @@
           </div>
           <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
         </a>
-        <a class="tool reveal" href="affordability-calculator.html#risk-score">
+        <a class="tool reveal" href="refinance-vs-keep-calculator.html">
           <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-            <div><h4>House Poor Risk Score</h4><p>Diagnostic affordability score — surfaces what would break first.</p></div>
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span>
+            <div><h4>Refinance vs Keep</h4><p>Break-even month, total savings, and whether the refi pencils against your hold.</p></div>
           </div>
           <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
         </a>
-        <div class="tool tool--soon reveal" role="presentation" aria-label="ZIP Housing Cost Lookup — coming soon">
-          <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
-            <div><h4>ZIP Housing Cost Lookup</h4><p>Local cost intelligence for any ZIP — taxes, insurance, rent, prices.</p></div>
-          </div>
-          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
-        </div>
-        <div class="tool tool--soon reveal" role="presentation" aria-label="Buy Now vs Wait — coming soon">
-          <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><h4>Buy Now vs Wait</h4><p>Model rate drops, appreciation, and opportunity cost together.</p></div>
-          </div>
-          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
-        </div>
-        <div class="tool tool--soon reveal" role="presentation" aria-label="Stay vs Sell Break-Even — coming soon">
+        <a class="tool reveal" href="stay-vs-sell-calculator.html">
           <div class="tool__head">
             <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
-            <div><h4>Stay vs Sell Break-Even</h4><p>For owners — at what hold period does selling beat staying?</p></div>
+            <div><h4>Stay vs Sell</h4><p>For owners — at what hold period does selling beat staying?</p></div>
           </div>
-          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
-        </div>
-        <div class="tool tool--soon reveal" role="presentation" aria-label="Down Payment Strategy — coming soon">
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
+        <a class="tool reveal" href="home-exit-cost-calculator.html">
           <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V4M3 20h18M7 16V9M11 16V6M15 16v-4M19 16v-8"/></svg></span>
-            <div><h4>Down Payment Strategy</h4><p>3% / 5% / 10% / 20% — PMI, opportunity cost, reserves modeled.</p></div>
+            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H4V10l8-7 8 7v11h-5"/><path d="M9 21v-6h6v6"/></svg></span>
+            <div><h4>Home Exit Cost</h4><p>What selling actually costs — agent, taxes, concessions, and your real net.</p></div>
           </div>
-          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
-        </div>
-        <div class="tool tool--soon reveal" role="presentation" aria-label="Payment Shock — coming soon">
-          <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-2 8 10-12h-8z"/></svg></span>
-            <div><h4>Payment Shock</h4><p>For ARM holders — payment range under rate stress scenarios.</p></div>
-          </div>
-          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
-        </div>
-        <div class="tool tool--soon reveal" role="presentation" aria-label="VA vs Conventional — coming soon">
-          <div class="tool__head">
-            <span class="tool__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/></svg></span>
-            <div><h4>VA vs Conventional</h4><p>0% down + funding fee + no PMI — modeled honestly.</p></div>
-          </div>
-          <div class="tool__foot"><span class="tool__status is-soon">Coming soon</span></div>
-        </div>
+          <div class="tool__foot"><span class="tool__status is-live">Live</span><span class="tool__go">Open</span></div>
+        </a>
       </div>
+
+      <p class="tools__more">
+        And nine more, including <a href="cash-to-close-calculator.html">Cash to Close</a>, <a href="payment-shock-calculator.html">Payment Shock</a>, <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>, and <a href="house-poor-risk-calculator.html">House Poor Risk</a> — <a href="calculators.html"><strong>see the full set →</strong></a>
+      </p>
     </div>
   </section>
 
@@ -1152,7 +1160,7 @@
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="index.html" class="brand" aria-label="OwningCost">
+        <a href="/" class="brand" aria-label="OwningCost">
           <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
           <span class="brand__wordmark">OwningCost</span>
         </a>
