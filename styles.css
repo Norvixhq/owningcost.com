@@ -395,11 +395,16 @@ p{margin:0}
 .costcard__cta{
   display:flex;align-items:center;justify-content:center;gap:.5rem;
   margin-top:1.25rem;padding:.85rem 1rem;border-radius:10px;
-  background:var(--ink);color:#fff;font-weight:600;font-size:.92rem;
+  background:var(--blue-600);color:#fff;font-weight:600;font-size:.92rem;
   text-decoration:none;letter-spacing:-.005em;
-  transition:background .2s ease, transform .15s ease;
+  border:1px solid var(--blue-600);
+  transition:background .2s ease, border-color .2s ease, transform .15s ease, box-shadow .2s ease;
 }
-.costcard__cta:hover{background:#000;transform:translateY(-1px)}
+.costcard__cta:hover{
+  background:var(--blue-700);border-color:var(--blue-700);
+  color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px -4px rgba(28,109,217,.4);
+}
+.costcard__cta:focus-visible{outline:2px solid var(--blue-600);outline-offset:3px}
 .costcard__cta span{font-weight:500;transition:transform .2s ease;display:inline-block}
 .costcard__cta:hover span{transform:translateX(3px)}
 
@@ -1282,19 +1287,28 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
 
 /* ============================================================
    SITUATION NAVIGATOR (homepage "Pick your situation" panel)
+   v3 — proper semantic structure (no nested <a>):
+     <article.sitcard>
+       <span tag>
+       <h3.sitcard__title><a.sitcard__link> [stretched click area]
+       <p.sitcard__desc>
+       <div.sitcard__row>
+         <span.sitcard__primary>
+         <a.sitcard__secondary> [separate, independent click target]
    ============================================================ */
 .sitgrid{
-  display:grid;gap:1rem;margin-top:1.6rem;
+  display:grid;gap:1.1rem;margin-top:1.6rem;
   grid-template-columns:1fr;
   align-items:stretch;
 }
-@media (min-width:680px){.sitgrid{grid-template-columns:repeat(2,1fr);gap:1.1rem}}
-@media (min-width:1080px){.sitgrid{grid-template-columns:repeat(3,1fr);gap:1.1rem}}
+@media (min-width:680px){.sitgrid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.sitgrid{grid-template-columns:repeat(3,1fr)}}
 
 .sitcard{
+  position:relative;
   display:flex;flex-direction:column;height:100%;
   background:#fff;border:1px solid var(--border);border-radius:14px;
-  padding:1.4rem 1.4rem 1.25rem;text-decoration:none;color:inherit;
+  padding:1.4rem 1.4rem 1.25rem;
   transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 .sitcard:hover{
@@ -1303,41 +1317,127 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
   transform:translateY(-2px);
 }
 .sitcard__tag{
+  display:inline-block;align-self:flex-start;
   font-family:var(--sans);font-size:.66rem;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;
   color:var(--blue-700);
-  align-self:flex-start;
   padding:3px 9px;background:rgba(28,109,217,.08);
   border-radius:99px;
-  margin-bottom:.85rem;
+  margin-bottom:.95rem;
 }
-.sitcard h3{
+.sitcard__title{
   font-family:var(--serif);font-size:1.15rem;font-weight:600;
-  letter-spacing:-.012em;color:var(--ink);
-  margin:0 0 .55rem;line-height:1.3;
-  /* clamp at 2 lines to prevent wild height variance */
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  letter-spacing:-.012em;line-height:1.3;
+  margin:0 0 .55rem;
+  /* equal-height title block: clamp 2 lines, enforce min-height */
   min-height:2.99em;
 }
-.sitcard p{
+.sitcard__title a.sitcard__link{
+  color:var(--ink);text-decoration:none;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+/* stretched-link pattern: the title link covers the entire card area
+   so anywhere you click the card fires the primary link, EXCEPT the
+   secondary link below which has a higher z-index */
+.sitcard__title a.sitcard__link::before{
+  content:"";position:absolute;inset:0;
+  border-radius:14px;
+  z-index:1;
+}
+.sitcard__title a.sitcard__link:focus-visible{outline:none}
+.sitcard__title a.sitcard__link:focus-visible::before{
+  outline:2px solid var(--blue-600);outline-offset:2px;
+}
+.sitcard__desc{
   font-size:.92rem;line-height:1.55;color:var(--muted);
   margin:0 0 1.1rem;
-  /* clamp paragraphs at 4 lines so cards align */
+  /* clamp at 4 lines + matching min-height for uniform footers */
   display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
-  /* equal paragraph block height — keeps footer row aligned across all cards */
   min-height:calc(.92rem * 1.55 * 4);
   flex:1 1 auto;
 }
 .sitcard__row{
-  margin-top:auto;padding-top:.85rem;
+  margin-top:auto;padding-top:.9rem;
   border-top:1px solid var(--border);
-  display:flex;flex-direction:column;gap:.4rem;
-  font-size:.85rem;
+  display:flex;flex-direction:column;gap:.45rem;
 }
-.sitcard__primary{color:var(--blue-700);font-weight:600}
-.sitcard__secondary{font-size:.82rem}
-.sitcard__secondary a{color:var(--muted);text-decoration:underline;text-decoration-color:rgba(100,116,139,.3)}
-.sitcard__secondary a:hover{color:var(--ink);text-decoration-color:var(--ink)}
+.sitcard__primary{
+  color:var(--blue-700);font-weight:600;font-size:.88rem;letter-spacing:-.005em;
+}
+.sitcard__secondary{
+  position:relative;z-index:2;  /* above the stretched link */
+  color:var(--muted);font-size:.82rem;
+  text-decoration:underline;text-decoration-color:rgba(100,116,139,.3);
+  text-underline-offset:2px;
+  align-self:flex-start;
+  transition:color .15s ease, text-decoration-color .15s ease;
+}
+.sitcard__secondary:hover{
+  color:var(--ink);text-decoration-color:var(--ink);
+}
+.sitcard__secondary:focus-visible{
+  outline:2px solid var(--blue-600);outline-offset:2px;border-radius:2px;
+}
+
+/* ============================================================
+   "What standard calculators leave out" — homepage SEO content
+   2×2 grid of substantive content blocks with index numbers
+   ============================================================ */
+.leftout{
+  display:grid;gap:1.1rem;
+  grid-template-columns:1fr;
+  margin-top:.5rem;
+}
+@media (min-width:780px){.leftout{grid-template-columns:repeat(2,1fr);gap:1.4rem 1.6rem}}
+
+.leftout__col{
+  position:relative;padding:1.5rem 1.4rem 1.3rem;
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  display:flex;flex-direction:column;
+}
+.leftout__num{
+  font-family:var(--serif);font-size:.95rem;font-weight:600;
+  color:var(--blue-600);letter-spacing:.02em;
+  margin-bottom:.4rem;
+}
+.leftout__col h3{
+  font-family:var(--serif);font-size:1.18rem;font-weight:600;
+  letter-spacing:-.012em;color:var(--ink);
+  line-height:1.3;margin:0 0 .65rem;
+}
+.leftout__col p{
+  font-size:.93rem;line-height:1.6;color:var(--muted);
+  margin:0 0 .7rem;
+}
+.leftout__detail{
+  font-size:.88rem !important;
+  background:var(--surface-2);
+  border-left:3px solid var(--green-500);
+  padding:.6rem .85rem;
+  border-radius:0 6px 6px 0;
+  margin-bottom:.85rem !important;
+  color:var(--ink-2) !important;
+}
+.leftout__detail strong{color:var(--ink);font-weight:600}
+.leftout__cta{
+  margin-top:auto;font-size:.88rem;
+}
+.leftout__cta a{
+  color:var(--blue-700);font-weight:600;text-decoration:none;
+  letter-spacing:-.005em;
+}
+.leftout__cta a:hover{color:var(--blue-600);text-decoration:underline;text-underline-offset:3px}
+
+.leftout__bottom{
+  margin-top:1.6rem;padding:1.1rem 1.3rem;
+  background:var(--surface-2);border:1px solid var(--border);border-radius:12px;
+  font-size:.95rem;line-height:1.6;color:var(--ink-2);
+  text-align:center;
+}
+.leftout__bottom p{margin:0}
+.leftout__bottom a{color:var(--blue-700);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(28,109,217,.3)}
+.leftout__bottom a:hover{text-decoration-color:currentColor}
+.leftout__bottom strong{font-weight:600}
 
 /* ============================================================
    DISCOVERY ROW (in-section "go deeper" footer link strip)
