@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Stress Test Your Housing Scenario — what -10%, -20%, -30% does to your equity | OwningCost</title>
+<meta name="description" content="Model the same home purchase across 4 home-value paths — optimistic, flat, soft, correction. See net proceeds, ROI on your down payment, and a clear verdict on whether your scenario is resilient or sensitive. The risk lens, applied to your specific numbers." />
+<link rel="canonical" href="https://owningcost.com/stress-test-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Stress Test Your Housing Scenario — what -10%, -20%, -30% does to your equity" />
+<meta property="og:description" content="Model the same home purchase across 4 home-value paths — optimistic, flat, soft, correction. See net proceeds, ROI on your down payment, and a clear verdict on whether your scenario is resilient or sensitive. The risk lens, applied to your specific numbers." />
+<meta property="og:url" content="https://owningcost.com/stress-test-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Stress Test Your Housing Scenario — what -10%, -20%, -30% does to your equity | OwningCost" />
+<meta name="twitter:description" content="Model the same home purchase across 4 home-value paths — optimistic, flat, soft, correction. See net proceeds, ROI on your down payment, and a clear verdict on whether your scenario is resilient or sensitive. The risk lens, applied to your specific numbers." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.st__verdict{margin:1rem 0 1.2rem;text-align:center}
+.st__verdict__pill{
+  display:inline-block;padding:.55rem 1.4rem;
+  font-family:var(--sans);font-size:.95rem;font-weight:700;
+  letter-spacing:-.005em;border-radius:99px;
+  background:var(--surface-2);border:1px solid var(--border);color:var(--ink-2);
+}
+.st__verdict__pill.is-good{background:rgba(78,182,60,.1);border-color:rgba(78,182,60,.35);color:var(--green-700)}
+.st__verdict__pill.is-bad{background:rgba(165,58,58,.08);border-color:rgba(165,58,58,.3);color:#A33B3B}
+.st__verdict__pill.is-mixed{background:rgba(155,107,30,.08);border-color:rgba(155,107,30,.3);color:#7B5300}
+.st__verdict__sub{
+  margin-top:.6rem;font-size:.88rem;color:var(--ink-2);line-height:1.55;
+  max-width:36rem;margin-left:auto;margin-right:auto;
+}
+
+.st__rows{margin:0 0 1rem}
+.st__row{display:flex;justify-content:space-between;gap:.6rem;padding:.42rem 0;font-size:.86rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.st__row:last-child{border-bottom:none}
+.st__row .amt{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+
+.st__view__label{
+  margin:1.2rem 0 .8rem;
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);
+}
+
+.st__grid{
+  display:grid;gap:.7rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:560px){.st__grid{grid-template-columns:repeat(2,1fr);gap:.85rem}}
+@media (min-width:1080px){.st__grid{grid-template-columns:repeat(4,1fr);gap:.7rem}}
+
+.st__col{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.st__col--pos{border-color:rgba(78,182,60,.35);background:rgba(78,182,60,.025)}
+.st__col--neg{border-color:rgba(165,58,58,.25);background:rgba(165,58,58,.02)}
+.st__col__head{
+  padding:.7rem .85rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface-2);
+}
+.st__col--pos .st__col__head{background:rgba(78,182,60,.06);border-bottom-color:rgba(78,182,60,.2)}
+.st__col--neg .st__col__head{background:rgba(165,58,58,.04);border-bottom-color:rgba(165,58,58,.18)}
+.st__col__label{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+}
+.st__col--pos .st__col__label{color:var(--green-700)}
+.st__col--neg .st__col__label{color:#A33B3B}
+.st__col__sub{
+  font-family:var(--serif);font-size:.95rem;font-weight:600;
+  color:var(--ink);margin-top:.1rem;
+  font-variant-numeric:tabular-nums;
+}
+.st__col__body{padding:.55rem .85rem .8rem}
+.st__cell{
+  display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;
+  padding:.32rem 0;
+  font-size:.83rem;color:var(--muted);
+  border-bottom:1px dashed transparent;
+}
+.st__cell__label{flex:0 1 auto}
+.st__cell__amt{
+  color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500;
+  white-space:nowrap;
+}
+.st__cell--total{
+  margin-top:.3rem;padding-top:.45rem;
+  border-top:1px solid var(--border);
+  font-weight:600;
+}
+.st__cell--total .st__cell__label{color:var(--ink-2);font-weight:600}
+.st__cell--total .st__cell__amt{color:var(--ink);font-size:.92rem}
+.st__cell--roi{
+  margin-top:.18rem;padding-top:.32rem;
+  border-top:1px dashed var(--border);
+  font-weight:600;
+}
+.st__cell--roi .st__cell__label{color:var(--subtle);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.st__cell--roi .st__cell__amt{font-size:1.05rem;font-family:var(--serif);letter-spacing:-.012em}
+.st__cell--pos .st__cell__amt{color:var(--green-700)}
+.st__cell--neg .st__cell__amt{color:#A33B3B}
+
+.st__disclaimer{
+  margin-top:1rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.st__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"}, {"@type": "ListItem", "position": 2, "name": "Risk", "item": "https://owningcost.com/risk.html"}, {"@type": "ListItem", "position": 3, "name": "Stress Test Calculator", "item": "https://owningcost.com/stress-test-calculator.html"}]}, {"@type": "WebApplication", "name": "Housing Stress Test Calculator", "url": "https://owningcost.com/stress-test-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Model your home purchase across 4 home-value paths — optimistic, flat, soft, correction. Net proceeds, ROI on down payment, color-coded verdict.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are these scenarios predictions for my specific market?", "acceptedAnswer": {"@type": "Answer", "text": "No. They're plausible outcomes drawn from real historical examples. +5%/yr roughly matches the U.S. national average from 2012-2024. -5%/yr matches the steeper local declines that hit specific metros from 2008-2012. The point isn't to forecast — it's to see how exposed your specific scenario is to the range of possibilities."}}, {"@type": "Question", "name": "Why does the default scenario produce a sensitive or red verdict?", "acceptedAnswer": {"@type": "Answer", "text": "Because the default ($425K home, 10% down, 7-year hold) is the typical first-time-buyer configuration in the U.S., and it's structurally fragile to flat or falling markets. The right response is to adjust the inputs to see what produces a resilient verdict for your situation."}}, {"@type": "Question", "name": "Is the 8.5% selling cost realistic?", "acceptedAnswer": {"@type": "Answer", "text": "It's a midpoint of the typical 8-12% range for U.S. residential sales. The bundle includes agent commissions, title insurance and closing fees, transfer taxes, buyer concessions, and pre-sale prep."}}, {"@type": "Question", "name": "Does this account for tax benefits or capital gains exemption?", "acceptedAnswer": {"@type": "Answer", "text": "No. The calculator shows pre-tax outcomes. For primary residences sold after at least 2 years, the IRS allows up to $250,000 ($500,000 MFJ) of capital gains to be excluded. For tax-aware planning, work with a CPA."}}, {"@type": "Question", "name": "What about the down payment opportunity cost?", "acceptedAnswer": {"@type": "Answer", "text": "This calculator focuses on the home outcome only. To get the full picture, also run Buy vs. Invest, which models the buying path against renting and investing the difference."}}, {"@type": "Question", "name": "Should I buy if my scenario only goes green at long holds?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your hold-period certainty. If you can credibly articulate why you'll hold for 10+ years, the long-hold green verdict is real. If your hold horizon is uncertain, you're effectively betting on the shorter scenarios, which means betting on appreciation."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor. This is a math tool. The decision about whether to buy, what to buy, and how to finance it is yours, ideally made with input from professionals appropriate to your specific situation."}}]}]}
+</script>
+
+<!-- Meta Pixel --><script src="meta-pixel.js" async></script>
+</head>
+<body>
+<!-- Meta Pixel noscript fallback --><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912670585135146&ev=PageView&noscript=1" alt="" /></noscript>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="how-to-choose-a-realtor.html">How to choose a realtor <span class="mega__tag">Guide</span></a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="early-payoff-calculator.html">Early Payoff</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="amortization-calculator.html">Amortization Schedule</a></li>
+            <li><a href="points-vs-no-points-calculator.html">Points vs. No Points</a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 25 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="risk.html" class="is-active">Risk</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="stress-test-calculator.html">Stress Test</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Buyer guides</summary>
+      <a href="how-to-choose-a-realtor.html">How to choose a realtor</a>
+      <a href="how-to-choose-a-lender.html">How to choose a lender</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Risk</summary>
+      <a href="the-downsides-of-owning-a-home.html">Downsides of owning</a>
+      <a href="what-2008-housing-crash-taught-buyers.html">Lessons from 2008</a>
+      <a href="why-homeownership-is-not-risk-free.html">Why owning isn't risk-free</a>
+      <a href="how-to-reduce-homeownership-risk.html">How to reduce risk</a>
+      <a href="leverage-and-housing.html">Leverage and housing</a>
+      <a href="stress-test-calculator.html">Stress Test calculator</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="risk.html">Risk</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Stress Test Your Scenario</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Risk · Calculator</span>
+    <h1>What does flat or falling home values do to your equity?</h1>
+    <p class="phero__sub">Standard mortgage calculators assume your home appreciates and that you can sell at market. Both assumptions can be wrong. This calculator runs your scenario four ways — optimistic (+5%/yr), flat (0%), soft (-2%/yr), and correction (-5%/yr) — and shows what each does to your net proceeds and your return on the down payment. Same math, four futures.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">4 scenarios, side-by-side</span>
+      <span class="chip">No signup, no email</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> This isn't a forecast — it's a stress test. The four scenarios aren't predictions about your specific market; they're a way to see how fragile or resilient your scenario is across plausible outcomes. Math runs in your browser. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Stress Test calculator">
+        <div class="calc__form">
+
+          <h3>Your scenario</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" step="5000"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="2000000" step="5000">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="10" min="0" max="50" step="0.5"><span class="suffix">%</span></div>
+              <input type="range" id="rngDown" class="field__range" min="0" max="50" step="0.5">
+              <span class="field__hint">Default 10% reflects mid-leverage. Try 5% or 20% to see how leverage changes outcomes.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Mortgage rate</span><span class="field__value" id="lblRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="2" max="12" step="0.05"><span class="suffix">%</span></div>
+              <input type="range" id="rngRate" class="field__range" min="2" max="12" step="0.05">
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Loan term</span><span class="field__value" id="lblTerm"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="10" max="40" step="5"><span class="suffix">yrs</span></div>
+              <input type="range" id="rngTerm" class="field__range" min="10" max="40" step="5">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Hold period</span><span class="field__value" id="lblHold"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpHold" value="7" min="1" max="30" step="1"><span class="suffix">yrs</span></div>
+              <input type="range" id="rngHold" class="field__range" min="1" max="30" step="1">
+              <span class="field__hint">How long you actually expect to keep this home.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Selling costs at exit</span><span class="field__value" id="lblSell"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpSell" value="8.5" min="4" max="14" step="0.25"><span class="suffix">% of sale price</span></div>
+            <input type="range" id="rngSell" class="field__range" min="4" max="14" step="0.25">
+            <span class="field__hint">Typical range: 8–12%. Includes agent commissions, title, transfer tax, concessions, prep.</span>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Standard amortization plus four appreciation paths.</strong> Mortgage balance at exit is computed by amortizing your loan forward to month <em>hold × 12</em>. Home value at exit is the purchase price compounded at each scenario's annual rate. Net proceeds = home value at exit − mortgage balance − (selling cost × home value at exit). ROI on down payment = (net proceeds − initial down payment) / initial down payment.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Why these four scenarios.</strong> +5%/yr is roughly the U.S. national average over the 2012–2024 cycle — the "things continued to work" path. 0% is the flat-market baseline. -2%/yr matches the soft-correction patterns Houston (2015–2016) and parts of San Francisco (2022–2023) experienced. -5%/yr matches the steeper local declines from 2008–2012 in Las Vegas, Phoenix, and parts of Florida. None of them are predictions for your specific market — they're plausible outcomes worth seeing.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this doesn't model.</strong> Mortgage paydown beyond standard amortization (no extras), tax effects, opportunity cost on the down payment (use <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>), rent vs. buy comparison, capital-gains exemption on primary residence sales. This is a focused stress test, not a comprehensive financial model.</p>
+              <p class="calc__math__cta"><a href="methodology.html">Read the methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Verdict</span>
+
+          <div class="st__verdict" id="stVerdict">
+            <div class="st__verdict__pill" id="stVerdictPill">—</div>
+            <div class="st__verdict__sub" id="stVerdictSub">Adjust inputs to see your scenario</div>
+          </div>
+
+          <div class="st__rows">
+            <div class="st__row"><span>Down payment</span><span class="amt" id="outDown">—</span></div>
+            <div class="st__row"><span>Loan amount</span><span class="amt" id="outLoan">—</span></div>
+            <div class="st__row"><span>Monthly P&amp;I</span><span class="amt" id="outPI">—</span></div>
+            <div class="st__row"><span>Mortgage balance after hold</span><span class="amt" id="outBal">—</span></div>
+          </div>
+
+          <div class="st__view__label">Your scenario, four ways:</div>
+
+          <div class="st__grid" id="stGrid">
+            <!-- 4 scenario columns rendered by JS -->
+          </div>
+
+          <div class="st__disclaimer">
+            <strong>Note:</strong> negative ROI means you'd take a loss vs. your initial down payment after selling costs. Equity in red means you're underwater (mortgage balance exceeds home value). In an underwater sale, you have to bring cash to closing.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">How to read this</span>
+        <h2 style="margin-top:.85rem">A resilient scenario survives flat or soft markets. A fragile one only works at the optimistic path.</h2>
+        <p class="article__lede">The point of running this calculator isn't to predict your market. It's to see how dependent your buying decision is on appreciation. If your scenario produces a defensible outcome at 0% appreciation — which is what flat markets actually do — you've bought with margin. If your scenario only produces a positive return at +5%/yr, you've made a bet on appreciation that may or may not pay off. Both are legitimate; only one is conscious.</p>
+
+        <h3>What the verdict colors mean</h3>
+        <ul>
+          <li><strong style="color:var(--green-700)">Resilient (green)</strong> — all four scenarios produce positive net proceeds. Your scenario absorbs flat or soft markets without losing money. This is what longer holds, larger down payments, and lower-leverage purchases tend to produce.</li>
+          <li><strong style="color:#7B5300">Sensitive (yellow)</strong> — one or two scenarios go negative. Your scenario depends on at least neutral market conditions to break even. Common in the 5-7 year hold range with 5–10% down. Workable but worth knowing.</li>
+          <li><strong style="color:#A33B3B">High downside exposure (red)</strong> — three or four scenarios go negative. Your scenario only works in optimistic markets. Common in short holds (3–5 years), low down payments (5% or less), and high-leverage purchases. The math is fragile.</li>
+        </ul>
+
+        <h3>Why the default scenario is sensitive — by design</h3>
+        <p>The default ($425K, 10% down, 6.75%, 7-year hold) intentionally produces a yellow or red verdict, depending on selling costs. That's not a calibration mistake — it's the typical first-time-buyer setup, and it's structurally fragile. Most U.S. buyers don't realize this because consumer mortgage content rarely models downside scenarios. The point of running the calculator is to see your specific configuration's exposure, then decide what to change.</p>
+
+        <h3>The three knobs that move the verdict most</h3>
+        <ol>
+          <li><strong>Hold period.</strong> Doubling hold from 5 to 10 years usually flips a yellow scenario to green. Mortgage paydown compounds; selling costs become a smaller share of equity. Long holds are the dominant defense against downside.</li>
+          <li><strong>Down payment size.</strong> Going from 5% to 20% reduces leverage from 20x to 5x. The same -5%/yr scenario that produces deep negative equity at 5% down stays positive at 20% down.</li>
+          <li><strong>Selling costs assumption.</strong> 8.5% is the typical bundled cost. In your specific market, run 9-10% if you're not sure, and run 12% if you might need to sell into a slow market with concessions. Higher selling costs are the under-modeled risk in most planning.</li>
+        </ol>
+
+        <h3>What to do with a red verdict</h3>
+        <p>Red doesn't mean "don't buy." It means "this configuration is bet-on-appreciation." Three honest responses:</p>
+        <ul>
+          <li><strong>Plan for a longer hold.</strong> If your scenario goes green at 10 years and red at 5, the right answer is "only buy if you can hold 10." Buyers who can't articulate why they'd hold long shouldn't buy with high-fragility configurations.</li>
+          <li><strong>Reduce leverage.</strong> Larger down payment, less house, or both. A red scenario at 5% down often goes yellow or green at 15-20% down.</li>
+          <li><strong>Build deeper reserves before buying.</strong> Reserves don't change the calculator output, but they change what happens to you if the calculator's pessimistic scenarios actually occur. A red scenario with 12 months of reserves is a different bet than a red scenario with 0 months.</li>
+        </ul>
+
+        <p>Buying intentionally beats buying optimistically. Either choice can produce good outcomes; only one of them protects you when the optimistic case doesn't show up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="st-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="st-faq-title">Common stress-test questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Are these scenarios predictions for my specific market?</summary>
+        <div class="faq__a">No. They're plausible outcomes drawn from real historical examples. +5%/yr roughly matches the U.S. national average from 2012-2024. -5%/yr matches the steeper local declines that hit specific metros from 2008-2012. -2%/yr matches the soft corrections that hit Houston in 2015-2016 and parts of San Francisco in 2022-2023. Your specific market may behave like any of these or like none of them. The point isn't to forecast — it's to see how exposed your specific scenario is to the range of possibilities.</div>
+      </details>
+      <details>
+        <summary>Why does the default scenario produce a sensitive or red verdict?</summary>
+        <div class="faq__a">Because the default ($425K home, 10% down, 7-year hold) is the typical first-time-buyer configuration in the U.S., and it's structurally fragile to flat or falling markets. This isn't a flaw in the calculator — it's an honest reflection of how most buyers' configurations actually look when modeled across multiple appreciation paths. The right response is to adjust the inputs (longer hold, larger down, lower price) to see what produces a resilient verdict for your situation.</div>
+      </details>
+      <details>
+        <summary>Is the 8.5% selling cost realistic?</summary>
+        <div class="faq__a">It's a midpoint of the typical 8-12% range for U.S. residential sales. The bundle includes agent commissions (5-6%, though this is more negotiable post-2024 NAR settlement), title insurance and closing fees (~1%), transfer/excise taxes (0-2% depending on state), buyer concessions (0-3% depending on market), and pre-sale prep/staging (0.5-2%). Run 9-10% if you're not sure of your market; run 12% for a slow-market scenario with concessions.</div>
+      </details>
+      <details>
+        <summary>Does this account for tax benefits or capital gains exemption?</summary>
+        <div class="faq__a">No. The calculator shows pre-tax outcomes. For primary residences sold after at least 2 years of ownership, the IRS allows up to $250,000 ($500,000 for married filing jointly) of capital gains to be excluded from federal income tax. This typically benefits homeowners with significant appreciation, not those who break even or lose money. Property tax deductibility (capped at $10,000 SALT) and mortgage interest deductibility further complicate the after-tax math. For tax-aware planning, work with a CPA.</div>
+      </details>
+      <details>
+        <summary>What about the down payment opportunity cost?</summary>
+        <div class="faq__a">This calculator focuses on the home outcome only. It doesn't model what your down payment would have done if invested elsewhere over the same hold period — that's the <a href="buy-vs-invest-calculator.html">Buy vs. Invest calculator's</a> job. To get the full picture, run both: this one shows the downside resilience of buying; Buy vs. Invest shows the buying path against renting and investing the difference.</div>
+      </details>
+      <details>
+        <summary>Should I buy if my scenario only goes green at long holds?</summary>
+        <div class="faq__a">It depends on your hold-period certainty. If you can credibly articulate why you'll hold for 10+ years (settled career, family-stage stable, geographically committed), the long-hold green verdict is real. If your hold horizon is uncertain, you're effectively betting on the shorter scenarios, which means betting on appreciation. The honest answer is to match your buying configuration to your hold-period certainty — and to err toward less leverage if hold uncertainty is meaningful.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor. This is a math tool. It shows specific arithmetic outcomes given your inputs and four appreciation scenarios. The decision about whether to buy, what to buy, and how to finance it is yours, ideally made with input from professionals (mortgage broker, CPA, CFP) appropriate to your specific situation.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; reading</span>
+      <h2>Related tools.</h2>
+    </div>
+    <div class="rcards">
+      <a href="buy-vs-invest-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Buy vs. Invest</h3>
+        <p>Buying with appreciation vs. renting and investing the down payment. The opportunity-cost dimension this calculator doesn't model.</p>
+      </a>
+      <a href="affordability-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Affordability + House Poor Risk</h3>
+        <p>The budget-stress version. What you can comfortably carry vs. what the lender will approve.</p>
+      </a>
+      <a href="home-exit-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Home Exit Cost</h3>
+        <p>Detailed walk through the selling-cost line items. Verifies the 8.5% bundle for your specific market.</p>
+      </a>
+      <a href="leverage-and-housing.html" class="rcard">
+        <span class="rcard__tag">Risk</span>
+        <h3>Leverage and Housing</h3>
+        <p>The conceptual framework. Why a 5% home-value move at 10% down equals 50% on your equity, in either direction.</p>
+      </a>
+      <a href="the-downsides-of-owning-a-home.html" class="rcard">
+        <span class="rcard__tag">Risk · Flagship</span>
+        <h3>The Downsides of Owning a Home</h3>
+        <p>The full risk landscape — selling friction, concentration, illiquidity, and the cultural defaults that obscure the math.</p>
+      </a>
+      <a href="risk.html" class="rcard">
+        <span class="rcard__tag">Hub</span>
+        <h3>Risk hub</h3>
+        <p>Five pieces covering the structural facts about housing risk, paired with the calculators that surface them.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Calm analysis, not doom</span>
+      <h2 style="margin-top:.85rem">The Risk hub frames what the math shows.</h2>
+      <p>This calculator gives you the numbers; the Risk content explains what they mean and what to do about them. Start with the flagship — The Downsides of Owning a Home — then read Leverage and Housing for the conceptual foundation.</p>
+      <div class="ctaband__row">
+        <a href="the-downsides-of-owning-a-home.html" class="btn">Read the flagship</a>
+        <a href="risk.html" class="btn btn--ghost">Visit Risk hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="risk.html">Risk</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ var el=$(id); return el ? (parseFloat(el.value) || 0) : 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+  function fmtPct(n, decimals){
+    if (!isFinite(n)) return '—';
+    var sign = n > 0 ? '+' : '';
+    return sign + n.toFixed(decimals||0) + '%';
+  }
+
+  // Scenarios — fixed annual rates
+  var SCENARIOS = [
+    {key:'opt',  label:'Optimistic',   sublabel:'+5%/yr',  rate: 0.05},
+    {key:'flat', label:'Flat',         sublabel:'0%/yr',   rate: 0.00},
+    {key:'soft', label:'Soft',         sublabel:'-2%/yr',  rate:-0.02},
+    {key:'corr', label:'Correction',   sublabel:'-5%/yr',  rate:-0.05}
+  ];
+
+  function pmt(loan, monthlyRate, n){
+    if (monthlyRate === 0) return loan / n;
+    return loan * (monthlyRate * Math.pow(1+monthlyRate, n)) / (Math.pow(1+monthlyRate, n) - 1);
+  }
+
+  function balanceAfter(loan, monthlyRate, regularPmt, monthsForward){
+    var bal = loan;
+    for (var m = 0; m < monthsForward; m++){
+      var interest = bal * monthlyRate;
+      var principal = regularPmt - interest;
+      bal -= principal;
+      if (bal < 0) bal = 0;
+    }
+    return bal;
+  }
+
+  function compute(){
+    var price = v('inpPrice');
+    var downPct = v('inpDown') / 100;
+    var rate = v('inpRate') / 100;
+    var term = Math.round(v('inpTerm'));
+    var hold = Math.round(v('inpHold'));
+    var sellPct = v('inpSell') / 100;
+
+    var down = price * downPct;
+    var loan = price - down;
+    var monthlyRate = rate / 12;
+    var nMonths = term * 12;
+    var holdMonths = Math.min(hold * 12, nMonths);
+    var pi = pmt(loan, monthlyRate, nMonths);
+    var bal = balanceAfter(loan, monthlyRate, pi, holdMonths);
+
+    // Hero stats
+    $('outDown').textContent = fmtUSD(down);
+    $('outLoan').textContent = fmtUSD(loan);
+    $('outPI').textContent = fmtUSD(pi);
+    $('outBal').textContent = fmtUSD(bal);
+
+    // Compute each scenario
+    var results = SCENARIOS.map(function(s){
+      var homeAtExit = price * Math.pow(1 + s.rate, hold);
+      var equityGross = homeAtExit - bal;
+      var sellingCost = homeAtExit * sellPct;
+      var netProceeds = homeAtExit - bal - sellingCost;
+      var roi = down > 0 ? ((netProceeds - down) / down) * 100 : 0;
+      return {
+        key: s.key, label: s.label, sublabel: s.sublabel, rate: s.rate,
+        homeAtExit: homeAtExit,
+        bal: bal,
+        equityGross: equityGross,
+        sellingCost: sellingCost,
+        netProceeds: netProceeds,
+        roi: roi
+      };
+    });
+
+    // Render the 4-column grid
+    var gridHtml = results.map(function(r){
+      var roiClass = r.roi >= 0 ? 'st__cell--pos' : 'st__cell--neg';
+      var equityClass = r.equityGross >= 0 ? '' : 'st__cell--neg';
+      var netClass = r.netProceeds >= 0 ? 'st__cell--pos' : 'st__cell--neg';
+      var headerClass = r.netProceeds >= 0 ? 'st__col--pos' : 'st__col--neg';
+
+      return ''
+        + '<div class="st__col '+headerClass+'">'
+        + '  <div class="st__col__head">'
+        + '    <div class="st__col__label">'+r.label+'</div>'
+        + '    <div class="st__col__sub">'+r.sublabel+'</div>'
+        + '  </div>'
+        + '  <div class="st__col__body">'
+        + '    <div class="st__cell"><span class="st__cell__label">Home value at exit</span><span class="st__cell__amt">'+fmtUSD(r.homeAtExit)+'</span></div>'
+        + '    <div class="st__cell"><span class="st__cell__label">− Mortgage balance</span><span class="st__cell__amt">'+fmtUSD(r.bal)+'</span></div>'
+        + '    <div class="st__cell '+equityClass+'"><span class="st__cell__label">= Equity (gross)</span><span class="st__cell__amt">'+fmtUSD(r.equityGross)+'</span></div>'
+        + '    <div class="st__cell"><span class="st__cell__label">− Selling costs</span><span class="st__cell__amt">'+fmtUSD(r.sellingCost)+'</span></div>'
+        + '    <div class="st__cell st__cell--total '+netClass+'"><span class="st__cell__label">Net proceeds</span><span class="st__cell__amt">'+fmtUSD(r.netProceeds)+'</span></div>'
+        + '    <div class="st__cell st__cell--roi '+roiClass+'"><span class="st__cell__label">ROI on down payment</span><span class="st__cell__amt">'+fmtPct(r.roi)+'</span></div>'
+        + '  </div>'
+        + '</div>';
+    }).join('');
+
+    $('stGrid').innerHTML = gridHtml;
+
+    // Verdict — count scenarios with negative net proceeds
+    var negativeCount = results.filter(function(r){ return r.netProceeds < 0; }).length;
+    var pillEl = $('stVerdictPill');
+    var subEl = $('stVerdictSub');
+    pillEl.classList.remove('is-good','is-bad','is-mixed');
+
+    if (negativeCount === 0){
+      pillEl.classList.add('is-good');
+      pillEl.textContent = 'Resilient scenario';
+      subEl.textContent = 'All four paths produce positive net proceeds. Your configuration absorbs flat and soft markets without losing money.';
+    } else if (negativeCount <= 2){
+      pillEl.classList.add('is-mixed');
+      pillEl.textContent = 'Sensitive to market conditions';
+      subEl.textContent = negativeCount + ' of 4 scenarios produce negative net proceeds. Your scenario depends on at least neutral conditions to break even.';
+    } else {
+      pillEl.classList.add('is-bad');
+      pillEl.textContent = 'High downside exposure';
+      subEl.textContent = negativeCount + ' of 4 scenarios produce negative net proceeds. This configuration is bet-on-appreciation. Worth re-running with longer hold or larger down payment.';
+    }
+  }
+
+  // Wire inputs
+  ['inpPrice','inpDown','inpRate','inpTerm','inpHold','inpSell'].forEach(function(id){
+    var el = $(id);
+    if (el){ el.addEventListener('input', compute); el.addEventListener('change', compute); }
+  });
+
+  // Slider pairs
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpPrice', rng:'rngPrice', lbl:'lblPrice', fmt:'USD'},
+    {inp:'inpDown',  rng:'rngDown',  lbl:'lblDown',  fmt:'PCT'},
+    {inp:'inpRate',  rng:'rngRate',  lbl:'lblRate',  fmt:'PCT2'},
+    {inp:'inpTerm',  rng:'rngTerm',  lbl:'lblTerm',  fmt:'YR'},
+    {inp:'inpHold',  rng:'rngHold',  lbl:'lblHold',  fmt:'YR'},
+    {inp:'inpSell',  rng:'rngSell',  lbl:'lblSell',  fmt:'PCT2'}
+  ];
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value; paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  compute();
+})();
+</script>
+
+
+</body>
+</html>

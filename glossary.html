@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Glossary — mortgage and housing terms, defined plainly | OwningCost</title>
+<meta name="description" content="Every mortgage and housing-finance term defined plainly, with typical ranges and links to the calculator that runs the math on each one. Amortization, APR, DTI, escrow, LTV, PITI, PMI — all in one place." />
+<link rel="canonical" href="https://owningcost.com/glossary.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Glossary — mortgage and housing terms, defined plainly" />
+<meta property="og:description" content="Every mortgage and housing-finance term defined plainly, with typical ranges and links to the calculator that runs the math on each one. Amortization, APR, DTI, escrow, LTV, PITI, PMI — all in one place." />
+<meta property="og:url" content="https://owningcost.com/glossary.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Glossary — mortgage and housing terms, defined plainly | OwningCost" />
+<meta name="twitter:description" content="Every mortgage and housing-finance term defined plainly, with typical ranges and links to the calculator that runs the math on each one. Amortization, APR, DTI, escrow, LTV, PITI, PMI — all in one place." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.gloss__toc{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin:1.5rem 0 2rem;padding:1rem 1.1rem;
+  background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+}
+.gloss__toc__btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:2.2rem;padding:.4rem .65rem;
+  background:#fff;border:1px solid var(--border);border-radius:6px;
+  font-family:var(--sans);font-size:.85rem;font-weight:600;
+  color:var(--blue-700);text-decoration:none;
+  transition:background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.gloss__toc__btn:hover{background:var(--blue-600);border-color:var(--blue-600);color:#fff;transform:translateY(-1px)}
+
+.gloss__body{margin-top:1.5rem}
+.gloss__section{margin-bottom:2.5rem;scroll-margin-top:80px}
+.gloss__section:last-child{margin-bottom:0}
+.gloss__letter{
+  font-family:var(--serif);font-size:2.4rem;font-weight:600;
+  letter-spacing:-.02em;color:var(--blue-700);
+  margin:0 0 1rem;padding-bottom:.5rem;
+  border-bottom:2px solid var(--blue-200);
+  line-height:1;
+}
+.gloss__terms{
+  display:grid;gap:1.1rem;grid-template-columns:1fr;
+}
+@media (min-width:780px){.gloss__terms{grid-template-columns:repeat(2,1fr)}}
+
+.gloss__term{
+  padding:1.2rem 1.3rem 1.05rem;
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  scroll-margin-top:80px;
+  display:flex;flex-direction:column;gap:.55rem;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.gloss__term:hover{border-color:var(--blue-200);box-shadow:0 4px 14px -8px rgba(28,109,217,.12)}
+.gloss__name{
+  font-family:var(--serif);font-size:1.12rem;font-weight:600;
+  letter-spacing:-.012em;color:var(--ink);
+  margin:0;line-height:1.3;
+}
+.gloss__def{
+  margin:0;font-size:.92rem;line-height:1.6;color:var(--ink-2);
+}
+.gloss__meta{
+  display:flex;flex-wrap:wrap;gap:.4rem .85rem;align-items:center;
+  margin-top:auto;padding-top:.55rem;
+  border-top:1px solid var(--border);
+}
+.gloss__range{
+  font-size:.78rem;color:var(--subtle);font-style:italic;
+}
+.gloss__link{
+  font-size:.83rem;font-weight:600;color:var(--blue-700);
+  text-decoration:none;letter-spacing:-.005em;
+  margin-left:auto;
+}
+.gloss__link:hover{color:var(--blue-600);text-decoration:underline;text-underline-offset:3px}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"}, {"@type": "ListItem", "position": 2, "name": "Glossary", "item": "https://owningcost.com/glossary.html"}]}, {"@type": "DefinedTermSet", "name": "OwningCost Mortgage and Housing Glossary", "url": "https://owningcost.com/glossary.html", "description": "Every mortgage and housing-finance term defined plainly, with typical ranges and links to the calculator that runs the math on each one. Amortization, APR, DTI, escrow, LTV, PITI, PMI — all in one place.", "hasDefinedTerm": [{"@type": "DefinedTerm", "name": "Amortization", "description": "The schedule by which a loan is paid off — each payment splits between interest (charged on the remaining balance) and principal (the loan-balance paydown). Most U.S. mortgages are fully amortizing, meaning the full balance is paid off by the final scheduled payment.", "url": "https://owningcost.com/glossary.html#amortization"}, {"@type": "DefinedTerm", "name": "APR (Annual Percentage Rate)", "description": "The total annualized cost of a loan including the interest rate plus origination fees, discount points, and certain other closing costs. APR is typically higher than the stated interest rate. It's required to be disclosed on every Loan Estimate, allowing apples-to-apples comparison across lenders.", "url": "https://owningcost.com/glossary.html#apr"}, {"@type": "DefinedTerm", "name": "ARM (Adjustable-Rate Mortgage)", "description": "A mortgage where the interest rate is fixed for an initial period (typically 5, 7, or 10 years) and then adjusts periodically based on a market index. Lower introductory rates than fixed mortgages; rate-reset risk after the fixed period.", "url": "https://owningcost.com/glossary.html#arm"}, {"@type": "DefinedTerm", "name": "Biweekly mortgage", "description": "A payment structure where you pay half your monthly amount every two weeks. Because there are 26 biweekly periods in a calendar year, you make the equivalent of 13 monthly payments per year — the extra payment accelerates principal paydown.", "url": "https://owningcost.com/glossary.html#biweekly"}, {"@type": "DefinedTerm", "name": "Cash to close", "description": "The total amount of cash you bring to closing — down payment plus closing costs plus prepaid escrow items, minus any earnest money already deposited and any lender or seller credits.", "url": "https://owningcost.com/glossary.html#cash-to-close"}, {"@type": "DefinedTerm", "name": "Closing costs", "description": "Fees paid at closing beyond the down payment — typically lender origination, title insurance, recording fees, prepaid taxes/insurance, and inspections. Distinct from the down payment.", "url": "https://owningcost.com/glossary.html#closing-costs"}, {"@type": "DefinedTerm", "name": "Conventional loan", "description": "A mortgage not backed by a U.S. government program (FHA, VA, USDA). Most are conforming — meeting Fannie Mae and Freddie Mac size and underwriting standards. Down payments range from 3% to 20%+; PMI required below 20% down.", "url": "https://owningcost.com/glossary.html#conventional-loan"}, {"@type": "DefinedTerm", "name": "DTI (Debt-to-Income)", "description": "Total monthly debt payments divided by gross monthly income. Lenders use this to assess repayment capacity. Front-end DTI counts only housing costs; back-end DTI includes housing plus all other debt.", "url": "https://owningcost.com/glossary.html#debt-to-income"}, {"@type": "DefinedTerm", "name": "Discount points", "description": "Optional upfront fees paid to the lender at closing to lower the interest rate. One point typically costs 1% of loan amount and reduces the rate by ~0.25%. Pays off if you hold long enough; wasted if you sell or refinance early.", "url": "https://owningcost.com/glossary.html#discount-points"}, {"@type": "DefinedTerm", "name": "Down payment", "description": "Cash paid upfront toward the home price, with the rest financed by the mortgage. Larger down payments mean smaller loan, lower payments, and reduced leverage exposure. The down payment isn't lost — it becomes equity in the home.", "url": "https://owningcost.com/glossary.html#down-payment"}, {"@type": "DefinedTerm", "name": "Earnest money deposit", "description": "A good-faith deposit paid by the buyer when an offer is accepted, held in escrow until closing. Demonstrates serious intent and is typically credited toward closing costs or the down payment at closing.", "url": "https://owningcost.com/glossary.html#earnest-money"}, {"@type": "DefinedTerm", "name": "Equity", "description": "The portion of the home you own outright — current market value minus remaining mortgage balance. Equity grows through mortgage paydown and home appreciation; it shrinks through depreciation or cash-out borrowing.", "url": "https://owningcost.com/glossary.html#equity"}, {"@type": "DefinedTerm", "name": "Escrow account", "description": "An account held by your lender or servicer that collects monthly amounts toward property taxes and homeowners insurance, then pays them when due. Escrow makes the monthly cost predictable; it doesn't change the underlying tax or insurance amounts.", "url": "https://owningcost.com/glossary.html#escrow"}, {"@type": "DefinedTerm", "name": "FHA loan", "description": "A government-backed loan with lower down-payment requirements (3.5% minimum) and more flexible credit standards than conventional loans. Carries upfront and ongoing MIP for the life of most FHA loans.", "url": "https://owningcost.com/glossary.html#fha-loan"}, {"@type": "DefinedTerm", "name": "Fixed-rate mortgage", "description": "A mortgage where the interest rate stays the same for the entire loan term. Predictable payments; no payment-shock risk. The U.S. 30-year fixed-rate mortgage is unusual globally and a major risk-management tool for U.S. buyers.", "url": "https://owningcost.com/glossary.html#fixed-rate"}, {"@type": "DefinedTerm", "name": "HELOC (Home Equity Line of Credit)", "description": "A revolving credit line secured by your home equity. Variable rate, draw period (typically 10 years) followed by a repayment period (typically 20 years). Used for renovations, debt consolidation, or other large expenses; carries the risk that the home is collateral.", "url": "https://owningcost.com/glossary.html#heloc"}, {"@type": "DefinedTerm", "name": "HOA (Homeowners Association) fees", "description": "Monthly or quarterly fees paid to a community association covering shared maintenance, amenities, and reserves. Common in condos, townhomes, and many newer single-family communities. Special assessments can add unexpected costs.", "url": "https://owningcost.com/glossary.html#hoa"}, {"@type": "DefinedTerm", "name": "HO-3 policy", "description": "The standard homeowners insurance policy for single-family homes. Covers the dwelling on an open-perils basis (anything not specifically excluded) and personal property on a named-perils basis.", "url": "https://owningcost.com/glossary.html#ho3-policy"}, {"@type": "DefinedTerm", "name": "HO-6 policy", "description": "Homeowners insurance for condo owners. Covers the interior of the unit (walls-in coverage), personal property, and liability. The condo association's master policy covers the building exterior and common areas.", "url": "https://owningcost.com/glossary.html#ho6-policy"}, {"@type": "DefinedTerm", "name": "Jumbo loan", "description": "A mortgage above the conforming loan limit ($806,500 in most counties for 2026, higher in expensive areas). Not eligible for sale to Fannie Mae or Freddie Mac, so underwriting standards and rates can differ from conforming loans.", "url": "https://owningcost.com/glossary.html#jumbo-loan"}, {"@type": "DefinedTerm", "name": "LTV (Loan-to-Value)", "description": "The loan amount divided by the home's appraised value or sale price (whichever is lower at purchase). LTV of 80% means you're borrowing 80% of the home's value. Lower LTV = lower lender risk = better rates and no PMI requirement.", "url": "https://owningcost.com/glossary.html#ltv"}, {"@type": "DefinedTerm", "name": "MIP (Mortgage Insurance Premium)", "description": "FHA's version of mortgage insurance. Includes an upfront premium (1.75% of loan amount, typically rolled into the loan) and an annual premium paid monthly. Unlike conventional PMI, MIP often lasts the life of the loan.", "url": "https://owningcost.com/glossary.html#mip"}, {"@type": "DefinedTerm", "name": "Mortgage", "description": "A loan secured by the home being purchased — the home is collateral, and the lender can foreclose if payments stop. The lender provides the capital; the borrower repays principal plus interest over the loan term, typically 15-30 years.", "url": "https://owningcost.com/glossary.html#mortgage"}, {"@type": "DefinedTerm", "name": "Origination fee", "description": "A fee charged by the lender for processing the loan, typically priced as a percentage of the loan amount. Distinct from discount points (which buy down the rate). Origination fees appear on the Loan Estimate.", "url": "https://owningcost.com/glossary.html#origination-fee"}, {"@type": "DefinedTerm", "name": "P&I (Principal and Interest)", "description": "The portion of your mortgage payment that goes to repaying the loan — principal (the borrowed amount) and interest (the cost of borrowing). Distinct from PITI, which adds taxes and insurance.", "url": "https://owningcost.com/glossary.html#pi"}, {"@type": "DefinedTerm", "name": "PITI (Principal, Interest, Taxes, Insurance)", "description": "The four standard components of a U.S. mortgage payment when the lender escrows. PITI is more honest than P&I alone but still leaves out HOA, PMI, and maintenance — which is why True Monthly Cost goes further.", "url": "https://owningcost.com/glossary.html#piti"}, {"@type": "DefinedTerm", "name": "PMI (Private Mortgage Insurance)", "description": "Insurance required on conventional loans with less than 20% down. Protects the lender, not the borrower. Automatically removed when LTV reaches 78% of the original purchase price; can be requested at 80%.", "url": "https://owningcost.com/glossary.html#pmi"}, {"@type": "DefinedTerm", "name": "Pre-approval", "description": "A more rigorous lender review than pre-qualification — typically includes verified income, credit pull, and a conditional approval letter for a specific loan amount. Strengthens an offer; doesn't guarantee final approval (which requires the appraisal and full underwriting).", "url": "https://owningcost.com/glossary.html#pre-approval"}, {"@type": "DefinedTerm", "name": "Prepayment penalty", "description": "A fee charged for paying off a mortgage early or making large extra payments. The Qualified Mortgage rule effectively eliminated prepayment penalties on most U.S. owner-occupied home loans originated after 2014.", "url": "https://owningcost.com/glossary.html#prepayment-penalty"}, {"@type": "DefinedTerm", "name": "Principal", "description": "The amount of money borrowed — the loan balance. Each month, part of your P&I payment reduces principal; the rest goes to interest. As the loan amortizes, more goes to principal and less to interest each month.", "url": "https://owningcost.com/glossary.html#principal"}, {"@type": "DefinedTerm", "name": "Property tax", "description": "An annual tax assessed by local governments on real estate, paid as part of escrow in most U.S. mortgages. Rates vary 5x across U.S. metros — Texas runs ~1.8% effective, California closer to 0.7%, parts of New Jersey clear 2.2%.", "url": "https://owningcost.com/glossary.html#property-tax"}, {"@type": "DefinedTerm", "name": "Rate lock", "description": "A lender agreement to hold a specific rate for a defined period (typically 30–60 days), regardless of how rates move during that window. Protects buyers between application and closing. Some lenders charge for longer locks.", "url": "https://owningcost.com/glossary.html#rate-lock"}, {"@type": "DefinedTerm", "name": "Refinance", "description": "Replacing an existing mortgage with a new one — usually for a lower rate, different term, or to pull cash out (cash-out refi). Carries closing costs that need to be recouped through the rate savings.", "url": "https://owningcost.com/glossary.html#refinance"}, {"@type": "DefinedTerm", "name": "Reserves", "description": "Liquid cash kept after closing to cover mortgage payments and emergencies. A serious reserves threshold is six months of full carrying cost (PITI plus HOA plus maintenance) plus a separate emergency fund.", "url": "https://owningcost.com/glossary.html#reserves"}, {"@type": "DefinedTerm", "name": "Title insurance", "description": "A one-time insurance policy purchased at closing protecting against defects in the home's ownership history (liens, fraud, recording errors). Lender's policy is required; owner's policy is optional but recommended.", "url": "https://owningcost.com/glossary.html#title-insurance"}, {"@type": "DefinedTerm", "name": "Underwriting", "description": "The lender's review of your loan application — verifying income, assets, debt, and credit; reviewing the home's appraisal; and confirming the loan meets program requirements. Final approval depends on underwriting clearance.", "url": "https://owningcost.com/glossary.html#underwriting"}, {"@type": "DefinedTerm", "name": "USDA loan", "description": "A government-backed loan for buyers in eligible rural and suburban areas, with no down-payment requirement and competitive rates. Has income limits and property eligibility requirements.", "url": "https://owningcost.com/glossary.html#usda-loan"}, {"@type": "DefinedTerm", "name": "VA loan", "description": "A government-backed loan for eligible veterans and active-duty service members, with no down-payment requirement, no PMI, and competitive rates. Carries a one-time funding fee (waivable for some categories).", "url": "https://owningcost.com/glossary.html#va-loan"}]}]}
+</script>
+
+<!-- Meta Pixel --><script src="meta-pixel.js" async></script>
+</head>
+<body>
+<!-- Meta Pixel noscript fallback --><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912670585135146&ev=PageView&noscript=1" alt="" /></noscript>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="how-to-choose-a-realtor.html">How to choose a realtor <span class="mega__tag">Guide</span></a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="early-payoff-calculator.html">Early Payoff</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="amortization-calculator.html">Amortization Schedule</a></li>
+            <li><a href="points-vs-no-points-calculator.html">Points vs. No Points</a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 25 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="risk.html">Risk</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="stress-test-calculator.html">Stress Test</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Buyer guides</summary>
+      <a href="how-to-choose-a-realtor.html">How to choose a realtor</a>
+      <a href="how-to-choose-a-lender.html">How to choose a lender</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Risk</summary>
+      <a href="the-downsides-of-owning-a-home.html">Downsides of owning</a>
+      <a href="what-2008-housing-crash-taught-buyers.html">Lessons from 2008</a>
+      <a href="why-homeownership-is-not-risk-free.html">Why owning isn't risk-free</a>
+      <a href="how-to-reduce-homeownership-risk.html">How to reduce risk</a>
+      <a href="leverage-and-housing.html">Leverage and housing</a>
+      <a href="stress-test-calculator.html">Stress Test calculator</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Glossary</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Reference</span>
+    <h1>Glossary — mortgage and housing terms, defined plainly.</h1>
+    <p class="phero__sub">38 terms in plain English, with typical ranges and links to the calculator that runs the math on each one. No jargon-explained-with-more-jargon. If a term comes up in the Loan Estimate, on a closing disclosure, or in conversation with a lender or realtor, it's defined here.</p>
+    <p class="phero__updated">Reviewed May 2026 · Independent housing-cost intelligence</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="trust-line" aria-label="How to use the glossary">
+      <span class="trust-line__dot" aria-hidden="true"></span>
+      <span><strong>How to use this.</strong> Browse alphabetically, or search the page (Ctrl/Cmd-F) for a specific term. Every term that has a calculator on the platform links to it directly. Anchors like <code style="background:var(--surface-2);padding:2px 6px;border-radius:4px;font-size:.85em">/glossary.html#piti</code> work for sharing.</span>
+    </div>
+
+    <nav class="gloss__toc" aria-label="Glossary letter navigation"><a href="#letter-A" class="gloss__toc__btn">A</a><a href="#letter-B" class="gloss__toc__btn">B</a><a href="#letter-C" class="gloss__toc__btn">C</a><a href="#letter-D" class="gloss__toc__btn">D</a><a href="#letter-E" class="gloss__toc__btn">E</a><a href="#letter-F" class="gloss__toc__btn">F</a><a href="#letter-H" class="gloss__toc__btn">H</a><a href="#letter-J" class="gloss__toc__btn">J</a><a href="#letter-L" class="gloss__toc__btn">L</a><a href="#letter-M" class="gloss__toc__btn">M</a><a href="#letter-O" class="gloss__toc__btn">O</a><a href="#letter-P" class="gloss__toc__btn">P</a><a href="#letter-R" class="gloss__toc__btn">R</a><a href="#letter-T" class="gloss__toc__btn">T</a><a href="#letter-U" class="gloss__toc__btn">U</a><a href="#letter-V" class="gloss__toc__btn">V</a></nav>
+
+    <div class="gloss__body">
+      <section class="gloss__section" id="letter-A" aria-labelledby="letter-h-A">
+        <h2 class="gloss__letter" id="letter-h-A">A</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="amortization">
+          <h3 class="gloss__name">Amortization</h3>
+          <p class="gloss__def">The schedule by which a loan is paid off — each payment splits between interest (charged on the remaining balance) and principal (the loan-balance paydown). Most U.S. mortgages are fully amortizing, meaning the full balance is paid off by the final scheduled payment.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">30-year and 15-year are standard.</span>
+            <a class="gloss__link" href="amortization-calculator.html">Amortization Schedule calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="apr">
+          <h3 class="gloss__name">APR (Annual Percentage Rate)</h3>
+          <p class="gloss__def">The total annualized cost of a loan including the interest rate plus origination fees, discount points, and certain other closing costs. APR is typically higher than the stated interest rate. It's required to be disclosed on every Loan Estimate, allowing apples-to-apples comparison across lenders.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">APR runs ~0.10–0.30% above the note rate on most loans.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="arm">
+          <h3 class="gloss__name">ARM (Adjustable-Rate Mortgage)</h3>
+          <p class="gloss__def">A mortgage where the interest rate is fixed for an initial period (typically 5, 7, or 10 years) and then adjusts periodically based on a market index. Lower introductory rates than fixed mortgages; rate-reset risk after the fixed period.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">5/1, 7/1, 10/1 are most common.</span>
+            <a class="gloss__link" href="arm-vs-fixed-calculator.html">ARM vs. Fixed calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-B" aria-labelledby="letter-h-B">
+        <h2 class="gloss__letter" id="letter-h-B">B</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="biweekly">
+          <h3 class="gloss__name">Biweekly mortgage</h3>
+          <p class="gloss__def">A payment structure where you pay half your monthly amount every two weeks. Because there are 26 biweekly periods in a calendar year, you make the equivalent of 13 monthly payments per year — the extra payment accelerates principal paydown.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Knocks ~5-6 years off a 30-year term.</span>
+            <a class="gloss__link" href="early-payoff-calculator.html">Early Payoff calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-C" aria-labelledby="letter-h-C">
+        <h2 class="gloss__letter" id="letter-h-C">C</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="cash-to-close">
+          <h3 class="gloss__name">Cash to close</h3>
+          <p class="gloss__def">The total amount of cash you bring to closing — down payment plus closing costs plus prepaid escrow items, minus any earnest money already deposited and any lender or seller credits.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Typically 5–10% of home price for non-VA buyers.</span>
+            <a class="gloss__link" href="cash-to-close-calculator.html">Cash to Close calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="closing-costs">
+          <h3 class="gloss__name">Closing costs</h3>
+          <p class="gloss__def">Fees paid at closing beyond the down payment — typically lender origination, title insurance, recording fees, prepaid taxes/insurance, and inspections. Distinct from the down payment.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">2–4% of home price typically.</span>
+            <a class="gloss__link" href="closing-cost-calculator.html">Closing Cost calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="conventional-loan">
+          <h3 class="gloss__name">Conventional loan</h3>
+          <p class="gloss__def">A mortgage not backed by a U.S. government program (FHA, VA, USDA). Most are conforming — meeting Fannie Mae and Freddie Mac size and underwriting standards. Down payments range from 3% to 20%+; PMI required below 20% down.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Most common loan type in the U.S.</span>
+            <a class="gloss__link" href="fha-vs-conventional-calculator.html">FHA vs. Conventional calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-D" aria-labelledby="letter-h-D">
+        <h2 class="gloss__letter" id="letter-h-D">D</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="debt-to-income">
+          <h3 class="gloss__name">DTI (Debt-to-Income)</h3>
+          <p class="gloss__def">Total monthly debt payments divided by gross monthly income. Lenders use this to assess repayment capacity. Front-end DTI counts only housing costs; back-end DTI includes housing plus all other debt.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Lender ceilings: ~43–50% back-end. Comfortable: ≤36%.</span>
+            <a class="gloss__link" href="affordability-calculator.html">Affordability calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="discount-points">
+          <h3 class="gloss__name">Discount points</h3>
+          <p class="gloss__def">Optional upfront fees paid to the lender at closing to lower the interest rate. One point typically costs 1% of loan amount and reduces the rate by ~0.25%. Pays off if you hold long enough; wasted if you sell or refinance early.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">1 point ≈ 1% of loan, reduces rate ~0.25%.</span>
+            <a class="gloss__link" href="points-vs-no-points-calculator.html">Points vs. No Points calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="down-payment">
+          <h3 class="gloss__name">Down payment</h3>
+          <p class="gloss__def">Cash paid upfront toward the home price, with the rest financed by the mortgage. Larger down payments mean smaller loan, lower payments, and reduced leverage exposure. The down payment isn't lost — it becomes equity in the home.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">3% (FHA/conventional minimums) up to 20%+ for full PMI elimination.</span>
+            <a class="gloss__link" href="down-payment-strategy-calculator.html">Down Payment Strategy calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-E" aria-labelledby="letter-h-E">
+        <h2 class="gloss__letter" id="letter-h-E">E</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="earnest-money">
+          <h3 class="gloss__name">Earnest money deposit</h3>
+          <p class="gloss__def">A good-faith deposit paid by the buyer when an offer is accepted, held in escrow until closing. Demonstrates serious intent and is typically credited toward closing costs or the down payment at closing.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">1–3% of home price typically.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="equity">
+          <h3 class="gloss__name">Equity</h3>
+          <p class="gloss__def">The portion of the home you own outright — current market value minus remaining mortgage balance. Equity grows through mortgage paydown and home appreciation; it shrinks through depreciation or cash-out borrowing.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Starts at down-payment amount; grows over time.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="escrow">
+          <h3 class="gloss__name">Escrow account</h3>
+          <p class="gloss__def">An account held by your lender or servicer that collects monthly amounts toward property taxes and homeowners insurance, then pays them when due. Escrow makes the monthly cost predictable; it doesn't change the underlying tax or insurance amounts.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Required for most loans below 20% equity.</span>
+            
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-F" aria-labelledby="letter-h-F">
+        <h2 class="gloss__letter" id="letter-h-F">F</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="fha-loan">
+          <h3 class="gloss__name">FHA loan</h3>
+          <p class="gloss__def">A government-backed loan with lower down-payment requirements (3.5% minimum) and more flexible credit standards than conventional loans. Carries upfront and ongoing MIP for the life of most FHA loans.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Often used by first-time buyers; 3.5% down typical.</span>
+            <a class="gloss__link" href="fha-vs-conventional-calculator.html">FHA vs. Conventional calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="fixed-rate">
+          <h3 class="gloss__name">Fixed-rate mortgage</h3>
+          <p class="gloss__def">A mortgage where the interest rate stays the same for the entire loan term. Predictable payments; no payment-shock risk. The U.S. 30-year fixed-rate mortgage is unusual globally and a major risk-management tool for U.S. buyers.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">30-year and 15-year are most common.</span>
+            <a class="gloss__link" href="arm-vs-fixed-calculator.html">ARM vs. Fixed calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-H" aria-labelledby="letter-h-H">
+        <h2 class="gloss__letter" id="letter-h-H">H</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="heloc">
+          <h3 class="gloss__name">HELOC (Home Equity Line of Credit)</h3>
+          <p class="gloss__def">A revolving credit line secured by your home equity. Variable rate, draw period (typically 10 years) followed by a repayment period (typically 20 years). Used for renovations, debt consolidation, or other large expenses; carries the risk that the home is collateral.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Rates typically prime + 0–2%.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="hoa">
+          <h3 class="gloss__name">HOA (Homeowners Association) fees</h3>
+          <p class="gloss__def">Monthly or quarterly fees paid to a community association covering shared maintenance, amenities, and reserves. Common in condos, townhomes, and many newer single-family communities. Special assessments can add unexpected costs.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">$0–$1,000+/month; condos higher than SFH.</span>
+            <a class="gloss__link" href="true-monthly-cost-calculator.html">True Monthly Cost calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="ho3-policy">
+          <h3 class="gloss__name">HO-3 policy</h3>
+          <p class="gloss__def">The standard homeowners insurance policy for single-family homes. Covers the dwelling on an open-perils basis (anything not specifically excluded) and personal property on a named-perils basis.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">$1,200–$3,500/year typical for single-family.</span>
+            <a class="gloss__link" href="homeowners-insurance-explained.html">Insurance explainer →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="ho6-policy">
+          <h3 class="gloss__name">HO-6 policy</h3>
+          <p class="gloss__def">Homeowners insurance for condo owners. Covers the interior of the unit (walls-in coverage), personal property, and liability. The condo association's master policy covers the building exterior and common areas.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">$300–$700/year typical.</span>
+            
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-J" aria-labelledby="letter-h-J">
+        <h2 class="gloss__letter" id="letter-h-J">J</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="jumbo-loan">
+          <h3 class="gloss__name">Jumbo loan</h3>
+          <p class="gloss__def">A mortgage above the conforming loan limit ($806,500 in most counties for 2026, higher in expensive areas). Not eligible for sale to Fannie Mae or Freddie Mac, so underwriting standards and rates can differ from conforming loans.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Conforming limit varies by county.</span>
+            
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-L" aria-labelledby="letter-h-L">
+        <h2 class="gloss__letter" id="letter-h-L">L</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="ltv">
+          <h3 class="gloss__name">LTV (Loan-to-Value)</h3>
+          <p class="gloss__def">The loan amount divided by the home's appraised value or sale price (whichever is lower at purchase). LTV of 80% means you're borrowing 80% of the home's value. Lower LTV = lower lender risk = better rates and no PMI requirement.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">PMI eliminated at 78% LTV automatically.</span>
+            
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-M" aria-labelledby="letter-h-M">
+        <h2 class="gloss__letter" id="letter-h-M">M</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="mip">
+          <h3 class="gloss__name">MIP (Mortgage Insurance Premium)</h3>
+          <p class="gloss__def">FHA's version of mortgage insurance. Includes an upfront premium (1.75% of loan amount, typically rolled into the loan) and an annual premium paid monthly. Unlike conventional PMI, MIP often lasts the life of the loan.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Upfront 1.75% + annual 0.45–0.85%.</span>
+            <a class="gloss__link" href="fha-vs-conventional-calculator.html">FHA vs. Conventional calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="mortgage">
+          <h3 class="gloss__name">Mortgage</h3>
+          <p class="gloss__def">A loan secured by the home being purchased — the home is collateral, and the lender can foreclose if payments stop. The lender provides the capital; the borrower repays principal plus interest over the loan term, typically 15-30 years.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Most common 30-year fixed in U.S.</span>
+            <a class="gloss__link" href="amortization-calculator.html">Amortization Schedule calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-O" aria-labelledby="letter-h-O">
+        <h2 class="gloss__letter" id="letter-h-O">O</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="origination-fee">
+          <h3 class="gloss__name">Origination fee</h3>
+          <p class="gloss__def">A fee charged by the lender for processing the loan, typically priced as a percentage of the loan amount. Distinct from discount points (which buy down the rate). Origination fees appear on the Loan Estimate.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">0.5–1% of loan amount typical.</span>
+            
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-P" aria-labelledby="letter-h-P">
+        <h2 class="gloss__letter" id="letter-h-P">P</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="pi">
+          <h3 class="gloss__name">P&I (Principal and Interest)</h3>
+          <p class="gloss__def">The portion of your mortgage payment that goes to repaying the loan — principal (the borrowed amount) and interest (the cost of borrowing). Distinct from PITI, which adds taxes and insurance.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Computed from amortization formula.</span>
+            <a class="gloss__link" href="amortization-calculator.html">Amortization Schedule calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="piti">
+          <h3 class="gloss__name">PITI (Principal, Interest, Taxes, Insurance)</h3>
+          <p class="gloss__def">The four standard components of a U.S. mortgage payment when the lender escrows. PITI is more honest than P&I alone but still leaves out HOA, PMI, and maintenance — which is why True Monthly Cost goes further.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Roughly 80–85% of true monthly cost.</span>
+            <a class="gloss__link" href="true-monthly-cost-calculator.html">True Monthly Cost calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="pmi">
+          <h3 class="gloss__name">PMI (Private Mortgage Insurance)</h3>
+          <p class="gloss__def">Insurance required on conventional loans with less than 20% down. Protects the lender, not the borrower. Automatically removed when LTV reaches 78% of the original purchase price; can be requested at 80%.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">0.3–1.5% of loan annually, paid monthly.</span>
+            <a class="gloss__link" href="pmi-calculator.html">PMI calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="pre-approval">
+          <h3 class="gloss__name">Pre-approval</h3>
+          <p class="gloss__def">A more rigorous lender review than pre-qualification — typically includes verified income, credit pull, and a conditional approval letter for a specific loan amount. Strengthens an offer; doesn't guarantee final approval (which requires the appraisal and full underwriting).</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Valid 60–90 days typically.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="prepayment-penalty">
+          <h3 class="gloss__name">Prepayment penalty</h3>
+          <p class="gloss__def">A fee charged for paying off a mortgage early or making large extra payments. The Qualified Mortgage rule effectively eliminated prepayment penalties on most U.S. owner-occupied home loans originated after 2014.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Rare on QM loans; check loan documents.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="principal">
+          <h3 class="gloss__name">Principal</h3>
+          <p class="gloss__def">The amount of money borrowed — the loan balance. Each month, part of your P&I payment reduces principal; the rest goes to interest. As the loan amortizes, more goes to principal and less to interest each month.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Decreases over loan life.</span>
+            <a class="gloss__link" href="amortization-calculator.html">Amortization Schedule calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="property-tax">
+          <h3 class="gloss__name">Property tax</h3>
+          <p class="gloss__def">An annual tax assessed by local governments on real estate, paid as part of escrow in most U.S. mortgages. Rates vary 5x across U.S. metros — Texas runs ~1.8% effective, California closer to 0.7%, parts of New Jersey clear 2.2%.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">0.4–2.5% of home value annually.</span>
+            <a class="gloss__link" href="property-tax-explained.html">Property tax explainer →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-R" aria-labelledby="letter-h-R">
+        <h2 class="gloss__letter" id="letter-h-R">R</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="rate-lock">
+          <h3 class="gloss__name">Rate lock</h3>
+          <p class="gloss__def">A lender agreement to hold a specific rate for a defined period (typically 30–60 days), regardless of how rates move during that window. Protects buyers between application and closing. Some lenders charge for longer locks.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">30, 45, 60-day locks most common.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="refinance">
+          <h3 class="gloss__name">Refinance</h3>
+          <p class="gloss__def">Replacing an existing mortgage with a new one — usually for a lower rate, different term, or to pull cash out (cash-out refi). Carries closing costs that need to be recouped through the rate savings.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Break-even typically 24–48 months.</span>
+            <a class="gloss__link" href="refinance-vs-keep-calculator.html">Refinance vs. Keep calculator →</a>
+          </div>
+        </article>
+
+        <article class="gloss__term" id="reserves">
+          <h3 class="gloss__name">Reserves</h3>
+          <p class="gloss__def">Liquid cash kept after closing to cover mortgage payments and emergencies. A serious reserves threshold is six months of full carrying cost (PITI plus HOA plus maintenance) plus a separate emergency fund.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">6+ months recommended; some lenders require 2–6 months for approval.</span>
+            <a class="gloss__link" href="how-to-reduce-homeownership-risk.html">How to Reduce Risk →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-T" aria-labelledby="letter-h-T">
+        <h2 class="gloss__letter" id="letter-h-T">T</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="title-insurance">
+          <h3 class="gloss__name">Title insurance</h3>
+          <p class="gloss__def">A one-time insurance policy purchased at closing protecting against defects in the home's ownership history (liens, fraud, recording errors). Lender's policy is required; owner's policy is optional but recommended.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">0.5–1% of home price one-time.</span>
+            
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-U" aria-labelledby="letter-h-U">
+        <h2 class="gloss__letter" id="letter-h-U">U</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="underwriting">
+          <h3 class="gloss__name">Underwriting</h3>
+          <p class="gloss__def">The lender's review of your loan application — verifying income, assets, debt, and credit; reviewing the home's appraisal; and confirming the loan meets program requirements. Final approval depends on underwriting clearance.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">Typically 2–4 weeks for a purchase loan.</span>
+            
+          </div>
+        </article>
+
+        <article class="gloss__term" id="usda-loan">
+          <h3 class="gloss__name">USDA loan</h3>
+          <p class="gloss__def">A government-backed loan for buyers in eligible rural and suburban areas, with no down-payment requirement and competitive rates. Has income limits and property eligibility requirements.</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">0% down; income limits apply.</span>
+            <a class="gloss__link" href="loan-types.html">Loan Types overview →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+      <section class="gloss__section" id="letter-V" aria-labelledby="letter-h-V">
+        <h2 class="gloss__letter" id="letter-h-V">V</h2>
+        <div class="gloss__terms">
+        <article class="gloss__term" id="va-loan">
+          <h3 class="gloss__name">VA loan</h3>
+          <p class="gloss__def">A government-backed loan for eligible veterans and active-duty service members, with no down-payment requirement, no PMI, and competitive rates. Carries a one-time funding fee (waivable for some categories).</p>
+          <div class="gloss__meta">
+            <span class="gloss__range">0% down; funding fee 1.4–3.6%.</span>
+            <a class="gloss__link" href="va-vs-conventional-calculator.html">VA vs. Conventional calculator →</a>
+          </div>
+        </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Most-used calculators</span>
+      <h2>Where to go from here.</h2>
+      <p class="section__lede">If you're looking up a term, you're probably thinking through a specific decision. These are the most-used calculators that match common glossary lookups.</p>
+    </div>
+    <div class="rcards">
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>The most complete monthly figure. PITI plus HOA, PMI, and maintenance reserve.</p>
+      </a>
+      <a href="affordability-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Affordability + Risk</h3>
+        <p>DTI, House Poor Risk, three honest price tiers. The right number to actually buy at.</p>
+      </a>
+      <a href="amortization-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Amortization Schedule</h3>
+        <p>Year-by-year and month-by-month breakdown. Where the principal-vs-interest crossover happens.</p>
+      </a>
+      <a href="rent-vs-buy-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Rent vs. Buy</h3>
+        <p>The honest comparison — including down-payment opportunity cost and transaction costs.</p>
+      </a>
+      <a href="calculators.html" class="rcard">
+        <span class="rcard__tag">All</span>
+        <h3>All 25 calculators</h3>
+        <p>The full catalog. Every tool the platform has, organized by question.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Independent housing-cost intelligence</span>
+      <h2 style="margin-top:.85rem">Plain language, transparent math, no lead generation.</h2>
+      <p>OwningCost exists because consumer mortgage content tends to be either oversimplified or buried under upsell. The Glossary is the platform's reference layer — clean definitions, no jargon, every term linked back to a tool that uses it.</p>
+      <div class="ctaband__row">
+        <a href="calculators.html" class="btn">Browse calculators</a>
+        <a href="methodology.html" class="btn btn--ghost">See the methodology</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="risk.html">Risk</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+
+</body>
+</html>

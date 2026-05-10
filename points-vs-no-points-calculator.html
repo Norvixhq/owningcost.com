@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Points vs. No Points Calculator — when buying down the rate pays off | OwningCost</title>
+<meta name="description" content="Should you pay discount points to lower your mortgage rate? See the break-even month, total savings over your real hold period, and a clear verdict — points worth it, not worth it, or borderline." />
+<link rel="canonical" href="https://owningcost.com/points-vs-no-points-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Points vs. No Points Calculator — when buying down the rate pays off" />
+<meta property="og:description" content="Should you pay discount points to lower your mortgage rate? See the break-even month, total savings over your real hold period, and a clear verdict — points worth it, not worth it, or borderline." />
+<meta property="og:url" content="https://owningcost.com/points-vs-no-points-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Points vs. No Points Calculator — when buying down the rate pays off | OwningCost" />
+<meta name="twitter:description" content="Should you pay discount points to lower your mortgage rate? See the break-even month, total savings over your real hold period, and a clear verdict — points worth it, not worth it, or borderline." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.ptv__verdict{margin:1rem 0 1.2rem;text-align:center}
+.ptv__verdict__pill{
+  display:inline-block;padding:.55rem 1.4rem;
+  font-family:var(--sans);font-size:.95rem;font-weight:700;
+  letter-spacing:-.005em;border-radius:99px;
+  background:var(--surface-2);border:1px solid var(--border);color:var(--ink-2);
+}
+.ptv__verdict__pill.is-good{background:rgba(78,182,60,.1);border-color:rgba(78,182,60,.35);color:var(--green-700)}
+.ptv__verdict__pill.is-bad{background:rgba(165,58,58,.08);border-color:rgba(165,58,58,.3);color:#A33B3B}
+.ptv__verdict__pill.is-mixed{background:rgba(155,107,30,.08);border-color:rgba(155,107,30,.3);color:#7B5300}
+.ptv__verdict__pill.is-empty{color:var(--subtle)}
+.ptv__verdict__sub{
+  margin-top:.55rem;font-size:.88rem;color:var(--ink-2);line-height:1.5;
+  max-width:32rem;margin-left:auto;margin-right:auto;
+}
+
+.ptv__compare{
+  display:grid;grid-template-columns:1fr;gap:.8rem;margin:.9rem 0;
+}
+@media (min-width:560px){.ptv__compare{grid-template-columns:repeat(2,1fr);gap:1rem}}
+.ptv__compare__col{
+  padding:1rem 1.1rem;background:#fff;border:1px solid var(--border);border-radius:10px;
+}
+.ptv__compare__col--points{
+  background:rgba(28,109,217,.04);
+  border-color:var(--blue-200);
+}
+.ptv__compare__label{
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);
+  margin-bottom:.55rem;padding-bottom:.55rem;border-bottom:1px solid var(--border);
+}
+.ptv__compare__col--points .ptv__compare__label{color:var(--blue-700)}
+.ptv__compare__row{
+  display:flex;justify-content:space-between;gap:.7rem;
+  padding:.36rem 0;font-size:.86rem;color:var(--muted);
+}
+.ptv__compare__row .amt{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+.ptv__compare__col--points .ptv__compare__row .amt{color:var(--ink);font-weight:600}
+
+.ptv__breakeven{
+  margin:1rem 0 .9rem;padding:.95rem 1.1rem;
+  background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+}
+.ptv__breakeven__row{
+  display:flex;justify-content:space-between;align-items:center;gap:.7rem;
+  padding:.4rem 0;border-bottom:1px solid var(--border);
+  font-size:.92rem;
+}
+.ptv__breakeven__row:last-child{border-bottom:none;padding-bottom:0}
+.ptv__breakeven__row:first-child{padding-top:0}
+.ptv__breakeven__label{color:var(--ink-2);font-weight:500}
+.ptv__breakeven__row .amt{
+  color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600;
+  font-family:var(--serif);font-size:1.05rem;letter-spacing:-.01em;
+}
+
+.ptv__disclaimer{
+  margin-top:.85rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.ptv__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Points vs. No Points Calculator", "item": "https://owningcost.com/points-vs-no-points-calculator.html"}]}, {"@type": "WebApplication", "name": "Points vs. No Points Calculator", "url": "https://owningcost.com/points-vs-no-points-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Should you pay discount points to lower your rate? See break-even month, total savings over your hold period, and a clear verdict.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What's the standard rate reduction per point?", "acceptedAnswer": {"@type": "Answer", "text": "In current markets, one discount point typically reduces the rate by 0.20-0.30%. The exact number varies by lender, loan type, and credit profile. Get the explicit rate sheet from your lender showing the rate at 0, 0.5, 1, and 2 points."}}, {"@type": "Question", "name": "Are discount points tax deductible?", "acceptedAnswer": {"@type": "Answer", "text": "Often yes for a primary-residence purchase loan in the year they're paid, if the points meet IRS criteria. Refinance points are generally deducted ratably over the loan term. For your specific situation, work with a CPA."}}, {"@type": "Question", "name": "Are origination fees the same as discount points?", "acceptedAnswer": {"@type": "Answer", "text": "No. Discount points reduce your rate. Origination fees are the lender's compensation for processing the loan and don't change your rate. Both are typically priced as a percentage of the loan amount and both appear on the Loan Estimate."}}, {"@type": "Question", "name": "Can I negotiate the cost or rate reduction per point?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes. The rate reduction per point is set by the lender's pricing model and is largely non-negotiable. The cost per point is also fairly fixed. What can be negotiated is the no-points rate itself by shopping multiple lenders."}}, {"@type": "Question", "name": "How does this interact with rate locks?", "acceptedAnswer": {"@type": "Answer", "text": "Rate lock pricing usually includes the points decision. Locking the no-points rate is one product; locking the with-points rate is a different product. Always confirm the locked rate, the points cost, and the lock duration in writing."}}]}]}
+</script>
+
+<!-- Meta Pixel --><script src="meta-pixel.js" async></script>
+</head>
+<body>
+<!-- Meta Pixel noscript fallback --><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912670585135146&ev=PageView&noscript=1" alt="" /></noscript>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="how-to-choose-a-realtor.html">How to choose a realtor <span class="mega__tag">Guide</span></a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="early-payoff-calculator.html">Early Payoff</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="amortization-calculator.html">Amortization Schedule</a></li>
+            <li><a href="points-vs-no-points-calculator.html">Points vs. No Points</a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 25 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="risk.html">Risk</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="stress-test-calculator.html">Stress Test</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Buyer guides</summary>
+      <a href="how-to-choose-a-realtor.html">How to choose a realtor</a>
+      <a href="how-to-choose-a-lender.html">How to choose a lender</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Risk</summary>
+      <a href="the-downsides-of-owning-a-home.html">Downsides of owning</a>
+      <a href="what-2008-housing-crash-taught-buyers.html">Lessons from 2008</a>
+      <a href="why-homeownership-is-not-risk-free.html">Why owning isn't risk-free</a>
+      <a href="how-to-reduce-homeownership-risk.html">How to reduce risk</a>
+      <a href="leverage-and-housing.html">Leverage and housing</a>
+      <a href="stress-test-calculator.html">Stress Test calculator</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Points vs. No Points</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Mortgage math</span>
+    <h1>Should you pay points to buy down the rate?</h1>
+    <p class="phero__sub">A discount point typically costs 1% of the loan amount and reduces the rate by about 0.25%. The math is simple in form and unforgiving in detail: you pay cash now to save money later. The decision turns on how long you actually hold the loan. Short holds favor no-points; long holds favor points. This calculator runs both paths against your specific numbers and shows the break-even month directly.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">Break-even and total savings</span>
+      <span class="chip">No signup, no email</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="trust-line" aria-label="How this calculator works">
+      <span class="trust-line__dot" aria-hidden="true"></span>
+      <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+    </div>
+
+    <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Points vs No Points calculator">
+      <div class="calc__form">
+
+        <h3>Loan inputs</h3>
+
+        <div class="field">
+          <div class="field__label"><span>Loan amount</span><span class="field__value" id="lblLoan"></span></div>
+          <div class="field__input"><span class="prefix">$</span><input type="number" id="inpLoan" value="340000" min="50000" step="5000"></div>
+          <input type="range" id="rngLoan" class="field__range" min="50000" max="2000000" step="5000">
+          <span class="field__hint">The financed amount, not the home price. Default is a $425K home with 20% down.</span>
+        </div>
+
+        <div class="field__grid">
+          <div class="field">
+            <div class="field__label"><span>Rate without points</span><span class="field__value" id="lblBaseRate"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpBaseRate" value="6.75" min="2" max="12" step="0.05"><span class="suffix">%</span></div>
+            <input type="range" id="rngBaseRate" class="field__range" min="2" max="12" step="0.05">
+          </div>
+          <div class="field">
+            <div class="field__label"><span>Term</span><span class="field__value" id="lblTerm"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="10" max="40" step="5"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngTerm" class="field__range" min="10" max="40" step="5">
+          </div>
+        </div>
+
+        <h3 style="margin-top:1.5rem">Points scenario</h3>
+
+        <div class="field__grid">
+          <div class="field">
+            <div class="field__label"><span>Points to buy</span><span class="field__value" id="lblPoints"></span></div>
+            <div class="field__input"><input type="number" id="inpPoints" value="1" min="0" max="4" step="0.25"></div>
+            <input type="range" id="rngPoints" class="field__range" min="0" max="4" step="0.25">
+            <span class="field__hint">Most lenders offer 0–3 points. Lender pricing sheets show exact rate reductions.</span>
+          </div>
+          <div class="field">
+            <div class="field__label"><span>Cost per point</span><span class="field__value" id="lblPointCost"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpPointCost" value="1.0" min="0.5" max="2" step="0.05"><span class="suffix">% of loan</span></div>
+            <input type="range" id="rngPointCost" class="field__range" min="0.5" max="2" step="0.05">
+            <span class="field__hint">Typically 1% per point. Some lenders quote slightly higher.</span>
+          </div>
+        </div>
+
+        <div class="field__grid">
+          <div class="field">
+            <div class="field__label"><span>Rate reduction per point</span><span class="field__value" id="lblPointRed"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpPointRed" value="0.25" min="0.10" max="0.5" step="0.025"><span class="suffix">%</span></div>
+            <input type="range" id="rngPointRed" class="field__range" min="0.10" max="0.5" step="0.025">
+            <span class="field__hint">Typical range is 0.20–0.30%. Confirm on your specific lender's rate sheet.</span>
+          </div>
+          <div class="field">
+            <div class="field__label"><span>Hold period</span><span class="field__value" id="lblHold"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpHold" value="7" min="1" max="30" step="1"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngHold" class="field__range" min="1" max="30" step="1">
+            <span class="field__hint">How long you actually expect to keep this loan — the most important variable.</span>
+          </div>
+        </div>
+
+        <details class="calc__math">
+          <summary>How this is calculated</summary>
+          <div class="calc__math__body">
+            <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">The trade.</strong> You pay (points × point cost % × loan amount) at closing. In return, your rate drops by (points × rate reduction per point). Lower rate = lower monthly payment, which compounds across every month you hold the loan.</p>
+            <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Break-even.</strong> Cost of points ÷ monthly savings = break-even months. If your hold period exceeds the break-even, points pay off. If you sell or refinance before break-even, you lose money on the deal.</p>
+            <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this doesn't model.</strong> Tax deductibility (points may be deductible in the year paid for primary residence), opportunity cost on the points cash, refinance probability mid-hold. For tax treatment, work with a CPA. For refinance probability, the answer depends on rate trajectory — which nobody can predict.</p>
+            <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+          </div>
+        </details>
+      </div>
+
+      <div class="calc__out" id="calcOut" aria-live="polite">
+        <span class="calc__out__eyebrow">The verdict</span>
+
+        <div class="ptv__verdict" id="ptvVerdict">
+          <div class="ptv__verdict__pill" id="ptvVerdictPill">—</div>
+          <div class="ptv__verdict__sub" id="ptvVerdictSub">Enter your scenario to see the analysis</div>
+        </div>
+
+        <div class="ptv__compare">
+          <div class="ptv__compare__col">
+            <div class="ptv__compare__label">No points</div>
+            <div class="ptv__compare__row"><span>Rate</span><span class="amt" id="npRate">—</span></div>
+            <div class="ptv__compare__row"><span>Monthly payment</span><span class="amt" id="npP">—</span></div>
+            <div class="ptv__compare__row"><span>Cost at closing</span><span class="amt" id="npClose">$0</span></div>
+            <div class="ptv__compare__row"><span>Total over hold</span><span class="amt" id="npTotal">—</span></div>
+          </div>
+          <div class="ptv__compare__col ptv__compare__col--points">
+            <div class="ptv__compare__label">With points</div>
+            <div class="ptv__compare__row"><span>Rate</span><span class="amt" id="pRate">—</span></div>
+            <div class="ptv__compare__row"><span>Monthly payment</span><span class="amt" id="pP">—</span></div>
+            <div class="ptv__compare__row"><span>Cost at closing</span><span class="amt" id="pClose">—</span></div>
+            <div class="ptv__compare__row"><span>Total over hold</span><span class="amt" id="pTotal">—</span></div>
+          </div>
+        </div>
+
+        <div class="ptv__breakeven">
+          <div class="ptv__breakeven__row">
+            <span class="ptv__breakeven__label">Monthly savings</span>
+            <span class="amt" id="ptvSavings">—</span>
+          </div>
+          <div class="ptv__breakeven__row">
+            <span class="ptv__breakeven__label">Break-even</span>
+            <span class="amt" id="ptvBE">—</span>
+          </div>
+          <div class="ptv__breakeven__row">
+            <span class="ptv__breakeven__label">Net over your hold</span>
+            <span class="amt" id="ptvNet">—</span>
+          </div>
+        </div>
+
+        <div class="ptv__disclaimer">
+          <strong>Note:</strong> this analysis assumes you keep the loan for the full hold period without refinancing. If you refinance before the break-even month, the points cost was wasted. Plan for hold-period uncertainty.
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">When points pay off and when they don't</span>
+        <h2 style="margin-top:.85rem">Hold period is the dominant variable.</h2>
+        <p class="article__lede">Discount points are a bet against your future self. You pay cash at closing in exchange for lower payments later. The bet works if you hold the loan long enough for the lower payments to recoup the upfront cost. The bet loses if you refinance, sell, or otherwise terminate the loan before break-even. Points decisions are mostly hold-period decisions in disguise.</p>
+
+        <h3>The typical break-even math</h3>
+        <p>On a $340,000 loan at 6.75% no-points vs. 6.50% with one point, the points cost is $3,400 and the monthly savings are about $56. Break-even is 60 months — five years. Hold longer than five years, points pay off; hold less, they don't.</p>
+        <p>Two points buy down to 6.25% for $6,800 in cost and roughly $112/month savings — same break-even (about 60 months) but bigger total savings if you hold long. The break-even doesn't change much across point levels because the cost and savings scale together; what changes is the absolute size of the savings if you hold.</p>
+
+        <h3>When points usually pay off</h3>
+        <ul>
+          <li><strong>You're committed to a long hold.</strong> Job stable, family settled, location chosen. Buying for retirement-stage hold (15+ years) — points almost always pay off if rates don't fall significantly.</li>
+          <li><strong>Rates are at or below recent normal.</strong> If current rates are mid-range historically, refinance probability is lower, which protects the points investment.</li>
+          <li><strong>You have cash beyond the down-payment requirement.</strong> Points should never come from your reserves. The cash for points is incremental, after the down payment, closing costs, and 6 months of carrying-cost reserves are all fully funded.</li>
+        </ul>
+
+        <h3>When points usually don't pay off</h3>
+        <ul>
+          <li><strong>Hold-period uncertainty.</strong> Career-flexible buyers, first-time buyers in transitional life stages, anyone with meaningful probability of selling within 5 years should generally skip points.</li>
+          <li><strong>Rates are elevated.</strong> If current rates are at the high end of historical norms, the probability of refinancing into a lower fixed-rate within 5-10 years is higher — which would make any points investment a wasted upfront cost.</li>
+          <li><strong>The cash matters more elsewhere.</strong> Points come last in the cash-priorities stack. Reserves first, high-interest debt next, retirement contributions, then larger down payment (if it changes PMI math), then points. For most buyers, points come after several other higher-priority uses of marginal cash.</li>
+        </ul>
+
+        <h3>What about negative points (lender credits)?</h3>
+        <p>The reverse trade — the lender pays your closing costs in exchange for a higher rate. Same break-even math, inverted. If you're hold-uncertain or short-hold, lender credits can be a reasonable choice; the higher rate is a small cost paid only as long as you hold the loan. The decision frame is identical: how long will you actually keep this loan?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="ptv-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="ptv-faq-title">Common points questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What's the standard rate reduction per point?</summary>
+        <div class="faq__a">In current markets, one discount point typically reduces the rate by 0.20–0.30%. The exact number varies by lender, loan type, and credit profile. Get the explicit rate sheet from your lender showing the rate at 0, 0.5, 1, and 2 points — the reductions aren't perfectly linear, and the second point sometimes buys a smaller reduction than the first. Treat the 0.25% rule as a starting estimate, not a rate-sheet substitute.</div>
+      </details>
+      <details>
+        <summary>Are discount points tax deductible?</summary>
+        <div class="faq__a">Often yes for a primary-residence purchase loan in the year they're paid, if the points meet IRS criteria (loan secured by the home, points are a typical practice in the area, etc.). Refinance points are generally deducted ratably over the loan term, not in the year paid. The deduction reduces the after-tax cost of points, making the break-even slightly faster. For your specific situation, work with a CPA — generic guidance can mislead.</div>
+      </details>
+      <details>
+        <summary>Are origination fees the same as discount points?</summary>
+        <div class="faq__a">No, but they're often confused. Discount points reduce your rate. Origination fees are the lender's compensation for processing the loan and don't change your rate. Both are typically priced as a percentage of the loan amount and both appear on the Loan Estimate. Make sure you're comparing the total cost (rate + origination + points) across lenders, not just the rate.</div>
+      </details>
+      <details>
+        <summary>Can I negotiate the cost or rate reduction per point?</summary>
+        <div class="faq__a">Sometimes. The rate reduction per point is set by the lender's pricing model and is largely non-negotiable. The cost per point (always 1% of loan amount in standard pricing) is also fairly fixed. What can be negotiated is the no-points rate itself — different lenders price the same loan differently, and shopping 3-5 lenders for the same loan terms typically reveals 0.25–0.50% rate variation. The points decision happens after you've chosen a lender.</div>
+      </details>
+      <details>
+        <summary>How does this interact with rate locks?</summary>
+        <div class="faq__a">Rate lock pricing usually includes the points decision. Locking the no-points rate is one product; locking the with-points rate is a different product. Some lenders charge for longer lock periods; pricing of points within those lock periods can vary. Always confirm the locked rate, the points cost, and the lock duration in writing.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. The points decision involves your specific cash position, hold expectations, tax situation, and risk tolerance — none of which OwningCost can know. This calculator is a math tool. For loan-product decisions, work with a licensed mortgage professional and your CPA.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; guides</span>
+      <h2>Related tools.</h2>
+    </div>
+    <div class="rcards">
+      <a href="amortization-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Amortization Schedule</h3>
+        <p>See the full payment schedule for either rate scenario. Year-by-year and month-by-month views.</p>
+      </a>
+      <a href="refinance-vs-keep-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Refinance vs. Keep</h3>
+        <p>If you ever refinance, the points calculation runs the same way — closing costs, break-even, total savings.</p>
+      </a>
+      <a href="cash-to-close-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Cash to Close</h3>
+        <p>Points are a closing-cost line. See the full closing-day cash picture before deciding to add them.</p>
+      </a>
+      <a href="how-to-reduce-homeownership-risk.html" class="rcard">
+        <span class="rcard__tag">Risk</span>
+        <h3>How to Reduce Risk</h3>
+        <p>Where points fit in the cash-priorities stack — after reserves, debt payoff, and retirement.</p>
+      </a>
+      <a href="glossary.html" class="rcard">
+        <span class="rcard__tag">Reference</span>
+        <h3>Glossary</h3>
+        <p>Discount points, origination fee, par rate, lock — every closing term defined plainly.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">See the closing cash picture</span>
+      <h2 style="margin-top:.85rem">Points add to your cash-to-close.</h2>
+      <p>Before deciding on points, run the full closing-day cash picture. The Cash to Close calculator stacks the down payment, closing costs, escrow setup, and any points into one number — so you can confirm the cash is actually available before locking in points.</p>
+      <div class="ctaband__row">
+        <a href="cash-to-close-calculator.html" class="btn">Open Cash to Close</a>
+        <a href="financing.html" class="btn btn--ghost">Visit Financing hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="risk.html">Risk</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ var el=$(id); return el ? (parseFloat(el.value) || 0) : 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+  function fmtPct(n, decimals){ if(!isFinite(n)) return '—'; return n.toFixed(decimals||3) + '%'; }
+  function fmtMonths(months){
+    if (!isFinite(months) || months <= 0) return '—';
+    var y = Math.floor(months / 12);
+    var m = Math.round(months % 12);
+    if (y === 0) return m + ' mo';
+    if (m === 0) return y + ' yr';
+    return y + ' yr ' + m + ' mo';
+  }
+
+  function pmt(loan, monthlyRate, n){
+    if (monthlyRate === 0) return loan / n;
+    return loan * (monthlyRate * Math.pow(1+monthlyRate, n)) / (Math.pow(1+monthlyRate, n) - 1);
+  }
+
+  function compute(){
+    var loan = v('inpLoan');
+    var baseRate = v('inpBaseRate');
+    var term = Math.round(v('inpTerm'));
+    var points = v('inpPoints');
+    var pointCostPct = v('inpPointCost') / 100;
+    var pointRed = v('inpPointRed');
+    var hold = Math.round(v('inpHold'));
+
+    var nMonths = term * 12;
+    var holdMonths = hold * 12;
+
+    var pointsCost = points * pointCostPct * loan;
+    var pointsRate = Math.max(0.5, baseRate - (points * pointRed));
+
+    var pBase = pmt(loan, baseRate/100/12, nMonths);
+    var pPoints = pmt(loan, pointsRate/100/12, nMonths);
+    var monthlySavings = pBase - pPoints;
+
+    // Render no-points
+    $('npRate').textContent = fmtPct(baseRate, 2);
+    $('npP').textContent = fmtUSD(pBase);
+    $('npClose').textContent = fmtUSD(0);
+    $('npTotal').textContent = fmtUSD(pBase * holdMonths);
+
+    // Render with-points
+    $('pRate').textContent = fmtPct(pointsRate, 2);
+    $('pP').textContent = fmtUSD(pPoints);
+    $('pClose').textContent = fmtUSD(pointsCost);
+    $('pTotal').textContent = fmtUSD(pPoints * holdMonths + pointsCost);
+
+    // Break-even
+    var breakEven = monthlySavings > 0 ? (pointsCost / monthlySavings) : Infinity;
+    $('ptvSavings').textContent = monthlySavings > 0 ? fmtUSD(monthlySavings) + '/mo' : '—';
+    $('ptvBE').textContent = isFinite(breakEven) && breakEven > 0 ? fmtMonths(breakEven) : '—';
+
+    // Net over hold
+    var netSavings = (monthlySavings * holdMonths) - pointsCost;
+    $('ptvNet').textContent = fmtUSD(netSavings);
+
+    // Verdict
+    var pillEl = $('ptvVerdictPill');
+    var subEl = $('ptvVerdictSub');
+    pillEl.classList.remove('is-good', 'is-bad', 'is-mixed', 'is-empty');
+    if (points === 0 || pointsCost === 0){
+      pillEl.classList.add('is-empty');
+      pillEl.textContent = 'No points selected';
+      subEl.textContent = 'Add points above to see the comparison';
+    } else if (!isFinite(breakEven) || monthlySavings <= 0){
+      pillEl.classList.add('is-bad');
+      pillEl.textContent = 'Points not worth it';
+      subEl.textContent = 'No meaningful rate reduction in this scenario';
+    } else if (holdMonths > breakEven * 1.5){
+      pillEl.classList.add('is-good');
+      pillEl.textContent = 'Points worth it';
+      subEl.textContent = 'Your hold (' + hold + ' yr) comfortably exceeds break-even (' + fmtMonths(breakEven) + '). Net savings: ' + fmtUSD(netSavings) + '.';
+    } else if (holdMonths < breakEven){
+      pillEl.classList.add('is-bad');
+      pillEl.textContent = 'Points not worth it';
+      subEl.textContent = 'Your hold (' + hold + ' yr) is shorter than break-even (' + fmtMonths(breakEven) + '). Net loss: ' + fmtUSD(netSavings) + '.';
+    } else {
+      pillEl.classList.add('is-mixed');
+      pillEl.textContent = 'Borderline';
+      subEl.textContent = 'Your hold (' + hold + ' yr) is close to break-even (' + fmtMonths(breakEven) + '). Hold-period certainty matters more than the points math here.';
+    }
+  }
+
+  ['inpLoan','inpBaseRate','inpTerm','inpPoints','inpPointCost','inpPointRed','inpHold'].forEach(function(id){
+    var el = $(id);
+    if (el){ el.addEventListener('input', compute); el.addEventListener('change', compute); }
+  });
+
+  // Slider pairs
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpLoan',     rng:'rngLoan',     lbl:'lblLoan',     fmt:'USD'},
+    {inp:'inpBaseRate', rng:'rngBaseRate', lbl:'lblBaseRate', fmt:'PCT2'},
+    {inp:'inpTerm',     rng:'rngTerm',     lbl:'lblTerm',     fmt:'YR'},
+    {inp:'inpPoints',   rng:'rngPoints',   lbl:'lblPoints',   fmt:'NUM'},
+    {inp:'inpPointCost', rng:'rngPointCost', lbl:'lblPointCost', fmt:'PCT2'},
+    {inp:'inpPointRed', rng:'rngPointRed', lbl:'lblPointRed', fmt:'PCT3'},
+    {inp:'inpHold',     rng:'rngHold',     lbl:'lblHold',     fmt:'YR'}
+  ];
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'PCT3') return (Math.round(n*1000)/1000).toFixed(3) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    if (kind === 'NUM') return n.toString();
+    return Math.round(n).toLocaleString('en-US');
+  }
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value; paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  compute();
+})();
+</script>
+
+
+</body>
+</html>

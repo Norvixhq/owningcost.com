@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Amortization Schedule Calculator — month by month, year by year | OwningCost</title>
+<meta name="description" content="See exactly how your mortgage payments break down into principal vs. interest, month by month and year by year. Total interest, payoff date, cumulative equity built — the full schedule, transparent and editable." />
+<link rel="canonical" href="https://owningcost.com/amortization-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Amortization Schedule Calculator — month by month, year by year" />
+<meta property="og:description" content="See exactly how your mortgage payments break down into principal vs. interest, month by month and year by year. Total interest, payoff date, cumulative equity built — the full schedule, transparent and editable." />
+<meta property="og:url" content="https://owningcost.com/amortization-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Amortization Schedule Calculator — month by month, year by year | OwningCost" />
+<meta name="twitter:description" content="See exactly how your mortgage payments break down into principal vs. interest, month by month and year by year. Total interest, payoff date, cumulative equity built — the full schedule, transparent and editable." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.amort__hero{
+  display:grid;gap:.85rem;margin:1rem 0 1.2rem;
+  grid-template-columns:1fr;
+  padding:1.2rem 1.2rem 1.1rem;
+  background:rgba(28,109,217,.05);border:1px solid var(--blue-200);border-radius:12px;
+}
+@media (min-width:560px){.amort__hero{grid-template-columns:repeat(3, 1fr);gap:1rem}}
+.amort__hero__col{display:flex;flex-direction:column;gap:.2rem}
+.amort__hero__label{font-family:var(--sans);font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle)}
+.amort__hero__num{font-family:var(--serif);font-size:1.45rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.012em;line-height:1.15}
+
+.amort__rows{margin:0 0 1rem}
+.amort__row{display:flex;justify-content:space-between;gap:.6rem;padding:.42rem 0;font-size:.86rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.amort__row:last-child{border-bottom:none}
+.amort__row .amt{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+
+.amort__view{
+  margin:1.2rem 0 .6rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+  font-size:.85rem;
+}
+.amort__view__label{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);margin-right:.3rem}
+.amort__view__btn{
+  padding:.45rem .9rem;border-radius:99px;
+  background:var(--surface);border:1px solid var(--border);
+  font-family:var(--sans);font-size:.84rem;font-weight:500;color:var(--ink-2);
+  cursor:pointer;transition:background .15s ease, border-color .15s ease, color .15s ease;
+}
+.amort__view__btn:hover{background:var(--surface-2);border-color:var(--border-2)}
+.amort__view__btn.is-active{background:var(--blue-600);border-color:var(--blue-600);color:#fff;font-weight:600}
+
+.amort__tableWrap{
+  max-height:540px;overflow-y:auto;overflow-x:auto;
+  margin:.5rem 0 .7rem;
+  border:1px solid var(--border);border-radius:10px;
+  background:#fff;
+  /* subtle scroll affordance */
+  -webkit-overflow-scrolling:touch;
+}
+.amort__table{
+  width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;
+  font-size:.85rem;
+}
+.amort__th{
+  position:sticky;top:0;z-index:1;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:.65rem .9rem;text-align:right;
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);
+}
+.amort__th--num{text-align:center}
+.amort__td{
+  padding:.55rem .9rem;text-align:right;
+  border-bottom:1px solid var(--border);
+  color:var(--ink-2);
+}
+.amort__td--num{text-align:center;font-weight:500;color:var(--ink)}
+.amort__td--principal{color:var(--green-700);font-weight:500}
+.amort__td--interest{color:#A33B3B;font-weight:500}
+.amort__table tbody tr:last-child .amort__td{border-bottom:none}
+.amort__table tbody tr:hover{background:rgba(28,109,217,.025)}
+
+.amort__disclaimer{
+  margin-top:.85rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.amort__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Amortization Schedule Calculator", "item": "https://owningcost.com/amortization-calculator.html"}]}, {"@type": "WebApplication", "name": "Amortization Schedule Calculator", "url": "https://owningcost.com/amortization-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "See exactly how each mortgage payment breaks into principal and interest. Year-by-year and month-by-month views with cumulative interest and equity tracking.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why is interest so front-loaded?", "acceptedAnswer": {"@type": "Answer", "text": "Because interest accrues on the remaining loan balance each month. When you start the loan, the balance is at its maximum, so interest is at its maximum. As you pay down the balance, the interest portion of each fixed payment shrinks. This isn't a lender trick — it's the math of compound interest on a declining balance."}}, {"@type": "Question", "name": "Does this include taxes, insurance, PMI, or HOA?", "acceptedAnswer": {"@type": "Answer", "text": "No. The amortization schedule only covers principal and interest. Property tax, insurance, HOA fees, PMI, and maintenance are separate components of your true monthly cost — they're paid alongside the mortgage but don't reduce the loan balance."}}, {"@type": "Question", "name": "What happens if I make extra payments?", "acceptedAnswer": {"@type": "Answer", "text": "Extra principal payments reduce the balance immediately, which reduces all future interest accrual. The compound effect is significant: an extra $200/month on a 30-year mortgage typically shaves 5-7 years off the term and saves $50,000-$80,000 in total interest, depending on the loan size and rate."}}, {"@type": "Question", "name": "What's a biweekly mortgage?", "acceptedAnswer": {"@type": "Answer", "text": "A payment schedule where you pay half your monthly amount every two weeks. Because there are 26 biweekly periods in a year, you end up making the equivalent of one extra full monthly payment per year. Over 30 years, this typically pays off the loan 5-6 years early and saves significant interest."}}, {"@type": "Question", "name": "Can I see a printable schedule?", "acceptedAnswer": {"@type": "Answer", "text": "The browser's print function works on the table directly. Some users find it easier to copy the table values into a spreadsheet for further analysis."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a math tool that runs your inputs through documented arithmetic."}}]}]}
+</script>
+
+<!-- Meta Pixel --><script src="meta-pixel.js" async></script>
+</head>
+<body>
+<!-- Meta Pixel noscript fallback --><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912670585135146&ev=PageView&noscript=1" alt="" /></noscript>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="how-to-choose-a-realtor.html">How to choose a realtor <span class="mega__tag">Guide</span></a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="early-payoff-calculator.html">Early Payoff</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="amortization-calculator.html">Amortization Schedule</a></li>
+            <li><a href="points-vs-no-points-calculator.html">Points vs. No Points</a></li>
+            <li><a href="how-to-choose-a-lender.html">How to choose a lender <span class="mega__tag">Guide</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 25 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="risk.html">Risk</a>
+      <a href="learn.html">Learn</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="stress-test-calculator.html">Stress Test</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Buyer guides</summary>
+      <a href="how-to-choose-a-realtor.html">How to choose a realtor</a>
+      <a href="how-to-choose-a-lender.html">How to choose a lender</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Risk</summary>
+      <a href="the-downsides-of-owning-a-home.html">Downsides of owning</a>
+      <a href="what-2008-housing-crash-taught-buyers.html">Lessons from 2008</a>
+      <a href="why-homeownership-is-not-risk-free.html">Why owning isn't risk-free</a>
+      <a href="how-to-reduce-homeownership-risk.html">How to reduce risk</a>
+      <a href="leverage-and-housing.html">Leverage and housing</a>
+      <a href="stress-test-calculator.html">Stress Test calculator</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Amortization Schedule</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Mortgage math</span>
+    <h1>See exactly how each payment breaks into principal and interest.</h1>
+    <p class="phero__sub">In year one of a typical 30-year mortgage at current rates, only about 14% of your payment goes to principal — the other 86% is interest. By year fifteen, the ratio has shifted past 35% principal. Year by year, the math is fully knowable. This calculator runs it for any loan and shows the complete schedule.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">Year and month views</span>
+      <span class="chip">No signup, no email</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Amortization Schedule calculator">
+        <div class="calc__form">
+
+          <h3>Loan inputs</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="2000000" step="5000" aria-label="Home price">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="20" min="0" max="50" step="0.5" aria-label="Down payment percent"><span class="suffix">%</span></div>
+              <input type="range" id="rngDown" class="field__range" min="0" max="50" step="0.5" aria-label="Down payment percent">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Mortgage rate</span><span class="field__value" id="lblRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="2" max="12" step="0.05" aria-label="Mortgage rate"><span class="suffix">%</span></div>
+              <input type="range" id="rngRate" class="field__range" min="2" max="12" step="0.05" aria-label="Mortgage rate">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Term</span><span class="field__value" id="lblTerm"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="10" max="40" step="5" aria-label="Loan term"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngTerm" class="field__range" min="10" max="40" step="5" aria-label="Loan term">
+            <span class="field__hint">15-year and 30-year are most common in the U.S. 20-year and 25-year exist but are less standard.</span>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Standard amortization formula.</strong> Monthly payment = P × (r × (1+r)^n) / ((1+r)^n − 1), where P is loan amount, r is monthly rate (annual / 12), n is total months (years × 12). Each month: interest = balance × monthly rate; principal = payment − interest; new balance = old balance − principal.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this includes:</strong> principal and interest only. Property tax, insurance, HOA, PMI, and maintenance are not part of the amortization schedule — those are separate line items in your full monthly cost. The <a href="true-monthly-cost-calculator.html">True Monthly Cost calculator</a> covers the complete monthly figure.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this doesn't include:</strong> rate changes (this assumes fixed-rate), escrow account dynamics, missed payments, modifications, or extra payments. For extra-payment scenarios, use the <a href="early-payoff-calculator.html">Early Payoff calculator</a>.</p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Your loan, in full</span>
+
+          <div class="amort__hero">
+            <div class="amort__hero__col">
+              <div class="amort__hero__label">Monthly P&amp;I</div>
+              <div class="amort__hero__num" id="outPI">—</div>
+            </div>
+            <div class="amort__hero__col">
+              <div class="amort__hero__label">Total interest paid</div>
+              <div class="amort__hero__num" id="outTotalInt">—</div>
+            </div>
+            <div class="amort__hero__col">
+              <div class="amort__hero__label">Total of payments</div>
+              <div class="amort__hero__num" id="outTotalPmt">—</div>
+            </div>
+          </div>
+
+          <div class="amort__rows">
+            <div class="amort__row"><span>Loan amount (financed)</span><span class="amt" id="outLoan">—</span></div>
+            <div class="amort__row"><span>Total months in term</span><span class="amt" id="outMonths">—</span></div>
+            <div class="amort__row"><span>Year-1 principal vs. interest</span><span class="amt" id="outY1Split">—</span></div>
+            <div class="amort__row"><span>Year-15 principal vs. interest</span><span class="amt" id="outY15Split">—</span></div>
+          </div>
+
+          <div class="amort__view">
+            <span class="amort__view__label">View:</span>
+            <button type="button" class="amort__view__btn is-active" id="btnYear">Year-by-year</button>
+            <button type="button" class="amort__view__btn" id="btnMonth">Month-by-month</button>
+          </div>
+
+          <div class="amort__tableWrap">
+            <table class="amort__table" id="amortTable" aria-label="Amortization schedule">
+              <thead>
+                <tr>
+                  <th class="amort__th amort__th--num">Year</th>
+                  <th class="amort__th">Payments</th>
+                  <th class="amort__th">Principal</th>
+                  <th class="amort__th">Interest</th>
+                  <th class="amort__th">Balance</th>
+                  <th class="amort__th amort__th--num">Equity %</th>
+                </tr>
+              </thead>
+              <tbody id="amortBody">
+                <tr><td colspan="6" style="text-align:center;color:var(--subtle);padding:2rem">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="amort__disclaimer">
+            <strong>Note:</strong> "Equity %" is the principal-paydown percentage of the original loan. Real equity also reflects home appreciation (or depreciation) over time, which this schedule doesn't model.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Why this matters</span>
+        <h2 style="margin-top:.85rem">The early years of a mortgage are mostly interest.</h2>
+        <p class="article__lede">Most U.S. buyers don't realize how front-loaded mortgage interest actually is. On a $340,000 loan at 6.75% over 30 years, the first year's payments split roughly 14% to principal and 86% to interest. By year five, the split has only shifted to about 17% principal. The fifteenth year is the rough crossover point where principal exceeds interest. Years 25-30 are mostly principal.</p>
+        <p>This isn't a flaw or a trick — it's how amortization works. Interest accrues on the remaining balance each month, so when the balance is highest (at origination), interest is highest. As you pay down the balance, less interest accrues, more of each fixed payment goes to principal, and the curve accelerates.</p>
+
+        <h3>Why this changes how you think about prepayment</h3>
+        <p>Because interest is front-loaded, extra payments made early in the loan have an outsized effect on total interest paid. An extra $200/month starting in month 1 of a 30-year mortgage saves significantly more total interest than the same extra payments starting in month 60. The principle: every dollar of extra principal payment eliminates the interest that would have accrued on that dollar for every remaining month of the loan. The earlier you pay it, the more months of saved interest.</p>
+        <p>The <a href="early-payoff-calculator.html">Early Payoff calculator</a> models extra-payment scenarios directly. The amortization schedule above shows the baseline (no extras); compare to see how much faster the principal curve climbs with even modest extras.</p>
+
+        <h3>Why this changes how you think about hold period</h3>
+        <p>If you sell after 7 years on a 30-year loan, you've paid down about 12% of the loan principal — meaningful but not huge. The other 88% gets paid off from the sale proceeds. Combined with appreciation (or its absence), this is why hold period matters so much for the financial case for buying: short holds mean most of your monthly payment was interest, and most of your "equity" came from the down payment, not paydown.</p>
+        <p>The flip: if you hold 30 years, you build full ownership through paydown alone, regardless of appreciation. That's the structural strength of long holds in U.S. homeownership.</p>
+
+        <h3>What 15-year vs. 30-year actually does to the math</h3>
+        <p>A 15-year mortgage on the same $340,000 loan at the same 6.75% rate has a much higher monthly payment (about $3,008 vs. $2,205) but much less total interest paid over the life of the loan ($201,400 vs. $452,500 — roughly 55% less interest in absolute dollars). The trade-off: higher monthly cash outflow now in exchange for substantially lower total cost and faster equity-building.</p>
+        <p>15-year mortgages are most appropriate for buyers who can comfortably afford the higher payment without thinning reserves below safe thresholds. They're not categorically better than 30-year — the cash committed to the higher payment is cash not available for emergencies, retirement contributions, or other allocation. The right answer depends on your specific household situation, including the marginal value of the extra savings versus the marginal value of the flexibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="amort-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="amort-faq-title">Common amortization questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Why is interest so front-loaded?</summary>
+        <div class="faq__a">Because interest accrues on the remaining loan balance each month. When you start the loan, the balance is at its maximum, so interest is at its maximum. As you pay down the balance, the interest portion of each fixed payment shrinks. This isn't a lender trick — it's the math of compound interest on a declining balance. Same dynamic applies to all standard amortizing loans (auto loans, student loans, etc.).</div>
+      </details>
+      <details>
+        <summary>Does this include taxes, insurance, PMI, or HOA?</summary>
+        <div class="faq__a">No. The amortization schedule only covers principal and interest. Property tax, insurance, HOA fees, PMI, and maintenance are separate components of your true monthly cost — they're paid alongside the mortgage but don't reduce the loan balance. The <a href="true-monthly-cost-calculator.html">True Monthly Cost calculator</a> includes every line.</div>
+      </details>
+      <details>
+        <summary>What happens if I make extra payments?</summary>
+        <div class="faq__a">Extra principal payments reduce the balance immediately, which reduces all future interest accrual. The compound effect is significant: an extra $200/month on a 30-year mortgage typically shaves 5-7 years off the term and saves $50,000-$80,000 in total interest, depending on the loan size and rate. The <a href="early-payoff-calculator.html">Early Payoff calculator</a> models these scenarios directly.</div>
+      </details>
+      <details>
+        <summary>What's a biweekly mortgage?</summary>
+        <div class="faq__a">A payment schedule where you pay half your monthly amount every two weeks. Because there are 26 biweekly periods in a year (vs. 24 half-payments if it were truly twice-monthly), you end up making the equivalent of one extra full monthly payment per year. Over 30 years, this typically pays off the loan 5-6 years early and saves significant interest. Most lenders allow biweekly payment setups; some charge a fee. You can replicate the effect for free by adding 1/12 of your monthly payment to each regular payment.</div>
+      </details>
+      <details>
+        <summary>What's the difference between simple interest and compound interest in mortgages?</summary>
+        <div class="faq__a">Standard U.S. mortgages use simple interest, calculated monthly on the remaining balance. The "compound" effect comes from the fact that interest accrues monthly and any unpaid interest gets added to the balance. In standard amortizing mortgages, you're always paying enough to cover the month's interest plus some principal — there's no negative amortization. Some non-standard products (option-ARMs, certain interest-only loans) can have negative amortization where unpaid interest is added to the balance; those are rare post-2008 and not what this calculator models.</div>
+      </details>
+      <details>
+        <summary>Can I see a printable schedule?</summary>
+        <div class="faq__a">The browser's print function works on the table directly — select "Print" from your browser, and the table will paginate cleanly. Some users find it easier to copy the table values into a spreadsheet for further analysis. The "Year-by-year" view is typically more printable; the "Month-by-month" view runs to 360 rows for a 30-year loan and can take several pages.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a math tool that runs your inputs through documented arithmetic. For loan-product decisions, work with a licensed mortgage professional; for tax-aware planning, work with a CPA.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; guides</span>
+      <h2>Related tools.</h2>
+    </div>
+    <div class="rcards">
+      <a href="early-payoff-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Early Payoff</h3>
+        <p>What extra payments actually do to the schedule above. Pays off years sooner and saves tens of thousands.</p>
+      </a>
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>P&amp;I plus the rest — taxes, insurance, HOA, maintenance. The full monthly picture.</p>
+      </a>
+      <a href="refinance-vs-keep-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Refinance vs. Keep</h3>
+        <p>If you're considering refinancing, the break-even math matters more than the rate spread alone.</p>
+      </a>
+      <a href="points-vs-no-points-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Points vs. No Points</h3>
+        <p>Buying down the rate at closing — when it pencils out and when it doesn't.</p>
+      </a>
+      <a href="glossary.html" class="rcard">
+        <span class="rcard__tag">Reference</span>
+        <h3>Glossary</h3>
+        <p>Amortization, P&amp;I, escrow, LTV — every mortgage term defined plainly with typical ranges.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">See the full picture</span>
+      <h2 style="margin-top:.85rem">P&amp;I is roughly 60% of the real number.</h2>
+      <p>The amortization schedule above shows the loan-repayment portion of your housing cost. Property taxes, insurance, HOA, PMI, and maintenance round out the actual monthly figure. Run them all in the True Monthly Cost calculator.</p>
+      <div class="ctaband__row">
+        <a href="true-monthly-cost-calculator.html" class="btn">Open True Monthly Cost</a>
+        <a href="financing.html" class="btn btn--ghost">Visit Financing hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="risk.html">Risk</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ return parseFloat($(id).value) || 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+  function fmtPct(n){ if(!isFinite(n)) return '—'; return n.toFixed(1) + '%'; }
+
+  // The full month-by-month schedule. Computed once per change.
+  var schedule = [];
+
+  function computeSchedule(){
+    var price = v('inpPrice');
+    var downPct = v('inpDown') / 100;
+    var rate = v('inpRate') / 100;
+    var term = Math.round(v('inpTerm'));
+    var loan = price * (1 - downPct);
+    var monthlyRate = rate / 12;
+    var nMonths = term * 12;
+    var pi;
+    if (monthlyRate === 0) {
+      pi = loan / nMonths;
+    } else {
+      pi = loan * (monthlyRate * Math.pow(1+monthlyRate, nMonths)) / (Math.pow(1+monthlyRate, nMonths) - 1);
+    }
+    if (!isFinite(pi)) pi = 0;
+
+    schedule = [];
+    var bal = loan;
+    var cumInt = 0;
+    var cumPrin = 0;
+    for (var m = 1; m <= nMonths; m++) {
+      var interest = bal * monthlyRate;
+      var principal = pi - interest;
+      if (principal > bal) principal = bal;
+      bal -= principal;
+      cumInt += interest;
+      cumPrin += principal;
+      schedule.push({
+        month: m,
+        year: Math.ceil(m / 12),
+        payment: pi,
+        principal: principal,
+        interest: interest,
+        balance: bal < 0.01 ? 0 : bal,
+        cumInt: cumInt,
+        cumPrin: cumPrin,
+        equityPct: loan > 0 ? (cumPrin / loan) * 100 : 0
+      });
+    }
+
+    // Render summary
+    $('outPI').textContent = fmtUSD(pi);
+    $('outLoan').textContent = fmtUSD(loan);
+    $('outMonths').textContent = nMonths.toString();
+    var totalPmt = pi * nMonths;
+    var totalInt = cumInt;
+    $('outTotalInt').textContent = fmtUSD(totalInt);
+    $('outTotalPmt').textContent = fmtUSD(totalPmt);
+
+    // Year-1 split
+    var y1Int = 0, y1Prin = 0;
+    for (var i = 0; i < Math.min(12, schedule.length); i++) {
+      y1Int += schedule[i].interest;
+      y1Prin += schedule[i].principal;
+    }
+    var y1Total = y1Int + y1Prin;
+    $('outY1Split').textContent = y1Total > 0 ?
+      Math.round(y1Prin/y1Total*100) + '% / ' + Math.round(y1Int/y1Total*100) + '%' : '—';
+
+    // Year-15 split
+    var y15Int = 0, y15Prin = 0;
+    var y15Start = 14*12;
+    var y15End = Math.min(15*12, schedule.length);
+    for (var j = y15Start; j < y15End; j++) {
+      y15Int += schedule[j].interest;
+      y15Prin += schedule[j].principal;
+    }
+    var y15Total = y15Int + y15Prin;
+    $('outY15Split').textContent = y15Total > 0 ?
+      Math.round(y15Prin/y15Total*100) + '% / ' + Math.round(y15Int/y15Total*100) + '%' :
+      'beyond term';
+
+    renderTable();
+  }
+
+  function renderTable(){
+    var tbody = $('amortBody');
+    var view = $('btnMonth').classList.contains('is-active') ? 'month' : 'year';
+    var rows = '';
+    if (view === 'year') {
+      // Aggregate by year
+      var years = {};
+      for (var i = 0; i < schedule.length; i++) {
+        var s = schedule[i];
+        if (!years[s.year]) years[s.year] = { year:s.year, payment:0, principal:0, interest:0, balance:0, equityPct:0 };
+        years[s.year].payment += s.payment;
+        years[s.year].principal += s.principal;
+        years[s.year].interest += s.interest;
+        years[s.year].balance = s.balance;
+        years[s.year].equityPct = s.equityPct;
+      }
+      var yArr = Object.keys(years).sort(function(a,b){return +a - +b}).map(function(y){return years[y];});
+      for (var k = 0; k < yArr.length; k++) {
+        var y = yArr[k];
+        rows += '<tr>'
+          + '<td class="amort__td amort__td--num">' + y.year + '</td>'
+          + '<td class="amort__td">' + fmtUSD(y.payment) + '</td>'
+          + '<td class="amort__td amort__td--principal">' + fmtUSD(y.principal) + '</td>'
+          + '<td class="amort__td amort__td--interest">' + fmtUSD(y.interest) + '</td>'
+          + '<td class="amort__td">' + fmtUSD(y.balance) + '</td>'
+          + '<td class="amort__td amort__td--num">' + fmtPct(y.equityPct) + '</td>'
+          + '</tr>';
+      }
+    } else {
+      // Month-by-month — show all rows
+      for (var m = 0; m < schedule.length; m++) {
+        var s = schedule[m];
+        rows += '<tr>'
+          + '<td class="amort__td amort__td--num">' + s.month + '</td>'
+          + '<td class="amort__td">' + fmtUSD(s.payment) + '</td>'
+          + '<td class="amort__td amort__td--principal">' + fmtUSD(s.principal) + '</td>'
+          + '<td class="amort__td amort__td--interest">' + fmtUSD(s.interest) + '</td>'
+          + '<td class="amort__td">' + fmtUSD(s.balance) + '</td>'
+          + '<td class="amort__td amort__td--num">' + fmtPct(s.equityPct) + '</td>'
+          + '</tr>';
+      }
+    }
+    // Update table header for view mode
+    var thead = document.querySelector('#amortTable thead tr th:first-child');
+    if (thead) thead.textContent = view === 'year' ? 'Year' : 'Month';
+    tbody.innerHTML = rows;
+  }
+
+  // View toggle
+  $('btnYear').addEventListener('click', function(){
+    $('btnYear').classList.add('is-active');
+    $('btnMonth').classList.remove('is-active');
+    renderTable();
+  });
+  $('btnMonth').addEventListener('click', function(){
+    $('btnMonth').classList.add('is-active');
+    $('btnYear').classList.remove('is-active');
+    renderTable();
+  });
+
+  // Wire inputs
+  var ids = ['inpPrice','inpDown','inpRate','inpTerm'];
+  ids.forEach(function(id){
+    var el = $(id);
+    if (el){
+      el.addEventListener('input', computeSchedule);
+      el.addEventListener('change', computeSchedule);
+    }
+  });
+
+  // Slider pairs
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpPrice', rng:'rngPrice', lbl:'lblPrice', fmt:'USD'},
+    {inp:'inpDown',  rng:'rngDown',  lbl:'lblDown',  fmt:'PCT'},
+    {inp:'inpRate',  rng:'rngRate',  lbl:'lblRate',  fmt:'PCT2'},
+    {inp:'inpTerm',  rng:'rngTerm',  lbl:'lblTerm',  fmt:'YR'}
+  ];
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value; paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  computeSchedule();
+})();
+</script>
+
+
+</body>
+</html>

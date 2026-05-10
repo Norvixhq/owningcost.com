@@ -296,6 +296,18 @@ p{margin:0}
 .mega__tag--beta{
   background:rgba(28,109,217,.1);color:var(--blue-700);
 }
+/* Signature flagship tag — distinguishes the platform's most important calculators
+   (Listing Reality Check, True Monthly Cost, Affordability + Risk) in the mega-menu.
+   Visually weightier than the default green pill: solid dark background, white text. */
+.mega__tag--sig{
+  background:var(--ink, #0d1321);color:#fff;
+  letter-spacing:.12em;
+}
+/* New tag — slightly emphasized variant of the default for fresh additions to the catalog. */
+.mega__tag--new{
+  background:rgba(78,182,60,.18);color:var(--green-800, #2E7621);
+  font-weight:800;
+}
 
 .mega__footer{
   margin-top:1.15rem;padding-top:.95rem;
@@ -1245,6 +1257,72 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
   color:var(--ink-2);
 }
 .article__inner > .related-inline strong{color:var(--ink);margin-right:.4rem}
+
+/* ============================================================
+   RISK LENS callout — appears between calculator forms and
+   explainer prose on True Monthly Cost, Affordability, Buy vs.
+   Invest. Earth-tone accent (matching property-type SF chip
+   color #7B5300) — caution without alarm.
+   ============================================================ */
+.risk-lens{
+  max-width:48rem;margin:0 auto;
+  padding:1.05rem 1.2rem;
+  background:rgba(155,107,30,.06);
+  border:1px solid rgba(155,107,30,.18);
+  border-left:3px solid #B07F2C;
+  border-radius:6px;
+  font-size:.93rem;line-height:1.6;color:var(--ink-2);
+}
+.risk-lens__tag{
+  display:inline-block;
+  font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:#7B5300;
+  padding:3px 9px;background:rgba(155,107,30,.12);
+  border-radius:99px;
+  margin-bottom:.55rem;
+}
+.risk-lens p{margin:0}
+.risk-lens a{color:var(--blue-700);text-decoration:underline;text-decoration-color:rgba(28,109,217,.3);text-underline-offset:2px}
+.risk-lens a:hover{color:var(--blue-600);text-decoration-color:currentColor}
+
+/* ============================================================
+   CHECKLIST callout — used for the 10-question realtor interview
+   list and (Session 3) the 8-question lender comparison list.
+   Visually distinct from regular ordered lists in article prose:
+   bigger numbers, more spacing, scannable structure, designed to
+   feel printable / saveable.
+   ============================================================ */
+.checklist{
+  margin:1.4rem 0;padding:1.4rem 1.5rem 1.2rem;
+  background:var(--surface-2);border:1px solid var(--border);
+  border-left:4px solid var(--blue-600);
+  border-radius:0 10px 10px 0;
+}
+.checklist__list{
+  list-style:none;counter-reset:cklist;
+  margin:0;padding:0;
+}
+.checklist__list > li{
+  counter-increment:cklist;
+  position:relative;
+  padding:.55rem 0 .55rem 2.65rem;
+  font-size:.94rem;line-height:1.6;color:var(--ink-2);
+  border-bottom:1px solid var(--border);
+}
+.checklist__list > li:last-child{border-bottom:none}
+.checklist__list > li::before{
+  content:counter(cklist, decimal-leading-zero);
+  position:absolute;left:0;top:.55rem;
+  font-family:var(--serif);font-size:.95rem;font-weight:600;
+  color:var(--blue-700);
+  font-variant-numeric:tabular-nums;letter-spacing:-.005em;
+  background:#fff;border:1px solid var(--blue-200);
+  width:2rem;height:1.7rem;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;
+}
+.checklist__list > li strong{color:var(--ink);font-weight:600}
 .pullquote{
   margin:1.6rem 0;padding:1.2rem 1.4rem;
   border-left:3px solid var(--green-500);background:var(--surface-2);
