@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Buy vs. Invest Calculator — home equity vs. portfolio growth | OwningCost</title>
+<meta name="description" content="Compare buying a home against renting and investing the difference. Net position over your hold period — equity vs. portfolio, including closing costs, selling costs, maintenance, rent growth, and the opportunity cost of the down payment." />
+<link rel="canonical" href="https://owningcost.com/buy-vs-invest-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Buy vs. Invest Calculator — home equity vs. portfolio growth" />
+<meta property="og:description" content="Compare buying a home against renting and investing the difference. Net position over your hold period — equity vs. portfolio, including closing costs, selling costs, maintenance, rent growth, and the opportunity cost of the down payment." />
+<meta property="og:url" content="https://owningcost.com/buy-vs-invest-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Buy vs. Invest Calculator — home equity vs. portfolio growth | OwningCost" />
+<meta name="twitter:description" content="Compare buying a home against renting and investing the difference. Net position over your hold period — equity vs. portfolio, including closing costs, selling costs, maintenance, rent growth, and the opportunity cost of the down payment." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.bvi__warn{
+  margin:.9rem 0 0;padding:.75rem .95rem;
+  border:1px solid #F5D88A;background:#FFF8E5;border-radius:8px;
+  font-size:.85rem;color:#7B5300;line-height:1.55;
+}
+.bvi__verdict{
+  margin:1.1rem 0 1.3rem;padding:1.1rem 1.2rem;
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  text-align:center;
+}
+.bvi__verdict[data-lead="buy"]{background:rgba(28,109,217,.05);border-color:var(--blue-200)}
+.bvi__verdict[data-lead="rent"]{background:rgba(78,182,60,.06);border-color:#C5E8B8}
+.bvi__verdict[data-lead="tie"]{background:var(--surface-2);border-color:var(--border-2)}
+.bvi__verdict__label{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle)}
+.bvi__verdict__answer{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:var(--ink);margin:.25rem 0 .15rem;line-height:1.2;letter-spacing:-.012em}
+.bvi__verdict__by{font-size:.92rem;color:var(--muted)}
+.bvi__verdict__by strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.bvi__breakdown{
+  display:grid;gap:1rem;margin:1.2rem 0 .8rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:640px){.bvi__breakdown{grid-template-columns:1fr 1fr}}
+.bvi__breakdown__col{padding:.95rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.bvi__breakdown__col h4{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--subtle);margin:0 0 .55rem;
+}
+.bvi__row{display:flex;justify-content:space-between;gap:.6rem;padding:.32rem 0;font-size:.86rem;color:var(--muted)}
+.bvi__row span:last-child{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+.bvi__row--net{margin-top:.45rem;padding-top:.55rem;border-top:1px solid var(--border);font-weight:600;color:var(--ink)}
+.bvi__row--net span:last-child{color:var(--ink);font-weight:600}
+
+.bvi__context{margin-top:1.1rem;padding:.95rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.bvi__context__title{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:.55rem}
+.bvi__context__list{list-style:none;margin:0;padding:0;font-size:.85rem;color:var(--muted);line-height:1.55}
+.bvi__context__list li{padding:.32rem 0}
+.bvi__context__list li strong{color:var(--ink-2);font-weight:600}
+
+.bvi__disclaimer{
+  margin-top:1rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.bvi__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Buy vs. Invest Calculator", "item": "https://owningcost.com/buy-vs-invest-calculator.html"}]}, {"@type": "WebApplication", "name": "Buy vs. Invest Calculator", "url": "https://owningcost.com/buy-vs-invest-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Compare buying a home against renting and investing the difference. Net position over your hold period — equity vs. portfolio, including all costs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is buying always better than renting?", "acceptedAnswer": {"@type": "Answer", "text": "No. The right answer depends on hold period, local price-to-rent ratio, your specific rate, and the return you'd realistically earn on the money you'd otherwise tie up in the down payment. Short holds (under 5 years) usually favor renting because closing costs and selling costs aren't recovered by appreciation. Long holds in appreciating markets usually favor buying."}}, {"@type": "Question", "name": "Why compare a home to the S&P 500?", "acceptedAnswer": {"@type": "Answer", "text": "Because it's the most common benchmark for what you'd do with the money instead. If you're not buying, the cash you would have used for a down payment doesn't sit idle — most people invest it. The S&P 500 is the standard yardstick for diversified equity exposure. It's a comparison, not a recommendation."}}, {"@type": "Question", "name": "Should I compare a home to Bitcoin?", "acceptedAnswer": {"@type": "Answer", "text": "For sensitivity testing, yes. As a baseline, no. Bitcoin's historical returns include drawdowns of 70-80% that lasted years — if you happen to need to liquidate during one, the headline return doesn't apply to you. The comparison is most useful for showing how much of a 'rent and invest' verdict depends on which asset you're modeling."}}, {"@type": "Question", "name": "Does this include selling costs and maintenance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Selling costs default to 7% of sale price (agent commissions, title, transfer taxes, concessions). Maintenance reserve defaults to 1% of home value annually as a real ongoing cost. Both are editable. Skipping these is the most common error in DIY rent-vs-buy spreadsheets, and it usually overstates the buy path by 5-15% over a typical hold."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a scenario-modeling tool that runs your assumptions through documented math. The decision to buy a home, rent and invest, or anything in between is yours to make with the relevant professionals."}}, {"@type": "Question", "name": "What assumptions matter most?", "acceptedAnswer": {"@type": "Answer", "text": "Three: home appreciation, investment return, and hold period. These three numbers usually determine the verdict. Closing costs, selling costs, and maintenance also matter — skipping them inflates the buy path. Run the calculator at your base assumptions, then run it again with each of those three swung 1-2 points to see which way the answer moves."}}, {"@type": "Question", "name": "What time horizon matters most?", "acceptedAnswer": {"@type": "Answer", "text": "The one that matches your real plans. If you're realistically going to be in a home 5 years, run the calculator at 5 — not at 30. Most rent-vs-buy frameworks default to 30 years and produce wildly optimistic answers because compounding has had three decades to do its work. The honest answer for most U.S. households is closer to 7 years than 30."}}, {"@type": "Question", "name": "Does the calculator account for taxes on investment gains?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this version. Portfolio value at exit is pre-tax. The buy path doesn't model the home-sale capital gains exclusion either. Both omissions roughly cancel for a primary-residence buyer; for an investor with the same money in a taxable account, the rent+invest side overstates somewhat."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 21 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Buy vs. Invest</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Capital allocation comparison</span>
+    <h1>Buying a home is also an investment decision. Compare it honestly.</h1>
+    <p class="phero__sub">Run the same home and the same horizon two ways: <strong>buy and build equity</strong>, or <strong>rent and invest the difference</strong>. The calculator shows where each path actually lands — including closing costs, maintenance, selling costs, rent growth, and the opportunity cost of money tied up in the down payment.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">All defaults editable</span>
+      <span class="chip">Not investment advice</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Buy vs. Invest calculator">
+        <div class="calc__form">
+
+          <h3>Home purchase</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" aria-label="Home price">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="10" min="0" max="50" step="0.5" aria-label="Down payment percent"><span class="suffix">%</span></div>
+              <input type="range" id="rngDown" class="field__range" min="0" max="50" step="0.5" aria-label="Down payment percent">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Mortgage rate</span><span class="field__value" id="lblRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="2" max="12" step="0.05" aria-label="Mortgage rate"><span class="suffix">%</span></div>
+              <input type="range" id="rngRate" class="field__range" min="2" max="12" step="0.05" aria-label="Mortgage rate">
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="10" max="40" step="5" aria-label="Loan term"><span class="suffix">yrs</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Property tax</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" max="4" step="0.05" aria-label="Property tax rate"><span class="suffix">% / yr</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Insurance</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpIns" value="1800" min="0" step="50" aria-label="Annual homeowners insurance"><span class="suffix">/ yr</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>HOA</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpHOA" value="0" min="0" step="25" aria-label="Monthly HOA"><span class="suffix">/ mo</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Maintenance reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpMaint" value="1.0" min="0" max="3" step="0.1" aria-label="Maintenance reserve as percent of home value"><span class="suffix">% / yr</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Closing costs</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpClosing" value="3.0" min="0" max="6" step="0.1" aria-label="Closing costs as percent of price"><span class="suffix">% of price</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Selling costs on exit</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpSell" value="7.0" min="0" max="12" step="0.1" aria-label="Selling costs as percent of sale"><span class="suffix">% of sale</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Annual home appreciation</span><span class="field__value" id="lblAppr"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpAppr" value="3.0" min="-5" max="10" step="0.1" aria-label="Annual home appreciation"><span class="suffix">% / yr</span></div>
+              <input type="range" id="rngAppr" class="field__range" min="-5" max="10" step="0.1" aria-label="Annual home appreciation">
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Rent + invest scenario</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Starting monthly rent</span><span class="field__value" id="lblRent"></span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpRent" value="2400" min="500" step="50" aria-label="Starting monthly rent"></div>
+              <input type="range" id="rngRent" class="field__range" min="500" max="8000" step="50" aria-label="Starting monthly rent">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Annual rent growth</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRentG" value="3.5" min="0" max="10" step="0.1" aria-label="Annual rent growth"><span class="suffix">% / yr</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Renter's insurance</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRIns" value="180" min="0" step="20" aria-label="Annual renters insurance"><span class="suffix">/ yr</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>One-time moving + deposit</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpMove" value="2500" min="0" step="100" aria-label="One-time moving and deposit cost"></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Investment assumptions</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Asset benchmark</span><span class="field__hint">determines the expected return below</span></div>
+            <div class="field__input full">
+              <select id="inpAsset" aria-label="Asset benchmark">
+                <option value="sp500" selected>S&amp;P 500 (long-run ~7% real, ~10% nominal)</option>
+                <option value="cash">Cash / conservative (~4%)</option>
+                <option value="bond">Bond / moderate (~5%)</option>
+                <option value="custom">Custom return</option>
+                <option value="btc">Bitcoin (advanced — high volatility)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Expected annual return</span><span class="field__value" id="lblReturn"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpReturn" value="7" min="-2" max="30" step="0.5" aria-label="Expected annual return"><span class="suffix">% / yr</span></div>
+              <input type="range" id="rngReturn" class="field__range" min="-2" max="30" step="0.5" aria-label="Expected annual return">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Hold period</span><span class="field__value" id="lblHold"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpHold" value="7" min="1" max="30" step="1" aria-label="Hold period in years"><span class="suffix">yrs</span></div>
+              <input type="range" id="rngHold" class="field__range" min="1" max="30" step="1" aria-label="Hold period in years">
+            </div>
+          </div>
+
+          <div id="btcWarn" class="bvi__warn" hidden>
+            <strong>Bitcoin is high-volatility.</strong> Long-run averages mask drawdowns of 70–80% that historically lasted 1–4 years. Use this mode for sensitivity testing, not as a baseline.
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Buy path:</strong> Loan amount = price × (1 − down %). Monthly P&amp;I uses the standard amortization formula. PITI + HOA + maintenance reserve = monthly out-of-pocket. At year N, home value = price × (1+appr)<sup>N</sup>; remaining mortgage balance from amortization; equity = value − balance. Net proceeds = equity − selling costs.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Rent + invest path:</strong> Initial portfolio = down payment + closing costs (the cash you'd otherwise tie up). Monthly contribution = (buy monthly cost) − (rent + renter's insurance). If buying costs less monthly than renting, the difference is treated as zero (no negative contributions — you can't rent and invest cash you don't have). Portfolio compounds monthly at the chosen rate.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Net position at exit:</strong> Buy = net proceeds. Rent+Invest = portfolio value (gains realized; tax not modeled here). The difference is the "verdict" headline.</p>
+              <p class="calc__math__cta"><a href="methodology.html">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Your scenario at year <span id="outHold">7</span></span>
+
+          <div class="bvi__verdict" id="verdictBlock">
+            <div class="bvi__verdict__label">Net position leads:</div>
+            <div class="bvi__verdict__answer" id="outVerdict">—</div>
+            <div class="bvi__verdict__by">by <strong id="outDiff">—</strong></div>
+          </div>
+
+          <div class="calc__rows">
+            <div class="calc__row"><span>Buy path — net proceeds at exit</span><span class="amt" id="outBuyNet">—</span></div>
+            <div class="calc__row"><span>Rent + invest — portfolio value</span><span class="amt" id="outInvNet">—</span></div>
+          </div>
+
+          <div class="bvi__breakdown">
+            <div class="bvi__breakdown__col">
+              <h4>Buy path</h4>
+              <div class="bvi__row"><span>Home value at exit</span><span id="outHomeVal">—</span></div>
+              <div class="bvi__row"><span>Mortgage balance remaining</span><span id="outBal">—</span></div>
+              <div class="bvi__row"><span>Equity</span><span id="outEquity">—</span></div>
+              <div class="bvi__row"><span>Selling costs</span><span id="outSellCost">—</span></div>
+              <div class="bvi__row bvi__row--net"><span>Net proceeds</span><span id="outBuyNet2">—</span></div>
+            </div>
+            <div class="bvi__breakdown__col">
+              <h4>Rent + invest path</h4>
+              <div class="bvi__row"><span>Initial investment</span><span id="outInvInit">—</span></div>
+              <div class="bvi__row"><span>Total contributions</span><span id="outInvContrib">—</span></div>
+              <div class="bvi__row"><span>Investment growth</span><span id="outInvGrow">—</span></div>
+              <div class="bvi__row"><span>Total rent paid</span><span id="outRentPaid">—</span></div>
+              <div class="bvi__row bvi__row--net"><span>Portfolio value</span><span id="outInvNet2">—</span></div>
+            </div>
+          </div>
+
+          <div class="bvi__context">
+            <div class="bvi__context__title">Risk &amp; context</div>
+            <ul class="bvi__context__list">
+              <li><strong>Liquidity:</strong> the rent+invest path keeps capital liquid. Home equity requires selling or borrowing to access.</li>
+              <li><strong>Volatility:</strong> portfolios swing year-to-year. Home values move slower but aren't immune.</li>
+              <li><strong>Concentration:</strong> a home is a leveraged bet on one property in one ZIP. Index funds spread risk across hundreds of companies.</li>
+              <li><strong>Friction:</strong> selling a home costs ~7% and takes weeks. Selling stocks takes seconds and costs ~0%.</li>
+              <li><strong>Time horizon:</strong> short holds (under 5 years) usually favor renting; long holds (10+) usually favor buying.</li>
+            </ul>
+          </div>
+
+          <div class="bvi__disclaimer">
+            <strong>Estimates only.</strong> This is not investment advice. Returns are scenario assumptions, not predictions. Past performance does not guarantee future results.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Why this comparison matters</span>
+        <h2 style="margin-top:.85rem">Buying a home is a capital allocation decision, not just a monthly payment.</h2>
+        <p class="article__lede">Most rent-vs-buy calculators stop at the monthly cost comparison. This one keeps going — what happens to the money you'd otherwise put into the home if you didn't?</p>
+        <p>A 10% down payment on a $425,000 home is $42,500. Add typical closing costs and you're tying up roughly $55,000 in cash on day one. That money is now sitting in home equity, where it's illiquid, undiversified, and subject to whatever happens to your specific property in your specific ZIP code. The question this calculator asks is simple: <em>if you'd put that same $55,000 into an index fund instead — and added the monthly cash-flow difference between renting and owning — where would you actually land at the end of your hold period?</em></p>
+        <p>The answer depends on assumptions you control. Home appreciation, investment return, rent growth, and hold period are the four big levers. None of them are predictable. What this calculator does is let you set defensible numbers and see the math run cleanly — including all the costs both paths actually incur.</p>
+
+        <h3>Renting is not "throwing money away"</h3>
+        <p>The phrase implies that rent is uniquely wasteful while mortgage payments are uniquely productive. The math doesn't agree. A typical mortgage payment in years 1–7 is mostly interest — money paid to a bank, not equity — plus property tax (paid to the county), insurance (paid to an insurer), and maintenance (paid to keep the asset functional). The portion that builds equity is real but smaller than people assume, and it comes at the cost of capital tied up in the down payment that could otherwise compound elsewhere.</p>
+        <p>Buying often wins this comparison anyway, especially over long horizons in appreciating markets. But "rent vs. own" is a real trade-off with assumptions on both sides — not a moral question with one right answer.</p>
+
+        <h3>Why the assumptions actually matter</h3>
+        <p>Three numbers dominate the verdict in most scenarios: <strong>annual home appreciation</strong>, <strong>expected investment return</strong>, and <strong>hold period</strong>. The historical long-run U.S. averages are roughly 3–4% real for home prices and 6–7% real for the S&amp;P 500. But the deltas swing widely by metro and decade. The right way to use this calculator is to run multiple scenarios — base case, optimistic case, pessimistic case — and see how robust the answer is to your assumptions. If the verdict flips when you change one number, the answer isn't really a verdict.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Asset comparison</span>
+        <h2 style="margin-top:.85rem">What "investing" means here.</h2>
+        <p>The calculator offers four asset benchmarks plus a custom mode. Each is a scenario assumption, not a recommendation.</p>
+
+        <h3>S&amp;P 500 (default)</h3>
+        <p>The most common benchmark for a diversified U.S. equity portfolio. The historical long-run nominal return is roughly 10% per year (about 7% real, after inflation). This number includes dividends reinvested and assumes a buy-and-hold strategy through multiple cycles. It does not account for taxes, fees, or the behavioral cost of staying invested through 30%+ drawdowns. We default to 7% to keep the comparison real-vs-real with home appreciation.</p>
+
+        <h3>Cash / conservative</h3>
+        <p>Treasury bills, money-market funds, and short-duration bonds. Recent 4% reflects the current rate environment. This is the right comparison for risk-averse savers who'd actually hold the money in low-volatility instruments rather than equities. Long-run real return is closer to 0–1%, but nominal is 3–5% in normal rate environments.</p>
+
+        <h3>Bond / moderate</h3>
+        <p>A diversified fixed-income portfolio. Long-run nominal return historically falls between cash and equities — roughly 5%. Lower volatility than stocks, higher than cash. A reasonable proxy for a 60/40 portfolio if equities are doing the work of the bond side.</p>
+
+        <h3>Custom return</h3>
+        <p>For users who want to model a specific assumption — a personal target return, a financial advisor's projection, or a scenario you want to stress-test.</p>
+
+        <h3>Bitcoin (advanced — high volatility)</h3>
+        <p>Available, but framed honestly: long-run returns from Bitcoin's history have been extreme, but so have the drawdowns — 70–80% peak-to-trough declines that historically lasted 1–4 years. Comparing a home to Bitcoin is comparing two assets with very different volatility profiles, and the comparison is mostly useful for sensitivity testing, not as a baseline. Use it to see how much of the verdict is driven by which asset you're modeling.</p>
+        <p>This calculator is not a recommendation to invest in any of these assets. It's a tool to help you see what your assumptions imply. The methodology page documents the math; the assumptions are yours to set.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" id="faq" aria-labelledby="bvi-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="bvi-faq-title">Common questions about this comparison.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Is buying always better than renting?</summary>
+        <div class="faq__a">No. The right answer depends on hold period, local price-to-rent ratio, your specific rate, and the return you'd realistically earn on the money you'd otherwise tie up in the down payment. Short holds (under 5 years) usually favor renting because closing costs and selling costs aren't recovered by appreciation. Long holds in appreciating markets usually favor buying. The calculator lets you see where your specific scenario lands.</div>
+      </details>
+      <details>
+        <summary>Why compare a home to the S&amp;P 500?</summary>
+        <div class="faq__a">Because it's the most common benchmark for what you'd do with the money instead. If you're not buying, the cash you would have used for a down payment doesn't sit idle — most people invest it. The S&amp;P 500 is the standard yardstick for what diversified equity exposure has historically returned. It's not a recommendation; it's the comparison most users implicitly want.</div>
+      </details>
+      <details>
+        <summary>Should I compare a home to Bitcoin?</summary>
+        <div class="faq__a">For sensitivity testing, sure. As a baseline, no. Bitcoin's historical returns include drawdowns of 70–80% that lasted years — if you happen to need to liquidate during one, the headline return doesn't apply to you. The comparison is most useful for showing how much of a "rent and invest" verdict depends on which asset you're modeling. The calculator includes it as an advanced option specifically to allow that kind of stress test.</div>
+      </details>
+      <details>
+        <summary>Does this include selling costs and maintenance?</summary>
+        <div class="faq__a">Yes. Selling costs default to 7% of sale price (agent commissions, title, transfer taxes, concessions) and are subtracted from equity to get net proceeds. Maintenance reserve defaults to 1% of home value annually, treated as a real ongoing cost on the buy path. Both are editable. Skipping these is the most common error in DIY rent-vs-buy spreadsheets, and it usually overstates the buy path by 5–15% over a typical hold.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a scenario-modeling tool that runs your assumptions through documented math. The decision to buy a home, rent and invest, or anything in between is yours to make with the relevant professionals — a financial advisor, real-estate agent, attorney, or CPA where appropriate.</div>
+      </details>
+      <details>
+        <summary>What assumptions matter most?</summary>
+        <div class="faq__a">Three: home appreciation, investment return, and hold period. These three numbers usually determine the verdict. Closing costs, selling costs, and maintenance also matter — skipping them inflates the buy path. Rent growth matters more than people think on long holds. Property tax and insurance matter less than the headline rate suggests. Run the calculator at your base assumptions, then run it again with each of those three swung 1–2 points to see which way the answer moves.</div>
+      </details>
+      <details>
+        <summary>What time horizon matters most?</summary>
+        <div class="faq__a">The one that matches your real plans. If you're realistically going to be in a home 5 years, run the calculator at 5 — not at 30. Most rent-vs-buy frameworks default to 30 years and produce wildly optimistic answers because compounding has had three decades to do its work. The honest answer for most U.S. households (median tenure roughly 8–13 years depending on era) is closer to 7 years than 30.</div>
+      </details>
+      <details>
+        <summary>Does the calculator account for taxes on investment gains?</summary>
+        <div class="faq__a">Not in this version. The portfolio value at exit is pre-tax. Long-term capital gains in tax-advantaged accounts (401k, IRA) defer or eliminate this; in taxable accounts, the realized gain is reduced by your federal and state cap-gains rates. The buy path doesn't model the home-sale capital gains exclusion either ($250K single / $500K married for primary residence). Both omissions roughly cancel for a primary-residence buyer; for an investor with the same money in a taxable account, the rent+invest side overstates somewhat.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators</span>
+      <h2>Run the related comparisons.</h2>
+    </div>
+    <div class="rcards">
+      <a href="rent-vs-buy-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Rent vs. Buy</h3>
+        <p>Total cost over your real time horizon — the same comparison from a monthly-cost angle.</p>
+      </a>
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>The full PITI + HOA + maintenance picture for the buy path.</p>
+      </a>
+      <a href="down-payment-strategy-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Down Payment Strategy</h3>
+        <p>5% vs. 10% vs. 15% vs. 20% down — opportunity cost across down-payment sizes.</p>
+      </a>
+      <a href="buy-now-vs-wait-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Buy Now vs. Wait</h3>
+        <p>The same home now vs. 12 months from now — adjacent timing question.</p>
+      </a>
+      <a href="house-poor-risk-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>House Poor Risk</h3>
+        <p>If you do buy, where does the budget actually break? Surface the risks.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Compare your scenario</span>
+      <h2 style="margin-top:.85rem">Run the comparison with your numbers.</h2>
+      <p>The calculator is above. Set the price, down payment, rate, and hold period to match your real situation. Toggle the asset benchmark to see how much of the verdict depends on the assumed return.</p>
+      <div class="ctaband__row">
+        <a href="#calcForm" class="btn">Open the calculator</a>
+        <a href="methodology.html" class="btn btn--ghost">Read the methodology</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ return parseFloat($(id).value) || 0; };
+
+  // Asset benchmark presets — only set when user changes the dropdown.
+  var ASSET_RETURNS = { sp500: 7, cash: 4, bond: 5, btc: 12 };
+  var asset = $('inpAsset');
+  asset.addEventListener('change', function(){
+    var r = ASSET_RETURNS[asset.value];
+    if (r != null){
+      $('inpReturn').value = r;
+      $('inpReturn').dispatchEvent(new Event('input', {bubbles:true}));
+    }
+    $('btcWarn').hidden = (asset.value !== 'btc');
+  });
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+
+  function compute(){
+    var price = v('inpPrice');
+    var downPct = v('inpDown') / 100;
+    var rate = v('inpRate') / 100;
+    var term = v('inpTerm');
+    var taxRate = v('inpTax') / 100;
+    var ins = v('inpIns');
+    var hoa = v('inpHOA');
+    var maintPct = v('inpMaint') / 100;
+    var closingPct = v('inpClosing') / 100;
+    var sellPct = v('inpSell') / 100;
+    var apprPct = v('inpAppr') / 100;
+    var rent = v('inpRent');
+    var rentG = v('inpRentG') / 100;
+    var rIns = v('inpRIns');
+    var move = v('inpMove');
+    var ret = v('inpReturn') / 100;
+    var hold = Math.max(1, Math.min(30, Math.round(v('inpHold'))));
+
+    // --- Buy path ---
+    var loan = price * (1 - downPct);
+    var monthlyRate = rate / 12;
+    var nMonths = term * 12;
+    var pi = monthlyRate > 0
+      ? loan * (monthlyRate * Math.pow(1+monthlyRate, nMonths)) / (Math.pow(1+monthlyRate, nMonths) - 1)
+      : loan / nMonths;
+    if (!isFinite(pi)) pi = 0;
+    var monthlyTax = price * taxRate / 12;
+    var monthlyIns = ins / 12;
+    var monthlyMaint = price * maintPct / 12;
+    var pmi = downPct < 0.20 ? loan * 0.0075 / 12 : 0;
+    var buyMonthly = pi + monthlyTax + monthlyIns + hoa + monthlyMaint + pmi;
+    var closingCost = price * closingPct;
+    var initialBuy = price * downPct + closingCost;
+
+    // Mortgage balance at year `hold`
+    var holdMonths = hold * 12;
+    var bal = loan;
+    if (monthlyRate > 0){
+      bal = loan * Math.pow(1+monthlyRate, holdMonths) - pi * (Math.pow(1+monthlyRate, holdMonths) - 1) / monthlyRate;
+    } else {
+      bal = loan - pi * holdMonths;
+    }
+    bal = Math.max(0, bal);
+
+    var homeValue = price * Math.pow(1 + apprPct, hold);
+    var equity = homeValue - bal;
+    var sellCost = homeValue * sellPct;
+    var buyNet = equity - sellCost;
+
+    // --- Rent + invest path ---
+    // Initial portfolio = capital that would have been tied up in the home
+    var initialPortfolio = initialBuy;
+
+    // Monthly cash-flow contribution = (buy monthly cost) − (rent + renter's insurance + amortized moving cost)
+    // We treat moving + deposit as a year-1 hit to the portfolio (subtracted from initialPortfolio).
+    initialPortfolio = Math.max(0, initialPortfolio - move);
+
+    // Build month-by-month: portfolio compounds monthly; rent grows annually; contribution recomputed annually
+    var monthlyRet = ret / 12;
+    var portfolio = initialPortfolio;
+    var totalContrib = initialPortfolio;
+    var totalRent = 0;
+    var currentRent = rent;
+    for (var y = 1; y <= hold; y++){
+      var monthlyRentCost = currentRent + rIns / 12;
+      var monthlyDiff = Math.max(0, buyMonthly - monthlyRentCost);
+      for (var m = 0; m < 12; m++){
+        portfolio = portfolio * (1 + monthlyRet) + monthlyDiff;
+        totalContrib += monthlyDiff;
+        totalRent += monthlyRentCost;
+      }
+      currentRent = currentRent * (1 + rentG);
+    }
+    var invGrow = portfolio - totalContrib;
+
+    // --- Render ---
+    $('outHold').textContent = hold;
+    $('outBuyNet').textContent = fmtUSD(buyNet);
+    $('outBuyNet2').textContent = fmtUSD(buyNet);
+    $('outInvNet').textContent = fmtUSD(portfolio);
+    $('outInvNet2').textContent = fmtUSD(portfolio);
+    $('outHomeVal').textContent = fmtUSD(homeValue);
+    $('outBal').textContent = fmtUSD(bal);
+    $('outEquity').textContent = fmtUSD(equity);
+    $('outSellCost').textContent = '−' + fmtUSD(sellCost);
+    $('outInvInit').textContent = fmtUSD(initialPortfolio);
+    $('outInvContrib').textContent = fmtUSD(totalContrib);
+    $('outInvGrow').textContent = fmtUSD(invGrow);
+    $('outRentPaid').textContent = fmtUSD(totalRent);
+
+    var diff = buyNet - portfolio;
+    var verdictEl = $('outVerdict');
+    var diffEl = $('outDiff');
+    var block = $('verdictBlock');
+    if (Math.abs(diff) < Math.max(buyNet, portfolio) * 0.02){
+      verdictEl.textContent = 'Roughly tied';
+      diffEl.textContent = 'within 2% — assumptions matter more than the math here';
+      block.dataset.lead = 'tie';
+    } else if (diff > 0){
+      verdictEl.textContent = 'Buying';
+      diffEl.textContent = fmtUSD(Math.abs(diff));
+      block.dataset.lead = 'buy';
+    } else {
+      verdictEl.textContent = 'Renting + investing';
+      diffEl.textContent = fmtUSD(Math.abs(diff));
+      block.dataset.lead = 'rent';
+    }
+  }
+
+  // Wire all inputs to recompute on change
+  var ids = ['inpPrice','inpDown','inpRate','inpTerm','inpTax','inpIns','inpHOA',
+             'inpMaint','inpClosing','inpSell','inpAppr','inpRent','inpRentG',
+             'inpRIns','inpMove','inpReturn','inpHold','inpAsset'];
+  ids.forEach(function(id){
+    var el = $(id);
+    if (el) el.addEventListener('input', compute);
+    if (el) el.addEventListener('change', compute);
+  });
+
+  // Slider pairs config (consumed by the OC slider shim that wires sliders ↔ inputs ↔ live labels)
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpPrice',  rng:'rngPrice',  lbl:'lblPrice',  fmt:'USD'},
+    {inp:'inpDown',   rng:'rngDown',   lbl:'lblDown',   fmt:'PCT'},
+    {inp:'inpRate',   rng:'rngRate',   lbl:'lblRate',   fmt:'PCT2'},
+    {inp:'inpAppr',   rng:'rngAppr',   lbl:'lblAppr',   fmt:'PCT'},
+    {inp:'inpRent',   rng:'rngRent',   lbl:'lblRent',   fmt:'USD'},
+    {inp:'inpReturn', rng:'rngReturn', lbl:'lblReturn', fmt:'PCT'},
+    {inp:'inpHold',   rng:'rngHold',   lbl:'lblHold',   fmt:'YR'}
+  ];
+
+  // OC_SLIDER_SHIM_v1 (mirrors the standardized shim from Session 4)
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  // Initial compute
+  compute();
+})();
+</script>
+
+
+</body>
+</html>

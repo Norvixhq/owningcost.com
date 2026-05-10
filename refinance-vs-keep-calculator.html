@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Refinance vs. Keep Calculator — should you refinance your mortgage? | OwningCost</title>
+<meta name="description" content="Compare refinancing your mortgage against keeping the current loan. Monthly savings, break-even month, total savings or loss over your real hold period — including the closing costs most articles skip." />
+<link rel="canonical" href="https://owningcost.com/refinance-vs-keep-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Refinance vs. Keep Calculator — should you refinance your mortgage?" />
+<meta property="og:description" content="Compare refinancing your mortgage against keeping the current loan. Monthly savings, break-even month, total savings or loss over your real hold period — including the closing costs most articles skip." />
+<meta property="og:url" content="https://owningcost.com/refinance-vs-keep-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Refinance vs. Keep Calculator — should you refinance your mortgage? | OwningCost" />
+<meta name="twitter:description" content="Compare refinancing your mortgage against keeping the current loan. Monthly savings, break-even month, total savings or loss over your real hold period — including the closing costs most articles skip." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.rvk__verdict{
+  margin:1.1rem 0 1.3rem;padding:1.1rem 1.2rem;
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  text-align:center;
+}
+.rvk__verdict[data-lead="refi"]{background:rgba(78,182,60,.06);border-color:#C5E8B8}
+.rvk__verdict[data-lead="keep"]{background:rgba(28,109,217,.05);border-color:var(--blue-200)}
+.rvk__verdict[data-lead="tie"]{background:var(--surface-2);border-color:var(--border-2)}
+.rvk__verdict__label{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle)}
+.rvk__verdict__answer{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:var(--ink);margin:.25rem 0 .15rem;line-height:1.2;letter-spacing:-.012em}
+.rvk__verdict__by{font-size:.92rem;color:var(--muted);max-width:38rem;margin:0 auto;line-height:1.5}
+.rvk__verdict__by strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.rvk__breakdown{
+  display:grid;gap:1rem;margin:1.2rem 0 .8rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:640px){.rvk__breakdown{grid-template-columns:1fr 1fr}}
+.rvk__breakdown__col{padding:.95rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.rvk__breakdown__col h4{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--subtle);margin:0 0 .55rem;
+}
+.rvk__row{display:flex;justify-content:space-between;gap:.6rem;padding:.32rem 0;font-size:.86rem;color:var(--muted)}
+.rvk__row span:last-child{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+.rvk__row--net{margin-top:.45rem;padding-top:.55rem;border-top:1px solid var(--border);font-weight:600;color:var(--ink)}
+.rvk__row--net span:last-child{color:var(--ink);font-weight:600}
+
+.rvk__context{margin-top:1.1rem;padding:.95rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.rvk__context__title{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:.55rem}
+.rvk__context__list{list-style:none;margin:0;padding:0;font-size:.85rem;color:var(--muted);line-height:1.55}
+.rvk__context__list li{padding:.32rem 0}
+.rvk__context__list li strong{color:var(--ink-2);font-weight:600}
+
+.rvk__disclaimer{
+  margin-top:1rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.rvk__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Refinance vs. Keep Calculator", "item": "https://owningcost.com/refinance-vs-keep-calculator.html"}]}, {"@type": "WebApplication", "name": "Refinance vs. Keep Calculator", "url": "https://owningcost.com/refinance-vs-keep-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Compare refinancing your mortgage against keeping the current loan. Monthly savings, break-even month, and total savings or loss over your real hold period.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What's a good rule of thumb for when to refinance?", "acceptedAnswer": {"@type": "Answer", "text": "There isn't one that works in every situation. The honest framing is: do the break-even math against your real hold period. If break-even is under 36 months and you'll stay 5+ more years, refinancing is usually worth it. If break-even is over 60 months, the rate drop has to be large to justify the closing costs. The classic '1% rule' is outdated — modern closing costs make smaller rate drops harder to justify."}}, {"@type": "Question", "name": "Should I roll closing costs into the new loan or pay cash?", "acceptedAnswer": {"@type": "Answer", "text": "Paying cash is mathematically better if you have the cash and don't need it elsewhere — you avoid paying interest on the closing costs over the loan life. Rolling them in is fine if cash flow is tight or the cash has higher-yield uses. Either way, the break-even calculation is the same: closing costs divided by monthly savings equals break-even month."}}, {"@type": "Question", "name": "What about refinancing into a 15-year or 20-year loan?", "acceptedAnswer": {"@type": "Answer", "text": "Short-term refinances usually carry slightly lower rates than 30-year refinances and avoid the term-extension trap. The trade-off is a higher monthly payment. If your budget can handle it, a 15-year refi at a lower rate is often a stronger move than a 30-year refi at a slightly higher rate. Run both scenarios in this calculator and compare the lifetime numbers."}}, {"@type": "Question", "name": "Why does my hold period matter so much?", "acceptedAnswer": {"@type": "Answer", "text": "Because closing costs are paid up front and recovered through monthly savings over time. If you sell two months after refinancing, you've paid the full closing costs and recovered almost none of them. If you stay 10 years past break-even, the savings compound. Your hold period is the most important variable in the decision after the rate spread itself."}}, {"@type": "Question", "name": "Should I wait for rates to drop more?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody knows where rates go next, including the people who confidently predict it. The right framing is to make today's decision on today's numbers. If rates drop further later, you can refinance again — closing costs would be paid again, and the new break-even would have to clear. Refinance when the math works for your hold period at the rate you can lock today."}}, {"@type": "Question", "name": "Does this calculator account for the tax deduction on mortgage interest?", "acceptedAnswer": {"@type": "Answer", "text": "No. After the 2017 tax law changes, most U.S. taxpayers take the standard deduction and don't itemize, so mortgage interest doesn't reduce their tax bill. For households that do itemize, the deduction reduces both the keep-loan and refi-loan interest by the same percentage, so it doesn't change the relative comparison much."}}, {"@type": "Question", "name": "What about 'no closing cost' refinance offers?", "acceptedAnswer": {"@type": "Answer", "text": "Those usually mean the closing costs are rolled into a slightly higher rate — a 'lender credit.' The lender pays the closing costs and recovers them through the rate spread over the life of the loan. There's no such thing as truly free closing costs. Either you pay them at closing, in your loan balance, or in your rate. Compare total cost over your hold period to evaluate any 'no-cost' offer honestly."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It runs your assumptions through documented amortization math. Refinance decisions involve credit, qualification, and lender selection that the calculator doesn't model. Get an actual loan estimate from a lender (or several) before committing."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 21 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Refinance vs. Keep</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Refinance decision</span>
+    <h1>Should you refinance your mortgage? See the honest answer.</h1>
+    <p class="phero__sub">A lower rate looks great in isolation. The real test is whether it pencils out after closing costs, against your actual hold period. This calculator runs both paths — keep vs. refinance — and shows the break-even month, the total savings or loss over your horizon, and the assumptions that move the verdict.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">All defaults editable</span>
+      <span class="chip">Not a lender funnel</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Refinance vs. Keep calculator">
+        <div class="calc__form">
+
+          <h3>Your current mortgage</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Current balance</span><span class="field__value" id="lblBal"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpBal" value="340000" min="10000" step="5000" aria-label="Current mortgage balance"></div>
+            <input type="range" id="rngBal" class="field__range" min="10000" max="1500000" step="5000" aria-label="Current mortgage balance">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Current rate</span><span class="field__value" id="lblCurRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpCurRate" value="7.25" min="2" max="12" step="0.05" aria-label="Current mortgage rate"><span class="suffix">%</span></div>
+              <input type="range" id="rngCurRate" class="field__range" min="2" max="12" step="0.05" aria-label="Current mortgage rate">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Months remaining</span><span class="field__value" id="lblRemain"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRemain" value="312" min="12" max="480" step="6" aria-label="Months remaining on current loan"><span class="suffix">mo</span></div>
+              <input type="range" id="rngRemain" class="field__range" min="12" max="480" step="6" aria-label="Months remaining">
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Refinance offer</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>New rate offered</span><span class="field__value" id="lblNewRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpNewRate" value="5.875" min="2" max="12" step="0.05" aria-label="New mortgage rate"><span class="suffix">%</span></div>
+              <input type="range" id="rngNewRate" class="field__range" min="2" max="12" step="0.05" aria-label="New mortgage rate">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>New term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpNewTerm" value="30" min="10" max="40" step="5" aria-label="New loan term in years"><span class="suffix">yrs</span></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Refinance closing costs</span><span class="field__value" id="lblClosing"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpClosing" value="6500" min="0" step="250" aria-label="Refinance closing costs"></div>
+            <input type="range" id="rngClosing" class="field__range" min="0" max="20000" step="250" aria-label="Refinance closing costs">
+            <span class="field__hint">Typical: 2–4% of refinanced loan amount. Includes lender fees, title, appraisal, recording.</span>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Closing-cost handling</span></div>
+            <div class="field__input full">
+              <select id="inpClosingMode" aria-label="Closing-cost handling">
+                <option value="cash" selected>Pay closing costs in cash</option>
+                <option value="roll">Roll closing costs into the new loan</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Your hold period</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Years you'll keep this home</span><span class="field__value" id="lblHold"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpHold" value="7" min="1" max="30" step="1" aria-label="Years you'll keep this home"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngHold" class="field__range" min="1" max="30" step="1" aria-label="Years you'll keep this home">
+            <span class="field__hint">Median U.S. homeowner tenure is 8–13 years. Use your real plan, not 30.</span>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Monthly P&amp;I</strong> uses standard amortization: <code>L · r(1+r)ⁿ / ((1+r)ⁿ − 1)</code>, where <code>L</code> is the loan amount, <code>r</code> is the monthly rate, and <code>n</code> is the term in months. The current path uses your existing balance and remaining term. The refi path uses the same balance (or balance + closing costs if rolled) over the new term at the new rate.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Monthly savings</strong> = current P&amp;I − new P&amp;I. <strong style="color:var(--ink)">Break-even month</strong> = closing costs ÷ monthly savings. <strong style="color:var(--ink)">Net savings over horizon</strong> = (monthly savings × months in horizon) − closing costs paid.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this doesn't model:</strong> the term-extension trade-off (refinancing into a fresh 30-year loan resets the clock — early years are mostly interest), the opportunity cost of paying closing costs in cash, and any tax effects. The savings figure is real, but a longer total interest bill over the life of the new loan is also real if you extend the term significantly.</p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Your scenario over <span id="outHold">7</span> years</span>
+
+          <div class="rvk__verdict" id="verdictBlock">
+            <div class="rvk__verdict__label">Decision over your hold period:</div>
+            <div class="rvk__verdict__answer" id="outVerdict">—</div>
+            <div class="rvk__verdict__by"><strong id="outDiff">—</strong></div>
+          </div>
+
+          <div class="calc__rows">
+            <div class="calc__row"><span>Current monthly P&amp;I</span><span class="amt" id="outCurPI">—</span></div>
+            <div class="calc__row"><span>New monthly P&amp;I (after refi)</span><span class="amt" id="outNewPI">—</span></div>
+            <div class="calc__row"><span>Monthly savings</span><span class="amt" id="outMoSave">—</span></div>
+            <div class="calc__row"><span>Break-even month</span><span class="amt" id="outBE">—</span></div>
+            <div class="calc__row"><span>Net savings over <span id="outHold2">7</span> years</span><span class="amt" id="outNetSave">—</span></div>
+          </div>
+
+          <div class="rvk__breakdown">
+            <div class="rvk__breakdown__col">
+              <h4>Keep current loan</h4>
+              <div class="rvk__row"><span>Monthly P&amp;I</span><span id="outCurPI2">—</span></div>
+              <div class="rvk__row"><span>Total P&amp;I over horizon</span><span id="outCurTotal">—</span></div>
+              <div class="rvk__row"><span>Total interest over horizon</span><span id="outCurInt">—</span></div>
+              <div class="rvk__row rvk__row--net"><span>Cash out over horizon</span><span id="outCurCash">—</span></div>
+            </div>
+            <div class="rvk__breakdown__col">
+              <h4>Refinance now</h4>
+              <div class="rvk__row"><span>Monthly P&amp;I</span><span id="outNewPI2">—</span></div>
+              <div class="rvk__row"><span>Total P&amp;I over horizon</span><span id="outNewTotal">—</span></div>
+              <div class="rvk__row"><span>Total interest over horizon</span><span id="outNewInt">—</span></div>
+              <div class="rvk__row"><span>Closing costs paid</span><span id="outClosingPaid">—</span></div>
+              <div class="rvk__row rvk__row--net"><span>Cash out over horizon</span><span id="outNewCash">—</span></div>
+            </div>
+          </div>
+
+          <div class="rvk__context">
+            <div class="rvk__context__title">Risk &amp; context</div>
+            <ul class="rvk__context__list">
+              <li><strong>Break-even rule of thumb:</strong> refinancing pencils out if you'll stay in the home well past the break-even month. If you sell or refinance again before then, you lose money on the closing costs.</li>
+              <li><strong>Term extension trap:</strong> resetting a partially-paid 30-year loan into a fresh 30-year increases <em>total</em> interest paid even when monthly payments drop. The savings number above is real for your hold period — but check the lifetime number too.</li>
+              <li><strong>Rolling closing costs:</strong> rolling the closing into the new loan lowers your day-one cash but means you're paying interest on those costs for the life of the loan.</li>
+              <li><strong>Rate-only thinking is incomplete:</strong> a 1% rate drop is meaningful, but on a small remaining balance with limited horizon, the closing costs can swallow most of the savings.</li>
+              <li><strong>Cash-out refinances:</strong> this calculator is for rate-and-term refinancing. Cash-out refinances change the math significantly — model those separately.</li>
+            </ul>
+          </div>
+
+          <div class="rvk__disclaimer">
+            <strong>Estimates only.</strong> Get an actual loan estimate from a lender for your specific situation. Refinance offers vary widely on closing costs, lender credits, and rate-lock terms.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Why this comparison matters</span>
+        <h2 style="margin-top:.85rem">A lower rate is not the same as a better loan.</h2>
+        <p class="article__lede">The most common refinance mistake is treating the rate drop as the whole story. The math has three moving parts — monthly savings, break-even month, and time horizon — and ignoring any of the three produces the wrong answer.</p>
+        <p>Imagine a $340,000 balance at 7.25% with 26 years remaining. A 5.875% refi offer arrives. Monthly P&amp;I drops by roughly $295. That sounds great. But the closing costs are $6,500. Break-even is month 22 — almost two years before refinancing starts saving net money. If your real plan is to be in the home another seven years, the savings are real and significant. If you're realistically thinking about selling within three, the closing costs eat most or all of the gain.</p>
+        <p>This calculator runs all three numbers together. It does not assume you'll stay 30 years. It uses your stated hold period to compute net savings honestly — including the closing costs you'll pay either way.</p>
+
+        <h3>Why "1% rate drop = refinance" is wrong</h3>
+        <p>The "1% rule" is a relic of a time when refinances cost roughly 1% of the loan amount. Modern closing costs run 2–4% on most loans, and the smaller the remaining balance, the harder it is for the savings to exceed the closing costs. A 1% drop on a $200K balance saves about $120/mo; on a $7,000 closing-cost refi, that's a 58-month break-even. If you're not staying close to five more years, the math doesn't work.</p>
+
+        <h3>The term-extension question</h3>
+        <p>When the calculator suggests refinancing wins your specific scenario, it's reporting savings over your hold period — not lifetime savings. If you take a partially-paid loan with 22 years remaining and refinance into a fresh 30-year, you've added eight years of interest payments to the back end. The monthly savings are real for the time you stay; if you don't sell before that loan ends, the lifetime interest can be higher than the loan you replaced. Many borrowers solve this by refinancing into a shorter term (15- or 20-year), which preserves rate savings without resetting the clock — at the cost of a higher monthly payment.</p>
+
+        <h3>What this calculator doesn't do</h3>
+        <p>It doesn't model cash-out refinancing (where you take additional money out at closing — that's a different decision). It doesn't model rate buydowns or temporary 2-1 buydown programs (the savings curve is non-linear). It doesn't model points paid at closing to reduce the rate further — assume any points are folded into the closing-cost figure you enter. And it isn't predictive about future rates: if rates drop further next year, you might refinance again, but it's better to make today's decision on today's numbers than to wait indefinitely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="rvk-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="rvk-faq-title">Common refinance questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What's a good rule of thumb for when to refinance?</summary>
+        <div class="faq__a">There isn't one that works in every situation. The honest framing is: do the break-even math against your real hold period. If break-even is under 36 months and you'll stay 5+ more years, refinancing is usually worth it. If break-even is over 60 months, the rate drop has to be large to justify the closing costs. The classic "1% rule" is outdated — modern closing costs make smaller rate drops harder to justify.</div>
+      </details>
+      <details>
+        <summary>Should I roll closing costs into the new loan or pay cash?</summary>
+        <div class="faq__a">Paying cash is mathematically better if you have the cash and don't need it elsewhere — you avoid paying interest on the closing costs over the loan life. Rolling them in is fine if cash flow is tight or the cash has higher-yield uses (paying off higher-interest debt, maxing out a 401k match). Either way, the break-even calculation is the same: closing costs ÷ monthly savings = break-even month. Rolling just changes whether you pay them on day one or amortize them.</div>
+      </details>
+      <details>
+        <summary>What about refinancing into a 15-year or 20-year loan?</summary>
+        <div class="faq__a">Short-term refinances usually carry slightly lower rates than 30-year refinances and avoid the term-extension trap. The trade-off is a higher monthly payment — sometimes higher than your current 30-year-at-the-bad-rate payment. If your budget can handle it, a 15-year refi at 5.5% is often a stronger move than a 30-year refi at 5.875%. Run both scenarios in this calculator (change the new term) and compare the lifetime numbers.</div>
+      </details>
+      <details>
+        <summary>Why does my hold period matter so much?</summary>
+        <div class="faq__a">Because closing costs are paid up front and recovered through monthly savings over time. If you sell two months after refinancing, you've paid the full closing costs and recovered almost none of them. If you stay 10 years past break-even, the savings compound. Your hold period is the most important variable in the decision after the rate spread itself.</div>
+      </details>
+      <details>
+        <summary>Should I wait for rates to drop more?</summary>
+        <div class="faq__a">Nobody knows where rates go next, including the people who confidently predict it. The right framing is to make today's decision on today's numbers. If rates drop further later, you can refinance again — closing costs would be paid again, and the new break-even would have to clear. The honest answer is: refinance when the math works for your hold period at the rate you can lock today, not because you're predicting the next move.</div>
+      </details>
+      <details>
+        <summary>Does this calculator account for the tax deduction on mortgage interest?</summary>
+        <div class="faq__a">No. After the 2017 tax law changes, most U.S. taxpayers take the standard deduction and don't itemize, so mortgage interest doesn't reduce their tax bill. For households that do itemize, the deduction reduces both the keep-loan and refi-loan interest by the same percentage, so it doesn't change the relative comparison much. If you're a high-income itemizer with a large interest deduction, run the numbers with your CPA — but the relative ordering rarely flips.</div>
+      </details>
+      <details>
+        <summary>What about the "no closing cost" refinance offers?</summary>
+        <div class="faq__a">Those usually mean the closing costs are rolled into a slightly higher rate — a "lender credit." The lender pays the closing costs and recovers them through the rate spread over the life of the loan. This calculator's "Roll closing costs into the new loan" option models the same idea structurally. The mathematical takeaway: there's no such thing as truly free closing costs. Either you pay them at closing, in your loan balance, or in your rate. Compare total cost over your hold period to evaluate any "no-cost" offer honestly.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor and this calculator is not a recommendation. It runs your assumptions through documented amortization math. Refinance decisions involve credit, qualification, and lender selection that the calculator doesn't model. Get an actual loan estimate from a lender (or several) before committing.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators</span>
+      <h2>Run the related comparisons.</h2>
+    </div>
+    <div class="rcards">
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>The full PITI + HOA + maintenance picture under your new (or current) loan.</p>
+      </a>
+      <a href="payment-shock-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Payment Shock</h3>
+        <p>If rates rise back up after a refi (or if you stay in your current ARM), what happens?</p>
+      </a>
+      <a href="arm-vs-fixed-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>ARM vs. Fixed</h3>
+        <p>If you're considering a refi into an ARM, compare it against the fixed-rate option.</p>
+      </a>
+      <a href="stay-vs-sell-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Stay vs. Sell</h3>
+        <p>If the answer is "I might just sell instead," run that comparison too.</p>
+      </a>
+      <a href="pmi-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>PMI Calculator</h3>
+        <p>If a refi pushes you over (or under) the 80% LTV line, PMI rules change.</p>
+      </a>
+      <a href="refinance-vs-keep-current-mortgage.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>Refinance vs. Keep — full guide</h3>
+        <p>Long-form analysis of when refinancing actually pencils out, with worked examples.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Make the right call</span>
+      <h2 style="margin-top:.85rem">Run your specific numbers.</h2>
+      <p>Edit the inputs above with your actual balance, your current rate, and the offer you've received. Set the hold period to what you realistically expect. The break-even and net savings will follow.</p>
+      <div class="ctaband__row">
+        <a href="#calcForm" class="btn">Open the calculator</a>
+        <a href="financing.html" class="btn btn--ghost">Visit Financing hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ return parseFloat($(id).value) || 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+
+  function pi(L, annualRate, nMonths){
+    if (L <= 0 || nMonths <= 0) return 0;
+    var r = annualRate / 12;
+    if (r === 0) return L / nMonths;
+    return L * (r * Math.pow(1+r, nMonths)) / (Math.pow(1+r, nMonths) - 1);
+  }
+
+  function compute(){
+    var bal = v('inpBal');
+    var curRate = v('inpCurRate') / 100;
+    var remain = Math.round(v('inpRemain'));
+    var newRate = v('inpNewRate') / 100;
+    var newTermYrs = Math.round(v('inpNewTerm'));
+    var closing = v('inpClosing');
+    var rollClosing = $('inpClosingMode').value === 'roll';
+    var holdYrs = Math.max(1, Math.round(v('inpHold')));
+    var holdMonths = holdYrs * 12;
+
+    // Current path
+    var curPI = pi(bal, curRate, remain);
+
+    // New path
+    var newLoan = rollClosing ? bal + closing : bal;
+    var newTermMonths = newTermYrs * 12;
+    var newPI = pi(newLoan, newRate, newTermMonths);
+
+    var moSave = curPI - newPI;
+    var be = (closing > 0 && moSave > 0) ? closing / moSave : Infinity;
+
+    // Effective months over horizon (capped to the loan term in case horizon > term)
+    var curMonths = Math.min(holdMonths, remain);
+    var newMonths = Math.min(holdMonths, newTermMonths);
+
+    var curCashOut = curPI * curMonths;
+    var newCashOut = newPI * newMonths + (rollClosing ? 0 : closing);
+
+    // Total interest over horizon
+    function interestOver(L, annualRate, nMonths, holdMo){
+      // Amortize and sum interest portions over holdMo months
+      var r = annualRate / 12;
+      var p = pi(L, annualRate, nMonths);
+      var bal_ = L;
+      var totalInt = 0;
+      var months = Math.min(holdMo, nMonths);
+      for (var m = 0; m < months; m++){
+        var interest = bal_ * r;
+        var principal = p - interest;
+        if (principal < 0) principal = 0;
+        totalInt += interest;
+        bal_ = bal_ - principal;
+        if (bal_ < 0) bal_ = 0;
+      }
+      return totalInt;
+    }
+
+    var curInt = interestOver(bal, curRate, remain, holdMonths);
+    var newInt = interestOver(newLoan, newRate, newTermMonths, holdMonths);
+
+    var netSave = curCashOut - newCashOut;
+
+    // Render
+    $('outHold').textContent = holdYrs;
+    $('outHold2').textContent = holdYrs;
+    $('outCurPI').textContent = fmtUSD(curPI);
+    $('outCurPI2').textContent = fmtUSD(curPI);
+    $('outNewPI').textContent = fmtUSD(newPI);
+    $('outNewPI2').textContent = fmtUSD(newPI);
+    $('outMoSave').textContent = (moSave > 0 ? fmtUSD(moSave) : '−' + fmtUSD(-moSave));
+    $('outBE').textContent = isFinite(be) ? Math.ceil(be) + ' mo' : 'never';
+    $('outNetSave').textContent = (netSave > 0 ? fmtUSD(netSave) : '−' + fmtUSD(-netSave));
+
+    $('outCurTotal').textContent = fmtUSD(curPI * curMonths);
+    $('outCurInt').textContent = fmtUSD(curInt);
+    $('outCurCash').textContent = fmtUSD(curCashOut);
+    $('outNewTotal').textContent = fmtUSD(newPI * newMonths);
+    $('outNewInt').textContent = fmtUSD(newInt);
+    $('outClosingPaid').textContent = fmtUSD(closing);
+    $('outNewCash').textContent = fmtUSD(newCashOut);
+
+    var verdictEl = $('outVerdict');
+    var diffEl = $('outDiff');
+    var block = $('verdictBlock');
+    if (moSave <= 0){
+      verdictEl.textContent = 'Keep the current loan';
+      diffEl.textContent = 'The new offer is not lower than your current rate (or the gap is too small).';
+      block.dataset.lead = 'keep';
+    } else if (Math.abs(netSave) < closing * 0.10){
+      verdictEl.textContent = 'Roughly tied';
+      diffEl.textContent = 'Within 10% of the closing cost. Decision depends on assumptions you control.';
+      block.dataset.lead = 'tie';
+    } else if (netSave > 0){
+      verdictEl.textContent = 'Refinance saves money';
+      diffEl.textContent = fmtUSD(netSave) + ' over ' + holdYrs + ' years (after closing costs).';
+      block.dataset.lead = 'refi';
+    } else {
+      verdictEl.textContent = 'Keep the current loan';
+      diffEl.textContent = 'Refinance loses ' + fmtUSD(-netSave) + ' over ' + holdYrs + ' years — closing costs exceed savings.';
+      block.dataset.lead = 'keep';
+    }
+  }
+
+  var ids = ['inpBal','inpCurRate','inpRemain','inpNewRate','inpNewTerm',
+             'inpClosing','inpClosingMode','inpHold'];
+  ids.forEach(function(id){
+    var el = $(id);
+    if (el){
+      el.addEventListener('input', compute);
+      el.addEventListener('change', compute);
+    }
+  });
+
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpBal',     rng:'rngBal',     lbl:'lblBal',     fmt:'USD'},
+    {inp:'inpCurRate', rng:'rngCurRate', lbl:'lblCurRate', fmt:'PCT2'},
+    {inp:'inpRemain',  rng:'rngRemain',  lbl:'lblRemain',  fmt:'NUM'},
+    {inp:'inpNewRate', rng:'rngNewRate', lbl:'lblNewRate', fmt:'PCT2'},
+    {inp:'inpClosing', rng:'rngClosing', lbl:'lblClosing', fmt:'USD'},
+    {inp:'inpHold',    rng:'rngHold',    lbl:'lblHold',    fmt:'YR'}
+  ];
+
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+  // Custom NUM formatter for "months remaining" — shows as "312 mo"
+  function fmtMo(val){ return Math.round(val).toLocaleString('en-US') + ' mo'; }
+
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){
+      if (!lbl) return;
+      if (cfg.inp === 'inpRemain') lbl.textContent = fmtMo(inp.value);
+      else lbl.textContent = fmt(cfg.fmt, inp.value);
+    }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  compute();
+})();
+</script>
+
+
+</body>
+</html>

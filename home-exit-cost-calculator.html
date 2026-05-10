@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Home Exit Cost Calculator — what selling actually costs and what you net | OwningCost</title>
+<meta name="description" content="What selling a home actually costs — agent commissions, transfer taxes, concessions, repairs, staging, and the mortgage payoff. See your real net proceeds and why short hold periods rarely pencil out." />
+<link rel="canonical" href="https://owningcost.com/home-exit-cost-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Home Exit Cost Calculator — what selling actually costs and what you net" />
+<meta property="og:description" content="What selling a home actually costs — agent commissions, transfer taxes, concessions, repairs, staging, and the mortgage payoff. See your real net proceeds and why short hold periods rarely pencil out." />
+<meta property="og:url" content="https://owningcost.com/home-exit-cost-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Home Exit Cost Calculator — what selling actually costs and what you net | OwningCost" />
+<meta name="twitter:description" content="What selling a home actually costs — agent commissions, transfer taxes, concessions, repairs, staging, and the mortgage payoff. See your real net proceeds and why short hold periods rarely pencil out." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.hex__net{
+  margin:1.1rem 0 1.3rem;padding:1.3rem 1.2rem;
+  background:rgba(28,109,217,.05);border:1px solid var(--blue-200);border-radius:12px;
+  text-align:center;
+}
+.hex__net[data-lead="tight"]{background:#FFF8E5;border-color:#F5D88A}
+.hex__net[data-lead="underwater"]{background:#FCEBEB;border-color:#E5B6B6}
+.hex__net__label{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle)}
+.hex__net__answer{font-family:var(--serif);font-size:2.1rem;font-weight:600;color:var(--ink);margin:.3rem 0 .35rem;line-height:1.15;letter-spacing:-.014em;font-variant-numeric:tabular-nums}
+.hex__net__sub{font-size:.86rem;color:var(--muted);max-width:38rem;margin:0 auto;line-height:1.5}
+.hex__net__sub span{color:var(--ink-2);font-weight:500}
+
+.hex__waterfall{
+  margin:1.2rem 0 .8rem;padding:.95rem 1rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+}
+.hex__row{display:flex;justify-content:space-between;gap:.6rem;padding:.32rem 0;font-size:.86rem;color:var(--muted)}
+.hex__row span:last-child{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+.hex__row--start{font-weight:600;color:var(--ink);padding-bottom:.55rem;border-bottom:1px solid var(--border)}
+.hex__row--start span:last-child{color:var(--ink);font-weight:600}
+.hex__row--minus span:last-child{color:#A33B3B}
+.hex__row--subtotal{margin-top:.3rem;padding-top:.5rem;border-top:1px solid var(--border);font-weight:500;color:var(--ink-2)}
+.hex__row--subtotal span:last-child{color:var(--ink-2);font-weight:600}
+.hex__row--final{margin-top:.4rem;padding-top:.6rem;border-top:2px solid var(--ink);font-weight:600;color:var(--ink);font-size:.95rem}
+.hex__row--final span:last-child{color:var(--ink);font-weight:700}
+
+.hex__metrics{
+  display:grid;gap:.8rem;margin:1.2rem 0 .8rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:560px){.hex__metrics{grid-template-columns:repeat(3, 1fr)}}
+.hex__metric{padding:.85rem .95rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.hex__metric__label{font-family:var(--sans);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);margin-bottom:.3rem}
+.hex__metric__num{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15}
+.hex__metric__sub{font-size:.74rem;color:var(--muted);margin-top:.25rem;line-height:1.4}
+.hex__metric__sub span{color:var(--ink-2);font-weight:600}
+
+.hex__context{margin-top:1.1rem;padding:.95rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.hex__context__title{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:.55rem}
+.hex__context__list{list-style:none;margin:0;padding:0;font-size:.85rem;color:var(--muted);line-height:1.55}
+.hex__context__list li{padding:.32rem 0}
+.hex__context__list li strong{color:var(--ink-2);font-weight:600}
+
+.hex__disclaimer{
+  margin-top:1rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.hex__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Home Exit Cost Calculator", "item": "https://owningcost.com/home-exit-cost-calculator.html"}]}, {"@type": "WebApplication", "name": "Home Exit Cost Calculator", "url": "https://owningcost.com/home-exit-cost-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "What selling a home actually costs — agent commissions, transfer taxes, concessions, repairs, staging, and the mortgage payoff. See your real net proceeds.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why are selling costs higher than buying costs?", "acceptedAnswer": {"@type": "Answer", "text": "Because selling pays the agent commissions for both sides of the transaction. Buying typically costs 2-4% in closing costs, while selling typically costs 8-12% — most of the gap is the 5-6% in commissions the seller traditionally absorbed."}}, {"@type": "Question", "name": "Can I sell without an agent and save the 5-6%?", "acceptedAnswer": {"@type": "Answer", "text": "For-sale-by-owner (FSBO) is legal everywhere and saves the listing-agent commission. The trade-offs: FSBO homes typically sell for 5-10% less than agent-listed homes and require the seller to handle marketing, showings, contracts, and negotiations directly. The math sometimes works for experienced sellers in hot markets; it rarely works for first-time sellers or slow markets."}}, {"@type": "Question", "name": "Do I owe capital gains tax on the sale?", "acceptedAnswer": {"@type": "Answer", "text": "Probably not, if it's your primary residence. The IRS exclusion is $250,000 of gain for single filers and $500,000 for married couples filing jointly, provided you've owned and lived in the home as your primary residence for at least 2 of the last 5 years. Investment properties don't qualify and generally owe capital gains tax on the full gain. Consult a CPA for your specific situation."}}, {"@type": "Question", "name": "What's a Seller's Net Sheet and should I get one?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, before you sign anything. A Net Sheet is a line-by-line estimate from your agent showing your projected proceeds at a given sale price, including all fees, taxes, payoff, and prorations. Reputable agents will provide one or several at different price points before you list."}}, {"@type": "Question", "name": "What about HOA transfer fees and condo special assessments?", "acceptedAnswer": {"@type": "Answer", "text": "Both apply if relevant. HOA transfer fees range from $200-$1,500 typically. If a special assessment is pending or recently levied, the seller may need to pay it off at closing. The Other line in this calculator can absorb both — bump it by $500-$2,000 if you're selling a condo or HOA-governed property."}}, {"@type": "Question", "name": "How accurate is the agent commission default?", "acceptedAnswer": {"@type": "Answer", "text": "5.5% is the post-2024 typical for U.S. transactions — slightly lower than the historical 5.5-6%. Real numbers range 4.5-6%. Discount brokerages often charge 1-2% on the listing side, which can drop your total commission to 3.5-4.5%. Negotiate before signing the listing agreement; once signed, the rate is locked."}}, {"@type": "Question", "name": "What if my home has gone down in value?", "acceptedAnswer": {"@type": "Answer", "text": "Then your equity at sale is lower (sale price minus mortgage), and selling costs are coming out of less equity, so the percentage of equity consumed by selling is higher. In a true underwater scenario where mortgage exceeds sale price, the seller has to bring cash to closing. If equity is positive but small, this calculator's cost-as-percent-of-equity metric gets uncomfortable quickly."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a budgeting tool that runs your inputs through documented arithmetic. The decision to sell, hold, or rent the home out is yours to make with the relevant professionals."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 21 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Home Exit Cost</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Selling decision</span>
+    <h1>What does selling actually cost? See your real net proceeds.</h1>
+    <p class="phero__sub">Selling a home isn't a transfer of equity from one column to another — it's an expensive event. Agent commissions, transfer taxes, concessions, repairs, and staging routinely consume 8–12% of the sale price. This calculator runs every line item against your scenario so the net proceeds figure is honest.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">All defaults editable</span>
+      <span class="chip">No signup, no email</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Home Exit Cost calculator">
+        <div class="calc__form">
+
+          <h3>Your sale</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Estimated sale price</span><span class="field__value" id="lblPrice"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="525000" min="50000" step="5000" aria-label="Estimated sale price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="2000000" step="5000" aria-label="Estimated sale price">
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Current mortgage balance</span><span class="field__value" id="lblBal"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpBal" value="305000" min="0" step="1000" aria-label="Current mortgage balance"></div>
+            <input type="range" id="rngBal" class="field__range" min="0" max="2000000" step="5000" aria-label="Current mortgage balance">
+            <span class="field__hint">Get the exact payoff figure from your lender — it includes accrued interest and a small payoff fee.</span>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Years owned (so far)</span><span class="field__value" id="lblYrs"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpYrs" value="3" min="0" max="40" step="0.5" aria-label="Years owned"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngYrs" class="field__range" min="0" max="30" step="0.5" aria-label="Years owned">
+            <span class="field__hint">Used for the short-hold cost-recovery framing in the output.</span>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Selling fees</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Agent commissions (total)</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpAgent" value="5.5" min="0" max="8" step="0.1" aria-label="Agent commissions"><span class="suffix">% of sale</span></div>
+              <span class="field__hint">Historical 5–6% (split between listing &amp; buyer's agent). Post-2024 NAR settlement, this is now negotiable separately on each side.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Title + closing fees</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTitle" value="0.7" min="0" max="3" step="0.05" aria-label="Title and closing fees"><span class="suffix">% of sale</span></div>
+              <span class="field__hint">Title insurance, escrow, attorney where required, recording.</span>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Transfer / excise taxes</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTransfer" value="0.5" min="0" max="3" step="0.05" aria-label="Transfer taxes"><span class="suffix">% of sale</span></div>
+              <span class="field__hint">Varies wildly by state/city. $0 in some states; 1–2%+ in NYC, Philly, Seattle.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Buyer concessions</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpConcessions" value="1.0" min="0" max="6" step="0.1" aria-label="Buyer concessions"><span class="suffix">% of sale</span></div>
+              <span class="field__hint">Credits at closing — repairs found in inspection, rate buydowns. 0–3% typical, higher in slow markets.</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Pre-sale prep</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Repairs before listing</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpRepairs" value="3500" min="0" step="100" aria-label="Pre-sale repair budget"></div>
+              <span class="field__hint">Touch-up paint, minor plumbing, deferred maintenance. The "gets it ready" budget.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Staging + photography</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpStaging" value="2500" min="0" step="100" aria-label="Staging and photography"></div>
+              <span class="field__hint">Optional but common. $0–$5,000 typical for occupied homes; higher for vacant staging.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Other (moving, overlap rent, prep)</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpOther" value="2000" min="0" step="100" aria-label="Other selling-related costs"></div>
+            <span class="field__hint">Movers, temporary housing if you move out before sale, professional cleaning at handoff.</span>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Selling cost</strong> = (agent % + title % + transfer % + concessions %) × sale price + repairs + staging + other. <strong style="color:var(--ink)">Net proceeds</strong> = sale price − selling cost − mortgage payoff.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Short-hold framing:</strong> the calculator surfaces total selling cost as a % of sale price and as a % of equity. On a short hold (under 3–4 years), selling costs often exceed the equity built through paydown and appreciation — the home loses money on exit even when the listing price is up.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this doesn't include:</strong> capital gains tax (most primary residences qualify for the IRS exclusion: $250K single / $500K married), the 1031 exchange route for investors, prorated property tax adjustments at closing, or HOA transfer fees in condos. Add a few thousand for closing-day adjustments.</p>
+              <p class="calc__math__cta"><a href="methodology.html">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Your sale, in net proceeds</span>
+
+          <div class="hex__net" id="netBlock">
+            <div class="hex__net__label">Net proceeds (cash to you at closing)</div>
+            <div class="hex__net__answer" id="outNet">—</div>
+            <div class="hex__net__sub">After all selling costs and mortgage payoff. <span id="outRecoveryNote"></span></div>
+          </div>
+
+          <div class="hex__waterfall">
+            <div class="hex__row hex__row--start"><span>Sale price</span><span id="outSale">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Agent commissions</span><span id="outAgent">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Title + closing fees</span><span id="outTitle">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Transfer / excise taxes</span><span id="outTransfer">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Buyer concessions</span><span id="outConcessions">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Pre-sale repairs</span><span id="outRepairs">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Staging + photography</span><span id="outStaging">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Other (moving, overlap, prep)</span><span id="outOther">—</span></div>
+            <div class="hex__row hex__row--subtotal"><span>Subtotal — proceeds before mortgage</span><span id="outBeforeMtg">—</span></div>
+            <div class="hex__row hex__row--minus"><span>Mortgage payoff</span><span id="outPayoff">—</span></div>
+            <div class="hex__row hex__row--final"><span>Net proceeds</span><span id="outNet2">—</span></div>
+          </div>
+
+          <div class="hex__metrics">
+            <div class="hex__metric">
+              <div class="hex__metric__label">Total selling cost</div>
+              <div class="hex__metric__num" id="outTotalCost">—</div>
+              <div class="hex__metric__sub"><span id="outCostPct">—</span> of sale price</div>
+            </div>
+            <div class="hex__metric">
+              <div class="hex__metric__label">Equity at sale</div>
+              <div class="hex__metric__num" id="outEquity">—</div>
+              <div class="hex__metric__sub">Sale price minus mortgage</div>
+            </div>
+            <div class="hex__metric">
+              <div class="hex__metric__label">Cost as % of equity</div>
+              <div class="hex__metric__num" id="outCostEqPct">—</div>
+              <div class="hex__metric__sub">Lower is healthier — under 25% is normal on a multi-year hold</div>
+            </div>
+          </div>
+
+          <div class="hex__context">
+            <div class="hex__context__title">Reading this number</div>
+            <ul class="hex__context__list">
+              <li><strong>Selling costs are non-recoverable.</strong> Unlike the down payment that becomes equity, every dollar of selling cost is gone the moment the sale closes.</li>
+              <li><strong>Short holds rarely recover entry costs.</strong> If you bought 2 years ago, paid 2-3% in closing costs, and now pay 8-9% to sell, you've lost 10-12% of value to transaction friction alone — appreciation has to clear that bar before you net anything.</li>
+              <li><strong>Agent commissions are negotiable post-2024.</strong> The NAR settlement decoupled buyer-agent commissions from the listing. You can offer less, and a flat-fee or discount listing service may save 1-2%.</li>
+              <li><strong>Concessions reduce your net but enable the deal.</strong> In slow markets, the choice is often "concede 2% or wait 6 more months." Both paths cost money — concessions just make the cost visible upfront.</li>
+              <li><strong>Capital gains tax usually doesn't apply.</strong> Primary residences qualify for the IRS exclusion ($250K single / $500K married) on gains, if you've lived there 2+ of the last 5 years.</li>
+            </ul>
+          </div>
+
+          <div class="hex__disclaimer">
+            <strong>Estimates only.</strong> Actual selling costs depend heavily on your state, city, agent agreement, and market conditions. Get a Net Sheet from your agent before listing — it's the document that runs this same math with your specific numbers.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Why this matters</span>
+        <h2 style="margin-top:.85rem">Selling is the most expensive thing your home will ever do.</h2>
+        <p class="article__lede">Most homeowners under-estimate selling costs by a wide margin. The 6% agent commission is the headline; the actual all-in cost — including title, transfer taxes, concessions, repairs, and staging — typically runs 8–12% of sale price. On a $525,000 sale, that's $42,000–$63,000 absorbed by the transaction itself.</p>
+        <p>The right framing: every dollar tied up in selling costs is a dollar of equity that doesn't come home. The down payment you put in years ago, the principal you've paid down through amortization, the appreciation the home has earned — all of it sits in equity until you sell. Then 8–12% of that equity gets stripped out at closing.</p>
+
+        <h3>The 8–12% breaks down like this</h3>
+        <ul>
+          <li><strong>Agent commissions: 5–6%.</strong> Historically split between the listing and buyer agents. The 2024 NAR settlement decoupled this — sellers and buyers can now negotiate their own agent compensation separately. Practical savings depend on local market norms; 5.5% all-in is increasingly common, with discount and flat-fee services going lower.</li>
+          <li><strong>Title insurance and closing fees: 0.5–1%.</strong> Title insurance, escrow services, attorney where required, recording fees. Some states require seller-paid owner's title insurance; others don't.</li>
+          <li><strong>Transfer / excise taxes: 0–2%.</strong> Wildly variable by location. $0 in many states. ~$0.50 per $500 in California; up to ~2% in some jurisdictions (NYC, Philadelphia, Washington State). Check your specific state and city.</li>
+          <li><strong>Buyer concessions: 0–3%.</strong> Credits at closing for inspection-found issues, rate buydowns, or just market-rate negotiation. Higher in slow markets, lower in hot ones, near zero in red-hot bidding wars.</li>
+          <li><strong>Pre-sale repairs and staging: 0.5–2%.</strong> Touch-up paint, minor plumbing, the deferred maintenance you've been putting off. Staging adds another $1,500–$5,000 for occupied homes; vacant staging runs higher.</li>
+        </ul>
+
+        <h3>Why short holds usually lose money</h3>
+        <p>The pattern shows up clearly: someone buys a home, holds it 18–24 months, then needs to sell because of a job change, family event, or housing-market shift. The math rarely works in their favor.</p>
+        <p>Consider the round trip on a $425,000 home held 2 years: $12,750 in entry closing costs (3%), then $42,000 in exit costs (8% on the now-$525,000 sale price), totals $54,750 in transaction friction. To net any actual return, the home needs to have appreciated enough to clear that $54,750, plus pay down enough principal to leave equity meaningful. On a 2-year hold, that's typically not enough time — even if the market has been appreciating at a healthy pace.</p>
+        <p>The 5-year rule of thumb (you usually need at least 5 years to make ownership pencil out vs. renting) is largely about giving the math time to recover from these transaction costs. Short holds aren't categorically wrong, but they need eyes-open awareness that the home is unlikely to be a wealth-building event over that horizon.</p>
+
+        <h3>What your agent's "Net Sheet" does</h3>
+        <p>This calculator approximates what a real-estate agent calls a Net Sheet (or Seller's Estimated Net) — a line-by-line statement showing your projected proceeds at a given sale price. Most listing agents will provide one before you sign the listing agreement, and they should give you several at different price points so you can see how proceeds change with offer ranges.</p>
+        <p>Treat this calculator as a first pass: a way to know roughly what to expect before agent conversations begin. Use the agent's Net Sheet as the authoritative version once you have one in hand. The calculator's value is showing you what the structure looks like and giving you a baseline to compare against — which lets you ask better questions and notice if anything in the agent's numbers seems out of range.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="hex-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="hex-faq-title">Common selling-cost questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Why are selling costs higher than buying costs?</summary>
+        <div class="faq__a">Because selling pays the agent commissions for both sides of the transaction. Buying typically costs 2–4% in closing costs, while selling typically costs 8–12% — most of the gap is the 5–6% in commissions the seller traditionally absorbed. The 2024 NAR settlement is changing this somewhat, but the structural asymmetry between buying and selling costs remains.</div>
+      </details>
+      <details>
+        <summary>Can I sell without an agent and save the 5–6%?</summary>
+        <div class="faq__a">For-sale-by-owner (FSBO) is legal everywhere and saves the listing-agent commission. The trade-offs: FSBO homes typically sell for 5–10% less than agent-listed homes, take longer to sell, and require the seller to handle marketing, showings, contracts, and negotiations directly. The math sometimes works for experienced sellers in hot markets with desirable properties; it rarely works for first-time sellers, complex properties, or slow markets. If you do FSBO, you'll often still pay the buyer's agent commission to attract buyers represented by agents.</div>
+      </details>
+      <details>
+        <summary>Do I owe capital gains tax on the sale?</summary>
+        <div class="faq__a">Probably not, if it's your primary residence. The IRS exclusion is $250,000 of gain for single filers and $500,000 for married couples filing jointly, provided you've owned and lived in the home as your primary residence for at least 2 of the last 5 years. Most homeowners fall well under these thresholds. Investment properties don't qualify and generally owe capital gains tax on the full gain (1031 exchanges can defer this for like-kind real estate). Consult a CPA for your specific situation.</div>
+      </details>
+      <details>
+        <summary>What's a "Seller's Net Sheet" and should I get one?</summary>
+        <div class="faq__a">Yes, before you sign anything. A Net Sheet is a line-by-line estimate from your agent showing your projected proceeds at a given sale price, including all fees, taxes, payoff, and prorations. Reputable agents will provide one or several at different price points before you list. Use this calculator to know roughly what to expect; use the agent's Net Sheet as the authoritative document once you have one.</div>
+      </details>
+      <details>
+        <summary>What about HOA transfer fees and condo special assessments?</summary>
+        <div class="faq__a">Both apply if relevant. HOA transfer fees range from $200–$1,500 typically. If a special assessment is pending or recently levied, the seller may need to pay it off at closing or disclose it, which can affect sale price. The "Other" line in this calculator can absorb both — bump it by $500–$2,000 if you're selling a condo or HOA-governed property, more if there's an active assessment.</div>
+      </details>
+      <details>
+        <summary>How accurate is the agent commission default?</summary>
+        <div class="faq__a">5.5% is the post-2024 typical for U.S. transactions — slightly lower than the historical 5.5–6%. Real numbers range 4.5–6%. Discount brokerages (Redfin, flat-fee MLS services) often charge 1–2% on the listing side, which can drop your total commission to 3.5–4.5% if you're willing to accept reduced agent service. Negotiate before signing the listing agreement; once signed, the rate is locked.</div>
+      </details>
+      <details>
+        <summary>What if my home has gone down in value?</summary>
+        <div class="faq__a">Then your equity at sale is lower (sale price minus mortgage), and selling costs are coming out of less equity, so the % of equity consumed by selling is higher. In a true underwater scenario (mortgage exceeds sale price), the seller has to bring cash to closing — short sales and other workouts exist for this case but are outside this calculator. If your equity is positive but small, this calculator's "cost as % of equity" metric gets uncomfortable quickly. Consider whether holding longer makes more sense.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a budgeting tool that runs your inputs through documented arithmetic. The decision to sell, hold, or rent the home out is yours to make with the relevant professionals.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; guides</span>
+      <h2>Run the related comparisons.</h2>
+    </div>
+    <div class="rcards">
+      <a href="stay-vs-sell-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Stay vs. Sell</h3>
+        <p>Should you sell at all? The break-even calculator on the timing question.</p>
+      </a>
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>If you're staying, the recurring cost picture for the home you currently own.</p>
+      </a>
+      <a href="refinance-vs-keep-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Refinance vs. Keep</h3>
+        <p>Before selling, consider whether refinancing solves the underlying problem.</p>
+      </a>
+      <a href="selling-costs-explained.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>Selling Costs Explained — full guide</h3>
+        <p>Long-form analysis of every selling-cost line item, by region and scenario.</p>
+      </a>
+      <a href="hidden-costs-of-homeownership.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>Hidden costs of homeownership</h3>
+        <p>The lines that get under-counted on the way in — many also matter on the way out.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Plan your exit honestly</span>
+      <h2 style="margin-top:.85rem">Edit the inputs to match your real sale.</h2>
+      <p>Use your specific market's transfer taxes, your agent's actual commission rate, and an honest read on what concessions and repairs you'll likely need. The net proceeds figure becomes specific to your situation when the inputs do.</p>
+      <div class="ctaband__row">
+        <a href="#calcForm" class="btn">Open the calculator</a>
+        <a href="owning.html" class="btn btn--ghost">Visit Owning hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ return parseFloat($(id).value) || 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+
+  function compute(){
+    var price = v('inpPrice');
+    var bal = v('inpBal');
+    var yrs = v('inpYrs');
+    var agentPct = v('inpAgent') / 100;
+    var titlePct = v('inpTitle') / 100;
+    var transferPct = v('inpTransfer') / 100;
+    var concPct = v('inpConcessions') / 100;
+    var repairs = v('inpRepairs');
+    var staging = v('inpStaging');
+    var other = v('inpOther');
+
+    var agent = price * agentPct;
+    var title = price * titlePct;
+    var transfer = price * transferPct;
+    var concessions = price * concPct;
+    var fixedPrep = repairs + staging + other;
+
+    var totalCost = agent + title + transfer + concessions + fixedPrep;
+    var costPct = price > 0 ? (totalCost / price) * 100 : 0;
+    var beforeMtg = price - totalCost;
+    var net = beforeMtg - bal;
+    var equity = price - bal;
+    var costOfEquityPct = equity > 0 ? (totalCost / equity) * 100 : NaN;
+
+    // Render
+    $('outNet').textContent = fmtUSD(net);
+    $('outNet2').textContent = fmtUSD(net);
+    $('outSale').textContent = fmtUSD(price);
+    $('outAgent').textContent = '−' + fmtUSD(agent);
+    $('outTitle').textContent = '−' + fmtUSD(title);
+    $('outTransfer').textContent = '−' + fmtUSD(transfer);
+    $('outConcessions').textContent = '−' + fmtUSD(concessions);
+    $('outRepairs').textContent = '−' + fmtUSD(repairs);
+    $('outStaging').textContent = '−' + fmtUSD(staging);
+    $('outOther').textContent = '−' + fmtUSD(other);
+    $('outBeforeMtg').textContent = fmtUSD(beforeMtg);
+    $('outPayoff').textContent = '−' + fmtUSD(bal);
+
+    $('outTotalCost').textContent = fmtUSD(totalCost);
+    $('outCostPct').textContent = costPct.toFixed(1) + '%';
+    $('outEquity').textContent = fmtUSD(equity);
+    if (isFinite(costOfEquityPct)){
+      $('outCostEqPct').textContent = costOfEquityPct.toFixed(0) + '%';
+    } else {
+      $('outCostEqPct').textContent = '—';
+    }
+
+    // Color the net block — red if underwater, blue if normal, amber if cost > 30% of equity
+    var block = $('netBlock');
+    if (net < 0){
+      block.dataset.lead = 'underwater';
+    } else if (isFinite(costOfEquityPct) && costOfEquityPct > 35){
+      block.dataset.lead = 'tight';
+    } else {
+      block.dataset.lead = 'normal';
+    }
+
+    // Short-hold framing
+    var note = $('outRecoveryNote');
+    if (yrs > 0 && yrs < 3 && isFinite(costOfEquityPct) && costOfEquityPct > 30){
+      note.textContent = 'On a ' + yrs + '-year hold, that\'s a heavy share of equity gone to transaction costs.';
+    } else if (yrs >= 3 && yrs < 5 && isFinite(costOfEquityPct) && costOfEquityPct > 25){
+      note.textContent = 'Selling cost is ' + costOfEquityPct.toFixed(0) + '% of equity — the hold is borderline for cost recovery.';
+    } else if (yrs >= 5){
+      note.textContent = 'A ' + yrs + '-year hold gives appreciation and paydown time to absorb the transaction costs.';
+    } else {
+      note.textContent = '';
+    }
+  }
+
+  var ids = ['inpPrice','inpBal','inpYrs','inpAgent','inpTitle','inpTransfer',
+             'inpConcessions','inpRepairs','inpStaging','inpOther'];
+  ids.forEach(function(id){
+    var el = $(id);
+    if (el){
+      el.addEventListener('input', compute);
+      el.addEventListener('change', compute);
+    }
+  });
+
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpPrice', rng:'rngPrice', lbl:'lblPrice', fmt:'USD'},
+    {inp:'inpBal',   rng:'rngBal',   lbl:'lblBal',   fmt:'USD'},
+    {inp:'inpYrs',   rng:'rngYrs',   lbl:'lblYrs',   fmt:'YR'}
+  ];
+
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  compute();
+})();
+</script>
+
+
+</body>
+</html>

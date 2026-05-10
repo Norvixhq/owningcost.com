@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>True First-Year Cost Calculator — total year-one cash burn | OwningCost</title>
+<meta name="description" content="What buying a home actually costs in year one — down payment, closing, move-in, setup, and 12 months of true monthly cost. The complete cash picture most calculators leave out." />
+<link rel="canonical" href="https://owningcost.com/true-first-year-cost-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="True First-Year Cost Calculator — total year-one cash burn" />
+<meta property="og:description" content="What buying a home actually costs in year one — down payment, closing, move-in, setup, and 12 months of true monthly cost. The complete cash picture most calculators leave out." />
+<meta property="og:url" content="https://owningcost.com/true-first-year-cost-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="True First-Year Cost Calculator — total year-one cash burn | OwningCost" />
+<meta name="twitter:description" content="What buying a home actually costs in year one — down payment, closing, move-in, setup, and 12 months of true monthly cost. The complete cash picture most calculators leave out." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.tfy__total{
+  margin:1.1rem 0 1.3rem;padding:1.3rem 1.2rem;
+  background:rgba(28,109,217,.05);border:1px solid var(--blue-200);border-radius:12px;
+  text-align:center;
+}
+.tfy__total__label{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle)}
+.tfy__total__answer{font-family:var(--serif);font-size:2.1rem;font-weight:600;color:var(--ink);margin:.3rem 0 .3rem;line-height:1.15;letter-spacing:-.014em;font-variant-numeric:tabular-nums}
+.tfy__total__sub{font-size:.88rem;color:var(--muted);max-width:38rem;margin:0 auto;line-height:1.5}
+.tfy__total__sub span{color:var(--ink-2);font-weight:600}
+
+.tfy__breakdown{
+  display:grid;gap:1rem;margin:1.2rem 0 .8rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:640px){.tfy__breakdown{grid-template-columns:1fr 1fr}}
+.tfy__breakdown__col{padding:.95rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.tfy__breakdown__col--full{grid-column:1 / -1}
+.tfy__breakdown__col h4{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--subtle);margin:0 0 .55rem;
+}
+.tfy__row{display:flex;justify-content:space-between;gap:.6rem;padding:.32rem 0;font-size:.86rem;color:var(--muted)}
+.tfy__row span:last-child{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+.tfy__row--net{margin-top:.45rem;padding-top:.55rem;border-top:1px solid var(--border);font-weight:600;color:var(--ink)}
+.tfy__row--net span:last-child{color:var(--ink);font-weight:600}
+
+.tfy__context{margin-top:1.1rem;padding:.95rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.tfy__context__title{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:.55rem}
+.tfy__context__list{list-style:none;margin:0;padding:0;font-size:.85rem;color:var(--muted);line-height:1.55}
+.tfy__context__list li{padding:.32rem 0}
+.tfy__context__list li strong{color:var(--ink-2);font-weight:600}
+
+.tfy__disclaimer{
+  margin-top:1rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.tfy__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "True First-Year Cost Calculator", "item": "https://owningcost.com/true-first-year-cost-calculator.html"}]}, {"@type": "WebApplication", "name": "True First-Year Cost Calculator", "url": "https://owningcost.com/true-first-year-cost-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "What buying a home actually costs in year one — down payment, closing, move-in, setup, and 12 months of true monthly cost. The complete cash picture.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why isn't year-one just 12 times monthly cost?", "acceptedAnswer": {"@type": "Answer", "text": "Because year one stacks one-time costs on top of recurring costs. Down payment, closing, move-in, setup, immediate repairs — none of those happen in year two. The True Monthly Cost calculator answers what each ongoing month costs. This calculator answers how much cash you actually need to start. Two different decisions, two different tools."}}, {"@type": "Question", "name": "How accurate are the move-in and setup defaults?", "acceptedAnswer": {"@type": "Answer", "text": "They're calibrated for a typical apartment-to-house move with mid-range needs. Real ranges vary widely: a furnished move with appliances included needs less; a long-distance move with a 4-bedroom load needs much more. Replace them with your actual numbers. Movers should give you a written estimate."}}, {"@type": "Question", "name": "Why include an escrow buffer? My down payment doesn't include that.", "acceptedAnswer": {"@type": "Answer", "text": "Most loans require it. At closing, the lender typically collects 2-6 months of estimated property tax and insurance to fund your escrow account. This is separate from closing costs. It's refundable when you sell or refinance — but it's real cash you need on closing day."}}, {"@type": "Question", "name": "What if I'm buying a condo or townhome — different defaults?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. For condos and townhomes: lower utilities, $0 lawn equipment, lower repair budget in year one (HOA covers exterior), but a higher HOA fee. Set lawn to $0 and adjust HOA + utilities to match your specific building."}}, {"@type": "Question", "name": "Should I add a contingency or reserve to this number?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — separately from this calculator's output. The total here is what you'll spend in year one. Beyond that, financial-planning best practice is to keep 3-6 months of housing carrying cost in reserve so you can absorb a job change, medical event, or major unexpected repair without selling under pressure."}}, {"@type": "Question", "name": "What about the tax deduction on mortgage interest and property taxes?", "acceptedAnswer": {"@type": "Answer", "text": "Most U.S. taxpayers take the standard deduction post-2017 and don't itemize, so this wouldn't reduce year-one cash burn. For high-income itemizers, mortgage interest and up to $10,000 in property tax can reduce taxable income — the savings show up at tax-filing time, not in your year-one cash flow."}}, {"@type": "Question", "name": "How does this differ from the True Monthly Cost calculator?", "acceptedAnswer": {"@type": "Answer", "text": "True Monthly Cost shows what a typical month costs once you're settled — the recurring number. This calculator stacks the one-time costs on top of 12 of those monthly numbers to show year-one cash burn. Use True Monthly Cost when comparing two homes' ongoing affordability. Use this calculator when deciding if you have enough cash to start."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a budgeting tool that runs your inputs through documented arithmetic. Consult a CPA or financial planner for tax-aware planning."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 21 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">True First-Year Cost</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Year-one cash reality</span>
+    <h1>What buying a home actually costs in year one.</h1>
+    <p class="phero__sub">The down payment is the headline number. The real number is bigger — closing costs on top of it, move-in costs, the appliances and repairs you'll inevitably do in the first 90 days, plus 12 months of true monthly cost (PITI + HOA + maintenance + utilities). This calculator builds the complete picture.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">All defaults editable</span>
+      <span class="chip">No signup, no email</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="True First-Year Cost calculator">
+        <div class="calc__form">
+
+          <h3>Home purchase</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price</span><span class="field__value" id="lblPrice"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" aria-label="Home price">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="10" min="0" max="50" step="0.5" aria-label="Down payment percent"><span class="suffix">%</span></div>
+              <input type="range" id="rngDown" class="field__range" min="0" max="50" step="0.5" aria-label="Down payment percent">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Mortgage rate</span><span class="field__value" id="lblRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="2" max="12" step="0.05" aria-label="Mortgage rate"><span class="suffix">%</span></div>
+              <input type="range" id="rngRate" class="field__range" min="2" max="12" step="0.05" aria-label="Mortgage rate">
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="10" max="40" step="5" aria-label="Loan term"><span class="suffix">yrs</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Closing costs</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpClosing" value="3.0" min="0" max="6" step="0.1" aria-label="Closing costs as percent of price"><span class="suffix">% of price</span></div>
+              <span class="field__hint">Typical 2–4%. Includes lender fees, title, escrow, transfer taxes.</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Move-in costs</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Movers / truck rental</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpMovers" value="1500" min="0" step="50" aria-label="Movers cost"></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Utility setup + transfers</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpUtilSetup" value="400" min="0" step="25" aria-label="Utility setup costs"></div>
+              <span class="field__hint">Connection fees, deposits, internet install.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Appliances + furniture (year-one)</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpFurnish" value="3500" min="0" step="100" aria-label="Appliances and furniture"></div>
+            <span class="field__hint">Refrigerator, washer/dryer, the bookshelves and bed your old apartment didn't fit. Honest range: $1,500–$8,000.</span>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Immediate repairs / improvements</span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpRepairs" value="2500" min="0" step="100" aria-label="Immediate repairs and improvements"></div>
+            <span class="field__hint">The first 90 days always reveal something. Paint, HVAC service, pest, locksmith, gutter cleaning — budget something even if the inspection passed.</span>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Recurring monthly costs</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Property tax</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" max="4" step="0.05" aria-label="Property tax rate"><span class="suffix">% / yr</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Homeowners insurance</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpIns" value="1800" min="0" step="50" aria-label="Annual insurance"><span class="suffix">/ yr</span></div>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>HOA</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpHOA" value="0" min="0" step="25" aria-label="Monthly HOA"><span class="suffix">/ mo</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Maintenance reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpMaint" value="1.0" min="0" max="3" step="0.1" aria-label="Maintenance reserve"><span class="suffix">% / yr</span></div>
+              <span class="field__hint">1% of home value, divided monthly. A reserve, not a bill — but real over time.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Utilities (electric + gas + water + internet)</span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpUtil" value="285" min="0" step="10" aria-label="Monthly utilities"><span class="suffix">/ mo</span></div>
+            <span class="field__hint">Higher than apartments — you're paying for the whole envelope, not a unit.</span>
+          </div>
+
+          <h3 style="margin-top:1.6rem">First-year extras (often overlooked)</h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Escrow buffer at closing</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpEscrow" value="2500" min="0" step="100" aria-label="Escrow buffer at closing"></div>
+              <span class="field__hint">Lenders typically collect 2–6 months of taxes/insurance up front. Refundable when you sell, but real cash on closing day.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Lawn / snow / yard equipment</span></div>
+              <div class="field__input"><span class="prefix">$</span><input type="number" id="inpLawn" value="600" min="0" step="50" aria-label="Lawn or snow equipment"></div>
+              <span class="field__hint">Mower, snow blower, tools, hose. $0 for condos and townhomes.</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Time horizon (this calculator covers year 1 only)</h3>
+
+          <div class="field" style="opacity:.7">
+            <div class="field__label"><span>Period covered</span><span class="field__hint">Year 1 — fixed</span></div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Day-zero cash</strong> = down payment + closing costs + escrow buffer + movers + utility setup. <strong style="color:var(--ink)">One-time setup</strong> = appliances/furniture + immediate repairs + lawn equipment, spread across year one but paid once.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Monthly carrying cost</strong> uses the standard formula: P&amp;I + property tax/12 + insurance/12 + HOA + maintenance reserve + PMI (if down payment under 20%) + utilities. Multiplied by 12 to get the year-one carry. <strong style="color:var(--ink)">PMI</strong> is included at ~0.75%/yr of the loan when down is under 20%.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">What this means:</strong> the total below is real year-one cash burn. The breakdown separates one-time costs (recoverable as equity at sale, in the case of the down payment, or "spent forever" in the case of move-in) from recurring costs (the floor for every year going forward).</p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Your year-one cash picture</span>
+
+          <div class="tfy__total" id="totalBlock">
+            <div class="tfy__total__label">Total year-one cash burn</div>
+            <div class="tfy__total__answer" id="outTotal">—</div>
+            <div class="tfy__total__sub"><span id="outOneTimePct">—</span> of this is one-time (down + setup + closing); the rest is recurring.</div>
+          </div>
+
+          <div class="calc__rows">
+            <div class="calc__row"><span>Day-zero cash needed (closing day)</span><span class="amt" id="outDay0">—</span></div>
+            <div class="calc__row"><span>One-time year-one setup</span><span class="amt" id="outSetup">—</span></div>
+            <div class="calc__row"><span>12 months of carrying cost</span><span class="amt" id="outCarry">—</span></div>
+            <div class="calc__row"><span>True monthly cost (year-1 average)</span><span class="amt" id="outMonthly">—</span></div>
+          </div>
+
+          <div class="tfy__breakdown">
+            <div class="tfy__breakdown__col">
+              <h4>Day-zero cash (at closing)</h4>
+              <div class="tfy__row"><span>Down payment</span><span id="outDown">—</span></div>
+              <div class="tfy__row"><span>Closing costs</span><span id="outClosing">—</span></div>
+              <div class="tfy__row"><span>Escrow buffer</span><span id="outEscrow">—</span></div>
+              <div class="tfy__row"><span>Movers + utility setup</span><span id="outMoveIn">—</span></div>
+              <div class="tfy__row tfy__row--net"><span>Day-zero subtotal</span><span id="outDay0_2">—</span></div>
+            </div>
+            <div class="tfy__breakdown__col">
+              <h4>One-time year-one setup</h4>
+              <div class="tfy__row"><span>Appliances + furniture</span><span id="outFurnish">—</span></div>
+              <div class="tfy__row"><span>Immediate repairs / improvements</span><span id="outRepairs">—</span></div>
+              <div class="tfy__row"><span>Lawn / snow equipment</span><span id="outLawn">—</span></div>
+              <div class="tfy__row tfy__row--net"><span>Setup subtotal</span><span id="outSetup_2">—</span></div>
+            </div>
+          </div>
+
+          <div class="tfy__breakdown">
+            <div class="tfy__breakdown__col tfy__breakdown__col--full">
+              <h4>12-month carrying cost</h4>
+              <div class="tfy__row"><span>Principal &amp; interest</span><span id="outPI">—</span></div>
+              <div class="tfy__row"><span>Property tax</span><span id="outTax">—</span></div>
+              <div class="tfy__row"><span>Insurance</span><span id="outInsY">—</span></div>
+              <div class="tfy__row"><span>HOA</span><span id="outHoaY">—</span></div>
+              <div class="tfy__row"><span>Maintenance reserve</span><span id="outMaintY">—</span></div>
+              <div class="tfy__row"><span>PMI (if applicable)</span><span id="outPmiY">—</span></div>
+              <div class="tfy__row"><span>Utilities</span><span id="outUtilY">—</span></div>
+              <div class="tfy__row tfy__row--net"><span>12-month subtotal</span><span id="outCarry_2">—</span></div>
+            </div>
+          </div>
+
+          <div class="tfy__context">
+            <div class="tfy__context__title">Reading this number</div>
+            <ul class="tfy__context__list">
+              <li><strong>The down payment isn't lost</strong> — it becomes equity, reduced by selling costs whenever you sell. Treat it as illiquid, not gone.</li>
+              <li><strong>Closing costs are gone</strong> — you don't recover them at sale. Same with movers, setup, and repairs.</li>
+              <li><strong>The recurring number is the floor</strong> — every year going forward looks roughly like the 12-month carry, escalating with property tax and insurance growth.</li>
+              <li><strong>Year-one is the worst year</strong> — once setup, repairs, and move-in are absorbed, year two and beyond drop substantially.</li>
+              <li><strong>Don't budget the day-zero number from the same account as your reserves</strong> — emptying savings to close means year-one surprises become emergencies.</li>
+            </ul>
+          </div>
+
+          <div class="tfy__disclaimer">
+            <strong>Estimates only.</strong> Closing costs vary by state, lender, and loan type. Move-in and setup ranges depend heavily on whether you're moving from a furnished apartment, a 4-bedroom house, or out of state. Get specific quotes before relying on these numbers.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Why year-one is different</span>
+        <h2 style="margin-top:.85rem">Year-one cash burn isn't 12 × monthly cost. It's significantly more.</h2>
+        <p class="article__lede">Most affordability tools focus on the monthly payment. That's the right number for "can I keep this home long-term?" — but a different question matters first: "do I have enough cash to start?" Year-one is structurally more expensive than year-two through year-thirty because of one-time costs that don't repeat.</p>
+        <p>For a typical $425,000 home with 10% down, the year-one math looks roughly like this:</p>
+        <ul>
+          <li><strong>Day-zero cash:</strong> $42,500 down + $12,750 closing + $2,500 escrow buffer + $1,900 move-in costs = <strong>~$59,650 at closing</strong>.</li>
+          <li><strong>One-time setup:</strong> $3,500 appliances/furniture + $2,500 first-90-day repairs + $600 yard equipment = <strong>~$6,600 in the first three months</strong>.</li>
+          <li><strong>12 months of carrying cost:</strong> ~$3,500/month × 12 = <strong>~$42,400</strong>.</li>
+          <li><strong>Year-one total: roughly $108,650</strong> — about 25% of the home's purchase price.</li>
+        </ul>
+        <p>That's the honest cash-flow picture. The down payment is the largest single number, but it's also the only one that's recoverable at sale. Everything else is consumed in year one.</p>
+
+        <h3>Why "I have enough for the down payment" usually isn't enough</h3>
+        <p>The most common cash-readiness mistake is treating the down payment as the goal. A buyer with exactly enough for 20% down often closes with empty reserves and discovers the move-in expenses, the first repair, and the property-tax escrow shortage in the first 90 days. The right cash threshold for buying isn't "20% down." It's "20% down + closing costs + 6 months of carrying cost in reserve + setup buffer." The calculator's day-zero number plus the one-time setup approximates this.</p>
+
+        <h3>The escrow buffer surprise</h3>
+        <p>At closing, lenders typically require you to fund 2–6 months of property tax and insurance upfront — even if your first tax bill isn't due for 8 months. This is the "escrow cushion" or "prepaid escrow," and it ranges from $2,000 to $6,000 on a typical home. The money sits in your escrow account; you'll get it back when you sell or refinance. But you need it in cash on closing day, and it's a line item that surprises first-time buyers nearly every time.</p>
+
+        <h3>What "immediate repairs" usually means</h3>
+        <p>Even on a clean inspection, the first 90 days of homeownership reveal items the inspector didn't catch or didn't flag. Common ones: HVAC that needs cleaning ($300–$800), gutter issues ($200–$600), pest treatment after move-in ($200–$500), locksmith and rekey ($150–$300), garage door spring failure ($200–$400), water heater quirks ($0–$1,500), and the painting you swore you wouldn't do but did. A $2,000–$3,500 repair budget for the first quarter is realistic; under-budgeting it doesn't make the costs go away.</p>
+
+        <h3>How to use this calculator honestly</h3>
+        <p>Run the defaults first to see the structure. Then replace each number with your specific situation: your actual quoted closing costs, your actual moving estimate, an honest read of how much furniture you'll need to buy, and an honest read of what you expect to fix in the first 90 days. The total at the bottom is the cash you should have liquid at closing. If you don't have it — without emptying your reserves — buying this specific home at this price isn't yet a cash-ready decision, regardless of whether the monthly payment fits your budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="tfy-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="tfy-faq-title">Common year-one questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Why isn't year-one just 12 × monthly cost?</summary>
+        <div class="faq__a">Because year one stacks one-time costs on top of recurring costs. Down payment, closing, move-in, setup, immediate repairs — none of those happen in year two. The True Monthly Cost calculator answers "what does each ongoing month cost?" This calculator answers "how much cash do I actually need to start?" Two different decisions, two different tools.</div>
+      </details>
+      <details>
+        <summary>How accurate are the move-in and setup defaults?</summary>
+        <div class="faq__a">They're calibrated for a typical apartment-to-house move with mid-range needs. Real ranges vary widely: a furnished move with appliances included needs less; a long-distance move with a 4-bedroom load needs much more. The defaults are illustrative — replace them with your actual numbers. Movers should give you a written estimate; appliance and furniture spend depends on what you're starting with.</div>
+      </details>
+      <details>
+        <summary>Why include an escrow buffer? My down payment doesn't include that.</summary>
+        <div class="faq__a">Most loans require it. At closing, the lender typically collects 2–6 months of estimated property tax and insurance to fund your escrow account. This is separate from closing costs. It's refundable when you sell or refinance — but it's real cash you need on closing day. The default of $2,500 is conservative for the home value above; check your loan estimate for the actual amount.</div>
+      </details>
+      <details>
+        <summary>What if I'm buying a condo or townhome — different defaults?</summary>
+        <div class="faq__a">Yes. For condos and townhomes: lower utilities (smaller envelope, master-metered services in some buildings), $0 lawn equipment, lower repair budget in year one (HOA covers exterior), but a higher HOA fee that captures those services. The Property Type Cost Comparison calculator (coming soon) will surface this directly. For now, set lawn to $0 and adjust HOA + utilities to match your specific building.</div>
+      </details>
+      <details>
+        <summary>Should I add a contingency or reserve to this number?</summary>
+        <div class="faq__a">Yes — separately from this calculator's output. The total here is what you'll spend in year one. Beyond that, financial-planning best practice is to keep 3–6 months of housing carrying cost in reserve (so you can absorb a job change, medical event, or major unexpected repair without selling under pressure). Add that reserve to the day-zero number when deciding whether you're cash-ready, not as part of the year-one cost figure itself.</div>
+      </details>
+      <details>
+        <summary>What about the tax deduction on mortgage interest and property taxes?</summary>
+        <div class="faq__a">Most U.S. taxpayers take the standard deduction post-2017 and don't itemize, so this wouldn't reduce year-one cash burn. For high-income itemizers, mortgage interest and up to $10,000 in property tax can reduce taxable income — the savings show up at tax-filing time, not in your year-one cash flow. The calculator reports gross cash out, not net-of-tax.</div>
+      </details>
+      <details>
+        <summary>How does this differ from the True Monthly Cost calculator?</summary>
+        <div class="faq__a"><a href="true-monthly-cost-calculator.html">True Monthly Cost</a> shows what a typical month costs once you're settled — the recurring number. This calculator stacks the one-time costs on top of 12 of those monthly numbers to show year-one cash burn. Use True Monthly Cost when comparing two homes' ongoing affordability. Use this calculator when deciding "do I have enough cash to start?"</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a budgeting tool that runs your inputs through documented arithmetic. Consult a CPA or financial planner for tax-aware planning.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; guides</span>
+      <h2>Run the related comparisons.</h2>
+    </div>
+    <div class="rcards">
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>The recurring side — what each ongoing month costs after year one.</p>
+      </a>
+      <a href="cash-to-close-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Cash to Close</h3>
+        <p>The day-zero side, broken down line-by-line — what you need at closing.</p>
+      </a>
+      <a href="affordability-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Affordability + Risk</h3>
+        <p>Comfortable target vs. the lender's ceiling. Different question, different tool.</p>
+      </a>
+      <a href="hidden-costs-of-homeownership.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>Hidden costs of homeownership</h3>
+        <p>The lines mortgage calculators leave out — and why year-one looks bigger than expected.</p>
+      </a>
+      <a href="first-time-homebuyer-guide.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>First-time homebuyer guide</h3>
+        <p>The full process and budget framework — read alongside this calculator.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Plan year one honestly</span>
+      <h2 style="margin-top:.85rem">Edit the inputs to match your specific home.</h2>
+      <p>Use your actual loan estimate's closing costs, your real moving quote, and an honest read of what you'll need to fix and furnish in the first 90 days. The total is the year-one cash you should plan to have available.</p>
+      <div class="ctaband__row">
+        <a href="#calcForm" class="btn">Open the calculator</a>
+        <a href="buying.html" class="btn btn--ghost">Visit Buying hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ return parseFloat($(id).value) || 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+
+  function compute(){
+    var price = v('inpPrice');
+    var downPct = v('inpDown') / 100;
+    var rate = v('inpRate') / 100;
+    var term = v('inpTerm');
+    var closingPct = v('inpClosing') / 100;
+    var movers = v('inpMovers');
+    var utilSetup = v('inpUtilSetup');
+    var furnish = v('inpFurnish');
+    var repairs = v('inpRepairs');
+    var taxRate = v('inpTax') / 100;
+    var ins = v('inpIns');
+    var hoa = v('inpHOA');
+    var maintPct = v('inpMaint') / 100;
+    var util = v('inpUtil');
+    var escrow = v('inpEscrow');
+    var lawn = v('inpLawn');
+
+    // Day-zero cash
+    var down = price * downPct;
+    var closingCost = price * closingPct;
+    var moveIn = movers + utilSetup;
+    var day0 = down + closingCost + escrow + moveIn;
+
+    // One-time setup (paid in year 1, not at closing)
+    var setup = furnish + repairs + lawn;
+
+    // Monthly carry
+    var loan = price * (1 - downPct);
+    var monthlyRate = rate / 12;
+    var nMonths = term * 12;
+    var pi = monthlyRate > 0
+      ? loan * (monthlyRate * Math.pow(1+monthlyRate, nMonths)) / (Math.pow(1+monthlyRate, nMonths) - 1)
+      : loan / nMonths;
+    if (!isFinite(pi)) pi = 0;
+    var monthlyTax = price * taxRate / 12;
+    var monthlyIns = ins / 12;
+    var monthlyMaint = price * maintPct / 12;
+    var pmi = downPct < 0.20 ? loan * 0.0075 / 12 : 0;
+    var monthlyCost = pi + monthlyTax + monthlyIns + hoa + monthlyMaint + pmi + util;
+    var carry12 = monthlyCost * 12;
+
+    // Yearly breakdown for the carry block
+    var piY = pi * 12;
+    var taxY = price * taxRate;
+    var insY = ins;
+    var hoaY = hoa * 12;
+    var maintY = price * maintPct;
+    var pmiY = pmi * 12;
+    var utilY = util * 12;
+
+    var total = day0 + setup + carry12;
+    // "One-time" portion = day0 (down + closing + escrow + move-in) + setup
+    // Note: the down payment is technically recoverable, but for cash-burn it's still "spent" in year 1.
+    // We split the framing: of total, one-time vs recurring.
+    var oneTime = day0 + setup;
+    var oneTimePct = total > 0 ? Math.round((oneTime / total) * 100) : 0;
+
+    // Render
+    $('outTotal').textContent = fmtUSD(total);
+    $('outOneTimePct').textContent = oneTimePct + '%';
+    $('outDay0').textContent = fmtUSD(day0);
+    $('outDay0_2').textContent = fmtUSD(day0);
+    $('outSetup').textContent = fmtUSD(setup);
+    $('outSetup_2').textContent = fmtUSD(setup);
+    $('outCarry').textContent = fmtUSD(carry12);
+    $('outCarry_2').textContent = fmtUSD(carry12);
+    $('outMonthly').textContent = fmtUSD(monthlyCost);
+
+    $('outDown').textContent = fmtUSD(down);
+    $('outClosing').textContent = fmtUSD(closingCost);
+    $('outEscrow').textContent = fmtUSD(escrow);
+    $('outMoveIn').textContent = fmtUSD(moveIn);
+
+    $('outFurnish').textContent = fmtUSD(furnish);
+    $('outRepairs').textContent = fmtUSD(repairs);
+    $('outLawn').textContent = fmtUSD(lawn);
+
+    $('outPI').textContent = fmtUSD(piY);
+    $('outTax').textContent = fmtUSD(taxY);
+    $('outInsY').textContent = fmtUSD(insY);
+    $('outHoaY').textContent = fmtUSD(hoaY);
+    $('outMaintY').textContent = fmtUSD(maintY);
+    $('outPmiY').textContent = pmi > 0 ? fmtUSD(pmiY) : '$0 (down ≥ 20%)';
+    $('outUtilY').textContent = fmtUSD(utilY);
+  }
+
+  var ids = ['inpPrice','inpDown','inpRate','inpTerm','inpClosing','inpMovers',
+             'inpUtilSetup','inpFurnish','inpRepairs','inpTax','inpIns','inpHOA',
+             'inpMaint','inpUtil','inpEscrow','inpLawn'];
+  ids.forEach(function(id){
+    var el = $(id);
+    if (el){
+      el.addEventListener('input', compute);
+      el.addEventListener('change', compute);
+    }
+  });
+
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpPrice', rng:'rngPrice', lbl:'lblPrice', fmt:'USD'},
+    {inp:'inpDown',  rng:'rngDown',  lbl:'lblDown',  fmt:'PCT'},
+    {inp:'inpRate',  rng:'rngRate',  lbl:'lblRate',  fmt:'PCT2'}
+  ];
+
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  compute();
+})();
+</script>
+
+
+</body>
+</html>

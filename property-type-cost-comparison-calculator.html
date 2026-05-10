@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Property Type Cost Comparison Calculator — condo vs townhouse vs single-family | OwningCost</title>
+<meta name="description" content="Compare the real monthly and long-term cost of buying a condo, townhouse, or single-family home at the same price point. HOA, maintenance, insurance, and utility differences make the answer less obvious than the price tag suggests." />
+<link rel="canonical" href="https://owningcost.com/property-type-cost-comparison-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Property Type Cost Comparison Calculator — condo vs townhouse vs single-family" />
+<meta property="og:description" content="Compare the real monthly and long-term cost of buying a condo, townhouse, or single-family home at the same price point. HOA, maintenance, insurance, and utility differences make the answer less obvious than the price tag suggests." />
+<meta property="og:url" content="https://owningcost.com/property-type-cost-comparison-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="OwningCost — Independent housing-cost intelligence. Calculator-first, math runs in your browser." />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Property Type Cost Comparison Calculator — condo vs townhouse vs single-family | OwningCost" />
+<meta name="twitter:description" content="Compare the real monthly and long-term cost of buying a condo, townhouse, or single-family home at the same price point. HOA, maintenance, insurance, and utility differences make the answer less obvious than the price tag suggests." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+<meta name="msapplication-config" content="browserconfig.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+
+.ptc__chip{
+  display:inline-block;font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:.18rem .45rem;border-radius:4px;vertical-align:middle;
+  margin-left:.3rem;
+}
+.ptc__chip--condo{background:rgba(28,109,217,.1);color:var(--blue-700)}
+.ptc__chip--town{background:rgba(78,182,60,.12);color:var(--green-700)}
+.ptc__chip--sf{background:rgba(155,107,30,.12);color:#7B5300}
+
+.ptc__verdict{
+  margin:1.1rem 0 1.3rem;padding:1.1rem 1.2rem;
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  text-align:center;
+}
+.ptc__verdict[data-lead="condo"]{background:rgba(28,109,217,.05);border-color:var(--blue-200)}
+.ptc__verdict[data-lead="town"]{background:rgba(78,182,60,.06);border-color:#C5E8B8}
+.ptc__verdict[data-lead="sf"]{background:rgba(155,107,30,.06);border-color:#F0DFC0}
+.ptc__verdict[data-lead="tie"]{background:var(--surface-2);border-color:var(--border-2)}
+.ptc__verdict__label{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle)}
+.ptc__verdict__answer{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:var(--ink);margin:.25rem 0 .15rem;line-height:1.2;letter-spacing:-.012em}
+.ptc__verdict__by{font-size:.92rem;color:var(--muted);max-width:42rem;margin:0 auto;line-height:1.5}
+.ptc__verdict__by strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.ptc__compare{
+  display:grid;gap:.85rem;margin:1.2rem 0 .8rem;
+  grid-template-columns:1fr;
+}
+@media (min-width:680px){.ptc__compare{grid-template-columns:repeat(3, 1fr)}}
+.ptc__col{
+  padding:1rem .9rem;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;display:flex;flex-direction:column;
+  transition:border-color .2s ease, background .2s ease;
+}
+.ptc__col.is-winner{border-color:var(--green-500);background:rgba(78,182,60,.04);box-shadow:0 0 0 3px rgba(78,182,60,.1)}
+.ptc__col__head{margin-bottom:.5rem}
+.ptc__col__big{
+  display:flex;flex-direction:column;align-items:flex-start;gap:.1rem;
+  padding:.6rem 0 .8rem;border-bottom:1px dashed var(--border);
+}
+.ptc__col__big__label{
+  font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);
+}
+.ptc__col__big__num{
+  font-family:var(--serif);font-size:1.45rem;font-weight:600;color:var(--ink);
+  letter-spacing:-.012em;font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.ptc__col__rows{padding:.65rem 0;display:flex;flex-direction:column;gap:.05rem}
+.ptc__row{display:flex;justify-content:space-between;gap:.6rem;padding:.22rem 0;font-size:.82rem;color:var(--muted)}
+.ptc__row span:last-child{color:var(--ink-2);font-variant-numeric:tabular-nums;font-weight:500}
+.ptc__col__total{
+  margin-top:auto;padding-top:.6rem;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;
+  font-size:.86rem;
+}
+.ptc__col__total span:first-child{color:var(--subtle);font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.ptc__col__total span:last-child{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.ptc__context{margin-top:1.1rem;padding:.95rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+.ptc__context__title{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);margin-bottom:.55rem}
+.ptc__context__list{list-style:none;margin:0;padding:0;font-size:.85rem;color:var(--muted);line-height:1.55}
+.ptc__context__list li{padding:.32rem 0}
+.ptc__context__list li strong{color:var(--ink-2);font-weight:600}
+
+.ptc__disclaimer{
+  margin-top:1rem;padding:.7rem .85rem;
+  font-size:.78rem;color:var(--subtle);line-height:1.55;
+  border-top:1px dashed var(--border);
+}
+.ptc__disclaimer strong{color:var(--ink-2);font-weight:600}
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"}, {"@type": "ListItem", "position": 3, "name": "Property Type Cost Comparison Calculator", "item": "https://owningcost.com/property-type-cost-comparison-calculator.html"}]}, {"@type": "WebApplication", "name": "Property Type Cost Comparison Calculator", "url": "https://owningcost.com/property-type-cost-comparison-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "description": "Compare condo vs townhouse vs single-family ownership costs at the same price point. HOA, maintenance, insurance, and utility differences side-by-side.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are the default HOA, maintenance, and utility numbers accurate?", "acceptedAnswer": {"@type": "Answer", "text": "They're calibrated mid-range estimates for typical U.S. metros — not predictions for any specific home. HOA fees in particular vary enormously: a basic suburban condo might run $300/month while a luxury high-rise can run $1,500+. For a real comparison, replace each per-type number with the actual figures from listings you're considering. The HOA disclosure document and the seller's recent utility bills are the right sources."}}, {"@type": "Question", "name": "What's the difference between HO-3 and HO-6 insurance?", "acceptedAnswer": {"@type": "Answer", "text": "HO-3 is the standard homeowner policy — covers the dwelling structure and your possessions. Townhouse and single-family owners need HO-3. HO-6 is the condo policy — covers your interior finishes, possessions, and liability, but not the building structure. HO-6 is roughly 30-50% cheaper than HO-3 because it insures less."}}, {"@type": "Question", "name": "Why is the condo maintenance reserve only 0.4%?", "acceptedAnswer": {"@type": "Answer", "text": "Because the HOA covers the major exterior costs that drive the 1% rule for single-family homes — roof, siding, foundation, exterior paint, landscaping. As a condo owner, you're responsible for interior systems and finishes only. 0.4% covers those interior items at the same approximate rate per dollar of insured interior value."}}, {"@type": "Question", "name": "Should I worry about special assessments?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — but with diligence, not avoidance. Healthy HOA reserves (typically 70%+ funded against the reserve study's recommendation) reduce special-assessment risk substantially. Underfunded reserves signal that bills are coming. Always request the reserve study, recent HOA meeting minutes, and 2-3 years of financial statements before buying a condo."}}, {"@type": "Question", "name": "What about the time cost of maintaining a single-family home?", "acceptedAnswer": {"@type": "Answer", "text": "It's real and not in the dollar number. A single-family home generates 5-15 hours of upkeep per month on average. If you'd hire that out, add $80-$200/month to the maintenance line. If you'd do it yourself, add the value of those hours to your decision — it's not free."}}, {"@type": "Question", "name": "Does this calculator account for appreciation differences?", "acceptedAnswer": {"@type": "Answer", "text": "No — appreciation isn't in this comparison. Historically, single-family homes have appreciated faster than condos in most metros, but the gap varies and isn't reliable in every market. For appreciation modeling, use the Rent vs. Buy or Buy vs. Invest calculators with property-type-specific appreciation assumptions."}}, {"@type": "Question", "name": "Does HOA include utilities?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes. Some condo HOAs include water, trash, and basic internet. Some include nothing beyond exterior maintenance. Townhouse HOAs typically include landscaping but rarely utilities. Check the HOA disclosure for the specific building."}}, {"@type": "Question", "name": "Is this investment advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a comparison tool that runs your inputs through documented arithmetic. Lifestyle, location, neighborhood quality, and personal preferences aren't in the math — those are yours to weigh."}}]}]}
+</script>
+
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag">Flagship</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying tools</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning tools</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing tools</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="calculators.html">See all 21 calculators</a>
+      </div>
+    </div>
+    </div>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="learn.html">Learn</a>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="listing-reality-check.html">Listing Reality Check ★</a>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="affordability-calculator.html">Affordability + Risk</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Sections</summary>
+      <a href="buying.html">Buying</a>
+      <a href="renting.html">Renting</a>
+      <a href="owning.html">Owning</a>
+      <a href="financing.html">Financing</a>
+      <a href="loan-types.html">Loan types</a>
+      <a href="learn.html">Learn</a>
+  </details>
+  <details class="mnav__group">
+    <summary>More</summary>
+      <a href="ai-tools.html">AI Tools</a>
+      <a href="zip-lookup.html">ZIP Intelligence</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="about.html">About</a>
+  </details>
+  </div>
+</header>
+
+<main id="main">
+
+
+<div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="calculators.html">Calculators</a>
+      <span class="sep">›</span>
+      <span aria-current="page">Property Type Comparison</span>
+    </nav>
+  </div>
+
+<section class="phero container">
+  <div class="phero__grid">
+    <span class="eyebrow">Buying decision</span>
+    <h1>Condo, townhouse, or single-family — what's the real cost difference?</h1>
+    <p class="phero__sub">Same price tag, very different total cost. A $425,000 condo, a $425,000 townhouse, and a $425,000 single-family home each cost something different to live in — because HOA fees, maintenance burden, insurance type, and utilities vary by property type. This calculator runs all three side-by-side at your scenario.</p>
+    <div class="phero__meta">
+      <span class="chip">Math runs in your browser</span>
+      <span class="chip">All defaults editable</span>
+      <span class="chip">No signup, no email</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+      <div class="trust-line" aria-label="How this calculator works">
+        <span class="trust-line__dot" aria-hidden="true"></span>
+        <span><strong>Independent housing-cost intelligence.</strong> Math runs in your browser. We don't capture inputs, sell data, or send you to a lender. <a href="about.html">More on what OwningCost is</a>.</span>
+      </div>
+
+      <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Property Type Cost Comparison calculator">
+        <div class="calc__form">
+
+          <h3>Shared scenario</h3>
+
+          <div class="field">
+            <div class="field__label"><span>Home price (same for all three)</span><span class="field__value" id="lblPrice"></span></div>
+            <div class="field__input"><span class="prefix">$</span><input type="number" id="inpPrice" value="425000" min="50000" step="5000" aria-label="Home price"></div>
+            <input type="range" id="rngPrice" class="field__range" min="50000" max="1500000" step="5000" aria-label="Home price">
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Down payment</span><span class="field__value" id="lblDown"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpDown" value="10" min="0" max="50" step="0.5" aria-label="Down payment percent"><span class="suffix">%</span></div>
+              <input type="range" id="rngDown" class="field__range" min="0" max="50" step="0.5" aria-label="Down payment percent">
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Mortgage rate</span><span class="field__value" id="lblRate"></span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="2" max="12" step="0.05" aria-label="Mortgage rate"><span class="suffix">%</span></div>
+              <input type="range" id="rngRate" class="field__range" min="2" max="12" step="0.05" aria-label="Mortgage rate">
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Term</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="10" max="40" step="5" aria-label="Loan term"><span class="suffix">yrs</span></div>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Property tax</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTax" value="1.5" min="0" max="4" step="0.05" aria-label="Property tax rate"><span class="suffix">% / yr</span></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field__label"><span>Hold period</span><span class="field__value" id="lblHold"></span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpHold" value="7" min="1" max="30" step="1" aria-label="Hold period in years"><span class="suffix">yrs</span></div>
+            <input type="range" id="rngHold" class="field__range" min="1" max="30" step="1" aria-label="Hold period in years">
+          </div>
+
+          <h3 style="margin-top:1.6rem">Condo — defaults <span class="ptc__chip ptc__chip--condo">Condo</span></h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>HOA</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpCondoHOA" value="425" min="0" step="25" aria-label="Condo HOA"><span class="suffix">/ mo</span></div>
+              <span class="field__hint">Covers exterior, roof, common areas, sometimes water/trash. $300–$700 typical.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>HO-6 insurance</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpCondoIns" value="650" min="0" step="50" aria-label="Condo insurance"><span class="suffix">/ yr</span></div>
+              <span class="field__hint">Interior-only — building shell is on the HOA's master policy.</span>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Maintenance reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpCondoMaint" value="0.4" min="0" max="3" step="0.1" aria-label="Condo maintenance reserve"><span class="suffix">% / yr</span></div>
+              <span class="field__hint">Lower — HOA handles exterior. Cover interior systems and finishes.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Utilities</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpCondoUtil" value="180" min="0" step="10" aria-label="Condo utilities"><span class="suffix">/ mo</span></div>
+              <span class="field__hint">Lower — shared walls, smaller envelope.</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Townhouse — defaults <span class="ptc__chip ptc__chip--town">Town</span></h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>HOA</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTownHOA" value="225" min="0" step="25" aria-label="Townhouse HOA"><span class="suffix">/ mo</span></div>
+              <span class="field__hint">Lower than condo — typically covers landscaping and limited common areas, not the building.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Insurance (HO-3)</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTownIns" value="1400" min="0" step="50" aria-label="Townhouse insurance"><span class="suffix">/ yr</span></div>
+              <span class="field__hint">Standard homeowner policy — you own the structure.</span>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Maintenance reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTownMaint" value="0.8" min="0" max="3" step="0.1" aria-label="Townhouse maintenance reserve"><span class="suffix">% / yr</span></div>
+              <span class="field__hint">Moderate — you own the structure but share walls (less weather exposure).</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Utilities</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpTownUtil" value="240" min="0" step="10" aria-label="Townhouse utilities"><span class="suffix">/ mo</span></div>
+              <span class="field__hint">Between condo and SF — shared walls, full envelope.</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top:1.6rem">Single-family — defaults <span class="ptc__chip ptc__chip--sf">SF</span></h3>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>HOA</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpSfHOA" value="0" min="0" step="25" aria-label="Single-family HOA"><span class="suffix">/ mo</span></div>
+              <span class="field__hint">Often $0 — but can be $50–$200 in newer planned communities.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Insurance (HO-3)</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpSfIns" value="1800" min="0" step="50" aria-label="Single-family insurance"><span class="suffix">/ yr</span></div>
+              <span class="field__hint">Higher than townhouse — full exterior exposure, separate structure.</span>
+            </div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <div class="field__label"><span>Maintenance reserve</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpSfMaint" value="1.0" min="0" max="3" step="0.1" aria-label="Single-family maintenance reserve"><span class="suffix">% / yr</span></div>
+              <span class="field__hint">Highest — you own everything: roof, siding, yard, foundation.</span>
+            </div>
+            <div class="field">
+              <div class="field__label"><span>Utilities</span></div>
+              <div class="field__input has-suffix"><input type="number" id="inpSfUtil" value="285" min="0" step="10" aria-label="Single-family utilities"><span class="suffix">/ mo</span></div>
+              <span class="field__hint">Highest — full envelope, no shared walls, often larger square footage.</span>
+            </div>
+          </div>
+
+          <details class="calc__math">
+            <summary>How this is calculated</summary>
+            <div class="calc__math__body">
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Same scenario, different cost structure.</strong> All three property types use the same purchase price, down payment, rate, term, hold period, and property tax rate. Each gets its own HOA, insurance, maintenance reserve, and utilities to reflect what's structurally different about owning that type.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Monthly cost</strong> = P&amp;I (same all three) + property tax/12 (same all three) + insurance/12 (varies) + HOA (varies) + maintenance reserve (varies) + PMI if down &lt; 20% (same all three) + utilities (varies). <strong style="color:var(--ink)">Total cost over horizon</strong> = monthly cost × hold months. Doesn't include closing costs (same all three) or selling costs.</p>
+              <p style="margin-bottom:.6rem"><strong style="color:var(--ink)">Defaults are editable.</strong> The values shown are calibrated ranges, not your specific home. Real HOA fees, maintenance reserves, and utility costs vary widely by metro, building age, and individual property. Replace each field with your actual numbers for a serious comparison.</p>
+              <p class="calc__math__cta"><a href="methodology.html#mortgage-payment-formula">Read the full methodology →</a><span class="calc__math__reviewed" title="Defaults and assumptions reviewed">Defaults reviewed May 2026</span></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="calc__out" id="calcOut" aria-live="polite">
+          <span class="calc__out__eyebrow">Same price, three property types over <span id="outHold">7</span> years</span>
+
+          <div class="ptc__verdict" id="verdictBlock">
+            <div class="ptc__verdict__label">Lowest total cost over your hold:</div>
+            <div class="ptc__verdict__answer" id="outVerdict">—</div>
+            <div class="ptc__verdict__by"><strong id="outDiff">—</strong></div>
+          </div>
+
+          <div class="ptc__compare">
+            <div class="ptc__col" data-type="condo">
+              <div class="ptc__col__head">
+                <span class="ptc__chip ptc__chip--condo">Condo</span>
+              </div>
+              <div class="ptc__col__big">
+                <span class="ptc__col__big__label">Monthly</span>
+                <span class="ptc__col__big__num" id="outCondoMo">—</span>
+              </div>
+              <div class="ptc__col__rows">
+                <div class="ptc__row"><span>P&amp;I + tax + PMI</span><span id="outCondoFix">—</span></div>
+                <div class="ptc__row"><span>HOA</span><span id="outCondoHoa">—</span></div>
+                <div class="ptc__row"><span>Insurance</span><span id="outCondoIns">—</span></div>
+                <div class="ptc__row"><span>Maintenance</span><span id="outCondoMaint">—</span></div>
+                <div class="ptc__row"><span>Utilities</span><span id="outCondoUtil">—</span></div>
+              </div>
+              <div class="ptc__col__total">
+                <span>Total over <span class="ptc__hold">7</span> yrs</span>
+                <span id="outCondoTotal">—</span>
+              </div>
+            </div>
+
+            <div class="ptc__col" data-type="town">
+              <div class="ptc__col__head">
+                <span class="ptc__chip ptc__chip--town">Townhouse</span>
+              </div>
+              <div class="ptc__col__big">
+                <span class="ptc__col__big__label">Monthly</span>
+                <span class="ptc__col__big__num" id="outTownMo">—</span>
+              </div>
+              <div class="ptc__col__rows">
+                <div class="ptc__row"><span>P&amp;I + tax + PMI</span><span id="outTownFix">—</span></div>
+                <div class="ptc__row"><span>HOA</span><span id="outTownHoa">—</span></div>
+                <div class="ptc__row"><span>Insurance</span><span id="outTownIns">—</span></div>
+                <div class="ptc__row"><span>Maintenance</span><span id="outTownMaint">—</span></div>
+                <div class="ptc__row"><span>Utilities</span><span id="outTownUtil">—</span></div>
+              </div>
+              <div class="ptc__col__total">
+                <span>Total over <span class="ptc__hold">7</span> yrs</span>
+                <span id="outTownTotal">—</span>
+              </div>
+            </div>
+
+            <div class="ptc__col" data-type="sf">
+              <div class="ptc__col__head">
+                <span class="ptc__chip ptc__chip--sf">Single-family</span>
+              </div>
+              <div class="ptc__col__big">
+                <span class="ptc__col__big__label">Monthly</span>
+                <span class="ptc__col__big__num" id="outSfMo">—</span>
+              </div>
+              <div class="ptc__col__rows">
+                <div class="ptc__row"><span>P&amp;I + tax + PMI</span><span id="outSfFix">—</span></div>
+                <div class="ptc__row"><span>HOA</span><span id="outSfHoa">—</span></div>
+                <div class="ptc__row"><span>Insurance</span><span id="outSfIns">—</span></div>
+                <div class="ptc__row"><span>Maintenance</span><span id="outSfMaint">—</span></div>
+                <div class="ptc__row"><span>Utilities</span><span id="outSfUtil">—</span></div>
+              </div>
+              <div class="ptc__col__total">
+                <span>Total over <span class="ptc__hold">7</span> yrs</span>
+                <span id="outSfTotal">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ptc__context">
+            <div class="ptc__context__title">What the monthly number doesn't show</div>
+            <ul class="ptc__context__list">
+              <li><strong>Special assessments (condos):</strong> when the building needs a new roof, elevator, or major repair, the HOA may bill owners directly — typically $5,000–$50,000+. The maintenance reserve here doesn't capture this; the risk is real.</li>
+              <li><strong>HOA growth:</strong> condo and townhouse HOAs typically rise 4–8% annually. Single-family with no HOA is exempt from this escalator.</li>
+              <li><strong>Yard and exterior burden (single-family):</strong> the maintenance reserve assumes you fund the work. The actual time and effort cost — your weekends, or the recurring landscaper bill — isn't in the dollar number.</li>
+              <li><strong>Resale liquidity:</strong> single-family generally sells fastest, condos slowest in soft markets. If you might exit early, that risk shows up as friction at sale.</li>
+              <li><strong>Lifestyle fit:</strong> the calculator picks the cheapest option financially. Privacy, yard, walkability, and shared-wall noise tolerance are quality-of-life factors the math doesn't capture.</li>
+            </ul>
+          </div>
+
+          <div class="ptc__disclaimer">
+            <strong>Estimates only.</strong> HOA fees, maintenance burdens, and insurance premiums vary widely by building, neighborhood, and individual property. Use the actual numbers from the listing and quotes from your insurer for a real comparison.
+          </div>
+        </div>
+      </form>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="article">
+      <div class="article__inner">
+        <span class="eyebrow">Why this comparison matters</span>
+        <h2 style="margin-top:.85rem">Same price tag, very different ownership cost.</h2>
+        <p class="article__lede">A first-time buyer comparing a $425,000 condo against a $425,000 townhouse against a $425,000 single-family home is comparing three structurally different cost commitments. The mortgage payment is identical. Almost nothing else is.</p>
+        <p>Run through the structural differences:</p>
+        <ul>
+          <li><strong>HOA fees:</strong> the condo carries $300–$700/month covering the building, the townhouse carries $150–$300/month covering landscaping and limited common areas, the single-family typically carries $0 (or $50–$200 in newer planned communities).</li>
+          <li><strong>Insurance:</strong> the condo needs an HO-6 policy (interior-only, ~$500–$900/year) because the HOA's master policy covers the structure. The townhouse and single-family carry HO-3 policies covering the structure (~$1,200–$2,500/year, varying by location and structure).</li>
+          <li><strong>Maintenance reserve:</strong> condos run at ~0.3–0.5% of value annually because the HOA covers exterior; townhouses at ~0.6–0.9% because owners share walls but own the structure; single-family at ~1.0–1.3% because owners cover everything from roof to yard.</li>
+          <li><strong>Utilities:</strong> condos run lowest (shared walls, sometimes master-metered services), townhouses moderate, single-family highest (full envelope, larger footprint).</li>
+        </ul>
+        <p>The condo's monthly HOA fee is the most visible difference, but it's not the largest one. Add maintenance reserve, insurance, and utility differences, and the total varies by $300–$600/month between property types at the same price point. Over a 7-year hold, that's $25,000–$50,000.</p>
+
+        <h3>Why the condo's HOA fee can still be the cheaper option</h3>
+        <p>Looking at HOA in isolation, condos appear most expensive. Looking at total monthly cost — including maintenance reserve and utilities — condos often come out cheapest in absolute terms. The HOA fee is paying for things you'd otherwise pay separately: roof reserves, exterior insurance, landscaping, building maintenance. The question isn't "is the HOA expensive?" — it's "is the bundled HOA cheaper than DIY-ing the same services on a single-family home?" Sometimes it is, sometimes it isn't.</p>
+
+        <h3>The special-assessment asterisk</h3>
+        <p>The largest cost category this calculator can't easily model is the special assessment — the one-time bill condo (and some townhouse) HOAs send when major repairs exceed reserves. New roof, new elevator, foundation issue, exterior repaint, deferred maintenance after a leadership change. Typical special assessments run $5,000–$25,000; large ones run $50,000+ (Florida condo law changes after the Surfside collapse have driven assessments north of $100,000 in some buildings). When evaluating a specific condo, the right diligence is reading the most recent reserve study and HOA financials. Healthy reserves predict low future assessments. Underfunded reserves predict the opposite.</p>
+
+        <h3>The single-family hidden cost</h3>
+        <p>Single-family ownership has its own under-counted line: <strong>your time</strong>. The maintenance reserve assumes you fund the work. The actual labor — mowing, gutters, snow, exterior repairs, landscaping — is either your weekends or a recurring landscaper bill. A typical landscaping contract runs $80–$200/month seasonally; budgeting that adds $1,000–$2,400/year that the calculator's defaults don't capture unless you raise the maintenance reserve to compensate.</p>
+
+        <h3>How to use this honestly</h3>
+        <p>Run the defaults to see the structural shape, then replace each per-type number with values from specific listings you're actually considering. The HOA disclosure documents for any condo or townhouse should show the current fee, recent fee history, reserve study results, and any pending assessments. Insurance can be quoted in 5 minutes. Utility ranges are in past statements (ask the seller). The honest version of this comparison is between three real properties, not three averages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="ptc-faq-title">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">FAQ</span>
+      <h2 id="ptc-faq-title">Common property-type questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Are the default HOA, maintenance, and utility numbers accurate?</summary>
+        <div class="faq__a">They're calibrated mid-range estimates for typical U.S. metros — not predictions for any specific home. HOA fees in particular vary enormously: a basic suburban condo might run $300/month while a luxury high-rise can run $1,500+. For a real comparison, replace each per-type number with the actual figures from listings you're considering. The HOA disclosure document and the seller's recent utility bills are the right sources.</div>
+      </details>
+      <details>
+        <summary>What's the difference between HO-3 and HO-6 insurance?</summary>
+        <div class="faq__a">HO-3 is the standard homeowner policy — covers the dwelling structure and your possessions. Townhouse and single-family owners need HO-3. HO-6 is the condo policy — covers your interior finishes, possessions, and liability, but not the building structure (that's on the condo association's master policy). HO-6 is roughly 30–50% cheaper than HO-3 because it insures less. Both should be quoted from your insurer for accurate numbers.</div>
+      </details>
+      <details>
+        <summary>Why is the condo maintenance reserve only 0.4%?</summary>
+        <div class="faq__a">Because the HOA covers the major exterior costs that drive the 1% rule for single-family homes — roof, siding, foundation, exterior paint, landscaping. As a condo owner, you're responsible for interior systems (your HVAC, water heater, appliances, finishes) and typically little else. 0.4% covers those interior items at the same approximate rate per dollar of insured interior value.</div>
+      </details>
+      <details>
+        <summary>Should I worry about special assessments?</summary>
+        <div class="faq__a">Yes — but with diligence, not avoidance. Every condo and most townhouse HOAs maintain reserves to fund predictable major repairs. Healthy reserves (typically 70%+ funded against the reserve study's recommendation) reduce special-assessment risk substantially. Underfunded reserves (under 30%) signal that bills are coming. Always request the reserve study, recent HOA meeting minutes, and 2–3 years of financial statements before buying a condo. This calculator can't model special-assessment risk; the diligence is yours to do.</div>
+      </details>
+      <details>
+        <summary>What about the time cost of maintaining a single-family home?</summary>
+        <div class="faq__a">It's real and not in the dollar number. A single-family home generates 5–15 hours of upkeep per month on average (mowing, gutters, snow, minor repairs, exterior care). If you'd hire that out, add $80–$200/month to the maintenance line. If you'd do it yourself, add the value of those hours to your decision — it's not free.</div>
+      </details>
+      <details>
+        <summary>Does this calculator account for appreciation differences?</summary>
+        <div class="faq__a">No — appreciation isn't in this comparison. Historically, single-family homes have appreciated faster than condos in most metros, but the gap varies and isn't reliable in every market. For appreciation modeling, use the <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a> or <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a> calculators with property-type-specific appreciation assumptions. This calculator focuses on monthly carrying cost, where the differences are clearer and more measurable.</div>
+      </details>
+      <details>
+        <summary>Does HOA include utilities?</summary>
+        <div class="faq__a">Sometimes. Some condo HOAs include water, trash, and basic internet. Some include nothing beyond exterior maintenance. Townhouse HOAs typically include landscaping but rarely utilities. Check the HOA disclosure for the specific building. If utilities are included, lower the per-type utilities number and leave HOA at the disclosed level. If not, use the actual utility cost.</div>
+      </details>
+      <details>
+        <summary>Is this investment advice?</summary>
+        <div class="faq__a">No. OwningCost is not a financial advisor and this calculator is not a recommendation. It's a comparison tool that runs your inputs through documented arithmetic. Lifestyle, location, neighborhood quality, and personal preferences aren't in the math — those are yours to weigh.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; guides</span>
+      <h2>Run the related comparisons.</h2>
+    </div>
+    <div class="rcards">
+      <a href="true-monthly-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True Monthly Cost</h3>
+        <p>The same monthly math on a single property — useful once you've picked a type.</p>
+      </a>
+      <a href="true-first-year-cost-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>True First-Year Cost</h3>
+        <p>Once you've picked a property type, what does year-one actually cost?</p>
+      </a>
+      <a href="affordability-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Affordability + Risk</h3>
+        <p>What price range fits before picking the type — Conservative / Comfortable / Stretch.</p>
+      </a>
+      <a href="hidden-costs-of-homeownership.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>Hidden costs of homeownership</h3>
+        <p>The lines that vary most by property type — read first if your gut says "the HOA seems high."</p>
+      </a>
+      <a href="homeowners-insurance-explained.html" class="rcard">
+        <span class="rcard__tag">Guide</span>
+        <h3>Homeowners insurance explained</h3>
+        <p>HO-3 vs. HO-6 in plain language — what each policy covers and why it matters.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Compare with real numbers</span>
+      <h2 style="margin-top:.85rem">Replace the defaults with listings you're actually considering.</h2>
+      <p>The HOA disclosure document, recent insurance quotes, and the seller's utility bills are the right sources. With those plugged in, the comparison becomes specific to your decision — not three averages.</p>
+      <div class="ctaband__row">
+        <a href="#calcForm" class="btn">Open the calculator</a>
+        <a href="buying.html" class="btn btn--ghost">Visit Buying hub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="zip-lookup.html">Local / ZIP</a></li>
+          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      mobile.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      if (e.target.tagName === 'A'){
+        mobile.classList.remove('is-open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open menu');
+      }
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var headerH = header.offsetHeight || 78;
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var rect = target.getBoundingClientRect();
+      var destination = rect.top + window.scrollY - headerH - 12;
+      if (prefersReduced){ window.scrollTo(0, destination); return; }
+      var start = window.scrollY;
+      var diff = destination - start;
+      var duration = Math.min(900, Math.max(400, Math.abs(diff) * 0.5));
+      var t0 = null;
+      function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+      function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0)/duration);
+        window.scrollTo(0, start + diff * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ---- Mega-menu (Calculators dropdown) — touch/keyboard support ----
+  // CSS handles hover & focus-within; this adds tap-to-toggle on touch
+  // devices, where iOS hover behavior is unreliable.
+  var megaItems = document.querySelectorAll('.nav__item--mega');
+  megaItems.forEach(function(item){
+    var trigger = item.querySelector('a.has-mega');
+    if (!trigger) return;
+
+    // On coarse pointers (touch), the FIRST tap opens the panel and
+    // suppresses navigation; the SECOND tap on the same trigger follows
+    // the link to the calculators hub.
+    trigger.addEventListener('click', function(e){
+      var coarse = window.matchMedia('(pointer:coarse)').matches;
+      if (!coarse) return; // desktop hover handles it
+      if (!item.classList.contains('is-open')){
+        e.preventDefault();
+        // Close any other open mega items
+        megaItems.forEach(function(o){ if (o !== item) o.classList.remove('is-open'); });
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded','true');
+      } else {
+        // already open — let the click navigate
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  // Click outside any mega → close all
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav__item--mega')){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      megaItems.forEach(function(item){
+        item.classList.remove('is-open');
+        var t = item.querySelector('a.has-mega');
+        if (t) t.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var v = function(id){ return parseFloat($(id).value) || 0; };
+
+  function fmtUSD(n){
+    if (!isFinite(n)) return '—';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString('en-US');
+  }
+
+  function fmtMo(n){ return fmtUSD(n) + '/mo'; }
+
+  function compute(){
+    var price = v('inpPrice');
+    var downPct = v('inpDown') / 100;
+    var rate = v('inpRate') / 100;
+    var term = v('inpTerm');
+    var taxRate = v('inpTax') / 100;
+    var hold = Math.max(1, Math.round(v('inpHold')));
+
+    // Loan + P&I (same for all 3 types)
+    var loan = price * (1 - downPct);
+    var monthlyRate = rate / 12;
+    var nMonths = term * 12;
+    var pi = monthlyRate > 0
+      ? loan * (monthlyRate * Math.pow(1+monthlyRate, nMonths)) / (Math.pow(1+monthlyRate, nMonths) - 1)
+      : loan / nMonths;
+    if (!isFinite(pi)) pi = 0;
+    var monthlyTax = price * taxRate / 12;
+    var pmi = downPct < 0.20 ? loan * 0.0075 / 12 : 0;
+    var fixedShared = pi + monthlyTax + pmi;
+
+    // Per-type structure
+    var types = [
+      {
+        key: 'Condo',
+        hoa: v('inpCondoHOA'),
+        ins: v('inpCondoIns') / 12,
+        maint: price * (v('inpCondoMaint')/100) / 12,
+        util: v('inpCondoUtil'),
+        outMo: 'outCondoMo', outFix: 'outCondoFix', outHoa: 'outCondoHoa',
+        outIns: 'outCondoIns', outMaint: 'outCondoMaint', outUtil: 'outCondoUtil',
+        outTotal: 'outCondoTotal'
+      },
+      {
+        key: 'Townhouse',
+        hoa: v('inpTownHOA'),
+        ins: v('inpTownIns') / 12,
+        maint: price * (v('inpTownMaint')/100) / 12,
+        util: v('inpTownUtil'),
+        outMo: 'outTownMo', outFix: 'outTownFix', outHoa: 'outTownHoa',
+        outIns: 'outTownIns', outMaint: 'outTownMaint', outUtil: 'outTownUtil',
+        outTotal: 'outTownTotal'
+      },
+      {
+        key: 'Single-family',
+        hoa: v('inpSfHOA'),
+        ins: v('inpSfIns') / 12,
+        maint: price * (v('inpSfMaint')/100) / 12,
+        util: v('inpSfUtil'),
+        outMo: 'outSfMo', outFix: 'outSfFix', outHoa: 'outSfHoa',
+        outIns: 'outSfIns', outMaint: 'outSfMaint', outUtil: 'outSfUtil',
+        outTotal: 'outSfTotal'
+      }
+    ];
+
+    var results = [];
+    types.forEach(function(t){
+      var monthly = fixedShared + t.hoa + t.ins + t.maint + t.util;
+      var total = monthly * hold * 12;
+      results.push({key: t.key, monthly: monthly, total: total});
+      $(t.outMo).textContent = fmtMo(monthly);
+      $(t.outFix).textContent = fmtUSD(fixedShared);
+      $(t.outHoa).textContent = fmtUSD(t.hoa);
+      $(t.outIns).textContent = fmtUSD(t.ins);
+      $(t.outMaint).textContent = fmtUSD(t.maint);
+      $(t.outUtil).textContent = fmtUSD(t.util);
+      $(t.outTotal).textContent = fmtUSD(total);
+    });
+
+    // Update hold-period text in column footers
+    document.querySelectorAll('.ptc__hold').forEach(function(el){ el.textContent = hold; });
+    $('outHold').textContent = hold;
+
+    // Verdict — find lowest-total
+    results.sort(function(a, b){ return a.total - b.total; });
+    var lowest = results[0];
+    var second = results[1];
+    var third = results[2];
+    var diff = second.total - lowest.total;
+
+    // Highlight winner column
+    document.querySelectorAll('.ptc__col').forEach(function(col){
+      col.classList.remove('is-winner');
+    });
+    var winnerKey = lowest.key === 'Condo' ? 'condo' : (lowest.key === 'Townhouse' ? 'town' : 'sf');
+    var winnerCol = document.querySelector('.ptc__col[data-type="' + winnerKey + '"]');
+    if (winnerCol) winnerCol.classList.add('is-winner');
+
+    var verdictEl = $('outVerdict');
+    var diffEl = $('outDiff');
+    var block = $('verdictBlock');
+    var threshold = lowest.total * 0.02;
+    if (diff < threshold){
+      verdictEl.textContent = 'Roughly tied';
+      diffEl.textContent = 'Within 2% of each other — quality-of-life factors should decide';
+      block.dataset.lead = 'tie';
+    } else {
+      verdictEl.textContent = lowest.key;
+      diffEl.textContent = fmtUSD(diff) + ' less than ' + second.key + ' over ' + hold + ' year' + (hold > 1 ? 's' : '') + ' (' + fmtUSD(third.total - lowest.total) + ' less than ' + third.key + ')';
+      block.dataset.lead = winnerKey;
+    }
+  }
+
+  var ids = ['inpPrice','inpDown','inpRate','inpTerm','inpTax','inpHold',
+             'inpCondoHOA','inpCondoIns','inpCondoMaint','inpCondoUtil',
+             'inpTownHOA','inpTownIns','inpTownMaint','inpTownUtil',
+             'inpSfHOA','inpSfIns','inpSfMaint','inpSfUtil'];
+  ids.forEach(function(id){
+    var el = $(id);
+    if (el){
+      el.addEventListener('input', compute);
+      el.addEventListener('change', compute);
+    }
+  });
+
+  window.__OC_SLIDER_PAIRS__ = [
+    {inp:'inpPrice', rng:'rngPrice', lbl:'lblPrice', fmt:'USD'},
+    {inp:'inpDown',  rng:'rngDown',  lbl:'lblDown',  fmt:'PCT'},
+    {inp:'inpRate',  rng:'rngRate',  lbl:'lblRate',  fmt:'PCT2'},
+    {inp:'inpHold',  rng:'rngHold',  lbl:'lblHold',  fmt:'YR'}
+  ];
+
+  function fmt(kind, val){
+    var n = parseFloat(val); if (isNaN(n)) return val;
+    if (kind === 'USD') return '$' + Math.round(n).toLocaleString('en-US');
+    if (kind === 'PCT') return (Math.round(n*10)/10) + '%';
+    if (kind === 'PCT2') return (Math.round(n*100)/100).toFixed(2) + '%';
+    if (kind === 'YR')  return Math.round(n) + ' yr';
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  (window.__OC_SLIDER_PAIRS__ || []).forEach(function(cfg){
+    var inp = $(cfg.inp), rng = $(cfg.rng), lbl = $(cfg.lbl);
+    if (!inp) return;
+    function paint(){ if (lbl) lbl.textContent = fmt(cfg.fmt, inp.value); }
+    if (rng){
+      rng.value = inp.value;
+      rng.addEventListener('input', function(){
+        inp.value = rng.value;
+        paint();
+        inp.dispatchEvent(new Event('input', {bubbles:true}));
+      });
+      inp.addEventListener('input', function(){
+        var x = parseFloat(inp.value);
+        if (!isNaN(x)){
+          var mn = parseFloat(rng.min), mx = parseFloat(rng.max);
+          if (x < mn) rng.value = mn;
+          else if (x > mx) rng.value = mx;
+          else rng.value = x;
+        }
+        paint();
+      });
+    } else {
+      inp.addEventListener('input', paint);
+    }
+    paint();
+  });
+
+  compute();
+})();
+</script>
+
+
+</body>
+</html>
