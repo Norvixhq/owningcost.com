@@ -2197,3 +2197,165 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
 .learn__path__steps p{
   margin:.2rem 0 0;font-size:.85rem;color:var(--muted);line-height:1.5;
 }
+
+/* ============================================================
+   MOBILE REFINEMENT PASS — softens the oversized feel on small
+   screens without crushing the design. Target: phones <=560px.
+   ============================================================
+   Diagnosis (May 2026): on phones the platform felt blown up,
+   primarily due to the 16.5px body baseline + 1.7 line-height +
+   ~3.5rem section padding floor + hero H1 + about__opener size.
+   This block scales those down proportionally on small screens
+   while preserving WCAG-safe sizing (no body text < 15px, no
+   tap target < 44px, no readability regression).
+   ============================================================ */
+@media (max-width:560px){
+
+  /* Slightly smaller body baseline — affects everything that uses
+     rem proportionally. 15.5px from 16.5px = ~6% reduction. Still
+     well above WCAG readability minimums. */
+  body{font-size:15.5px;line-height:1.55}
+
+  /* Tighter header on mobile — less dominant, still touch-friendly */
+  .header__inner{height:58px;gap:.7rem}
+  .brand__logo{height:30px}
+  .brand__wordmark{font-size:1rem}
+
+  /* PHERO (calculators, hubs) — trim the top hero band */
+  .phero{padding:1rem 0 1.5rem}
+  .phero h1{font-size:1.6rem;line-height:1.18;margin-top:.45rem}
+  .phero__sub{font-size:.97rem;line-height:1.5;margin-top:.55rem}
+  .phero__updated{font-size:.78rem;margin-top:.95rem}
+  .phero__meta{margin-top:.85rem;gap:.45rem}
+
+  /* AHERO (articles, About, AI in Real Estate, Learn, etc.) — same trim */
+  .ahero{padding:1.4rem 0 1rem}
+  .ahero h1{font-size:1.55rem;line-height:1.2;margin-top:.4rem}
+  .ahero__lede{font-size:.99rem;line-height:1.55;margin-top:.7rem}
+  .ahero__kicker{font-size:.66rem}
+  .ahero__meta{font-size:.82rem;gap:.7rem;margin-top:.8rem}
+  .ahero__meta span{flex-wrap:wrap}
+
+  /* Article body — slightly tighter paragraphs */
+  .article{padding:1.4rem 0 1rem}
+  .article__inner p{font-size:.99rem;line-height:1.62}
+  .article__inner h2{font-size:1.35rem;margin-top:1.55rem;line-height:1.22}
+  .article__inner h3{font-size:1.08rem;margin-top:1.25rem}
+  .article__inner ul,.article__inner ol{padding-left:1.2rem}
+  .article__inner li{font-size:.97rem;line-height:1.58;margin:.35rem 0}
+
+  /* about__opener (the big lede paragraph in flagship articles) — trim */
+  .about__opener{font-size:1.02rem;line-height:1.58;margin-bottom:1.2rem}
+
+  /* SECTION vertical rhythm — biggest single contributor to the
+     "blown up" feeling. Cut ~30% on mobile. */
+  .section{padding:2.4rem 0}
+  .section--tight{padding:1.8rem 0}
+  .section--surface{padding:2.4rem 0}
+  .section__head{margin-bottom:1.5rem}
+  .section__head h2{font-size:1.45rem;line-height:1.22}
+  .section__head .section__lede,
+  .section__head .section__sub{font-size:.97rem;line-height:1.55;margin-top:.65rem}
+
+  /* Hubcards — keep readable but trim padding */
+  .hubcard{padding:1.05rem 1.15rem}
+  .hubcard h3{font-size:1.08rem;line-height:1.25}
+  .hubcard p{font-size:.9rem;line-height:1.5;margin-top:.4rem}
+  .hubcard__cta{font-size:.85rem;margin-top:.7rem}
+  .hubcard__tag{font-size:.6rem}
+
+  /* Related cards (rcards) — same treatment */
+  .rcard{padding:1rem 1.1rem}
+  .rcard h3,.rcard h4{font-size:1.02rem;line-height:1.25}
+  .rcard p{font-size:.88rem;line-height:1.5;margin-top:.3rem}
+  .rcard__tag{font-size:.6rem}
+
+  /* CTA band — trim oversized closing CTAs */
+  .ctaband{padding:2rem 1.25rem}
+  .ctaband h2{font-size:1.4rem;line-height:1.22}
+  .ctaband p{font-size:.95rem;line-height:1.5;margin:.7rem auto 1.25rem}
+  .ctaband__row{gap:.5rem}
+
+  /* Buttons — slightly smaller on mobile to match the new rhythm */
+  .btn{padding:.7rem 1rem;font-size:.92rem}
+  .btn--sm{padding:.6rem .95rem;font-size:.86rem}
+
+  /* About-page components (used by long-form pages) */
+  .about__diff{margin:1.2rem 0}
+  .about__diff__row{padding:.85rem 0;gap:.6rem}
+  .about__diff__label{font-size:.95rem}
+  .about__diff__body{font-size:.92rem;line-height:1.55}
+  .about__reasons li{font-size:.96rem;line-height:1.58;padding-left:1.25rem}
+  .about__steps li{padding:.85rem .95rem .85rem 2.55rem;font-size:.95rem;line-height:1.55}
+  .about__steps li::before{font-size:.78rem;width:1.6rem;height:1.6rem;left:.55rem;top:.85rem}
+
+  /* Learn-page cluster cards — tighten padding */
+  .learn__cluster{padding:1.15rem 1.2rem 1.05rem}
+  .learn__cluster__head h3{font-size:1.18rem;line-height:1.22}
+  .learn__cluster__head p{font-size:.92rem;line-height:1.5}
+  .learn__article{padding:.75rem .85rem .7rem}
+  .learn__article h4{font-size:.92rem}
+  .learn__article p{font-size:.82rem;line-height:1.45}
+  .learn__path{padding:1.15rem 1.2rem 1.05rem}
+  .learn__path__head h3{font-size:1.18rem}
+  .learn__beginners{padding:1.15rem 1.2rem 1.05rem;margin-top:1rem}
+
+  /* FAQ — tighten */
+  .faq summary{font-size:1rem;padding:1rem 2rem 1rem 0}
+  .faq__a{font-size:.93rem;line-height:1.55;padding:0 0 1rem}
+
+  /* Breadcrumb — less prominent on mobile */
+  .crumbs{font-size:.78rem;padding:.65rem 0 .25rem}
+
+  /* Container side padding — keep readable line lengths without
+     edge-to-edge feel */
+  .container{padding-left:1.1rem;padding-right:1.1rem}
+
+  /* Eyebrows / kickers — less shouty */
+  .eyebrow,.section__kicker{font-size:.62rem;letter-spacing:.14em}
+
+  /* Global H1 — the floor of clamp(2.25rem, ...) is too big for phones.
+     Override here. Pheros/aheros already overridden above; this catches
+     homepage and any other H1 not inside .phero/.ahero. */
+  h1{font-size:1.7rem;line-height:1.15}
+
+  /* HOMEPAGE HERO — trim padding + lede + proof + ctas spacing */
+  .hero{padding:1.5rem 0 2rem}
+  .hero__grid{gap:1.6rem}
+  .hero__headline{margin-top:.7rem}
+  .hero__lede{font-size:1rem;line-height:1.5;margin-top:.9rem}
+  .hero__ctas{margin-top:1.2rem;gap:.5rem}
+  .hero__proof{margin-top:1.2rem;font-size:.82rem;gap:.7rem}
+  .hero__coverage{margin-top:.85rem;font-size:.8rem}
+  .costcard{padding:1.2rem;margin-top:1rem}
+
+  /* Discoveryrow — small adjacent-content link strips */
+  .discoveryrow{font-size:.85rem;gap:.3rem .65rem;margin-top:1.1rem}
+
+  /* iOS zoom-on-focus prevention — calc form inputs must remain >=16px.
+     With the new 15.5px body baseline, .98rem = 15.2px, which triggers
+     iOS Safari to auto-zoom the viewport when the input is focused.
+     Lock to 16px explicitly on mobile. */
+  .field__input input,
+  .field__input select,
+  .cform input,
+  .cform textarea,
+  .zipcard__input,
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="search"],
+  textarea,
+  select{font-size:16px}
+}
+
+/* Even tighter on very small phones (iPhone SE / older Androids) */
+@media (max-width:380px){
+  .phero h1,.ahero h1{font-size:1.42rem}
+  .section{padding:2rem 0}
+  .section--tight{padding:1.5rem 0}
+  .section__head h2,.ctaband h2{font-size:1.3rem}
+  .hubcard{padding:.95rem 1.05rem}
+  .rcard{padding:.9rem 1rem}
+  .container{padding-left:.95rem;padding-right:.95rem}
+}
