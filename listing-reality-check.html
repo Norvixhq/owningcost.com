@@ -132,33 +132,6 @@
     font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);
   }
   .lrc-callout__body{font-size:.85rem;color:var(--muted);line-height:1.55}
-
-  .urlbar{
-    display:flex;gap:.5rem;background:#fff;border:1.5px solid var(--border);
-    border-radius:12px;padding:.45rem;align-items:center;
-    transition:border-color .2s ease, box-shadow .2s ease;
-  }
-  .urlbar:focus-within{border-color:var(--blue-300);box-shadow:0 0 0 4px rgba(28,109,217,.08)}
-  .urlbar input{
-    flex:1;border:0;outline:0;background:transparent;font:inherit;color:var(--ink);
-    padding:.55rem .55rem;font-size:.95rem;min-width:0;
-  }
-  .urlbar input::placeholder{color:var(--subtle)}
-  .urlbar__btn{
-    flex:0 0 auto;background:var(--surface-2);color:var(--subtle);border:1px solid var(--border);
-    border-radius:8px;padding:.55rem .85rem;font-size:.82rem;font-weight:600;cursor:not-allowed;
-    letter-spacing:.01em;
-  }
-  .urlbar__hint{
-    margin-top:.55rem;font-size:.78rem;color:var(--subtle);display:flex;align-items:center;gap:.4rem;
-  }
-  .urlbar__hint .dot{width:6px;height:6px;border-radius:50%;background:#D4AF37;display:inline-block}
-
-  .or-divide{
-    display:flex;align-items:center;gap:.85rem;margin:1.4rem 0 1.1rem;
-    font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--subtle);
-  }
-  .or-divide::before,.or-divide::after{content:"";flex:1;height:1px;background:var(--border)}
 </style>
 
 <script type="application/ld+json">
@@ -237,28 +210,28 @@
     <nav class="nav" aria-label="Primary">
       <a href="index.html">Home</a>
       <div class="nav__item nav__item--mega">
-      <a href="calculators.html" class="is-active has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="calculators.html" class="is-active has-mega" aria-current="page" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="mega" role="menu" aria-label="Calculators menu">
       <div class="mega__grid">
         <div class="mega__col">
           <h4 class="mega__heading">Signature</h4>
           <ul>
-            <li><a href="listing-reality-check.html">Listing Reality Check <span class="mega__tag mega__tag--sig">Signature</span></a></li>
             <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
             <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a></li>
           </ul>
         </div>
         <div class="mega__col">
           <h4 class="mega__heading">Buying</h4>
           <ul>
-            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy</a></li>
+            <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
             <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
             <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
             <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
             <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
             <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
             <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
-            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest</a></li>
           </ul>
         </div>
         <div class="mega__col">
@@ -287,7 +260,7 @@
         </div>
       </div>
       <div class="mega__footer">
-        <a href="zip-lookup.html">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
+        <a href="methodology.html">Methodology</a>
         <a href="calculators.html">See all 25 calculators</a>
       </div>
     </div>
@@ -297,8 +270,10 @@
       <div class="mega mega--section" role="menu" aria-label="Buying menu">
         <a href="buying.html" class="mega__hub-row"><span class="mega__hub-label">Buying hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
         <div class="mega__subhead">Calculators</div>
-        <a href="listing-reality-check.html" class="mega__section-link">Listing Reality Check <span class="mega__tag mega__tag--sig">Signature</span></a>
         <a href="true-monthly-cost-calculator.html" class="mega__section-link">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="listing-reality-check.html" class="mega__section-link">Listing Reality Check</a>
         <a href="cash-to-close-calculator.html" class="mega__section-link">Cash to Close</a>
         <a href="closing-cost-calculator.html" class="mega__section-link">Closing Cost</a>
         <a href="buy-now-vs-wait-calculator.html" class="mega__section-link">Buy Now vs. Wait</a>
@@ -315,9 +290,9 @@
       <div class="mega mega--section" role="menu" aria-label="Renting menu">
         <a href="renting.html" class="mega__hub-row"><span class="mega__hub-label">Renting hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
         <div class="mega__subhead">Calculators</div>
-        <a href="lease-renewal-vs-move-calculator.html" class="mega__section-link">Lease Renewal vs. Move</a>
-        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy</a>
+        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a>
         <a href="affordability-calculator.html" class="mega__section-link">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="lease-renewal-vs-move-calculator.html" class="mega__section-link">Lease Renewal vs. Move</a>
         <div class="mega__subhead">Guides</div>
         <a href="should-you-rent-another-year.html" class="mega__section-link">Should you rent another year</a>
         <a href="lease-renewal-vs-moving.html" class="mega__section-link">Lease renewal vs moving</a>
@@ -374,7 +349,7 @@
         <a href="stress-test-calculator.html" class="mega__section-link">Stress Test <span class="mega__tag mega__tag--new">New</span></a>
         <a href="house-poor-risk-calculator.html" class="mega__section-link">House Poor Risk</a>
         <a href="payment-shock-calculator.html" class="mega__section-link">Payment Shock</a>
-        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest</a>
+        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a>
       </div>
     </div>
       <div class="nav__item nav__item--mega nav__item--section">
@@ -393,20 +368,7 @@
         <a href="what-mortgage-calculators-leave-out.html" class="mega__section-link">What mortgage calculators leave out</a>
       </div>
     </div>
-      <div class="nav__item nav__item--mega nav__item--section">
-      <a href="ai-tools.html" class="has-mega" aria-haspopup="true" aria-expanded="false">AI Tools <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <div class="mega mega--section" role="menu" aria-label="AI Tools menu">
-        <a href="ai-tools.html" class="mega__hub-row"><span class="mega__hub-label">AI Tools overview</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
-        <div class="mega__subhead">Tools — Coming Soon</div>
-        <a href="compare-two-homes.html" class="mega__section-link mega__section-link--soon">Compare Two Homes <span class="mega__tag mega__tag--soon">Coming soon</span></a>
-        <a href="compare-two-loans.html" class="mega__section-link mega__section-link--soon">Compare Two Loans <span class="mega__tag mega__tag--soon">Coming soon</span></a>
-        <a href="listing-analyzer.html" class="mega__section-link mega__section-link--soon">Listing Analyzer <span class="mega__tag mega__tag--soon">Coming soon</span></a>
-        <a href="scenario-assistant.html" class="mega__section-link mega__section-link--soon">Scenario Assistant <span class="mega__tag mega__tag--soon">Coming soon</span></a>
-        <a href="should-i-wait-to-buy.html" class="mega__section-link mega__section-link--soon">Should I Wait to Buy <span class="mega__tag mega__tag--soon">Coming soon</span></a>
-        <div class="mega__subhead">Live now</div>
-        <a href="zip-lookup.html" class="mega__section-link">ZIP Intelligence <span class="mega__tag mega__tag--beta">Beta</span></a>
-      </div>
-    </div>
+      <a href="ai-in-real-estate.html">AI in Real Estate</a>
       <a href="about.html">About</a>
     </nav>
 
@@ -423,17 +385,17 @@
       <a href="index.html" class="mnav__link">Home</a>
   <details class="mnav__group" open>
     <summary>Calculators</summary>
-      <a href="listing-reality-check.html">Listing Reality Check <span class="mnav__tag mnav__tag--sig">Sig</span></a>
       <a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mnav__tag mnav__tag--sig">Sig</span></a>
       <a href="affordability-calculator.html">Affordability + Risk <span class="mnav__tag mnav__tag--sig">Sig</span></a>
-      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="listing-reality-check.html">Listing Reality Check</a>
       <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
       <a href="cash-to-close-calculator.html">Cash to Close</a>
       <a href="closing-cost-calculator.html">Closing Cost</a>
       <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
       <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
       <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
-      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
       <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
       <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
       <a href="early-payoff-calculator.html">Early Payoff</a>
@@ -448,7 +410,7 @@
       <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
       <a href="amortization-calculator.html">Amortization Schedule</a>
       <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
-      <a href="calculators.html" class="is-active">All calculators →</a>
+      <a href="calculators.html" class="is-active" aria-current="page">All calculators →</a>
   </details>
   <details class="mnav__group">
     <summary>Buying</summary>
@@ -523,16 +485,7 @@
       <a href="homeowners-insurance-explained.html">Homeowners insurance explained</a>
       <a href="what-mortgage-calculators-leave-out.html">What mortgage calculators leave out</a>
   </details>
-  <details class="mnav__group">
-    <summary>AI Tools</summary>
-      <a href="ai-tools.html">AI Tools overview →</a>
-      <a href="compare-two-homes.html">Compare Two Homes <span class="mnav__tag mnav__tag--soon">Soon</span></a>
-      <a href="compare-two-loans.html">Compare Two Loans <span class="mnav__tag mnav__tag--soon">Soon</span></a>
-      <a href="listing-analyzer.html">Listing Analyzer <span class="mnav__tag mnav__tag--soon">Soon</span></a>
-      <a href="scenario-assistant.html">Scenario Assistant <span class="mnav__tag mnav__tag--soon">Soon</span></a>
-      <a href="should-i-wait-to-buy.html">Should I Wait to Buy <span class="mnav__tag mnav__tag--soon">Soon</span></a>
-      <a href="zip-lookup.html">ZIP Intelligence <span class="mnav__tag mnav__tag--beta">Beta</span></a>
-  </details>
+  <a href="ai-in-real-estate.html" class="mnav__link">AI in Real Estate</a>
   <a href="about.html" class="mnav__link">About</a>
   </div>
 </header>
@@ -572,14 +525,6 @@
       <form class="calc reveal" id="lrcForm" onsubmit="return false" aria-label="Listing Reality Check">
         <div class="calc__form">
           <h3>Listing details</h3>
-
-          <div class="urlbar">
-            <input type="text" placeholder="Paste a Zillow, Redfin, or Realtor URL" disabled aria-label="Listing URL — coming soon" />
-            <span class="urlbar__btn" aria-disabled="true">Coming soon</span>
-          </div>
-          <div class="urlbar__hint"><span class="dot"></span> URL parsing is in development. Enter details manually below.</div>
-
-          <div class="or-divide">Or enter manually</div>
 
           <div class="field">
             <div class="field__label"><span>Home price</span><span class="field__value" id="lblLPrice"></span><span class="field__hint">listing price</span></div>
@@ -821,12 +766,6 @@
           <p>Compare total cost over your real time horizon, with appreciation and opportunity cost included.</p>
           <span class="rcard__go">Open</span>
         </a>
-        <a class="rcard" href="listing-analyzer.html">
-          <span class="rcard__tag">AI Tool</span>
-          <h4>Listing Analyzer</h4>
-          <p>Paste any listing URL and get the honest cost breakdown, the comp check, and the things the listing copy glosses over. The AI layer on top of the Reality Check.</p>
-          <span class="rcard__go">Open</span>
-        </a>
       </div>
     </div>
   </section>
@@ -864,7 +803,7 @@
           <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
           <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
           <li><a href="affordability-calculator.html">Affordability</a></li>
-          <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+          <li><a href="buy-vs-invest-calculator.html">Buy vs Invest</a></li>
           <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
           <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
           <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
@@ -880,8 +819,7 @@
           <li><a href="financing.html">Financing</a></li>
           <li><a href="risk.html">Risk</a></li>
           <li><a href="loan-types.html">Loan types</a></li>
-          <li><a href="zip-lookup.html">Local / ZIP</a></li>
-          <li><a href="ai-tools.html">AI tools</a></li>
+          <li><a href="ai-in-real-estate.html">AI in Real Estate</a></li>
           <li><a href="learn.html">Learn</a></li>
         </ul>
       </div>

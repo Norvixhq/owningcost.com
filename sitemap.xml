@@ -13,7 +13,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://owningcost.com/ai-tools.html</loc>
+    <loc>https://owningcost.com/ai-in-real-estate.html</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -77,18 +77,6 @@
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://owningcost.com/compare-two-homes.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://owningcost.com/compare-two-loans.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://owningcost.com/condo-vs-townhouse-vs-house.html</loc>
@@ -229,12 +217,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://owningcost.com/listing-analyzer.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://owningcost.com/listing-reality-check.html</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
@@ -331,22 +313,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://owningcost.com/scenario-assistant.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://owningcost.com/selling-costs-explained.html</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://owningcost.com/should-i-wait-to-buy.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://owningcost.com/should-you-rent-another-year.html</loc>
@@ -431,11 +401,5 @@
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://owningcost.com/zip-lookup.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
