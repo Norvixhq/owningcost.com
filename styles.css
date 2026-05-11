@@ -329,6 +329,114 @@ p{margin:0}
 }
 
 /* ============================================================
+   SECTION DROPDOWNS — narrower single-column panels for
+   Buying / Renting / Owning / Financing / Risk / Learn / AI Tools
+   ============================================================ */
+.mega--section{
+  width:320px;
+  padding:.75rem .9rem 1rem;
+}
+
+/* Lead "X hub →" link — distinctive lead row */
+.mega__hub-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem .6rem;
+  margin:-.15rem -.3rem .35rem;
+  border-radius:8px;
+  background:var(--surface-2, #F4F5F8);
+  font-weight:600;color:var(--ink);font-size:.94rem;
+  transition:background .15s ease, transform .15s ease;
+}
+.mega__hub-row:hover{
+  background:rgba(28,109,217,.07);
+  transform:translateX(2px);
+}
+.mega__hub-label{line-height:1.2}
+.mega__hub-arrow{color:var(--blue-700);font-weight:700;opacity:.8}
+.mega__hub-row:hover .mega__hub-arrow{opacity:1}
+
+/* Sub-section header inside a section dropdown (e.g. "Calculators", "Guides") */
+.mega__subhead{
+  font-family:var(--sans);
+  font-size:.66rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--subtle);
+  padding:.85rem .6rem .35rem;
+}
+.mega__subhead:first-child,
+.mega__hub-row + .mega__subhead{padding-top:.55rem}
+
+/* Regular section-link entries within a section dropdown */
+.mega__section-link{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:.5rem;
+  padding:.42rem .6rem;
+  border-radius:6px;
+  color:var(--ink-2);font-size:.91rem;font-weight:500;
+  line-height:1.3;
+  transition:color .15s ease, background .15s ease, transform .15s ease;
+}
+.mega__section-link:hover{
+  color:var(--blue-700);background:var(--surface-2, #F4F5F8);
+  transform:translateX(2px);
+}
+
+/* Soft de-emphasis on Coming Soon entries (AI Tools) — accurate visual state */
+.mega__section-link--soon{color:var(--muted)}
+.mega__section-link--soon:hover{color:var(--ink-2)}
+
+/* Coming Soon tag — amber, distinct from green Guide / dark Signature / blue Beta */
+.mega__tag--soon{
+  background:rgba(180,122,30,.12);
+  color:#8a5a14;
+  font-weight:700;
+}
+
+/* ============================================================
+   DESKTOP NAV — tightened spacing to fit 10 items comfortably
+   ============================================================ */
+@media (min-width:1080px){
+  .nav{gap:.02rem}
+  .nav > a, .nav__item--mega > a.has-mega{
+    padding:.55rem .55rem;
+    font-size:.87rem;
+  }
+}
+@media (min-width:1080px) and (max-width:1199px){
+  .nav > a, .nav__item--mega > a.has-mega{
+    padding:.55rem .45rem;
+    font-size:.83rem;
+  }
+}
+
+/* ============================================================
+   MOBILE DRAWER — top-level Home/About links + per-item tags
+   ============================================================ */
+.mobile-nav > a.mnav__link{
+  display:block;padding:1.05rem .25rem;
+  font-family:var(--sans);font-size:.74rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink);
+  border-bottom:1px solid var(--border);
+  -webkit-tap-highlight-color:transparent;
+}
+.mobile-nav > a.mnav__link:hover, .mobile-nav > a.mnav__link:active{color:var(--blue-700);background:var(--surface-2)}
+.mobile-nav > a.mnav__link.is-active{color:var(--blue-700)}
+
+/* Compact tags inside mobile drawer entries */
+.mnav__tag{
+  display:inline-block;margin-left:.4rem;padding:1px 7px;
+  font-family:var(--sans);font-size:.58rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--green-100, #E5F4DF);color:var(--green-800, #2E7621);
+  border-radius:99px;vertical-align:middle;
+}
+.mnav__tag--sig{background:var(--ink, #0d1321);color:#fff}
+.mnav__tag--new{background:rgba(78,182,60,.2);color:var(--green-800, #2E7621);font-weight:800}
+.mnav__tag--soon{background:rgba(180,122,30,.14);color:#8a5a14}
+.mnav__tag--beta{background:rgba(28,109,217,.12);color:var(--blue-700)}
+
+/* ============================================================
    BREADCRUMBS (subpages)
    ============================================================ */
 .crumbs{
@@ -1600,3 +1708,580 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
   text-decoration:none;transition:border-color .2s ease, color .2s ease;
 }
 .taglist a:hover{border-color:var(--blue-200);color:var(--blue-700)}
+
+/* ============================================================
+   HOMEPAGE — SESSION 3 ADDITIONS (IA Phase)
+   ============================================================ */
+
+/* Hero coverage line — small inline list of the 7 sections */
+.hero__coverage{
+  margin-top:1.1rem;
+  font-size:.84rem;color:var(--muted);
+  display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;
+  line-height:1.5;
+}
+.hero__coverage__label{
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--subtle);
+  margin-right:.15rem;
+}
+.hero__coverage a{
+  color:var(--ink-2);font-weight:500;border-bottom:1px dashed var(--border);
+  transition:color .15s ease, border-color .15s ease;
+}
+.hero__coverage a:hover{color:var(--blue-700);border-color:var(--blue-300)}
+
+/* Explore the platform — 7-card section discovery grid */
+.explore-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1rem;
+  margin-top:1.4rem;
+}
+@media (min-width:640px){.explore-grid{grid-template-columns:repeat(2, 1fr)}}
+@media (min-width:980px){.explore-grid{grid-template-columns:repeat(3, 1fr)}}
+@media (min-width:1280px){.explore-grid{grid-template-columns:repeat(4, 1fr)}}
+
+.explore-card{
+  display:flex;flex-direction:column;gap:.55rem;
+  padding:1.35rem 1.4rem 1.25rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--ink-2);
+  text-decoration:none;
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.explore-card:hover{
+  border-color:var(--blue-300);
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px -10px rgba(15,23,42,.12);
+}
+.explore-card__kicker{
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-700);
+  display:flex;align-items:center;gap:.45rem;
+}
+.explore-card h3{
+  font-size:1.05rem;font-weight:600;color:var(--ink);
+  line-height:1.3;margin:0;
+}
+.explore-card p{
+  font-size:.91rem;color:var(--muted);line-height:1.5;margin:0;
+  flex-grow:1;
+}
+.explore-card__arrow{
+  font-size:.87rem;font-weight:600;color:var(--blue-700);
+  margin-top:.35rem;
+}
+.explore-card__tag{
+  display:inline-block;padding:1px 7px;
+  font-size:.58rem;font-weight:700;letter-spacing:.1em;
+  background:rgba(180,122,30,.12);color:#8a5a14;
+  border-radius:99px;text-transform:uppercase;
+  margin-left:.2rem;
+}
+.explore-card--soon .explore-card__kicker{color:#8a5a14}
+.explore-card--soon:hover{border-color:#d4a85a}
+
+/* Comparison table — Typical mortgage calc vs OwningCost */
+.vstable{
+  margin-top:1.6rem;
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  background:var(--surface);
+}
+.vstable__head{
+  display:grid;grid-template-columns:1.8fr 1fr 1.2fr;
+  background:var(--surface-2);
+  border-bottom:1px solid var(--border);
+  font-family:var(--sans);font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);
+  padding:1rem 1.25rem;
+  gap:1rem;
+}
+.vstable__col-b{color:var(--blue-700)}
+.vstable__row{
+  display:grid;grid-template-columns:1.8fr 1fr 1.2fr;
+  border-bottom:1px solid var(--border);
+  padding:1rem 1.25rem;
+  gap:1rem;
+  align-items:start;
+  font-size:.93rem;
+  line-height:1.5;
+}
+.vstable__row:last-child{border-bottom:0}
+.vstable__row:nth-child(even){background:rgba(244,245,248,.4)}
+.vstable__label{color:var(--ink);font-weight:600}
+.vstable__hint{
+  display:block;font-size:.79rem;font-weight:400;
+  color:var(--muted);margin-top:.15rem;
+}
+.vstable__cell{color:var(--ink-2);font-size:.9rem}
+.vstable__cell--a{color:var(--muted)}
+.vstable__check{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;
+  font-size:.85rem;font-weight:700;
+  margin-right:.4rem;
+  vertical-align:middle;
+}
+.vstable__check--yes{background:rgba(78,182,60,.16);color:var(--green-800, #2E7621)}
+.vstable__check--no{background:rgba(180,30,30,.1);color:#8a3030}
+.vstable__footnote{
+  margin-top:1.1rem;font-size:.9rem;color:var(--muted);
+  text-align:center;
+}
+.vstable__footnote a{color:var(--blue-700);font-weight:600}
+
+@media (max-width:719px){
+  .vstable__head{display:none}
+  .vstable__row{
+    grid-template-columns:1fr;
+    gap:.55rem;
+    padding:1.1rem 1rem;
+  }
+  .vstable__cell--a::before{
+    content:"Typical mortgage calc: ";
+    font-weight:700;color:var(--subtle);font-size:.7rem;
+    text-transform:uppercase;letter-spacing:.1em;
+    display:block;margin-bottom:.25rem;
+  }
+  .vstable__cell--b::before{
+    content:"OwningCost: ";
+    font-weight:700;color:var(--blue-700);font-size:.7rem;
+    text-transform:uppercase;letter-spacing:.1em;
+    display:block;margin-bottom:.25rem;
+  }
+}
+
+/* Choosing your team — lender + realtor flagship panel */
+.teamgrid{
+  display:grid;grid-template-columns:1fr;gap:1.1rem;
+  margin-top:1.4rem;
+}
+@media (min-width:880px){.teamgrid{grid-template-columns:1fr 1fr}}
+
+.teamcard{
+  display:flex;flex-direction:column;gap:.7rem;
+  padding:1.6rem 1.65rem 1.5rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--ink-2);
+  text-decoration:none;
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  position:relative;
+}
+.teamcard:hover{
+  border-color:var(--blue-300);
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px -10px rgba(15,23,42,.13);
+}
+.teamcard__tag{
+  display:inline-block;align-self:flex-start;
+  font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--green-100, #E5F4DF);color:var(--green-800, #2E7621);
+  padding:3px 10px;border-radius:99px;
+}
+.teamcard h3{
+  font-family:var(--serif);font-size:1.4rem;font-weight:600;
+  color:var(--ink);line-height:1.25;margin:0;
+}
+.teamcard p{
+  font-size:.95rem;color:var(--muted);line-height:1.55;margin:0;
+  flex-grow:1;
+}
+.teamcard__arrow{
+  font-size:.92rem;font-weight:600;color:var(--blue-700);
+  margin-top:.4rem;
+}
+.team__footnote{
+  margin-top:1.2rem;font-size:.88rem;color:var(--muted);
+  text-align:center;font-style:italic;
+}
+
+/* ============================================================
+   ABOUT PAGE — SESSION 4 ADDITIONS (IA Phase)
+   ============================================================ */
+
+/* Opening paragraph — slightly larger, sets tone */
+.article__inner .about__opener{
+  font-size:1.12rem;line-height:1.65;color:var(--ink-2);
+  margin-bottom:1.6rem;
+}
+
+/* About stat grid — 4 calibrated platform stats */
+.about__statgrid{
+  display:grid;grid-template-columns:repeat(2, 1fr);gap:.85rem;
+  margin:1.4rem 0 1.8rem;
+}
+@media (min-width:640px){.about__statgrid{grid-template-columns:repeat(4, 1fr)}}
+
+.about__stat{
+  padding:1.1rem 1.15rem;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface);
+  text-align:center;
+}
+.about__stat__num{
+  font-family:var(--serif);font-size:2.1rem;font-weight:600;
+  color:var(--ink);line-height:1.1;
+}
+.about__stat__name{
+  font-family:var(--sans);font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);
+  margin-top:.3rem;
+}
+
+/* About reasons list — slightly more whitespace than ul */
+.article__inner .about__reasons{
+  margin:1rem 0 1.6rem;padding-left:1.1rem;
+}
+.article__inner .about__reasons li{
+  margin-bottom:.85rem;line-height:1.6;
+}
+
+/* Diff rows — what makes OwningCost different */
+.about__diff{
+  margin:1.4rem 0 1.8rem;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--surface);
+  overflow:hidden;
+}
+.about__diff__row{
+  display:grid;grid-template-columns:1fr;gap:.35rem;
+  padding:1.05rem 1.25rem;
+  border-bottom:1px solid var(--border);
+}
+.about__diff__row:last-child{border-bottom:0}
+.about__diff__row:nth-child(even){background:rgba(244,245,248,.4)}
+.about__diff__label{font-size:1rem;color:var(--ink);line-height:1.4}
+.about__diff__body{font-size:.94rem;color:var(--ink-2);line-height:1.55}
+.about__diff__body a{color:var(--blue-700);font-weight:500}
+
+@media (min-width:800px){
+  .about__diff__row{
+    grid-template-columns:1fr 2.1fr;
+    gap:1.2rem;align-items:start;
+  }
+}
+
+/* Audiences list — slightly tighter */
+.article__inner .about__audiences{
+  margin:1rem 0 1.4rem;padding-left:1.1rem;
+}
+.article__inner .about__audiences li{
+  margin-bottom:.75rem;line-height:1.6;
+}
+
+/* Numbered usage steps — distinctive ordered list */
+.article__inner .about__steps{
+  list-style:none;padding:0;margin:1.4rem 0 1.6rem;
+  counter-reset:about-step;
+}
+.article__inner .about__steps > li{
+  counter-increment:about-step;
+  position:relative;
+  padding:1.1rem 1.25rem 1.1rem 3.6rem;
+  margin-bottom:.85rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  line-height:1.6;
+}
+.article__inner .about__steps > li::before{
+  content:counter(about-step);
+  position:absolute;left:1rem;top:1.05rem;
+  width:2rem;height:2rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1rem;font-weight:600;
+  background:rgba(28,109,217,.1);color:var(--blue-700);
+}
+
+/* Platform path grid — 8 cards mirroring the nav structure */
+.about__pathgrid{
+  display:grid;grid-template-columns:1fr;gap:.85rem;
+  margin:1.4rem 0 1.8rem;
+}
+@media (min-width:640px){.about__pathgrid{grid-template-columns:repeat(2, 1fr)}}
+@media (min-width:1100px){.about__pathgrid{grid-template-columns:repeat(4, 1fr)}}
+
+.about__path{
+  display:flex;flex-direction:column;gap:.45rem;
+  padding:1.2rem 1.3rem 1.15rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--ink-2);text-decoration:none;
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.about__path:hover{
+  border-color:var(--blue-300);
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px -10px rgba(15,23,42,.12);
+}
+.about__path__kicker{
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-700);
+  display:flex;align-items:center;gap:.45rem;
+}
+.about__path h3{
+  font-size:1rem;font-weight:600;color:var(--ink);
+  line-height:1.3;margin:0;
+}
+.about__path p{
+  font-size:.88rem;color:var(--muted);line-height:1.5;margin:0;
+}
+.about__path__tag{
+  display:inline-block;padding:1px 7px;
+  font-size:.56rem;font-weight:700;letter-spacing:.1em;
+  background:rgba(180,122,30,.12);color:#8a5a14;
+  border-radius:99px;text-transform:uppercase;
+  margin-left:.15rem;
+}
+.about__path--soon .about__path__kicker{color:#8a5a14}
+.about__path--soon:hover{border-color:#d4a85a}
+
+/* Independence claims list */
+.article__inner .about__indep{
+  margin:1rem 0 1.4rem;padding-left:1.1rem;
+}
+.article__inner .about__indep li{
+  margin-bottom:.75rem;line-height:1.6;
+}
+
+/* "Read the full methodology" link styled as a clear next step */
+.about__methlink{
+  display:inline-block;
+  margin-top:.4rem;
+  font-weight:600;color:var(--blue-700);
+  border-bottom:1px solid var(--blue-300);
+  padding-bottom:1px;
+}
+.about__methlink:hover{color:var(--blue-900, #093A82)}
+
+/* ============================================================
+   LEARN PAGE — SESSION 5 ADDITIONS (IA Phase)
+   ============================================================ */
+
+/* Beginners panel — sits below the Start here 3-card grid */
+.learn__beginners{
+  margin-top:1.4rem;
+  padding:1.5rem 1.6rem 1.4rem;
+  background:rgba(28,109,217,.04);
+  border:1px solid var(--blue-200, #B7D2F4);
+  border-radius:14px;
+}
+.learn__beginners__head{margin-bottom:.65rem}
+.learn__beginners__kicker{
+  display:inline-block;
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-700);
+  margin-bottom:.55rem;
+}
+.learn__beginners h3{
+  font-size:1.15rem;font-weight:600;color:var(--ink);
+  margin:0 0 .35rem;line-height:1.3;
+}
+.learn__beginners__head p{
+  font-size:.92rem;color:var(--muted);line-height:1.55;margin:0;
+}
+.learn__beginners__list{
+  list-style:decimal;padding-left:1.4rem;
+  margin:.85rem 0 0;
+  font-size:.93rem;line-height:1.6;color:var(--ink-2);
+}
+.learn__beginners__list li{margin-bottom:.55rem}
+.learn__beginners__list li:last-child{margin-bottom:0}
+.learn__beginners__list a{color:var(--blue-700)}
+
+/* Cluster grid — 5 topical clusters with grouped article cards */
+.learn__clusters{
+  display:flex;flex-direction:column;gap:1.3rem;
+  margin-top:1.6rem;
+}
+
+.learn__cluster{
+  padding:1.5rem 1.6rem 1.35rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+.learn__cluster__head{margin-bottom:1rem}
+.learn__cluster__kicker{
+  display:inline-block;
+  font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--subtle);
+  margin-bottom:.4rem;
+}
+.learn__cluster__head h3{
+  font-family:var(--serif);font-size:1.35rem;font-weight:600;
+  color:var(--ink);line-height:1.25;margin:0 0 .35rem;
+}
+.learn__cluster__head p{
+  font-size:.94rem;color:var(--muted);line-height:1.55;margin:0;
+}
+
+.learn__cluster__articles{
+  display:grid;grid-template-columns:1fr;gap:.7rem;
+}
+@media (min-width:640px){.learn__cluster__articles{grid-template-columns:repeat(2, 1fr)}}
+@media (min-width:1100px){.learn__cluster__articles{grid-template-columns:repeat(3, 1fr)}}
+
+.learn__article{
+  display:flex;flex-direction:column;gap:.35rem;
+  padding:.9rem 1rem .85rem;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--ink-2);
+  text-decoration:none;
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.learn__article:hover{
+  border-color:var(--blue-300);
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px -10px rgba(15,23,42,.1);
+}
+.learn__article__tag{
+  display:inline-block;
+  align-self:flex-start;
+  padding:1px 7px;
+  font-family:var(--sans);font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  background:var(--surface-2);color:var(--subtle);
+  border-radius:99px;
+  margin-bottom:.1rem;
+}
+.learn__article h4{
+  font-size:.96rem;font-weight:600;color:var(--ink);
+  line-height:1.3;margin:0;
+}
+.learn__article p{
+  font-size:.85rem;color:var(--muted);line-height:1.5;margin:0;
+}
+
+.learn__cluster__foot{
+  margin-top:1rem;padding-top:.9rem;
+  border-top:1px solid var(--border);
+  font-size:.88rem;color:var(--muted);
+  line-height:1.7;
+}
+.learn__cluster__cta{
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--subtle);
+  margin-right:.4rem;
+}
+.learn__cluster__foot a{
+  color:var(--blue-700);font-weight:500;
+}
+.learn__cluster__foot a:hover{color:var(--blue-900, #093A82)}
+
+/* Reference grid — Glossary + Methodology surfaces */
+.learn__refgrid{
+  display:grid;grid-template-columns:1fr;gap:1rem;
+  margin-top:1.4rem;
+}
+@media (min-width:760px){.learn__refgrid{grid-template-columns:1fr 1fr}}
+
+.learn__ref{
+  display:flex;flex-direction:column;gap:.55rem;
+  padding:1.5rem 1.6rem 1.4rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--ink-2);
+  text-decoration:none;
+  transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.learn__ref:hover{
+  border-color:var(--blue-300);
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px -10px rgba(15,23,42,.13);
+}
+.learn__ref__kicker{
+  font-family:var(--sans);font-size:.66rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-700);
+}
+.learn__ref h3{
+  font-family:var(--serif);font-size:1.2rem;font-weight:600;
+  color:var(--ink);line-height:1.3;margin:0;
+}
+.learn__ref p{
+  font-size:.93rem;color:var(--muted);line-height:1.55;margin:0;
+  flex-grow:1;
+}
+.learn__ref__arrow{
+  font-size:.9rem;font-weight:600;color:var(--blue-700);
+  margin-top:.35rem;
+}
+
+/* Reading paths — 4 numbered learning sequences */
+.learn__paths{
+  display:grid;grid-template-columns:1fr;gap:1.1rem;
+  margin-top:1.6rem;
+}
+@media (min-width:920px){.learn__paths{grid-template-columns:1fr 1fr}}
+
+.learn__path{
+  padding:1.5rem 1.6rem 1.4rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+.learn__path__head{margin-bottom:1.1rem}
+.learn__path__pill{
+  display:inline-block;
+  font-family:var(--sans);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink, #0d1321);color:#fff;
+  padding:3px 10px;border-radius:99px;
+  margin-bottom:.55rem;
+}
+.learn__path__head h3{
+  font-family:var(--serif);font-size:1.3rem;font-weight:600;
+  color:var(--ink);line-height:1.25;margin:0 0 .35rem;
+}
+.learn__path__head p{
+  font-size:.92rem;color:var(--muted);line-height:1.55;margin:0;
+}
+
+.learn__path__steps{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:.7rem;
+}
+.learn__path__steps > li{
+  padding:.8rem 1rem .8rem 1rem;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-left:3px solid var(--blue-300, #B7D2F4);
+  border-radius:8px;
+  font-size:.92rem;line-height:1.55;color:var(--ink-2);
+}
+.learn__path__steps > li:last-child{
+  border-left-color:var(--green-700, #2E7621);
+}
+.learn__path__step__label{
+  display:block;
+  font-family:var(--sans);font-size:.6rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--subtle);
+  margin-bottom:.15rem;
+}
+.learn__path__steps a{
+  color:var(--blue-700);font-weight:600;
+}
+.learn__path__steps p{
+  margin:.2rem 0 0;font-size:.85rem;color:var(--muted);line-height:1.5;
+}
