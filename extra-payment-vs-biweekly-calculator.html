@@ -1,0 +1,1022 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Extra Payment vs. Biweekly vs. Annual Lump — compare mortgage payoff strategies | OwningCost</title>
+<meta name="description" content="The three real ways to pay off a mortgage early — monthly extra, annual lump sum, biweekly half-payments — modeled side-by-side. Same dollars, different math. See which actually saves the most interest on your loan." />
+<link rel="canonical" href="https://owningcost.com/extra-payment-vs-biweekly-calculator.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Extra Payment vs. Biweekly vs. Annual Lump — compare payoff strategies" />
+<meta property="og:description" content="The three real ways to pay off a mortgage early, modeled side-by-side. Same dollars, different math. See which actually saves the most interest." />
+<meta property="og:url" content="https://owningcost.com/extra-payment-vs-biweekly-calculator.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Extra Payment vs. Biweekly vs. Annual Lump | OwningCost" />
+<meta name="twitter:description" content="Three payoff strategies, same dollars, side-by-side math. See which actually saves the most interest." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  /* Three-strategy comparison grid — scoped to this calc */
+  .strategy{
+    display:grid;grid-template-columns:1fr;gap:.75rem;margin-top:1.1rem;
+  }
+  @media (min-width:760px){.strategy{grid-template-columns:repeat(3,1fr);gap:1rem}}
+  .strategy__col{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:.45rem;
+    position:relative;
+  }
+  .strategy__col--winner{border-color:var(--green-500);box-shadow:0 0 0 3px rgba(78,182,60,.12)}
+  .strategy__col__tag{
+    display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:.15rem;
+  }
+  .strategy__col--winner .strategy__col__tag{color:var(--green-700)}
+  .strategy__col h4{
+    font-family:var(--serif);font-size:1.05rem;font-weight:600;
+    color:var(--ink);margin:.1rem 0 .5rem;line-height:1.25;
+  }
+  .strategy__big{
+    font-family:var(--serif);font-size:1.55rem;font-weight:600;
+    color:var(--ink);letter-spacing:-.01em;line-height:1.05;
+    font-variant-numeric:tabular-nums;margin-top:.2rem;
+  }
+  .strategy__row{
+    display:flex;justify-content:space-between;gap:.5rem;
+    font-size:.86rem;color:var(--muted);font-variant-numeric:tabular-nums;
+    padding:.18rem 0;
+  }
+  .strategy__row strong{color:var(--ink-2);font-weight:600}
+  .strategy__divide{height:1px;background:var(--border);margin:.4rem 0}
+  .strategy__delta{
+    font-size:.82rem;color:var(--green-700);font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
+  .strategy__delta--neg{color:var(--muted)}
+  .strategy__pill{
+    position:absolute;top:.85rem;right:.85rem;
+    font-size:.62rem;font-weight:700;letter-spacing:.1em;
+    background:var(--green-100);color:var(--green-700);
+    padding:.18rem .42rem;border-radius:999px;
+  }
+
+  .baseline{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:12px;
+    padding:.95rem 1.1rem;margin-top:1rem;
+    display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;flex-wrap:wrap;
+  }
+  .baseline__label{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .baseline__row{display:flex;gap:1.25rem;align-items:baseline;flex-wrap:wrap;font-size:.92rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .baseline__row strong{color:var(--ink);font-weight:600}
+</style>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+  {"@type": "BreadcrumbList", "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://owningcost.com/calculators.html"},
+    {"@type": "ListItem", "position": 3, "name": "Extra Payment vs. Biweekly Comparison", "item": "https://owningcost.com/extra-payment-vs-biweekly-calculator.html"}
+  ]},
+  {"@type": "WebApplication", "name": "Extra Payment vs. Biweekly Comparison Calculator", "description": "Compares three early-payoff strategies side-by-side — monthly extra principal, annual lump sum, biweekly half-payments — using the same annual dollar amount to show which one actually saves the most interest.", "url": "https://owningcost.com/extra-payment-vs-biweekly-calculator.html", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "OwningCost", "url": "https://owningcost.com/"}},
+  {"@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": "What's the difference between making a monthly extra payment and making an annual lump payment?", "acceptedAnswer": {"@type": "Answer", "text": "The same dollars applied monthly beat the same dollars applied as a year-end lump, because each monthly principal reduction starts saving interest sooner. On a $400,000 loan at 6.75% over 30 years, $2,400/year applied as $200/month saves about $4,500 more in lifetime interest than the same $2,400 applied as a single annual lump. The monthly approach also pays the loan off about two months sooner. The gap is small as a percentage but real in dollars."}},
+    {"@type": "Question", "name": "Is biweekly mortgage payment actually different from monthly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, structurally. A true biweekly schedule pays half the monthly P&I every two weeks, which works out to 26 half-payments per year — the equivalent of 13 full monthly payments instead of 12. That one extra payment per year goes entirely to principal. On a $400,000 / 6.75% / 30-year loan, biweekly cuts roughly 70 months (5.8 years) off the term and saves about $121,000 in lifetime interest. The catch: most servicers don't credit half-payments as they arrive. They hold them and apply as a full monthly payment, which means most of the year you get no benefit. Achieving the biweekly effect typically requires either a true biweekly program from your servicer (sometimes with a setup fee) or manually paying 1/12 extra principal each month — which is equivalent and free."}},
+    {"@type": "Question", "name": "Should I pay biweekly or just make extra monthly payments?", "acceptedAnswer": {"@type": "Answer", "text": "Functionally they're the same if you apply equivalent dollars. Biweekly's implicit extra is one full monthly P&I per year — about $2,600 on a typical loan. Making a monthly extra payment of P&I÷12 ($217 on the same loan) produces the same payoff date and the same lifetime interest savings, without any servicer setup. Biweekly programs are sometimes sold with setup fees of $300-$700 and ongoing administration fees; those fees come straight out of the savings. The free version is just paying P&I÷12 extra each month yourself."}},
+    {"@type": "Question", "name": "Is paying off my mortgage early actually a good idea?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your alternative use for the same money. Paying down a 6.75% mortgage gives a guaranteed 6.75% after-tax return (since you're saving interest you would have paid). That beats almost any safe investment. It does not beat a 100% employer 401(k) match (which is an instant 100% return) or maxing tax-advantaged accounts (which compound tax-free). For most borrowers the right priority order is: employer 401(k) match → high-interest debt → HSA / Roth IRA → mortgage paydown vs. additional investing. Mortgage paydown is rarely the wrong move; it's just usually not the best move until the higher-leverage alternatives are exhausted."}},
+    {"@type": "Question", "name": "Can I pay extra principal on any mortgage?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always yes for residential mortgages in the US. Federal law prohibits prepayment penalties on most owner-occupied residential mortgages originated after 2014, including all conventional Qualified Mortgages, FHA, VA, and USDA loans. Read your mortgage note to confirm — the prepayment section will state whether penalties apply. Some non-QM and pre-2014 loans do carry penalties; if yours does, factor that into the comparison."}},
+    {"@type": "Question", "name": "What happens if I make an extra payment but don't tell the servicer to apply it to principal?", "acceptedAnswer": {"@type": "Answer", "text": "By default, most servicers apply extra funds either to next month's payment (delaying when interest accrues but not reducing total interest) or to a holding account where it earns nothing. To get the full benefit, you must instruct the servicer to apply the extra amount to principal. The cleanest way is online: most servicer portals have a 'pay extra principal' field separate from the main payment. If you mail a check, include the loan number and the words 'apply to principal' in the memo. If your servicer claims they can't apply extra to principal mid-month, call and escalate — they're legally required to honor written instructions on payment application under federal mortgage servicing rules."}}
+  ]}
+]}
+</script>
+
+<script src="field-help.js" defer></script>
+<!-- Meta Pixel --><script src="meta-pixel.js" async></script>
+<script src="calc-url-state.js" defer></script>
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912670585135146&ev=PageView&noscript=1" alt="" /></noscript>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="is-active has-mega" aria-current="page" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="income-required-calculator.html">Income Required <span class="mega__tag mega__tag--new">New</span></a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="early-payoff-calculator.html">Early Payoff</a></li>
+            <li><a href="extra-payment-vs-biweekly-calculator.html">Extra Payment vs. Biweekly <span class="mega__tag mega__tag--new">New</span></a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="stress-test-calculator.html">Stress Test <span class="mega__tag mega__tag--new">New</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="heloc-vs-cash-out-refi-calculator.html">HELOC vs. Cash-Out Refi <span class="mega__tag mega__tag--new">New</span></a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+            <li><a href="amortization-calculator.html">Amortization Schedule</a></li>
+            <li><a href="points-vs-no-points-calculator.html">Points vs. No Points</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="methodology.html">Methodology</a>
+        <a href="calculators.html">See all 28 calculators</a>
+      </div>
+    </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="buying.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Buying <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Buying menu">
+        <a href="buying.html" class="mega__hub-row"><span class="mega__hub-label">Buying hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="true-monthly-cost-calculator.html" class="mega__section-link">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="listing-reality-check.html" class="mega__section-link">Listing Reality Check</a>
+        <a href="cash-to-close-calculator.html" class="mega__section-link">Cash to Close</a>
+        <a href="closing-cost-calculator.html" class="mega__section-link">Closing Cost</a>
+        <a href="income-required-calculator.html" class="mega__section-link">Income Required <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="buy-now-vs-wait-calculator.html" class="mega__section-link">Buy Now vs. Wait</a>
+        <a href="true-first-year-cost-calculator.html" class="mega__section-link">True First-Year Cost</a>
+        <a href="property-type-cost-comparison-calculator.html" class="mega__section-link">Property Type Compare</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="first-time-buyer.html" class="mega__section-link">First-Time Buyer Hub <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="first-time-homebuyer-guide.html" class="mega__section-link">First-time homebuyer guide</a>
+        <a href="how-to-choose-a-realtor.html" class="mega__section-link">How to choose a realtor <span class="mega__tag">Guide</span></a>
+        <a href="how-much-house-can-you-really-afford.html" class="mega__section-link">How much house can you afford</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="renting.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Renting <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Renting menu">
+        <a href="renting.html" class="mega__hub-row"><span class="mega__hub-label">Renting hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="affordability-calculator.html" class="mega__section-link">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="lease-renewal-vs-move-calculator.html" class="mega__section-link">Lease Renewal vs. Move</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="should-you-rent-another-year.html" class="mega__section-link">Should you rent another year</a>
+        <a href="lease-renewal-vs-moving.html" class="mega__section-link">Lease renewal vs moving</a>
+        <a href="renting-a-house-vs-apartment.html" class="mega__section-link">Renting a house vs apartment</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="owning.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Owning <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Owning menu">
+        <a href="owning.html" class="mega__hub-row"><span class="mega__hub-label">Owning hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="true-monthly-cost-calculator.html" class="mega__section-link">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="stay-vs-sell-calculator.html" class="mega__section-link">Stay vs. Sell</a>
+        <a href="home-exit-cost-calculator.html" class="mega__section-link">Home Exit Cost</a>
+        <a href="early-payoff-calculator.html" class="mega__section-link">Early Payoff</a>
+        <a href="extra-payment-vs-biweekly-calculator.html" class="mega__section-link">Extra Payment vs. Biweekly <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="refinance-vs-keep-calculator.html" class="mega__section-link">Refinance vs. Keep</a>
+        <a href="pmi-calculator.html" class="mega__section-link">PMI Calculator</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="hidden-costs-of-homeownership.html" class="mega__section-link">Hidden costs of homeownership</a>
+        <a href="true-cost-of-owning-a-home.html" class="mega__section-link">True cost of owning</a>
+        <a href="selling-costs-explained.html" class="mega__section-link">Selling costs explained</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="financing.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Financing <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Financing menu">
+        <a href="financing.html" class="mega__hub-row"><span class="mega__hub-label">Financing hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Rates Center</div>
+        <a href="mortgage-rates.html" class="mega__section-link">Mortgage Rates hub <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="todays-mortgage-rates.html" class="mega__section-link">Today's rates explained</a>
+        <a href="30-year-vs-15-year-mortgage.html" class="mega__section-link">30-year vs. 15-year</a>
+        <a href="what-drives-mortgage-rates.html" class="mega__section-link">What drives rates</a>
+        <a href="mortgage-rate-vs-treasury-spread.html" class="mega__section-link">Rate vs. Treasury spread</a>
+        <a href="rate-lock-and-timing.html" class="mega__section-link">Rate lock and timing</a>
+        <a href="should-i-refinance-now.html" class="mega__section-link">Should I refinance now?</a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="fha-vs-conventional-calculator.html" class="mega__section-link">FHA vs. Conventional</a>
+        <a href="va-vs-conventional-calculator.html" class="mega__section-link">VA vs. Conventional</a>
+        <a href="arm-vs-fixed-calculator.html" class="mega__section-link">ARM vs. Fixed</a>
+        <a href="refinance-vs-keep-calculator.html" class="mega__section-link">Refinance vs. Keep</a>
+        <a href="heloc-vs-cash-out-refi-calculator.html" class="mega__section-link">HELOC vs. Cash-Out Refi <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="down-payment-strategy-calculator.html" class="mega__section-link">Down Payment Strategy</a>
+        <a href="amortization-calculator.html" class="mega__section-link">Amortization Schedule</a>
+        <a href="points-vs-no-points-calculator.html" class="mega__section-link">Points vs. No Points</a>
+        <a href="pmi-calculator.html" class="mega__section-link">PMI Calculator</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="loan-types.html" class="mega__section-link">Loan types overview</a>
+        <a href="how-to-choose-a-lender.html" class="mega__section-link">How to choose a lender <span class="mega__tag">Guide</span></a>
+        <a href="what-is-pmi-and-when-does-it-go-away.html" class="mega__section-link">What is PMI</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="risk.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Risk <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Risk menu">
+        <a href="risk.html" class="mega__hub-row"><span class="mega__hub-label">Risk hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Articles</div>
+        <a href="the-downsides-of-owning-a-home.html" class="mega__section-link">The downsides of owning</a>
+        <a href="what-2008-housing-crash-taught-buyers.html" class="mega__section-link">Lessons from 2008</a>
+        <a href="why-homeownership-is-not-risk-free.html" class="mega__section-link">Why owning isn't risk-free</a>
+        <a href="how-to-reduce-homeownership-risk.html" class="mega__section-link">How to reduce risk</a>
+        <a href="leverage-and-housing.html" class="mega__section-link">Leverage and housing</a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="stress-test-calculator.html" class="mega__section-link">Stress Test <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="house-poor-risk-calculator.html" class="mega__section-link">House Poor Risk</a>
+        <a href="payment-shock-calculator.html" class="mega__section-link">Payment Shock</a>
+        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="learn.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Learn <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Learn menu">
+        <a href="learn.html" class="mega__hub-row"><span class="mega__hub-label">Learn hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <a href="glossary.html" class="mega__section-link">Glossary (38 terms)</a>
+        <a href="methodology.html" class="mega__section-link">Methodology</a>
+        <div class="mega__subhead">Featured guides</div>
+        <a href="first-time-homebuyer-guide.html" class="mega__section-link">First-time homebuyer guide</a>
+        <a href="hidden-costs-of-homeownership.html" class="mega__section-link">Hidden costs of homeownership</a>
+        <a href="how-much-house-can-you-really-afford.html" class="mega__section-link">How much house can you afford</a>
+        <div class="mega__subhead">Explainers</div>
+        <a href="property-tax-explained.html" class="mega__section-link">Property tax explained</a>
+        <a href="homeowners-insurance-explained.html" class="mega__section-link">Homeowners insurance explained</a>
+        <a href="what-mortgage-calculators-leave-out.html" class="mega__section-link">What mortgage calculators leave out</a>
+        <div class="mega__subhead">State-by-state</div>
+        <a href="property-taxes-by-state.html" class="mega__section-link">Property taxes by state <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="homeowners-insurance-by-state.html" class="mega__section-link">Homeowners insurance by state <span class="mega__tag mega__tag--new">New</span></a>
+        <div class="mega__subhead">Practical guides</div>
+        <a href="questions-to-ask-a-landlord.html" class="mega__section-link">Questions to ask a landlord <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="how-to-compare-two-loan-estimates.html" class="mega__section-link">How to compare two Loan Estimates <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="home-maintenance-budget-guide.html" class="mega__section-link">Home maintenance budget guide <span class="mega__tag mega__tag--new">New</span></a>
+      </div>
+    </div>
+      <a href="ai-in-real-estate.html">AI in Real Estate</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <a href="index.html" class="mnav__link">Home</a>
+  <details class="mnav__group" open>
+    <summary>Calculators</summary>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="affordability-calculator.html">Affordability + Risk <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="listing-reality-check.html">Listing Reality Check</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="income-required-calculator.html">Income Required <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="extra-payment-vs-biweekly-calculator.html">Extra Payment vs. Biweekly <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="stress-test-calculator.html">Stress Test <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="heloc-vs-cash-out-refi-calculator.html">HELOC vs. Cash-Out Refi <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="calculators.html" class="is-active" aria-current="page">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Buying</summary>
+      <a href="buying.html">Buying hub →</a>
+      <a href="first-time-buyer.html">First-Time Buyer Hub <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="income-required-calculator.html">Income Required <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="first-time-homebuyer-guide.html">First-time homebuyer guide</a>
+      <a href="how-to-choose-a-realtor.html">How to choose a realtor <span class="mnav__tag">Guide</span></a>
+      <a href="how-much-house-can-you-really-afford.html">How much house can you afford</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Renting</summary>
+      <a href="renting.html">Renting hub →</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="should-you-rent-another-year.html">Should you rent another year</a>
+      <a href="lease-renewal-vs-moving.html">Lease renewal vs moving</a>
+      <a href="renting-a-house-vs-apartment.html">Renting a house vs apartment</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Owning</summary>
+      <a href="owning.html">Owning hub →</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="extra-payment-vs-biweekly-calculator.html">Extra Payment vs. Biweekly <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a>
+      <a href="true-cost-of-owning-a-home.html">True cost of owning</a>
+      <a href="selling-costs-explained.html">Selling costs explained</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Financing</summary>
+      <a href="financing.html">Financing hub →</a>
+      <a href="mortgage-rates.html">Mortgage Rates hub <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="todays-mortgage-rates.html">Today's rates explained</a>
+      <a href="30-year-vs-15-year-mortgage.html">30-year vs. 15-year</a>
+      <a href="what-drives-mortgage-rates.html">What drives rates</a>
+      <a href="mortgage-rate-vs-treasury-spread.html">Rate vs. Treasury spread</a>
+      <a href="rate-lock-and-timing.html">Rate lock and timing</a>
+      <a href="should-i-refinance-now.html">Should I refinance now?</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="heloc-vs-cash-out-refi-calculator.html">HELOC vs. Cash-Out Refi <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="loan-types.html">Loan types overview</a>
+      <a href="how-to-choose-a-lender.html">How to choose a lender <span class="mnav__tag">Guide</span></a>
+      <a href="what-is-pmi-and-when-does-it-go-away.html">What is PMI</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Risk</summary>
+      <a href="risk.html">Risk hub →</a>
+      <a href="the-downsides-of-owning-a-home.html">The downsides of owning</a>
+      <a href="what-2008-housing-crash-taught-buyers.html">Lessons from 2008</a>
+      <a href="why-homeownership-is-not-risk-free.html">Why owning isn't risk-free</a>
+      <a href="how-to-reduce-homeownership-risk.html">How to reduce risk</a>
+      <a href="leverage-and-housing.html">Leverage and housing</a>
+      <a href="stress-test-calculator.html">Stress Test <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Learn</summary>
+      <a href="learn.html">Learn hub →</a>
+      <a href="glossary.html">Glossary (38 terms)</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="first-time-homebuyer-guide.html">First-time homebuyer guide</a>
+      <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a>
+      <a href="how-much-house-can-you-really-afford.html">How much house can you afford</a>
+      <a href="property-tax-explained.html">Property tax explained</a>
+      <a href="homeowners-insurance-explained.html">Homeowners insurance explained</a>
+      <a href="property-taxes-by-state.html">Property taxes by state <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="homeowners-insurance-by-state.html">Homeowners insurance by state <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="questions-to-ask-a-landlord.html">Questions to ask a landlord <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="how-to-compare-two-loan-estimates.html">How to compare two Loan Estimates <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="home-maintenance-budget-guide.html">Home maintenance budget guide <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="what-mortgage-calculators-leave-out.html">What mortgage calculators leave out</a>
+  </details>
+  <a href="ai-in-real-estate.html" class="mnav__link">AI in Real Estate</a>
+  <a href="about.html" class="mnav__link">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="container">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">›</span>
+    <a href="calculators.html">Calculators</a>
+    <span class="sep">›</span>
+    <span class="current">Extra Payment vs. Biweekly Comparison</span>
+  </nav>
+</div>
+
+<section class="phero container" aria-labelledby="phero-title">
+  <span class="phero__kicker">Calculators · Comparison</span>
+  <h1 id="phero-title">Extra Payment vs. Biweekly vs. Annual Lump.</h1>
+  <p class="phero__sub">There are three real ways to pay off a mortgage early — monthly extra, annual lump sum, and biweekly half-payments. They're often pitched as equivalent. They're not. Same dollars, different math, different payoff dates. The calculator below shows the side-by-side on your specific loan.</p>
+  <div class="phero__meta">
+    <span><span class="dot"></span>Defaults reviewed May 2026</span>
+    <span><span class="dot"></span>Math runs in your browser</span>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container calc__container">
+    <div class="calc__intro">
+      <p>The comparison applies <strong>the same annual dollar amount</strong> three ways: spread across 12 monthly payments, dropped as one annual lump, and as biweekly half-payments. The biweekly column also shows its implicit extra (one full monthly P&amp;I per year) so you can see what dollar commitment it actually represents.</p>
+    </div>
+
+    <form class="calc reveal" id="calcForm" onsubmit="return false" aria-label="Extra Payment vs Biweekly Comparison calculator">
+      <div class="calc__form">
+        <h3>Your loan</h3>
+
+        <div class="field">
+          <div class="field__label"><span>Loan amount <button type="button" class="field__help" aria-label="Help" aria-describedby="tip-inpLoan" tabindex="0">?<span class="field__tip" role="tooltip" id="tip-inpLoan">Your current outstanding mortgage balance, not the original loan amount. Find it on your latest mortgage statement or your servicer's payoff quote.</span></button></span><span class="field__value" id="lblLoan">$400,000</span></div>
+          <div class="field__input"><span class="prefix">$</span><input type="number" id="inpLoan" value="400000" min="10000" max="3000000" step="5000" aria-label="Loan amount"></div>
+          <input type="range" id="rngLoan" aria-label="Loan amount" role="slider" class="field__range" min="50000" max="1500000" step="5000" value="400000">
+        </div>
+
+        <div class="field__grid">
+          <div class="field">
+            <div class="field__label"><span>Interest rate <button type="button" class="field__help" aria-label="Help" aria-describedby="tip-inpRate" tabindex="0">?<span class="field__tip" role="tooltip" id="tip-inpRate">The annual mortgage interest rate from your Loan Estimate. If you're early in shopping, use the current Freddie Mac PMMS average (currently around 6.4% for 30-year fixed) as a placeholder.</span></button></span><span class="field__value" id="lblRate">6.75%</span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpRate" value="6.75" min="0.5" max="15" step="0.05" aria-label="Interest rate"><span class="suffix">%</span></div>
+          </div>
+          <div class="field">
+            <div class="field__label"><span>Term <button type="button" class="field__help" aria-label="Help" aria-describedby="tip-inpTerm" tabindex="0">?<span class="field__tip" role="tooltip" id="tip-inpTerm">The number of years the loan amortizes over. 30-year is the default in the US; 15-year cuts lifetime interest by about 60% but raises the monthly payment by about a third.</span></button></span><span class="field__value" id="lblTerm">30 yrs</span></div>
+            <div class="field__input has-suffix"><input type="number" id="inpTerm" value="30" min="5" max="40" step="1" aria-label="Loan term years"><span class="suffix">yrs</span></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field__label"><span>Annual extra budget</span><span class="field__value" id="lblExtra">$2,400</span></div>
+          <div class="field__input"><span class="prefix">$</span><input type="number" id="inpExtra" value="2400" min="0" max="100000" step="100" aria-label="Annual extra budget"></div>
+          <input type="range" id="rngExtra" aria-label="Annual extra" role="slider" class="field__range" min="0" max="20000" step="100" value="2400">
+        </div>
+
+        <p class="calc__note" style="font-size:.82rem;color:var(--muted);line-height:1.5;margin-top:.65rem">
+          The same dollar amount is applied across all three strategies for an apples-to-apples comparison. Biweekly's implicit extra (one full P&amp;I payment per year) is shown separately — if it differs from your budget, biweekly is moving more or less money than the other two columns.
+        </p>
+      </div>
+
+      <div class="calc__out" id="calcOut" aria-live="polite">
+        <span class="calc__out__eyebrow">Side-by-side on your loan</span>
+
+        <div class="baseline">
+          <div>
+            <div class="baseline__label">Baseline (no extras)</div>
+          </div>
+          <div class="baseline__row">
+            <span>Payoff: <strong id="outBasePayoff">30 yrs</strong></span>
+            <span>Total interest: <strong id="outBaseInt">$534,000</strong></span>
+            <span>P&amp;I: <strong id="outBasePmt">$2,594/mo</strong></span>
+          </div>
+        </div>
+
+        <div class="strategy">
+          <div class="strategy__col" id="colMonthly">
+            <span class="strategy__col__tag">Strategy A</span>
+            <h4>Monthly extra principal</h4>
+            <div class="strategy__row"><span>Extra each month</span><span id="outMonthlyExtra">$200</span></div>
+            <div class="strategy__row"><span>Annual extra</span><span id="outMonthlyAnnual">$2,400</span></div>
+            <div class="strategy__divide"></div>
+            <div class="strategy__row"><span>Payoff in</span><strong id="outMonthlyPayoff">—</strong></div>
+            <div class="strategy__row"><span>Total interest</span><strong id="outMonthlyInt">—</strong></div>
+            <div class="strategy__big" id="outMonthlySaved">—</div>
+            <div class="strategy__delta" id="outMonthlySavedLabel">interest saved vs. baseline</div>
+          </div>
+
+          <div class="strategy__col" id="colAnnual">
+            <span class="strategy__col__tag">Strategy B</span>
+            <h4>Annual lump sum</h4>
+            <div class="strategy__row"><span>Lump each year</span><span id="outAnnualExtra">$2,400</span></div>
+            <div class="strategy__row"><span>Annual extra</span><span id="outAnnualAnnual">$2,400</span></div>
+            <div class="strategy__divide"></div>
+            <div class="strategy__row"><span>Payoff in</span><strong id="outAnnualPayoff">—</strong></div>
+            <div class="strategy__row"><span>Total interest</span><strong id="outAnnualInt">—</strong></div>
+            <div class="strategy__big" id="outAnnualSaved">—</div>
+            <div class="strategy__delta" id="outAnnualSavedLabel">interest saved vs. baseline</div>
+          </div>
+
+          <div class="strategy__col" id="colBiweekly">
+            <span class="strategy__col__tag">Strategy C</span>
+            <h4>Biweekly half-payments</h4>
+            <div class="strategy__row"><span>Each half-payment</span><span id="outBiHalf">$1,297</span></div>
+            <div class="strategy__row"><span>Annual extra (implicit)</span><span id="outBiAnnual">$2,594</span></div>
+            <div class="strategy__divide"></div>
+            <div class="strategy__row"><span>Payoff in</span><strong id="outBiPayoff">—</strong></div>
+            <div class="strategy__row"><span>Total interest</span><strong id="outBiInt">—</strong></div>
+            <div class="strategy__big" id="outBiSaved">—</div>
+            <div class="strategy__delta" id="outBiSavedLabel">interest saved vs. baseline</div>
+          </div>
+        </div>
+
+        <div class="bvi__disclaimer" style="margin-top:1rem">
+          <strong>Estimates only.</strong> The biweekly model assumes the servicer applies the extra payment once per year (most common pattern). Some true-biweekly programs credit half-payments as they arrive, which produces marginally better results. Confirm with your servicer how they actually apply biweekly payments.
+        </div>
+      </div>
+    </form>
+
+        <div class="calc__share">
+          <button type="button" id="copyShareBtn" class="calc__share-btn" aria-label="Copy share link with current calculator state">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h8M9 5l3 3-3 3"/></svg>
+            Copy share link
+          </button>
+        </div>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose">
+      <span class="eyebrow">Reading the comparison</span>
+      <h2 style="margin-top:.85rem">Same dollars, different math — here's why monthly usually wins.</h2>
+    </div>
+    <div class="article">
+      <div class="article__inner" style="max-width:none">
+
+        <p>The three columns hold one variable constant: the annual dollars you commit to extra principal. The math differences come from <em>when</em> in the year those dollars get applied. Each monthly principal reduction starts saving interest immediately on every remaining month's balance. An annual lump applied in December saves no interest for the eleven months before it lands.</p>
+
+        <h3 style="margin-top:1.6rem">Why monthly extra usually beats annual lump</h3>
+        <p>On the default loan ($400,000 at 6.75% over 30 years), $2,400/year applied as $200/month saves about $4,500 more lifetime interest than the same $2,400 applied as one December lump. The difference is small as a percentage (~4%) but real in dollars. The longer the loan and the higher the rate, the wider the gap.</p>
+
+        <p>This pattern is consistent: <strong>more frequent principal reductions earn more</strong>, because each reduction starts compounding savings against the remaining balance from the moment it's applied. Annual lump is convenient (one transaction per year, often tied to a tax refund or bonus), but it's giving up some of the math.</p>
+
+        <h3 style="margin-top:1.6rem">Where biweekly actually fits</h3>
+        <p>Biweekly's reputation as a separate magical strategy is overstated. Functionally, biweekly = one extra full P&amp;I payment per year. On the default loan, that's about $2,594/year — which is more than the $2,400 monthly-extra default. If you increase the monthly-extra budget to match ($216/month × 12 = $2,592/year), the monthly column delivers essentially identical results to biweekly without any servicer setup.</p>
+
+        <p>Where biweekly genuinely helps: <strong>forcing behavior</strong>. If you struggle to commit to monthly extras voluntarily but you can stick with an automated biweekly draft, biweekly is a useful commitment mechanism. The math is the same; the discipline is the difference.</p>
+
+        <h3 style="margin-top:1.6rem">The setup-fee trap</h3>
+        <p>Some servicers and third-party companies sell "biweekly mortgage programs" with upfront setup fees of $300-$700 and ongoing monthly admin fees of $5-$10. These fees come straight out of the savings. On a 30-year loan, a $500 setup fee plus $7/month ongoing = $3,020 over the life of the loan. That's about 2.5% of the typical biweekly interest savings — meaningful, especially when the same outcome is available for free by manually paying P&amp;I÷12 extra each month.</p>
+
+        <p>The free version: divide your monthly P&amp;I by 12, add that amount to each monthly payment, and mark it as "apply to principal." Same payoff date as biweekly. No fees.</p>
+
+        <h3 style="margin-top:1.6rem">Where this calc fits with Early Payoff</h3>
+        <p>The <a href="early-payoff-calculator.html">Early Payoff calculator</a> models <em>combined</em> extra-payment scenarios — set a monthly extra, an annual lump, and biweekly all at once and see the cumulative result. This calculator does the opposite: isolates each strategy at the same annual dollar amount so you can pick between them rather than stack them. Use both:</p>
+
+        <ul class="about__reasons">
+          <li><strong>This calc</strong> when deciding <em>which</em> early-payoff strategy to use.</li>
+          <li><strong>Early Payoff calc</strong> when modeling a specific combination of strategies you've decided on.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <aside class="risk-lens">
+      <span class="risk-lens__tag">Opportunity cost lens</span>
+      <p>Mortgage paydown is a guaranteed risk-free return equal to your mortgage rate. On a 6.75% loan, every dollar of extra principal saves 6.75% in interest. That beats almost any safe investment, but doesn't beat tax-advantaged accounts with employer matching. Run the <a href="affordability-calculator.html">Affordability + Risk calculator</a> to confirm you have adequate reserves first, and the <a href="buy-vs-invest-calculator.html">Buy vs. Invest calculator</a> for the broader capital allocation question. Mortgage paydown is a good move; it's usually not the first move.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section section--surface">
+  <div class="container">
+    <div class="prose" style="text-align:center">
+      <span class="eyebrow">Frequently asked</span>
+      <h2 style="margin-top:.85rem">Common payoff-strategy questions.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary><strong>What's the difference between monthly extra and an annual lump?</strong></summary>
+        <div class="faq__a">The same dollars applied monthly beat the same dollars applied as a year-end lump, because each monthly principal reduction starts saving interest sooner. On a $400,000 loan at 6.75% over 30 years, $2,400/year applied as $200/month saves about $4,500 more in lifetime interest than the same $2,400 applied as a single annual lump, and pays the loan off about two months sooner. The gap is small as a percentage but real in dollars — and it grows with loan size and rate.</div>
+      </details>
+      <details>
+        <summary><strong>Is biweekly mortgage payment actually different from monthly?</strong></summary>
+        <div class="faq__a">Yes, structurally. A true biweekly schedule pays half the monthly P&amp;I every two weeks, which works out to 26 half-payments per year — the equivalent of 13 full monthly payments instead of 12. That one extra payment per year goes entirely to principal. The catch is most servicers don't credit half-payments as they arrive. They hold the halves and apply them as a regular monthly payment, then deliver the "extra" once per year. Achieving the biweekly effect typically requires either a formal biweekly program from your servicer or manually paying 1/12 of your P&amp;I extra each month — which is equivalent and free.</div>
+      </details>
+      <details>
+        <summary><strong>Should I pay biweekly or just make extra monthly payments?</strong></summary>
+        <div class="faq__a">Functionally they're the same if you apply equivalent dollars. Biweekly's implicit extra is one full monthly P&amp;I per year — about $2,600 on a typical loan. Making a monthly extra payment of P&amp;I÷12 ($217 on the same loan) produces the same payoff date without any servicer setup. The reason to choose biweekly anyway is behavioral: if an automated biweekly draft is easier to commit to than remembering a manual monthly extra, the discipline value is real. The math itself doesn't prefer one over the other when the dollars match.</div>
+      </details>
+      <details>
+        <summary><strong>Is paying off my mortgage early actually a good idea?</strong></summary>
+        <div class="faq__a">Depends on your alternative use for the same money. Paying down a 6.75% mortgage gives a guaranteed 6.75% after-tax return. That beats almost any safe investment. It does not beat a 100% employer 401(k) match (which is an instant 100% return) or maxing tax-advantaged accounts (which compound tax-free). The right priority order for most borrowers: employer 401(k) match → high-interest debt → HSA / Roth IRA → mortgage paydown vs. additional investing. Mortgage paydown is rarely the wrong move; it's just usually not the best move until the higher-leverage alternatives are exhausted.</div>
+      </details>
+      <details>
+        <summary><strong>Can I pay extra principal on any mortgage?</strong></summary>
+        <div class="faq__a">Almost always yes for residential mortgages in the US. Federal law prohibits prepayment penalties on most owner-occupied residential mortgages originated after 2014, including all conventional Qualified Mortgages, FHA, VA, and USDA loans. Read your mortgage note to confirm — the prepayment section will state whether penalties apply. Some non-QM and pre-2014 loans do carry penalties; if yours does, factor that into the comparison. The Dodd-Frank Act's QM definition specifically excludes prepayment penalty terms on most consumer mortgages, but exceptions exist for some non-QM loans.</div>
+      </details>
+      <details>
+        <summary><strong>What happens if I make an extra payment but don't tell the servicer to apply it to principal?</strong></summary>
+        <div class="faq__a">By default, most servicers apply extra funds to next month's payment (delaying when interest accrues but not reducing total interest) or to a holding account where it earns nothing. To get the full benefit, instruct the servicer to apply the extra to principal. The cleanest way is online — most servicer portals have a "pay extra principal" field separate from the main payment. If you mail a check, include the loan number and the words "apply to principal" in the memo. If your servicer claims they can't apply extra to principal mid-month, escalate — they're legally required to honor written instructions on payment application under federal mortgage servicing rules (Regulation X).</div>
+      </details>
+      <details>
+        <summary><strong>Does the comparison change at different rates or terms?</strong></summary>
+        <div class="faq__a">Yes, but the ranking holds. Higher rates and longer terms widen the gap between monthly and annual-lump strategies — the principal reductions earn more savings against a larger remaining balance for more remaining months. On a 4% / 15-year loan, the monthly-vs-annual gap on $2,400/yr extra shrinks to under $1,000 lifetime. On an 8% / 30-year, it widens to $7,000+. The general rule: monthly beats annual lump, biweekly is equivalent to ~one extra monthly P&amp;I, the lower the rate and shorter the term the less it matters.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head section__head--left">
+      <span class="eyebrow section__kicker">Related calculators &amp; guides</span>
+      <h2>Adjacent decisions on the same money.</h2>
+    </div>
+    <div class="rcards">
+      <a href="early-payoff-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Early Payoff calculator</h3>
+        <p>Combine multiple strategies — monthly extra, annual lump, biweekly — and see the cumulative result. The "stack them" version of this comparison.</p>
+      </a>
+      <a href="amortization-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Amortization Schedule</h3>
+        <p>See month-by-month and year-by-year how principal and interest split out. The baseline view that extra payments accelerate.</p>
+      </a>
+      <a href="refinance-vs-keep-calculator.html" class="rcard">
+        <span class="rcard__tag">Calculator</span>
+        <h3>Refinance vs. Keep</h3>
+        <p>If rates have dropped, the question is whether to refinance, pay extra, or both. Break-even math on the refinance alternative.</p>
+      </a>
+      <a href="should-i-refinance-now.html" class="rcard">
+        <span class="rcard__tag">Decision walkthrough</span>
+        <h3>Should I refinance now?</h3>
+        <p>The four real options when rates fall — refinance, recast, extra payments, do nothing — with break-even math worked through.</p>
+      </a>
+      <a href="buy-vs-invest-calculator.html" class="rcard">
+        <span class="rcard__tag">Signature</span>
+        <h3>Buy vs. Invest</h3>
+        <p>The broader question — instead of paying down the mortgage faster, what if those dollars went into the market? Capital allocation math.</p>
+      </a>
+      <a href="glossary.html" class="rcard">
+        <span class="rcard__tag">Reference</span>
+        <h3>Glossary</h3>
+        <p>Amortization, principal, prepayment penalty, biweekly — every term defined plainly.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">Pick a strategy, then run the math</span>
+      <h2 style="margin-top:.85rem">The free version of biweekly is just $217 extra each month.</h2>
+      <p>Decide which strategy fits your cash flow. Then use the Early Payoff calculator to see the exact payoff date and total interest on your specific loan once you've committed.</p>
+      <div class="ctaband__row">
+        <a href="early-payoff-calculator.html" class="btn">Open Early Payoff calculator</a>
+        <a href="amortization-calculator.html" class="btn btn--ghost">Amortization Schedule</a>
+        <a href="calculators.html" class="btn btn--ghost">All 28 calculators</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="buy-vs-invest-calculator.html">Buy vs Invest</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="mortgage-rates.html">Mortgage Rates</a></li>
+          <li><a href="risk.html">Risk</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="ai-in-real-estate.html">AI in Real Estate</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ============================================================
+     The math
+     ============================================================ */
+
+  function monthlyPayment(P, rAnnual, nMonths){
+    if (rAnnual === 0) return P / nMonths;
+    var r = rAnnual / 12;
+    return P * r * Math.pow(1+r, nMonths) / (Math.pow(1+r, nMonths) - 1);
+  }
+
+  /**
+   * Amortize a loan with an optional monthly extra principal AND/OR
+   * annual lump applied at month 12, 24, 36...
+   * Returns {months, interest, finalBalance}.
+   */
+  function amortize(P, rAnnual, nMonths, monthlyExtra, annualLump){
+    var r = rAnnual / 12;
+    var pmt = monthlyPayment(P, rAnnual, nMonths);
+    var bal = P;
+    var totalInterest = 0;
+    monthlyExtra = monthlyExtra || 0;
+    annualLump = annualLump || 0;
+    for (var m = 1; m <= nMonths; m++){
+      var i = bal * r;
+      var p = pmt - i;
+      var pTotal = p + monthlyExtra;
+      if (pTotal > bal) pTotal = bal;
+      bal -= pTotal;
+      totalInterest += i;
+      if (m % 12 === 0 && bal > 0 && annualLump > 0){
+        var lumpActual = Math.min(annualLump, bal);
+        bal -= lumpActual;
+      }
+      if (bal <= 0.005) return {months: m, interest: totalInterest, finalBalance: 0};
+    }
+    return {months: nMonths, interest: totalInterest, finalBalance: bal};
+  }
+
+  function biweeklyAmortize(P, rAnnual, nMonths){
+    // Model: one extra full P&I payment per year at month 12, 24, 36...
+    var r = rAnnual / 12;
+    var pmt = monthlyPayment(P, rAnnual, nMonths);
+    var bal = P;
+    var totalInterest = 0;
+    for (var m = 1; m <= nMonths; m++){
+      var i = bal * r;
+      var p = pmt - i;
+      if (p > bal) p = bal;
+      bal -= p;
+      totalInterest += i;
+      if (m % 12 === 0 && bal > 0){
+        var extra = Math.min(pmt, bal);
+        bal -= extra;
+      }
+      if (bal <= 0.005) return {months: m, interest: totalInterest};
+    }
+    return {months: nMonths, interest: totalInterest};
+  }
+
+  /* ============================================================
+     Formatters
+     ============================================================ */
+  function $(id){ return document.getElementById(id); }
+  function fmtMoney(n){
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtPmt(n){
+    return '$' + Math.round(n).toLocaleString('en-US') + '/mo';
+  }
+  function fmtTerm(months){
+    var years = months / 12;
+    if (years === Math.round(years)) return Math.round(years) + ' yrs';
+    var wholeYears = Math.floor(years);
+    var remMonths = Math.round((years - wholeYears) * 12);
+    if (remMonths === 0) return wholeYears + ' yrs';
+    if (remMonths === 12) return (wholeYears + 1) + ' yrs';
+    return wholeYears + ' yrs ' + remMonths + ' mo';
+  }
+  function fmtPct(n, digits){
+    if (digits == null) digits = 2;
+    return n.toFixed(digits) + '%';
+  }
+
+  /* ============================================================
+     Wire up inputs + recompute
+     ============================================================ */
+
+  function syncSlider(inputId, sliderId){
+    var inp = $(inputId), rng = $(sliderId);
+    if (!rng) return;
+    inp.addEventListener('input', function(){
+      rng.value = inp.value;
+      recompute();
+    });
+    rng.addEventListener('input', function(){
+      inp.value = rng.value;
+      recompute();
+    });
+  }
+
+  function recompute(){
+    var loan = parseFloat($('inpLoan').value) || 0;
+    var rate = parseFloat($('inpRate').value) || 0;
+    var term = parseInt($('inpTerm').value, 10) || 30;
+    var annualExtra = parseFloat($('inpExtra').value) || 0;
+
+    var rAnnual = rate / 100;
+    var nMonths = term * 12;
+
+    // Display the input values cleanly
+    $('lblLoan').textContent = fmtMoney(loan);
+    $('lblRate').textContent = fmtPct(rate);
+    $('lblTerm').textContent = term + ' yrs';
+    $('lblExtra').textContent = fmtMoney(annualExtra);
+
+    // Baseline
+    var basePmt = monthlyPayment(loan, rAnnual, nMonths);
+    var base = amortize(loan, rAnnual, nMonths, 0, 0);
+    $('outBasePayoff').textContent = fmtTerm(base.months);
+    $('outBaseInt').textContent = fmtMoney(base.interest);
+    $('outBasePmt').textContent = fmtPmt(basePmt);
+
+    // Strategy A: monthly extra
+    var monthlyAmt = annualExtra / 12;
+    var sA = amortize(loan, rAnnual, nMonths, monthlyAmt, 0);
+    $('outMonthlyExtra').textContent = fmtMoney(monthlyAmt);
+    $('outMonthlyAnnual').textContent = fmtMoney(annualExtra);
+    $('outMonthlyPayoff').textContent = fmtTerm(sA.months);
+    $('outMonthlyInt').textContent = fmtMoney(sA.interest);
+    var savedA = base.interest - sA.interest;
+    $('outMonthlySaved').textContent = fmtMoney(savedA);
+
+    // Strategy B: annual lump
+    var sB = amortize(loan, rAnnual, nMonths, 0, annualExtra);
+    $('outAnnualExtra').textContent = fmtMoney(annualExtra);
+    $('outAnnualAnnual').textContent = fmtMoney(annualExtra);
+    $('outAnnualPayoff').textContent = fmtTerm(sB.months);
+    $('outAnnualInt').textContent = fmtMoney(sB.interest);
+    var savedB = base.interest - sB.interest;
+    $('outAnnualSaved').textContent = fmtMoney(savedB);
+
+    // Strategy C: biweekly (implicit extra = one P&I per year)
+    var sC = biweeklyAmortize(loan, rAnnual, nMonths);
+    var biHalf = basePmt / 2;
+    var biAnnualImplicit = basePmt; // one extra full P&I per year
+    $('outBiHalf').textContent = fmtMoney(biHalf);
+    $('outBiAnnual').textContent = fmtMoney(biAnnualImplicit);
+    $('outBiPayoff').textContent = fmtTerm(sC.months);
+    $('outBiInt').textContent = fmtMoney(sC.interest);
+    var savedC = base.interest - sC.interest;
+    $('outBiSaved').textContent = fmtMoney(savedC);
+
+    // Highlight the winning strategy (most interest saved)
+    var cols = [
+      {id:'colMonthly', saved: savedA},
+      {id:'colAnnual', saved: savedB},
+      {id:'colBiweekly', saved: savedC}
+    ];
+    var winner = cols.reduce(function(a,b){ return b.saved > a.saved ? b : a; });
+    cols.forEach(function(c){
+      var el = $(c.id);
+      el.classList.toggle('strategy__col--winner', c.id === winner.id);
+      var existing = el.querySelector('.strategy__pill');
+      if (existing) existing.remove();
+      if (c.id === winner.id && winner.saved > 0){
+        var pill = document.createElement('span');
+        pill.className = 'strategy__pill';
+        pill.textContent = 'Most saved';
+        el.appendChild(pill);
+      }
+    });
+  }
+
+  // Initial wiring
+  ['inpLoan','inpRate','inpTerm','inpExtra'].forEach(function(id){
+    var el = $(id);
+    if (el) el.addEventListener('input', recompute);
+  });
+  syncSlider('inpLoan','rngLoan');
+  syncSlider('inpExtra','rngExtra');
+
+  recompute();
+
+  /* ============================================================
+     Header scroll + mobile drawer + reveal
+     ============================================================ */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      var t = e.target.closest('a');
+      if (t){ mobile.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+  }
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+    });
+  }, {rootMargin: '0px 0px -10% 0px', threshold: 0.08}) : null;
+  if (io){ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); }); }
+})();
+</script>
+</body>
+</html>

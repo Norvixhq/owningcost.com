@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8K9DQVWZFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8K9DQVWZFG');
+</script>
+<script src="analytics.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0d1321" />
+<meta name="color-scheme" content="light" />
+
+<title>Rate lock and timing — when to lock, what it costs, and float-down rules | OwningCost</title>
+<meta name="description" content="A rate lock freezes your mortgage rate for a defined period — usually 30, 45, or 60 days. Here's when to lock, what longer locks actually cost, what float-down provisions are worth, and how to handle the lock period when rates move." />
+<link rel="canonical" href="https://owningcost.com/rate-lock-and-timing.html" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="OwningCost" />
+<meta property="og:title" content="Rate lock and timing — when to lock, what it costs, and float-down rules" />
+<meta property="og:description" content="A rate lock freezes your mortgage rate for 30, 45, or 60 days. When to lock, what longer locks cost, what float-down is worth, how to handle the lock period." />
+<meta property="og:url" content="https://owningcost.com/rate-lock-and-timing.html" />
+<meta property="og:image" content="https://owningcost.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rate lock and timing | OwningCost" />
+<meta name="twitter:description" content="When to lock, what 30 vs 45 vs 60 day locks cost, float-down rules, how to handle rate moves during the lock period." />
+<meta name="twitter:image" content="https://owningcost.com/og-card.png" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-TileColor" content="#FAFAF7" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  /* Lock-period cost table — scoped */
+  .locktable{
+    width:100%;border-collapse:collapse;margin:1.4rem 0;
+    font-size:.93rem;
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  }
+  .locktable thead th{
+    background:var(--surface-2);font-weight:700;text-align:left;
+    padding:.85rem 1rem;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);border-bottom:1px solid var(--border);
+  }
+  .locktable thead th:not(:first-child){text-align:right}
+  .locktable tbody td{
+    padding:.78rem 1rem;border-bottom:1px solid var(--border);
+    font-variant-numeric:tabular-nums;color:var(--ink-2);
+  }
+  .locktable tbody td:first-child{color:var(--ink);font-weight:500}
+  .locktable tbody td:not(:first-child){text-align:right}
+  .locktable tbody tr:last-child td{border-bottom:0}
+  @media (max-width:560px){
+    .locktable{font-size:.85rem}
+    .locktable thead th,.locktable tbody td{padding:.6rem .7rem}
+  }
+</style>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+  {"@type": "BreadcrumbList", "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://owningcost.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Mortgage Rates", "item": "https://owningcost.com/mortgage-rates.html"},
+    {"@type": "ListItem", "position": 3, "name": "Rate lock and timing", "item": "https://owningcost.com/rate-lock-and-timing.html"}
+  ]},
+  {"@type": "Article", "headline": "Rate lock and timing — when to lock, what it costs, and float-down rules", "description": "A rate lock freezes your mortgage rate for a defined period. When to lock, what longer locks cost, what float-down provisions are worth, how to handle the lock period when rates move.", "url": "https://owningcost.com/rate-lock-and-timing.html", "datePublished": "2026-05-13", "dateModified": "2026-05-13", "author": {"@type": "Organization", "name": "OwningCost editorial team", "url": "https://owningcost.com/about.html#editorial-process"}, "publisher": {"@type": "Organization", "name": "OwningCost", "url": "https://owningcost.com/"}, "image": "https://owningcost.com/og-card.png", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://owningcost.com/rate-lock-and-timing.html"}, "inLanguage": "en-US"}
+]}
+</script>
+
+<!-- Meta Pixel --><script src="meta-pixel.js" async></script>
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=912670585135146&ev=PageView&noscript=1" alt="" /></noscript>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label="OwningCost — home">
+      <img src="image.png" alt="OwningCost" class="brand__logo" width="182" height="40" />
+      <span class="brand__wordmark">OwningCost</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <div class="nav__item nav__item--mega">
+      <a href="calculators.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Calculators <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega" role="menu" aria-label="Calculators menu">
+      <div class="mega__grid">
+        <div class="mega__col">
+          <h4 class="mega__heading">Signature</h4>
+          <ul>
+            <li><a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="affordability-calculator.html">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="buy-vs-invest-calculator.html">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+            <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Buying</h4>
+          <ul>
+            <li><a href="listing-reality-check.html">Listing Reality Check</a></li>
+            <li><a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a></li>
+            <li><a href="cash-to-close-calculator.html">Cash to Close</a></li>
+            <li><a href="closing-cost-calculator.html">Closing Cost</a></li>
+            <li><a href="income-required-calculator.html">Income Required <span class="mega__tag mega__tag--new">New</span></a></li>
+            <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a></li>
+            <li><a href="true-first-year-cost-calculator.html">True First-Year Cost</a></li>
+            <li><a href="property-type-cost-comparison-calculator.html">Property Type Compare</a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Owning</h4>
+          <ul>
+            <li><a href="stay-vs-sell-calculator.html">Stay vs. Sell</a></li>
+            <li><a href="home-exit-cost-calculator.html">Home Exit Cost</a></li>
+            <li><a href="early-payoff-calculator.html">Early Payoff</a></li>
+            <li><a href="extra-payment-vs-biweekly-calculator.html">Extra Payment vs. Biweekly <span class="mega__tag mega__tag--new">New</span></a></li>
+            <li><a href="pmi-calculator.html">PMI Calculator</a></li>
+            <li><a href="payment-shock-calculator.html">Payment Shock</a></li>
+            <li><a href="house-poor-risk-calculator.html">House Poor Risk</a></li>
+            <li><a href="stress-test-calculator.html">Stress Test <span class="mega__tag mega__tag--new">New</span></a></li>
+          </ul>
+        </div>
+        <div class="mega__col">
+          <h4 class="mega__heading">Financing</h4>
+          <ul>
+            <li><a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a></li>
+            <li><a href="va-vs-conventional-calculator.html">VA vs. Conventional</a></li>
+            <li><a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a></li>
+            <li><a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a></li>
+            <li><a href="heloc-vs-cash-out-refi-calculator.html">HELOC vs. Cash-Out Refi <span class="mega__tag mega__tag--new">New</span></a></li>
+            <li><a href="down-payment-strategy-calculator.html">Down Payment Strategy</a></li>
+            <li><a href="amortization-calculator.html">Amortization Schedule</a></li>
+            <li><a href="points-vs-no-points-calculator.html">Points vs. No Points</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mega__footer">
+        <a href="methodology.html">Methodology</a>
+        <a href="calculators.html">See all 28 calculators</a>
+      </div>
+    </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="buying.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Buying <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Buying menu">
+        <a href="buying.html" class="mega__hub-row"><span class="mega__hub-label">Buying hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="true-monthly-cost-calculator.html" class="mega__section-link">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="listing-reality-check.html" class="mega__section-link">Listing Reality Check</a>
+        <a href="cash-to-close-calculator.html" class="mega__section-link">Cash to Close</a>
+        <a href="closing-cost-calculator.html" class="mega__section-link">Closing Cost</a>
+        <a href="income-required-calculator.html" class="mega__section-link">Income Required <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="buy-now-vs-wait-calculator.html" class="mega__section-link">Buy Now vs. Wait</a>
+        <a href="true-first-year-cost-calculator.html" class="mega__section-link">True First-Year Cost</a>
+        <a href="property-type-cost-comparison-calculator.html" class="mega__section-link">Property Type Compare</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="first-time-buyer.html" class="mega__section-link">First-Time Buyer Hub <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="first-time-homebuyer-guide.html" class="mega__section-link">First-time homebuyer guide</a>
+        <a href="how-to-choose-a-realtor.html" class="mega__section-link">How to choose a realtor <span class="mega__tag">Guide</span></a>
+        <a href="how-much-house-can-you-really-afford.html" class="mega__section-link">How much house can you afford</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="renting.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Renting <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Renting menu">
+        <a href="renting.html" class="mega__hub-row"><span class="mega__hub-label">Renting hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="rent-vs-buy-calculator.html" class="mega__section-link">Rent vs. Buy <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="affordability-calculator.html" class="mega__section-link">Affordability + Risk <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="lease-renewal-vs-move-calculator.html" class="mega__section-link">Lease Renewal vs. Move</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="should-you-rent-another-year.html" class="mega__section-link">Should you rent another year</a>
+        <a href="lease-renewal-vs-moving.html" class="mega__section-link">Lease renewal vs moving</a>
+        <a href="renting-a-house-vs-apartment.html" class="mega__section-link">Renting a house vs apartment</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="owning.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Owning <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Owning menu">
+        <a href="owning.html" class="mega__hub-row"><span class="mega__hub-label">Owning hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="true-monthly-cost-calculator.html" class="mega__section-link">True Monthly Cost <span class="mega__tag mega__tag--sig">Signature</span></a>
+        <a href="stay-vs-sell-calculator.html" class="mega__section-link">Stay vs. Sell</a>
+        <a href="home-exit-cost-calculator.html" class="mega__section-link">Home Exit Cost</a>
+        <a href="early-payoff-calculator.html" class="mega__section-link">Early Payoff</a>
+        <a href="extra-payment-vs-biweekly-calculator.html" class="mega__section-link">Extra Payment vs. Biweekly <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="refinance-vs-keep-calculator.html" class="mega__section-link">Refinance vs. Keep</a>
+        <a href="pmi-calculator.html" class="mega__section-link">PMI Calculator</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="hidden-costs-of-homeownership.html" class="mega__section-link">Hidden costs of homeownership</a>
+        <a href="true-cost-of-owning-a-home.html" class="mega__section-link">True cost of owning</a>
+        <a href="selling-costs-explained.html" class="mega__section-link">Selling costs explained</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="financing.html" class="is-active has-mega" aria-current="page" aria-haspopup="true" aria-expanded="false">Financing <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Financing menu">
+        <a href="financing.html" class="mega__hub-row"><span class="mega__hub-label">Financing hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Rates Center</div>
+        <a href="mortgage-rates.html" class="mega__section-link">Mortgage Rates hub <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="todays-mortgage-rates.html" class="mega__section-link">Today's rates explained</a>
+        <a href="30-year-vs-15-year-mortgage.html" class="mega__section-link">30-year vs. 15-year</a>
+        <a href="what-drives-mortgage-rates.html" class="mega__section-link">What drives rates</a>
+        <a href="mortgage-rate-vs-treasury-spread.html" class="mega__section-link">Rate vs. Treasury spread</a>
+        <a href="rate-lock-and-timing.html" class="mega__section-link">Rate lock and timing</a>
+        <a href="should-i-refinance-now.html" class="mega__section-link">Should I refinance now?</a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="fha-vs-conventional-calculator.html" class="mega__section-link">FHA vs. Conventional</a>
+        <a href="va-vs-conventional-calculator.html" class="mega__section-link">VA vs. Conventional</a>
+        <a href="arm-vs-fixed-calculator.html" class="mega__section-link">ARM vs. Fixed</a>
+        <a href="refinance-vs-keep-calculator.html" class="mega__section-link">Refinance vs. Keep</a>
+        <a href="heloc-vs-cash-out-refi-calculator.html" class="mega__section-link">HELOC vs. Cash-Out Refi <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="down-payment-strategy-calculator.html" class="mega__section-link">Down Payment Strategy</a>
+        <a href="amortization-calculator.html" class="mega__section-link">Amortization Schedule</a>
+        <a href="points-vs-no-points-calculator.html" class="mega__section-link">Points vs. No Points</a>
+        <a href="pmi-calculator.html" class="mega__section-link">PMI Calculator</a>
+        <div class="mega__subhead">Guides</div>
+        <a href="loan-types.html" class="mega__section-link">Loan types overview</a>
+        <a href="how-to-choose-a-lender.html" class="mega__section-link">How to choose a lender <span class="mega__tag">Guide</span></a>
+        <a href="what-is-pmi-and-when-does-it-go-away.html" class="mega__section-link">What is PMI</a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="risk.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Risk <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Risk menu">
+        <a href="risk.html" class="mega__hub-row"><span class="mega__hub-label">Risk hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <div class="mega__subhead">Articles</div>
+        <a href="the-downsides-of-owning-a-home.html" class="mega__section-link">The downsides of owning</a>
+        <a href="what-2008-housing-crash-taught-buyers.html" class="mega__section-link">Lessons from 2008</a>
+        <a href="why-homeownership-is-not-risk-free.html" class="mega__section-link">Why owning isn't risk-free</a>
+        <a href="how-to-reduce-homeownership-risk.html" class="mega__section-link">How to reduce risk</a>
+        <a href="leverage-and-housing.html" class="mega__section-link">Leverage and housing</a>
+        <div class="mega__subhead">Calculators</div>
+        <a href="stress-test-calculator.html" class="mega__section-link">Stress Test <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="house-poor-risk-calculator.html" class="mega__section-link">House Poor Risk</a>
+        <a href="payment-shock-calculator.html" class="mega__section-link">Payment Shock</a>
+        <a href="buy-vs-invest-calculator.html" class="mega__section-link">Buy vs. Invest <span class="mega__tag mega__tag--sig">Signature</span></a>
+      </div>
+    </div>
+      <div class="nav__item nav__item--mega nav__item--section">
+      <a href="learn.html" class="has-mega" aria-haspopup="true" aria-expanded="false">Learn <svg class="nav__caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="mega mega--section" role="menu" aria-label="Learn menu">
+        <a href="learn.html" class="mega__hub-row"><span class="mega__hub-label">Learn hub</span><span class="mega__hub-arrow" aria-hidden="true">→</span></a>
+        <a href="glossary.html" class="mega__section-link">Glossary (38 terms)</a>
+        <a href="methodology.html" class="mega__section-link">Methodology</a>
+        <div class="mega__subhead">Featured guides</div>
+        <a href="first-time-homebuyer-guide.html" class="mega__section-link">First-time homebuyer guide</a>
+        <a href="hidden-costs-of-homeownership.html" class="mega__section-link">Hidden costs of homeownership</a>
+        <a href="how-much-house-can-you-really-afford.html" class="mega__section-link">How much house can you afford</a>
+        <div class="mega__subhead">Explainers</div>
+        <a href="property-tax-explained.html" class="mega__section-link">Property tax explained</a>
+        <a href="homeowners-insurance-explained.html" class="mega__section-link">Homeowners insurance explained</a>
+        <a href="what-mortgage-calculators-leave-out.html" class="mega__section-link">What mortgage calculators leave out</a>
+        <div class="mega__subhead">State-by-state</div>
+        <a href="property-taxes-by-state.html" class="mega__section-link">Property taxes by state <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="homeowners-insurance-by-state.html" class="mega__section-link">Homeowners insurance by state <span class="mega__tag mega__tag--new">New</span></a>
+        <div class="mega__subhead">Practical guides</div>
+        <a href="questions-to-ask-a-landlord.html" class="mega__section-link">Questions to ask a landlord <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="how-to-compare-two-loan-estimates.html" class="mega__section-link">How to compare two Loan Estimates <span class="mega__tag mega__tag--new">New</span></a>
+        <a href="home-maintenance-budget-guide.html" class="mega__section-link">Home maintenance budget guide <span class="mega__tag mega__tag--new">New</span></a>
+      </div>
+    </div>
+      <a href="ai-in-real-estate.html">AI in Real Estate</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="header__cta">
+      <a href="calculators.html" class="btn btn--primary">Try a calculator</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav container" id="mobileNav" hidden>
+      <a href="index.html" class="mnav__link">Home</a>
+  <details class="mnav__group">
+    <summary>Calculators</summary>
+      <a href="true-monthly-cost-calculator.html">True Monthly Cost <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="affordability-calculator.html">Affordability + Risk <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy <span class="mnav__tag mnav__tag--sig">Sig</span></a>
+      <a href="listing-reality-check.html">Listing Reality Check</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="income-required-calculator.html">Income Required <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="extra-payment-vs-biweekly-calculator.html">Extra Payment vs. Biweekly <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="stress-test-calculator.html">Stress Test <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="heloc-vs-cash-out-refi-calculator.html">HELOC vs. Cash-Out Refi <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="calculators.html">All calculators →</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Buying</summary>
+      <a href="buying.html">Buying hub →</a>
+      <a href="first-time-buyer.html">First-Time Buyer Hub <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="cash-to-close-calculator.html">Cash to Close</a>
+      <a href="closing-cost-calculator.html">Closing Cost</a>
+      <a href="income-required-calculator.html">Income Required <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="buy-now-vs-wait-calculator.html">Buy Now vs. Wait</a>
+      <a href="true-first-year-cost-calculator.html">True First-Year Cost</a>
+      <a href="property-type-cost-comparison-calculator.html">Property Type Compare</a>
+      <a href="first-time-homebuyer-guide.html">First-time homebuyer guide</a>
+      <a href="how-to-choose-a-realtor.html">How to choose a realtor <span class="mnav__tag">Guide</span></a>
+      <a href="how-much-house-can-you-really-afford.html">How much house can you afford</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Renting</summary>
+      <a href="renting.html">Renting hub →</a>
+      <a href="lease-renewal-vs-move-calculator.html">Lease Renewal vs. Move</a>
+      <a href="rent-vs-buy-calculator.html">Rent vs. Buy</a>
+      <a href="should-you-rent-another-year.html">Should you rent another year</a>
+      <a href="lease-renewal-vs-moving.html">Lease renewal vs moving</a>
+      <a href="renting-a-house-vs-apartment.html">Renting a house vs apartment</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Owning</summary>
+      <a href="owning.html">Owning hub →</a>
+      <a href="stay-vs-sell-calculator.html">Stay vs. Sell</a>
+      <a href="home-exit-cost-calculator.html">Home Exit Cost</a>
+      <a href="early-payoff-calculator.html">Early Payoff</a>
+      <a href="extra-payment-vs-biweekly-calculator.html">Extra Payment vs. Biweekly <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a>
+      <a href="true-cost-of-owning-a-home.html">True cost of owning</a>
+      <a href="selling-costs-explained.html">Selling costs explained</a>
+  </details>
+  <details class="mnav__group" open>
+    <summary>Financing</summary>
+      <a href="financing.html" class="is-active" aria-current="page">Financing hub →</a>
+      <a href="mortgage-rates.html">Mortgage Rates hub <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="todays-mortgage-rates.html">Today's rates explained</a>
+      <a href="30-year-vs-15-year-mortgage.html">30-year vs. 15-year</a>
+      <a href="what-drives-mortgage-rates.html">What drives rates</a>
+      <a href="mortgage-rate-vs-treasury-spread.html">Rate vs. Treasury spread</a>
+      <a href="rate-lock-and-timing.html">Rate lock and timing</a>
+      <a href="should-i-refinance-now.html">Should I refinance now?</a>
+      <a href="fha-vs-conventional-calculator.html">FHA vs. Conventional</a>
+      <a href="va-vs-conventional-calculator.html">VA vs. Conventional</a>
+      <a href="arm-vs-fixed-calculator.html">ARM vs. Fixed</a>
+      <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep</a>
+      <a href="heloc-vs-cash-out-refi-calculator.html">HELOC vs. Cash-Out Refi <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="down-payment-strategy-calculator.html">Down Payment Strategy</a>
+      <a href="amortization-calculator.html">Amortization Schedule</a>
+      <a href="points-vs-no-points-calculator.html">Points vs. No Points</a>
+      <a href="pmi-calculator.html">PMI Calculator</a>
+      <a href="loan-types.html">Loan types overview</a>
+      <a href="how-to-choose-a-lender.html">How to choose a lender <span class="mnav__tag">Guide</span></a>
+      <a href="what-is-pmi-and-when-does-it-go-away.html">What is PMI</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Risk</summary>
+      <a href="risk.html">Risk hub →</a>
+      <a href="the-downsides-of-owning-a-home.html">The downsides of owning</a>
+      <a href="what-2008-housing-crash-taught-buyers.html">Lessons from 2008</a>
+      <a href="why-homeownership-is-not-risk-free.html">Why owning isn't risk-free</a>
+      <a href="how-to-reduce-homeownership-risk.html">How to reduce risk</a>
+      <a href="leverage-and-housing.html">Leverage and housing</a>
+      <a href="stress-test-calculator.html">Stress Test <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="house-poor-risk-calculator.html">House Poor Risk</a>
+      <a href="payment-shock-calculator.html">Payment Shock</a>
+      <a href="buy-vs-invest-calculator.html">Buy vs. Invest</a>
+  </details>
+  <details class="mnav__group">
+    <summary>Learn</summary>
+      <a href="learn.html">Learn hub →</a>
+      <a href="glossary.html">Glossary (38 terms)</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="first-time-homebuyer-guide.html">First-time homebuyer guide</a>
+      <a href="hidden-costs-of-homeownership.html">Hidden costs of homeownership</a>
+      <a href="how-much-house-can-you-really-afford.html">How much house can you afford</a>
+      <a href="property-tax-explained.html">Property tax explained</a>
+      <a href="homeowners-insurance-explained.html">Homeowners insurance explained</a>
+      <a href="property-taxes-by-state.html">Property taxes by state <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="homeowners-insurance-by-state.html">Homeowners insurance by state <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="questions-to-ask-a-landlord.html">Questions to ask a landlord <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="how-to-compare-two-loan-estimates.html">How to compare two Loan Estimates <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="home-maintenance-budget-guide.html">Home maintenance budget guide <span class="mnav__tag mnav__tag--new">New</span></a>
+      <a href="what-mortgage-calculators-leave-out.html">What mortgage calculators leave out</a>
+  </details>
+  <a href="ai-in-real-estate.html" class="mnav__link">AI in Real Estate</a>
+  <a href="about.html" class="mnav__link">About</a>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="container">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">›</span>
+    <a href="mortgage-rates.html">Mortgage Rates</a>
+    <span class="sep">›</span>
+    <span class="current">Rate lock and timing</span>
+  </nav>
+</div>
+
+<section class="ahero container" aria-labelledby="ahero-title">
+  <div class="ahero__inner">
+    <span class="ahero__kicker">Mortgage Rates · Practical</span>
+    <h1 id="ahero-title">Rate lock and timing — when to lock, what it costs, and float-down rules.</h1>
+    <p class="ahero__lede">A rate lock freezes your mortgage rate for a defined period — typically 30, 45, or 60 days — while your loan moves through underwriting toward closing. Locking too early costs money. Locking too late costs money. Float-down provisions sound great in the brochure and are often less valuable than they look. Here's the practical mechanics, honestly framed.</p>
+    <div class="ahero__meta">
+      <span><span class="dot"></span>10 min read</span>
+      <span><span class="dot"></span>Reviewed May 2026</span>
+      <span><span class="dot"></span>By the <a href="about.html#editorial-process">OwningCost editorial team</a></span>
+    </div>
+  </div>
+</section>
+
+<section class="article container">
+  <div class="article__inner">
+
+<p class="about__opener">Most first-time buyers learn about rate locks the day their loan officer asks "do you want to lock?" and offers about thirty seconds to decide. The decision is small in dollar terms compared to home price or down payment, but it's one of the few financial choices in the mortgage process that's almost entirely reversible-in-one-direction. Lock too early and rates fall, you're stuck paying more. Lock too late and rates rise, you're paying more. Understanding what's actually happening helps you make the call when it comes up.</p>
+
+<h2 id="what-is-a-lock">What a rate lock actually is</h2>
+
+<p>A rate lock is a contractual commitment from your lender that the interest rate they're quoting today will be the rate on your loan when it closes — as long as it closes within a defined lock period. The most common lock durations are 30, 45, and 60 days. Longer locks (90, 120, even 180 days) exist for new construction or other special cases. Shorter locks (15 days) exist for fast-closing scenarios.</p>
+
+<p>The mechanics on the lender's side: when you lock, the lender effectively reserves a mortgage-backed security position in the secondary market that matches your loan's parameters. If rates rise between today and your closing, the lender absorbs the difference — they sell your loan into the secondary market at the rate you locked, even if the market rate is higher by then. If rates fall, the lender keeps the difference — they sell your loan at your higher locked rate while market rates have moved lower.</p>
+
+<p>This is why rate locks aren't free. The lender is taking on price risk in exchange for charging a slightly higher rate than they'd charge without the lock. The cost of the lock is baked into the rate you're quoted; the longer the lock, the higher the rate.</p>
+
+<h2 id="what-locks-cost">What lock duration actually costs</h2>
+
+<p>Lock-period costs are usually expressed as differences in rate or in pricing points. The cost varies by lender, market environment, and loan type, but the general pattern is consistent: each additional 15 days of lock duration costs roughly 0.04 to 0.10 percentage points on the rate, or 0.125 to 0.375 points in upfront cost.</p>
+
+<p>Representative example on a $400,000 conventional 30-year loan at current rates (May 2026):</p>
+
+<table class="locktable">
+  <thead>
+    <tr><th scope="col">Lock duration</th><th scope="col">Typical rate premium</th><th scope="col">Monthly P&amp;I impact</th><th scope="col">Lifetime interest impact</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15-day lock</td>
+      <td>-0.04 pp (cheaper)</td>
+      <td>−$10 / month</td>
+      <td>−$3,500</td>
+    </tr>
+    <tr>
+      <td>30-day lock</td>
+      <td>baseline (e.g., 6.37%)</td>
+      <td>$0</td>
+      <td>$0</td>
+    </tr>
+    <tr>
+      <td>45-day lock</td>
+      <td>+0.05 pp</td>
+      <td>+$13 / month</td>
+      <td>+$4,700</td>
+    </tr>
+    <tr>
+      <td>60-day lock</td>
+      <td>+0.10 pp</td>
+      <td>+$26 / month</td>
+      <td>+$9,400</td>
+    </tr>
+    <tr>
+      <td>90-day lock</td>
+      <td>+0.20 pp</td>
+      <td>+$51 / month</td>
+      <td>+$18,700</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are illustrative — actual lock pricing varies by lender and changes weekly with market volatility. In high-volatility environments (high MOVE Index), lock premiums widen because the lender's price risk is larger. In calm markets, the premiums tighten. Some lenders charge for locks as basis points on the rate; others charge as points (upfront dollars). The math works out similarly either way.</p>
+
+<p>The practical takeaway: pick the shortest lock that gets you reliably to closing. A 30-day lock is the default for purchase transactions because most well-organized purchase contracts close in 30 days from contract acceptance. If your purchase timeline is longer (new construction, complicated title, contingency-heavy contract), get the longer lock from the start rather than paying for a lock extension later.</p>
+
+<h2 id="lock-extensions">Lock extensions — much more expensive</h2>
+
+<p>If your loan doesn't close before your lock expires, you'll need to extend or re-lock. Lock extensions are priced punitively — typically 0.125 to 0.5 points (in upfront cost) per 15 days of extension, sometimes more. Re-locking entirely puts you at current market rates, which may be much worse than what you originally locked.</p>
+
+<p>The implication: lock extensions are a serious tax on closing-day delays. The way to avoid the tax is to either (a) pick a lock period that includes a safety buffer for the kind of delay your transaction is prone to, or (b) work the closing process aggressively to avoid delays. The most common reasons for closing slip past the lock: appraisal delays, title issues discovered late, income or asset documentation requests that pile up, and contingency negotiations.</p>
+
+<h2 id="when-to-lock">When to lock during the process</h2>
+
+<p>You typically have the option to lock anywhere from the start of the application process to as late as a few days before closing. The two extremes:</p>
+
+<p><strong>Lock immediately on application.</strong> You get rate certainty for the entire process. If rates rise, you're protected. If rates fall, you don't benefit (unless your lender offers float-down — more below). This is the right choice when rates have been trending up, when you're worried about further rate increases, or when your budget is tight enough that a 0.25-point rate increase would change the deal.</p>
+
+<p><strong>Float to closer to closing.</strong> You don't lock until you're closer to a closing date. If rates fall before you lock, you benefit. If rates rise, you pay more. The case for floating is strongest when rates have been trending down, when the market environment is calm, and when you have budget flexibility to absorb a small rate increase if floating doesn't go your way.</p>
+
+<p>Most experienced loan officers lock at the point in the process where the marginal benefit of further floating is small relative to the risk. For a typical 30-day purchase transaction, that's often within the first 7-14 days of application — early enough to capture most of the rate certainty benefit, late enough to absorb any small market moves that happen between application and rate-sheet posting on the lock day.</p>
+
+<h2 id="float-down">Float-down provisions, honestly assessed</h2>
+
+<p>A float-down provision lets you lock in a rate today and then "reset" to a lower rate if market rates drop materially before closing. This sounds great. It's also typically less valuable than it looks, for three reasons.</p>
+
+<p><strong>Float-down isn't free.</strong> It's priced into the lock — usually 0.125 to 0.375 points (upfront cost), or 0.05 to 0.10 percentage points on the rate. So you're paying for the option whether or not you end up using it.</p>
+
+<p><strong>Float-down has trigger thresholds.</strong> Most float-down provisions don't activate unless rates drop by some minimum amount — typically 0.25 to 0.5 percentage points below your locked rate. Smaller rate drops don't qualify. So if you lock at 6.50%, rates drop to 6.35%, your float-down doesn't trigger and you're stuck at 6.50% having paid for the option.</p>
+
+<p><strong>Float-down has timing windows.</strong> Most provisions can only be exercised within a specific window (often 7-15 days before closing). If rates drop dramatically two weeks after you lock but recover before the exercise window opens, you don't capture the benefit.</p>
+
+<p>The math: if you pay 0.125 points for a float-down on a $400,000 loan, you're paying $500 upfront for the option. The option pays off only if rates drop more than 0.25-0.5 percentage points during a specific window, and even then only by the difference between the original lock and the new rate, capped at some maximum. For most borrowers in most market environments, the expected value of the float-down is less than its cost.</p>
+
+<p><strong>When float-down is worth considering:</strong> high-volatility markets, longer locks (60+ days), and situations where you're locking at a clearly elevated rate level that you expect might normalize. In stable or trending-up markets, the option is rarely worth the cost.</p>
+
+<h2 id="rates-move">When rates move during your lock period</h2>
+
+<p>Once you lock, your rate is fixed regardless of what the market does. Two scenarios worth thinking about:</p>
+
+<p><strong>Rates rise materially after you lock.</strong> You're protected by the lock — your loan closes at your locked rate even though market rates are higher. This is the upside of the lock you paid for. No action required.</p>
+
+<p><strong>Rates fall materially after you lock.</strong> Two paths. If you have a float-down provision that triggers, you may be able to capture some of the rate drop. If you don't, you have three options: (1) close at your locked rate and refinance later if rates stay lower; (2) ask your lender to re-lock at the lower rate (most won't do this without significant cost — they're already on the hook for your original lock); (3) walk away from your lender and start over with a new lender at lower rates (this resets your appraisal, requires fresh credit checks, may delay closing past your purchase contract deadlines, and forfeits any application fees you've paid).</p>
+
+<p>Option 1 — close at the locked rate and refinance later — is usually the right choice for material drops (0.5+ percentage points). The <a href="refinance-vs-keep-calculator.html">Refinance vs. Keep calculator</a> shows the break-even math on any specific scenario.</p>
+
+<h2 id="multi-lender">Locking when shopping multiple lenders</h2>
+
+<p>Rate shopping across 3-4 lenders within a short window (the credit bureaus treat all credit inquiries within ~14-45 days as a single shopping event for FICO purposes) is the right strategy and the <a href="how-to-choose-a-lender.html">flagship lender guide</a> covers it in depth. The lock question gets complicated when shopping:</p>
+
+<p>You can't lock with multiple lenders simultaneously without unwinding most of them. Each lender holds your lock in their pipeline; closing with one means walking away from the others, forfeiting any application fees or earnest fees you've put down.</p>
+
+<p>The practical sequence: get Loan Estimates from 3-4 lenders on the same day, pick a winner based on the apples-to-apples rate and fee comparison, then lock with that lender. Don't lock with anyone until you've made the decision.</p>
+
+<p>Some borrowers try to negotiate by getting LEs from multiple lenders and asking each to match the best one. This works occasionally — some lenders will price-match a competitor's quote — but it's not universally effective. Most loan officers have limited authority to discount below their initial quote, and the time spent re-negotiating may be better spent just picking the best original quote.</p>
+
+<h2 id="checklist">Lock-decision checklist</h2>
+
+<p>When the loan officer asks "do you want to lock?", these are the questions worth asking before answering:</p>
+
+<ol class="about__steps">
+  <li>
+    <strong>What's the rate, and what's the lock duration?</strong>
+    Get both numbers explicitly. A 60-day lock at 6.45% is materially different from a 30-day lock at 6.40%.
+  </li>
+  <li>
+    <strong>What's the cost of extending the lock if my closing slips?</strong>
+    Get the extension pricing in writing before you lock. This is the cost you'll pay if anything goes wrong with the closing timeline.
+  </li>
+  <li>
+    <strong>Is there a float-down option, and what does it cost?</strong>
+    Get the trigger threshold, exercise window, and cost explicitly. Decide based on the math, not the brochure.
+  </li>
+  <li>
+    <strong>What's the current rate environment doing?</strong>
+    Check the 10-year Treasury yield trend over the past 2-4 weeks. If it's been rising, lean toward locking sooner. If it's been falling steadily, the case for floating is stronger.
+  </li>
+  <li>
+    <strong>How tight is my budget on this house?</strong>
+    If a 0.25-point rate increase would change your affordability, lock now and don't gamble. Risk avoidance is worth real money when your margin is thin.
+  </li>
+</ol>
+
+<p>The honest meta-rule: nobody, including the loan officer, knows what rates will do over the next 30-60 days. The professionals make educated guesses based on patterns; they're frequently wrong. Lock decisions are about risk tolerance, not market timing.</p>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ctaband reveal">
+      <span class="eyebrow" style="color:#9BE08E">From lock to close</span>
+      <h2 style="margin-top:.85rem">Lock the rate that works. Verify the math on the home.</h2>
+      <p>Once you've locked, the rate is fixed and the math becomes deterministic. Run your specific numbers through the calculators to confirm the deal still pencils — and use the lender flagship guide to navigate the rest of the closing process.</p>
+      <div class="ctaband__row">
+        <a href="mortgage-rates.html" class="btn">Back to Rates Center</a>
+        <a href="how-to-choose-a-lender.html" class="btn btn--ghost">How to choose a lender</a>
+        <a href="true-monthly-cost-calculator.html" class="btn btn--ghost">True Monthly Cost</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="brand" aria-label="OwningCost">
+          <img src="image.png" alt="OwningCost" class="brand__logo" width="190" height="42" />
+          <span class="brand__wordmark">OwningCost</span>
+        </a>
+        <p>Independent housing-cost intelligence. Transparent calculators, ZIP-level local data, honest financing comparisons. Built for people, not lenders.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="true-monthly-cost-calculator.html">True Monthly Cost</a></li>
+          <li><a href="rent-vs-buy-calculator.html">Rent vs Buy</a></li>
+          <li><a href="affordability-calculator.html">Affordability</a></li>
+          <li><a href="buy-vs-invest-calculator.html">Buy vs Invest</a></li>
+          <li><a href="fha-vs-conventional-calculator.html">FHA vs Conventional</a></li>
+          <li><a href="buy-now-vs-wait-calculator.html">Buy Now vs Wait</a></li>
+          <li><a href="stay-vs-sell-calculator.html">Stay vs Sell</a></li>
+          <li><a href="calculators.html">All calculators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="buying.html">Buying</a></li>
+          <li><a href="renting.html">Renting</a></li>
+          <li><a href="owning.html">Owning</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="mortgage-rates.html">Mortgage Rates</a></li>
+          <li><a href="risk.html">Risk</a></li>
+          <li><a href="loan-types.html">Loan types</a></li>
+          <li><a href="ai-in-real-estate.html">AI in Real Estate</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__disclaimer">
+      <strong>Disclaimer:</strong> OwningCost provides educational estimates and tools. We are not a lender, broker, financial advisor, or tax professional. The figures shown are illustrative and should not be relied upon as the sole basis for a housing decision. Always confirm rates, taxes, insurance, and closing costs with qualified professionals before signing.
+    </div>
+
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> OwningCost. All rights reserved.</div>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 6) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  var toggle = document.getElementById('menuToggle');
+  var mobile = document.getElementById('mobileNav');
+  if (toggle && mobile){
+    toggle.addEventListener('click', function(){
+      var open = mobile.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobile.addEventListener('click', function(e){
+      var t = e.target.closest('a');
+      if (t){ mobile.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+  }
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+    });
+  }, {rootMargin: '0px 0px -10% 0px', threshold: 0.08}) : null;
+  if (io){ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); }); }
+})();
+</script>
+</body>
+</html>

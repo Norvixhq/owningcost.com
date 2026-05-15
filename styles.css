@@ -2359,3 +2359,107 @@ a.rcard:hover .rcard__go::after{transform:translateX(3px)}
   .rcard{padding:.9rem 1rem}
   .container{padding-left:.95rem;padding-right:.95rem}
 }
+
+/* ============================================================
+   INLINE INPUT EDUCATION (Session 4)
+   ------------------------------------------------------------
+   A small "?" affordance next to calculator input labels.
+   Accessible (button + aria-describedby + role="tooltip"), works on
+   hover, focus, and tap. Pure CSS show/hide for desktop hover/focus;
+   a tiny JS controller handles tap-to-toggle on touch devices.
+   Lives inside .field__label without breaking existing layout.
+   ============================================================ */
+
+/* The label container becomes a flex row that lets the help button
+   sit inline with the label text. We override the existing
+   space-between so label+help cluster left, value floats right. */
+.field__label{flex-wrap:wrap;gap:.35rem}
+.field__label > span:first-child{display:inline-flex;align-items:center;gap:.32rem}
+
+/* The "?" trigger button. Small, unobtrusive, accessible. */
+.field__help{
+  flex:0 0 auto;
+  width:16px;height:16px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--border);border-radius:50%;
+  background:var(--surface);color:var(--subtle);
+  font-size:.68rem;font-weight:700;line-height:1;
+  cursor:help;padding:0;
+  transition:background .12s ease, color .12s ease, border-color .12s ease;
+  font-family:var(--sans);
+  position:relative; /* anchor for the tooltip */
+}
+.field__help:hover,.field__help:focus-visible{
+  background:var(--blue-50);color:var(--blue-700);border-color:var(--blue-300);
+  outline:none;
+}
+.field__help:focus-visible{box-shadow:0 0 0 3px rgba(28,109,217,.18)}
+
+/* The tooltip popover. Hidden by default. Shown on hover, focus, or
+   when [data-open="true"] is set by JS for tap. */
+.field__tip{
+  position:absolute;
+  left:50%;transform:translateX(-50%);
+  bottom:calc(100% + 8px);
+  width:max-content;max-width:280px;
+  padding:.7rem .85rem;
+  background:var(--ink);color:var(--bg);
+  border-radius:9px;
+  font-size:.78rem;line-height:1.45;font-weight:500;
+  text-align:left;letter-spacing:0;
+  box-shadow:0 8px 24px rgba(13,19,33,.18);
+  opacity:0;visibility:hidden;
+  transition:opacity .12s ease,visibility .12s ease,transform .12s ease;
+  z-index:50;pointer-events:none;
+}
+.field__tip::after{
+  content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+}
+.field__help:hover .field__tip,
+.field__help:focus-visible .field__tip,
+.field__help[data-open="true"] .field__tip{
+  opacity:1;visibility:visible;pointer-events:auto;
+}
+
+/* On narrow screens, anchor the tooltip to the field block rather
+   than the tiny button, so it doesn't overflow off-canvas. */
+@media (max-width:560px){
+  .field__help{width:18px;height:18px;font-size:.72rem}
+  .field__tip{
+    /* Pin to left edge of the field row instead of centering on the icon */
+    left:0;right:auto;transform:none;
+    max-width:calc(100vw - 3rem);
+    bottom:calc(100% + 10px);
+  }
+  .field__tip::after{left:14px;transform:none}
+}
+
+/* Hide tooltip if the field__help is inside a disabled context */
+.field__input[disabled] ~ .field__help,
+.field__help[aria-disabled="true"]{display:none}
+
+/* ============================================================
+   CALCULATOR URL STATE — SHARE BUTTON (Session 6)
+   ------------------------------------------------------------
+   Small, unobtrusive button placed near each calculator output
+   that copies the current URL (with state) to the clipboard.
+   ============================================================ */
+.calc__share{
+  margin-top:1.1rem;display:flex;justify-content:flex-end;
+}
+.calc__share-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.78rem;font-weight:600;color:var(--blue-700);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:.42rem .75rem;
+  cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease;
+  font-family:var(--sans);letter-spacing:.01em;
+}
+.calc__share-btn:hover{background:var(--blue-50);border-color:var(--blue-300)}
+.calc__share-btn:focus-visible{
+  outline:none;box-shadow:0 0 0 3px rgba(28,109,217,.18);
+  border-color:var(--blue-600);
+}
+.calc__share-btn.is-flashed{background:var(--green-100);color:var(--green-700);border-color:var(--green-300)}
+.calc__share-btn svg{width:14px;height:14px;flex:0 0 auto}
