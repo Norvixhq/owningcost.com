@@ -1,21 +1,36 @@
 /*
- * OwningCost — GA4 custom events
+ * OwningCost — GA4 custom events (Session 2 measurement layer)
  *
- * Listens for events that matter to a calculator-first platform:
- *   calc_run             — user submitted a calculator (any form.calc)
- *   cta_click            — user clicked a primary or ghost CTA button (.btn)
- *   methodology_view     — user opened a methodology link
- *   listing_check_run    — user ran the signature Listing Reality Check tool
- *   ai_underlying_click  — user clicked through from an AI page to its underlying calc
- *   outbound_click       — user clicked an external (http/https) link
+ * Six key events designed for a calculator-first platform:
+ *   1. calculator_complete  — fires when a user CHANGES an input and a calc result re-renders.
+ *                              Excludes the initial page-load default render. The signal of
+ *                              successful calculator use.
+ *   2. cta_click            — fires when a user clicks a primary or ghost CTA button (a.btn).
+ *                              Includes target href + label so attribution is clean.
+ *   3. form_submit          — fires when a real form (NOT a calculator form) is submitted.
+ *                              Used for contact / newsletter / lead-capture forms specifically.
+ *   4. scroll_75            — fires once per page when the user scrolls past 75% of the article
+ *                              body. Differentiates "loaded and bounced" from "actually read."
+ *   5. outbound_click       — fires when a user clicks a link to an external domain.
+ *                              Tells us which pages drive users to take action elsewhere.
+ *   6. return_visit         — fires when a known visitor returns within 30 days.
+ *                              Localstorage-backed. Useful as a "site provides ongoing value" signal.
+ *
+ * Plus existing legacy events preserved:
+ *   - methodology_view, listing_check_run, ai_underlying_click
  *
  * No additional libraries; uses gtag() loaded by the GA snippet in <head>.
  * Resilient to gtag not being defined yet (queues into dataLayer).
+ * Honors the existing consent.js mechanism (if user has not consented, events are skipped).
  */
 (function () {
   'use strict';
 
-  // Safe sender — works whether gtag is loaded or queued
+  // ---------------------------------------------------------------------------
+  // Utilities
+  // ---------------------------------------------------------------------------
+
+  // Safe sender — works whether gtag is loaded or queued, never throws.
   function track(eventName, params) {
     try {
       if (typeof window.gtag === 'function') {
@@ -26,7 +41,7 @@
     } catch (e) { /* never throw from analytics */ }
   }
 
-  // Read a meaningful "page name" from the URL for cleaner reporting
+  // Read a meaningful "page slug" from the URL for cleaner reporting.
   function pageSlug() {
     var p = (window.location.pathname || '').replace(/\/$/, '/index');
     p = p.split('/').pop() || 'index';
@@ -34,49 +49,76 @@
     return p || 'index';
   }
 
-  // --- 1. Calculator submissions -----------------------------------------
-  // Every form.calc is a calculator. Listen for submit at the document
-  // level to catch any form, including those rendered after page load.
-  document.addEventListener('submit', function (e) {
-    var form = e.target.closest && e.target.closest('form.calc');
-    if (!form) return;
-    track('calc_run', {
-      calc_name: pageSlug(),
-      page_location: window.location.pathname,
-    });
-  }, true);
+  // localStorage helpers, guarded for private-browsing / disabled-storage modes
+  function lsGet(key) {
+    try { return window.localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function lsSet(key, val) {
+    try { window.localStorage.setItem(key, val); } catch (e) { /* noop */ }
+  }
 
-  // Some calcs use buttons that don't submit (onsubmit="return false").
-  // Catch those by listening for clicks on .btn--primary / [data-calc-go]
-  // inside .calc forms.
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest && e.target.closest('form.calc button, form.calc [type="submit"], form.calc .btn--primary');
-    if (!btn) return;
-    track('calc_run', {
-      calc_name: pageSlug(),
-      page_location: window.location.pathname,
-    });
-  }, true);
+  // ---------------------------------------------------------------------------
+  // 1. calculator_complete — fires on result re-render AFTER user input change
+  // ---------------------------------------------------------------------------
+  // Strategy: watch any .calc__out element for content changes via MutationObserver.
+  // Only fire calculator_complete if the user has interacted with a form input first
+  // (otherwise the initial page-load default render would fire it on every visit).
+  //
+  // Debounced to once per 1500ms so a single calc re-render with multiple DOM
+  // mutations doesn't fire 5 events.
+  (function () {
+    if (!('MutationObserver' in window)) return;
 
-  // --- 2. CTA clicks ------------------------------------------------------
-  // .btn elements outside of forms (form-internal calc buttons handled above)
+    var outEl = document.querySelector('.calc__out');
+    if (!outEl) return; // not a calculator page
+
+    var hasInteracted = false;
+    var lastFireTime = 0;
+    var DEBOUNCE_MS = 1500;
+
+    // Mark the user as having interacted once they touch any input in the calc form
+    var calcForm = document.querySelector('form.calc');
+    if (calcForm) {
+      var markInteracted = function () { hasInteracted = true; };
+      calcForm.addEventListener('input', markInteracted, true);
+      calcForm.addEventListener('change', markInteracted, true);
+    }
+
+    // Watch result-output element for content changes
+    var observer = new MutationObserver(function () {
+      if (!hasInteracted) return;
+      var now = Date.now();
+      if (now - lastFireTime < DEBOUNCE_MS) return;
+      lastFireTime = now;
+      track('calculator_complete', {
+        calc_name: pageSlug(),
+        page_location: window.location.pathname,
+      });
+    });
+    observer.observe(outEl, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  })();
+
+  // ---------------------------------------------------------------------------
+  // 2. cta_click — primary and ghost CTA buttons (a.btn)
+  // ---------------------------------------------------------------------------
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a.btn, a.btn--primary, a.btn--ghost');
     if (!a) return;
-    if (a.closest('form.calc')) return; // already counted above
+    if (a.closest('form.calc')) return; // calc-internal buttons handled by calculator_complete
 
     var href = a.getAttribute('href') || '';
     var label = (a.textContent || '').trim().slice(0, 60);
 
-    // Outbound link?
+    // Outbound? Handled by separate listener below.
     if (/^https?:\/\//i.test(href) && href.indexOf(window.location.host) === -1) {
-      track('outbound_click', { link_url: href, link_text: label });
-      return;
+      return; // outbound_click listener will catch it
     }
 
-    // AI-page → underlying calculator path:
-    // detect the "Use the calculator now" / underlying-tool pattern by
-    // checking if we're on one of the 6 AI pages and clicking to a calc.
+    // AI-page → underlying calc routing (legacy event preserved)
     var aiPages = [
       'scenario-assistant', 'listing-analyzer',
       'compare-two-homes', 'compare-two-loans',
@@ -94,12 +136,120 @@
     track('cta_click', {
       cta_text: label,
       cta_href: href,
+      cta_location: pageSlug(),
+    });
+  }, true);
+
+  // ---------------------------------------------------------------------------
+  // 3. form_submit — real form submissions (NOT calculator forms)
+  // ---------------------------------------------------------------------------
+  // Calculator forms use form.calc; lead/contact forms don't. We listen for
+  // any submit event and exclude form.calc to avoid double-counting.
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || form.tagName !== 'FORM') return;
+    if (form.classList && form.classList.contains('calc')) return; // calc, not a lead form
+
+    var formName = form.getAttribute('name') || form.getAttribute('id') || 'unnamed_form';
+    var formAction = form.getAttribute('action') || '';
+
+    track('form_submit', {
+      form_name: formName,
+      form_action: formAction,
       page_location: window.location.pathname,
     });
   }, true);
 
-  // --- 3. Methodology link views -----------------------------------------
-  // Any <a> pointing at methodology.html, including deep-anchors
+  // ---------------------------------------------------------------------------
+  // 4. scroll_75 — fires once per page when user scrolls past 75% of <main>
+  // ---------------------------------------------------------------------------
+  // Used to differentiate engaged readers from bounces on Learn / guide pages.
+  // Throttled by a fired flag so we only fire once per page load.
+  (function () {
+    var main = document.querySelector('main') || document.body;
+    if (!main) return;
+    var fired = false;
+    var ticking = false;
+
+    function checkScroll() {
+      ticking = false;
+      if (fired) return;
+      var rect = main.getBoundingClientRect();
+      var mainTop = rect.top + window.scrollY;
+      var mainHeight = rect.height;
+      var viewportTop = window.scrollY;
+      var viewportHeight = window.innerHeight;
+      var scrolledDistance = viewportTop - mainTop + viewportHeight;
+      if (mainHeight <= 0) return;
+      var pct = scrolledDistance / mainHeight;
+      if (pct >= 0.75) {
+        fired = true;
+        track('scroll_75', {
+          page_location: window.location.pathname,
+          page_slug: pageSlug(),
+        });
+      }
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(checkScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+  // ---------------------------------------------------------------------------
+  // 5. outbound_click — links to external domains
+  // ---------------------------------------------------------------------------
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (!/^https?:\/\//i.test(href)) return; // internal link
+    if (href.indexOf(window.location.host) !== -1) return; // same-host link
+    var label = (a.textContent || '').trim().slice(0, 60);
+    track('outbound_click', {
+      link_url: href,
+      link_text: label,
+      page_location: window.location.pathname,
+    });
+  }, true);
+
+  // ---------------------------------------------------------------------------
+  // 6. return_visit — fires when a known visitor returns within 30 days
+  // ---------------------------------------------------------------------------
+  // localStorage-backed; first visit silently sets the timestamp,
+  // subsequent visits within 30 days fire the event with days_since_last
+  (function () {
+    var KEY = 'oc_last_visit';
+    var THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+    var lastVisit = lsGet(KEY);
+    var now = Date.now();
+
+    if (lastVisit) {
+      var lastMs = parseInt(lastVisit, 10);
+      if (!isNaN(lastMs) && (now - lastMs) < THIRTY_DAYS_MS) {
+        // Same-session re-loads also fire return_visit, but we suppress those
+        // by requiring at least 30 minutes since the last fire on this device.
+        var THIRTY_MIN_MS = 30 * 60 * 1000;
+        if ((now - lastMs) >= THIRTY_MIN_MS) {
+          var daysSince = Math.floor((now - lastMs) / (24 * 60 * 60 * 1000));
+          track('return_visit', {
+            days_since_last: daysSince,
+            page_slug: pageSlug(),
+          });
+        }
+      }
+    }
+    lsSet(KEY, String(now));
+  })();
+
+  // ---------------------------------------------------------------------------
+  // Legacy events preserved (existing functionality)
+  // ---------------------------------------------------------------------------
+
+  // methodology_view — fires on any click of a link pointing to methodology.html
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href*="methodology.html"]');
     if (!a) return;
@@ -110,10 +260,7 @@
     });
   }, true);
 
-  // --- 4. Listing Reality Check — special-case the signature tool --------
-  // Track a distinct event when the LRC's run-check button is fired,
-  // separately from generic calc_run, so the signature tool's funnel is
-  // visible in GA reports.
+  // listing_check_run — preserved separately for the signature LRC funnel
   if (pageSlug() === 'listing-reality-check') {
     document.addEventListener('click', function (e) {
       var btn = e.target.closest && e.target.closest('form.calc .btn--primary, form.calc button[type="submit"]');
