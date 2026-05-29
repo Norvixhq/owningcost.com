@@ -33,9 +33,11 @@ These six events should be marked as "Key events" in the GA4 admin (Admin → Ev
 **Parameters:**
 - `cta_text` (string) — visible button text, up to 60 chars
 - `cta_href` (string) — destination URL
-- `cta_location` (string) — page slug where the click happened
+- `cta_location` (string) — where the click happened. Reads the `data-cta-location` attribute if present, else falls back to page slug. Tagged locations on the homepage: `hero` (primary hero buttons), `hero_costcard` (the sample cost-card CTA), `sitcard_renter` / `sitcard_firsttime` / `sitcard_owner` / `sitcard_financing` / `sitcard_specific_home` (the five situation-router cards). Untagged CTAs report the page slug.
 
-**Why it matters:** Tells you which CTAs convert. Critical for measuring homepage flow improvements and category-hub routing effectiveness.
+**Why it matters:** Tells you which CTAs convert, and now WHERE on the page they convert. Critical for measuring homepage flow: you can compare the hero CTA vs the costcard CTA vs each situation-card path to see which framing actually drives clicks into the flagship calculator.
+
+**Note:** the listener catches `a.btn` variants AND any `a[data-cta-location]` link, so conversion paths that aren't styled as buttons (situation cards, the costcard CTA) are now tracked. Before Session 3 these were invisible to analytics.
 
 ---
 

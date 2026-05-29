@@ -106,7 +106,12 @@
   // 2. cta_click — primary and ghost CTA buttons (a.btn)
   // ---------------------------------------------------------------------------
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a.btn, a.btn--primary, a.btn--ghost');
+    // Catch standard CTA buttons OR any link explicitly tagged with data-cta-location.
+    // The data-cta-location attribute lets us track conversion paths that aren't
+    // styled as .btn (situation cards, costcard CTA, inline tool links).
+    var a = e.target.closest && e.target.closest(
+      'a.btn, a.btn--primary, a.btn--ghost, a[data-cta-location]'
+    );
     if (!a) return;
     if (a.closest('form.calc')) return; // calc-internal buttons handled by calculator_complete
 
@@ -136,7 +141,7 @@
     track('cta_click', {
       cta_text: label,
       cta_href: href,
-      cta_location: pageSlug(),
+      cta_location: a.getAttribute('data-cta-location') || pageSlug(),
     });
   }, true);
 
